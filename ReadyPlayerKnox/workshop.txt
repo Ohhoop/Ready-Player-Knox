@@ -1,5 +1,0 @@
-version=1
-title=Ready Player Knox
-description=Plays the arcade cabinets, the pinball machine and the handheld game console for real.
-tags=
-visibility=public

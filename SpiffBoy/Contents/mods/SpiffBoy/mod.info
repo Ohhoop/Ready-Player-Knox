@@ -1,0 +1,5 @@
+id=SpiffBoy
+name=SpiffBoy
+description=Plays the SpiffBoy handheld game console and its cartridges for real.
+modversion=0.1.0
+versionMin=42.0

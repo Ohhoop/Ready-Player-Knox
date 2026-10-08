@@ -1,0 +1,5 @@
+version=1
+title=SpiffBoy
+description=Plays the SpiffBoy handheld game console and its cartridges for real.
+tags=
+visibility=public
