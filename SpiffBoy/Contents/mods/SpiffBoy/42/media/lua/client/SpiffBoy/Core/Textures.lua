@@ -9,32 +9,34 @@ local h=3
 
 local d={}
 local e={}
-local f=nil
+local f={}
 
-local function i()
-if not f then
-local b=getModInfoByID(SpiffBoy.MOD_ID)
-if not b then
-error("SpiffBoy: the mod "..SpiffBoy.MOD_ID.." is not in the mod list of the game")
+local function i(b)
+local c=f[b]
+if not c then
+local g=getModInfoByID(b)
+if not g then
+error("SpiffBoy: the mod "..tostring(b).." is not in the mod list of the game")
 end
-f=b:getVersionDir()
+c=g:getVersionDir()
+f[b]=c
 end
-return f
-end
-
-local function j(b)
-return i().."/"..b
+return c
 end
 
-local function k(c)
-local g,b=pcall(Texture.new,c)
-if g and b and b:getWidth()>0 then
+local function g(b,c)
+return i(b).."/"..c
+end
+
+local function j(c)
+local k,b=pcall(Texture.new,c)
+if k and b and b:getWidth()>0 then
 return b
 end
 return nil
 end
 
-local function l(c)
+local function k(c)
 local b=Texture.getSharedTexture(c,h)
 if b and SpiffBoy.isDevBuild()then
 b:reloadFromFile(c)
@@ -42,34 +44,34 @@ end
 return b
 end
 
-local function m(b)
+local function l(b)
 if SpiffBoy.isDevBuild()then
-return k(b)
+return j(b)
 end
 return getTexture(b)
 end
 
-function a.get(c,n)
-local b=d[c]
-if b then
-return b
+function a.get(m,n,o)
+local b=g(m,n)
+local c=d[b]
+if c then
+return c
 end
-if e[c]then
+if e[b]then
 return nil
 end
-local g=j(c)
-if n then
-b=l(g)
+if o then
+c=k(b)
 else
-b=m(g)
+c=l(b)
 end
-if b then
-d[c]=b
+if c then
+d[b]=c
 else
-e[c]=true
-SpiffBoy.log("missing texture "..c)
+e[b]=true
+SpiffBoy.log("missing texture "..b)
 end
-return b
+return c
 end
 
 function a.refresh()
@@ -81,8 +83,8 @@ e={}
 a.generation=a.generation+1
 end
 
-function a.folder(b,c)
-return function(g)
-return a.get(b..g..".png",c)
+function a.folder(b,c,m)
+return function(n)
+return a.get(b,c..n..".png",m)
 end
 end

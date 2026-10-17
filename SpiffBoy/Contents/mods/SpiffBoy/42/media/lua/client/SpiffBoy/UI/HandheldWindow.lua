@@ -434,23 +434,23 @@ self:setStencilRect(s.x+f.x*a,s.y+v*a,f.w*a,(A-v)*a)
 end
 
 function SpiffBoyHandheldWindow:drawCartridgeLabel(A,bd,be)
-local s=self.shell
+local v=self.shell
 local a=f.label
 local O,P=bd+a.x,be+a.y
-local v=A and SpiffBoy.Cartridges.get(A)
-local S=v and v.art and SpiffBoy.Textures.get(v.art..a.file,true)
+local s=A and SpiffBoy.Cartridges.get(A)
+local S=s and s.art and SpiffBoy.Textures.get(s.mod,s.art..a.file,true)
 if S then
-s:sprite(S,O,P,a.w,a.h)
+v:sprite(S,O,P,a.w,a.h)
 return
 end
 local Q,R=a4,a5
-s:rect(O,P,a.w,a.h,Q.r,Q.g,Q.b,1)
-local ap=s:lineHeight()
-local bf=v and v.title or getItemNameFromFullType(A)
-local aq=s:wrapText(bf,a.w-2*a.inset)
+v:rect(O,P,a.w,a.h,Q.r,Q.g,Q.b,1)
+local ap=v:lineHeight()
+local bf=s and s.title or getItemNameFromFullType(A)
+local aq=v:wrapText(bf,a.w-2*a.inset)
 local bg=P+math.floor((a.h-#aq*ap)/2)
 for bh,bi in ipairs(aq)do
-s:textCentre(bi,O+math.floor(a.w/2),bg+(bh-1)*ap,R.r,R.g,R.b,1)
+v:textCentre(bi,O+math.floor(a.w/2),bg+(bh-1)*ap,R.r,R.g,R.b,1)
 end
 end
 
@@ -734,9 +734,9 @@ a.runtime=SpiffBoyRuntime.new(a.screen)
 a.runtime.onCrash=function()
 a:onGameCrash()
 end
-a.art=SpiffBoy.Textures.folder(T)
+a.art=SpiffBoy.Textures.folder(SpiffBoy.MOD_ID,T)
 a.textures=a6(a.art)
-a.screenArt=SpiffBoy.Textures.folder(T,true)
+a.screenArt=SpiffBoy.Textures.folder(SpiffBoy.MOD_ID,T,true)
 a.boot=nil
 a.input=SpiffBoyInputState.new()
 a.inputs={a.input}
@@ -1279,7 +1279,7 @@ function SpiffBoyHandheldWindow:loadCartridge()
 local a=SpiffBoy.Handheld.getCartridge(self.console)
 self.record=a
 self.definition=a and SpiffBoy.Cartridges.get(a.type)
-self.gameArt=self.definition and SpiffBoy.Textures.folder(self.definition.art,true)
+self.gameArt=self.definition and SpiffBoy.Textures.folder(self.definition.mod,self.definition.art,true)
 end
 
 function SpiffBoyHandheldWindow:freeze()

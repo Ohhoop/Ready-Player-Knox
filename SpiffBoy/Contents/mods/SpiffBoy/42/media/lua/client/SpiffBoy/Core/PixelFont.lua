@@ -331,7 +331,7 @@ function d.pageTexture(c)
 if c~=B or m.generation~=D then
 B=c
 D=m.generation
-C=m.get(c,true)
+C=m.get(SpiffBoy.MOD_ID,c,true)
 end
 return C
 end

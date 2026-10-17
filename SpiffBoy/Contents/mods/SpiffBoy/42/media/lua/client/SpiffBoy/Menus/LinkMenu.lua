@@ -21,7 +21,7 @@ local n="YES"
 local o="media/ui/SpiffBoy/Menus/link_cable.png"
 
 local function c(d)
-d.iconTexture=SpiffBoy.Textures.get(o,false)
+d.iconTexture=SpiffBoy.Textures.get(SpiffBoy.MOD_ID,o,false)
 end
 
 local function p(d)
