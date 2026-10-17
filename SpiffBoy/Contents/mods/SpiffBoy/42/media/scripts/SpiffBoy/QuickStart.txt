@@ -1,0 +1,13 @@
+module SpiffBoy
+{
+    item Cartridge_QuickStart
+    {
+        DisplayCategory = Entertainment,
+        ItemType = base:normal,
+        Weight = 0.1,
+        Icon = SpiffBoy_Cartridge_QuickStart,
+        WorldStaticModel = SpiffBoy.Cartridge_QuickStart,
+        MetalValue = 1.0,
+        Tags = base:hasmetal;base:miscelectronic,
+    }
+}

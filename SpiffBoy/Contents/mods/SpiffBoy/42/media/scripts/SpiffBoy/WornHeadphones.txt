@@ -1,0 +1,24 @@
+module SpiffBoy
+{
+    item HeadphonesWorn
+    {
+        DisplayCategory = Electronics,
+        ItemType = base:clothing,
+        Weight = 0.0,
+        BodyLocation = base:bandage,
+        ClothingItem = SB_HeadphonesWorn,
+        WorldRender = false,
+        hidden = true,
+    }
+
+    item EarbudsWorn
+    {
+        DisplayCategory = Electronics,
+        ItemType = base:clothing,
+        Weight = 0.0,
+        BodyLocation = base:bandage,
+        ClothingItem = SB_EarbudsWorn,
+        WorldRender = false,
+        hidden = true,
+    }
+}

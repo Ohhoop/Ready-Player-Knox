@@ -1,0 +1,13 @@
+module SpiffBoy
+{
+    item Cartridge_Serpent
+    {
+        DisplayCategory = Entertainment,
+        ItemType = base:normal,
+        Weight = 0.1,
+        Icon = SpiffBoy_Cartridge_Serpent,
+        WorldStaticModel = SpiffBoy.Cartridge_Serpent,
+        MetalValue = 1.0,
+        Tags = base:hasmetal;base:miscelectronic,
+    }
+}

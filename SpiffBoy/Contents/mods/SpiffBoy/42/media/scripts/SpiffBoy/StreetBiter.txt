@@ -1,0 +1,13 @@
+module SpiffBoy
+{
+    item Cartridge_StreetBiter
+    {
+        DisplayCategory = Entertainment,
+        ItemType = base:normal,
+        Weight = 0.1,
+        Icon = SpiffBoy_Cartridge_StreetBiter,
+        WorldStaticModel = SpiffBoy.Cartridge_StreetBiter,
+        MetalValue = 1.0,
+        Tags = base:hasmetal;base:miscelectronic,
+    }
+}

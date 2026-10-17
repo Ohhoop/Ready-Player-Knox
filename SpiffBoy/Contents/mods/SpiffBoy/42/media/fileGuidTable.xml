@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<fileGuidTable>
+	<files>
+		<path>media/clothing/clothingItems/SB_HeadphonesWorn.xml</path>
+		<guid>ec764d15-b859-471f-b7c1-1297038b6855</guid>
+	</files>
+	<files>
+		<path>media/clothing/clothingItems/SB_EarbudsWorn.xml</path>
+		<guid>6dc0d908-9caf-4f60-b2b1-7ed11ff5a6e6</guid>
+	</files>
+</fileGuidTable>

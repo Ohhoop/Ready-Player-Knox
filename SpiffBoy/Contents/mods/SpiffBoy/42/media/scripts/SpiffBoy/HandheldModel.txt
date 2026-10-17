@@ -1,0 +1,16 @@
+module Base
+{
+	model SpiffBoyHandheldInHand
+    {
+        mesh = SpiffBoy/HandheldConsole,
+        texture = WorldItems/VideoGame,
+        scale = 0.35,
+
+        attachment Bip01_Prop2
+        {
+            offset = 0.0083 0.0025 -0.0032,
+            rotate = -142.4252 -11.6833 -88.5203,
+            scale = 0.8665,
+        }
+    }
+}

@@ -1,0 +1,13 @@
+module SpiffBoy
+{
+    item Cartridge_SnackMan
+    {
+        DisplayCategory = Entertainment,
+        ItemType = base:normal,
+        Weight = 0.1,
+        Icon = SpiffBoy_Cartridge_SnackMan,
+        WorldStaticModel = SpiffBoy.Cartridge_SnackMan,
+        MetalValue = 1.0,
+        Tags = base:hasmetal;base:miscelectronic,
+    }
+}

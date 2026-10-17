@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<clothingItem>
+	<m_MaleModel>media\models_X\SpiffBoy\M_EarbudsWorn.x</m_MaleModel>
+	<m_FemaleModel>media\models_X\SpiffBoy\F_EarbudsWorn.x</m_FemaleModel>
+	<m_GUID>6dc0d908-9caf-4f60-b2b1-7ed11ff5a6e6</m_GUID>
+	<m_Static>true</m_Static>
+	<m_AllowRandomHue>false</m_AllowRandomHue>
+	<m_AllowRandomTint>false</m_AllowRandomTint>
+	<m_AttachBone>Bip01_Head</m_AttachBone>
+	<textureChoices>WorldItems\Earbuds</textureChoices>
+</clothingItem>

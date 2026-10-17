@@ -1,0 +1,13 @@
+module SpiffBoy
+{
+    item Cartridge_BrickDrop
+    {
+        DisplayCategory = Entertainment,
+        ItemType = base:normal,
+        Weight = 0.1,
+        Icon = SpiffBoy_Cartridge_BrickDrop,
+        WorldStaticModel = SpiffBoy.Cartridge_BrickDrop,
+        MetalValue = 1.0,
+        Tags = base:hasmetal;base:miscelectronic,
+    }
+}

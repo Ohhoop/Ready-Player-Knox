@@ -1,0 +1,72 @@
+module SpiffBoy
+{
+    model Cartridge_BrickBash
+    {
+        mesh = SpiffBoy/Cartridge,
+        texture = SpiffBoy/SpiffBoyCartridge_BrickBash,
+        scale = 0.3,
+    }
+
+    model Cartridge_BrickDrop
+    {
+        mesh = SpiffBoy/Cartridge,
+        texture = SpiffBoy/SpiffBoyCartridge_BrickDrop,
+        scale = 0.3,
+    }
+
+    model Cartridge_DoubleRaccoon
+    {
+        mesh = SpiffBoy/Cartridge,
+        texture = SpiffBoy/SpiffBoyCartridge_DoubleRaccoon,
+        scale = 0.3,
+    }
+
+    model Cartridge_DrTile
+    {
+        mesh = SpiffBoy/Cartridge,
+        texture = SpiffBoy/SpiffBoyCartridge_DrTile,
+        scale = 0.3,
+    }
+
+    model Cartridge_Lanterways
+    {
+        mesh = SpiffBoy/Cartridge,
+        texture = SpiffBoy/SpiffBoyCartridge_Lanterways,
+        scale = 0.3,
+    }
+
+    model Cartridge_PipeBomber
+    {
+        mesh = SpiffBoy/Cartridge,
+        texture = SpiffBoy/SpiffBoyCartridge_PipeBomber,
+        scale = 0.3,
+    }
+
+    model Cartridge_QuickStart
+    {
+        mesh = SpiffBoy/Cartridge,
+        texture = SpiffBoy/SpiffBoyCartridge_QuickStart,
+        scale = 0.3,
+    }
+
+    model Cartridge_Serpent
+    {
+        mesh = SpiffBoy/Cartridge,
+        texture = SpiffBoy/SpiffBoyCartridge_Serpent,
+        scale = 0.3,
+    }
+
+    model Cartridge_SnackMan
+    {
+        mesh = SpiffBoy/Cartridge,
+        texture = SpiffBoy/SpiffBoyCartridge_SnackMan,
+        scale = 0.3,
+    }
+
+    model Cartridge_StreetBiter
+    {
+        mesh = SpiffBoy/Cartridge,
+        texture = SpiffBoy/SpiffBoyCartridge_StreetBiter,
+        scale = 0.3,
+    }
+}

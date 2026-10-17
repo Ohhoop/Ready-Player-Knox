@@ -1,0 +1,3746 @@
+module SpiffBoy
+{
+    sound SpiffBoy_Chip_pulse0_0
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/pulse0_0.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_pulse0_1
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/pulse0_1.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_pulse0_2
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/pulse0_2.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_pulse0_3
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/pulse0_3.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_pulse0_4
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/pulse0_4.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_pulse0_5
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/pulse0_5.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_pulse0_6
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/pulse0_6.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_pulse0_7
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/pulse0_7.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_pulse1_0
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/pulse1_0.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_pulse1_1
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/pulse1_1.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_pulse1_2
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/pulse1_2.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_pulse1_3
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/pulse1_3.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_pulse1_4
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/pulse1_4.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_pulse1_5
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/pulse1_5.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_pulse1_6
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/pulse1_6.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_pulse1_7
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/pulse1_7.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_pulse2_0
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/pulse2_0.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_pulse2_1
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/pulse2_1.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_pulse2_2
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/pulse2_2.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_pulse2_3
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/pulse2_3.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_pulse2_4
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/pulse2_4.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_pulse2_5
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/pulse2_5.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_pulse2_6
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/pulse2_6.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_pulse2_7
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/pulse2_7.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_pulse3_0
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/pulse3_0.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_pulse3_1
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/pulse3_1.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_pulse3_2
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/pulse3_2.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_pulse3_3
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/pulse3_3.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_pulse3_4
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/pulse3_4.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_pulse3_5
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/pulse3_5.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_pulse3_6
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/pulse3_6.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_pulse3_7
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/pulse3_7.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_triangle_0
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_triangle_0.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_triangle_1
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_triangle_1.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_triangle_2
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_triangle_2.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_triangle_3
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_triangle_3.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_triangle_4
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_triangle_4.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_triangle_5
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_triangle_5.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_triangle_6
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_triangle_6.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_triangle_7
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_triangle_7.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_sawtooth_0
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_sawtooth_0.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_sawtooth_1
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_sawtooth_1.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_sawtooth_2
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_sawtooth_2.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_sawtooth_3
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_sawtooth_3.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_sawtooth_4
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_sawtooth_4.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_sawtooth_5
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_sawtooth_5.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_sawtooth_6
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_sawtooth_6.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_sawtooth_7
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_sawtooth_7.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_sine_0
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_sine_0.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_sine_1
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_sine_1.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_sine_2
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_sine_2.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_sine_3
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_sine_3.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_sine_4
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_sine_4.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_sine_5
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_sine_5.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_sine_6
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_sine_6.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_sine_7
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_sine_7.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_square_0
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_square_0.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_square_1
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_square_1.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_square_2
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_square_2.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_square_3
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_square_3.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_square_4
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_square_4.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_square_5
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_square_5.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_square_6
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_square_6.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_square_7
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_square_7.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_organ_0
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_organ_0.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_organ_1
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_organ_1.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_organ_2
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_organ_2.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_organ_3
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_organ_3.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_organ_4
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_organ_4.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_organ_5
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_organ_5.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_organ_6
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_organ_6.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_organ_7
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_organ_7.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_bass_0
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_bass_0.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_bass_1
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_bass_1.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_bass_2
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_bass_2.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_bass_3
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_bass_3.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_bass_4
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_bass_4.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_bass_5
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_bass_5.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_bass_6
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_bass_6.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_bass_7
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_bass_7.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_stairs_0
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_stairs_0.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_stairs_1
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_stairs_1.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_stairs_2
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_stairs_2.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_stairs_3
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_stairs_3.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_stairs_4
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_stairs_4.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_stairs_5
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_stairs_5.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_stairs_6
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_stairs_6.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_stairs_7
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_stairs_7.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_hollow_0
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_hollow_0.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_hollow_1
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_hollow_1.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_hollow_2
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_hollow_2.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_hollow_3
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_hollow_3.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_hollow_4
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_hollow_4.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_hollow_5
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_hollow_5.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_hollow_6
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_hollow_6.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_hollow_7
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_hollow_7.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_pulse25_0
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_pulse25_0.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_pulse25_1
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_pulse25_1.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_pulse25_2
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_pulse25_2.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_pulse25_3
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_pulse25_3.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_pulse25_4
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_pulse25_4.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_pulse25_5
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_pulse25_5.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_pulse25_6
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_pulse25_6.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_pulse25_7
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_pulse25_7.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_pulse12_0
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_pulse12_0.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_pulse12_1
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_pulse12_1.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_pulse12_2
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_pulse12_2.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_pulse12_3
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_pulse12_3.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_pulse12_4
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_pulse12_4.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_pulse12_5
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_pulse12_5.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_pulse12_6
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_pulse12_6.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_pulse12_7
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_pulse12_7.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_sawdown_0
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_sawdown_0.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_sawdown_1
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_sawdown_1.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_sawdown_2
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_sawdown_2.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_sawdown_3
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_sawdown_3.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_sawdown_4
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_sawdown_4.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_sawdown_5
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_sawdown_5.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_sawdown_6
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_sawdown_6.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_sawdown_7
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_sawdown_7.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_round_0
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_round_0.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_round_1
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_round_1.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_round_2
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_round_2.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_round_3
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_round_3.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_round_4
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_round_4.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_round_5
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_round_5.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_round_6
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_round_6.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_round_7
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_round_7.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_halfsine_0
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_halfsine_0.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_halfsine_1
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_halfsine_1.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_halfsine_2
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_halfsine_2.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_halfsine_3
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_halfsine_3.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_halfsine_4
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_halfsine_4.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_halfsine_5
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_halfsine_5.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_halfsine_6
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_halfsine_6.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_halfsine_7
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_halfsine_7.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_bell_0
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_bell_0.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_bell_1
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_bell_1.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_bell_2
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_bell_2.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_bell_3
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_bell_3.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_bell_4
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_bell_4.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_bell_5
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_bell_5.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_bell_6
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_bell_6.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_bell_7
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_bell_7.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_chime_0
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_chime_0.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_chime_1
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_chime_1.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_chime_2
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_chime_2.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_chime_3
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_chime_3.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_chime_4
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_chime_4.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_chime_5
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_chime_5.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_chime_6
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_chime_6.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_chime_7
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_chime_7.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_reed_0
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_reed_0.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_reed_1
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_reed_1.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_reed_2
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_reed_2.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_reed_3
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_reed_3.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_reed_4
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_reed_4.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_reed_5
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_reed_5.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_reed_6
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_reed_6.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_reed_7
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_reed_7.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_nasal_0
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_nasal_0.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_nasal_1
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_nasal_1.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_nasal_2
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_nasal_2.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_nasal_3
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_nasal_3.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_nasal_4
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_nasal_4.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_nasal_5
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_nasal_5.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_nasal_6
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_nasal_6.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_nasal_7
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_nasal_7.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_formant_0
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_formant_0.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_formant_1
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_formant_1.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_formant_2
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_formant_2.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_formant_3
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_formant_3.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_formant_4
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_formant_4.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_formant_5
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_formant_5.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_formant_6
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_formant_6.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_formant_7
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_formant_7.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_ramp_0
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_ramp_0.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_ramp_1
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_ramp_1.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_ramp_2
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_ramp_2.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_ramp_3
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_ramp_3.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_ramp_4
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_ramp_4.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_ramp_5
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_ramp_5.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_ramp_6
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_ramp_6.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_ramp_7
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_ramp_7.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_doublesaw_0
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_doublesaw_0.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_doublesaw_1
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_doublesaw_1.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_doublesaw_2
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_doublesaw_2.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_doublesaw_3
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_doublesaw_3.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_doublesaw_4
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_doublesaw_4.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_doublesaw_5
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_doublesaw_5.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_doublesaw_6
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_doublesaw_6.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_doublesaw_7
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_doublesaw_7.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_octaves_0
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_octaves_0.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_octaves_1
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_octaves_1.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_octaves_2
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_octaves_2.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_octaves_3
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_octaves_3.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_octaves_4
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_octaves_4.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_octaves_5
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_octaves_5.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_octaves_6
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_octaves_6.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_octaves_7
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_octaves_7.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_buzz_0
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_buzz_0.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_buzz_1
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_buzz_1.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_buzz_2
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_buzz_2.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_buzz_3
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_buzz_3.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_buzz_4
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_buzz_4.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_buzz_5
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_buzz_5.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_buzz_6
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_buzz_6.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_buzz_7
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_buzz_7.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_piano_0
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_piano_0.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_piano_1
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_piano_1.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_piano_2
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_piano_2.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_piano_3
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_piano_3.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_piano_4
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_piano_4.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_piano_5
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_piano_5.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_piano_6
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_piano_6.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_piano_7
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_piano_7.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_strings_0
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_strings_0.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_strings_1
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_strings_1.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_strings_2
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_strings_2.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_strings_3
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_strings_3.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_strings_4
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_strings_4.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_strings_5
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_strings_5.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_strings_6
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_strings_6.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_strings_7
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_strings_7.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_brass_0
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_brass_0.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_brass_1
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_brass_1.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_brass_2
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_brass_2.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_brass_3
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_brass_3.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_brass_4
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_brass_4.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_brass_5
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_brass_5.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_brass_6
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_brass_6.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_brass_7
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_brass_7.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_flute_0
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_flute_0.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_flute_1
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_flute_1.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_flute_2
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_flute_2.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_flute_3
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_flute_3.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_flute_4
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_flute_4.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_flute_5
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_flute_5.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_flute_6
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_flute_6.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_flute_7
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_flute_7.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_glass_0
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_glass_0.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_glass_1
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_glass_1.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_glass_2
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_glass_2.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_glass_3
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_glass_3.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_glass_4
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_glass_4.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_glass_5
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_glass_5.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_glass_6
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_glass_6.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_glass_7
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_glass_7.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_metal_0
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_metal_0.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_metal_1
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_metal_1.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_metal_2
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_metal_2.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_metal_3
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_metal_3.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_metal_4
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_metal_4.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_metal_5
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_metal_5.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_metal_6
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_metal_6.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_metal_7
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_metal_7.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_thump_0
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_thump_0.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_thump_1
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_thump_1.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_thump_2
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_thump_2.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_thump_3
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_thump_3.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_thump_4
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_thump_4.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_thump_5
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_thump_5.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_thump_6
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_thump_6.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_thump_7
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_thump_7.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_grit_0
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_grit_0.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_grit_1
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_grit_1.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_grit_2
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_grit_2.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_grit_3
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_grit_3.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_grit_4
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_grit_4.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_grit_5
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_grit_5.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_grit_6
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_grit_6.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_grit_7
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_grit_7.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_wobble_0
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_wobble_0.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_wobble_1
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_wobble_1.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_wobble_2
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_wobble_2.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_wobble_3
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_wobble_3.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_wobble_4
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_wobble_4.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_wobble_5
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_wobble_5.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_wobble_6
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_wobble_6.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_wobble_7
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_wobble_7.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_steps_0
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_steps_0.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_steps_1
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_steps_1.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_steps_2
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_steps_2.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_steps_3
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_steps_3.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_steps_4
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_steps_4.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_steps_5
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_steps_5.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_steps_6
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_steps_6.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_wave_steps_7
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/wave_steps_7.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_noise15_0
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/noise15_0.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_noise15_1
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/noise15_1.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_noise15_2
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/noise15_2.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_noise15_3
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/noise15_3.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_noise15_4
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/noise15_4.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_noise15_5
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/noise15_5.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_noise15_6
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/noise15_6.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_noise15_7
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/noise15_7.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_noise15_8
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/noise15_8.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_noise15_9
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/noise15_9.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_noise15_10
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/noise15_10.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_noise15_11
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/noise15_11.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_noise7_0
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/noise7_0.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_noise7_1
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/noise7_1.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_noise7_2
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/noise7_2.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_noise7_3
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/noise7_3.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_noise7_4
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/noise7_4.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_noise7_5
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/noise7_5.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_noise7_6
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/noise7_6.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_noise7_7
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/noise7_7.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_noise7_8
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/noise7_8.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_noise7_9
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/noise7_9.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_noise7_10
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/noise7_10.wav,
+            distanceMax = 0,
+        }
+    }
+
+    sound SpiffBoy_Chip_noise7_11
+    {
+        category = SpiffBoy,
+        is3D = false,
+        loop = true,
+        clip
+        {
+            file = media/sound/SpiffBoy/chip/noise7_11.wav,
+            distanceMax = 0,
+        }
+    }
+}

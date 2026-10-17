@@ -1,0 +1,13 @@
+module SpiffBoy
+{
+    item Cartridge_BrickBash
+    {
+        DisplayCategory = Entertainment,
+        ItemType = base:normal,
+        Weight = 0.1,
+        Icon = SpiffBoy_Cartridge_BrickBash,
+        WorldStaticModel = SpiffBoy.Cartridge_BrickBash,
+        MetalValue = 1.0,
+        Tags = base:hasmetal;base:miscelectronic,
+    }
+}

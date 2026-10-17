@@ -1,0 +1,13 @@
+module SpiffBoy
+{
+    item Cartridge_DoubleRaccoon
+    {
+        DisplayCategory = Entertainment,
+        ItemType = base:normal,
+        Weight = 0.1,
+        Icon = SpiffBoy_Cartridge_DoubleRaccoon,
+        WorldStaticModel = SpiffBoy.Cartridge_DoubleRaccoon,
+        MetalValue = 1.0,
+        Tags = base:hasmetal;base:miscelectronic,
+    }
+}
