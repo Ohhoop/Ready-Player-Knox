@@ -54,7 +54,7 @@ end
 return a.loot.lists
 end
 
-local function k()
+local function m()
 for i,a in ipairs(SpiffBoy.Cartridges.lootable())do
 local c=0
 for j,d in ipairs(h(a))do
@@ -73,58 +73,62 @@ end
 SpiffBoy.trace("link cable added to "..tostring(a).." loot lists")
 end
 
-local function l()
+local function i(a,c)
+return a.weight*c.loot.weight/SpiffBoy.Cartridges.DEFAULT_LOOT_WEIGHT
+end
+
+local function n()
 local d=SuburbsDistributions and SuburbsDistributions.all
 if type(d)~="table"then
 return
 end
-local i=SpiffBoy.Cartridges.lootable()
-for m,c in ipairs(f)do
+local j=SpiffBoy.Cartridges.lootable()
+for l,c in ipairs(f)do
 local a=d[c.name]
 if type(a)=="table"and type(a.items)=="table"then
-for n,j in ipairs(i)do
-table.insert(a.items,j.item)
-table.insert(a.items,c.weight)
+for o,k in ipairs(j)do
+table.insert(a.items,k.item)
+table.insert(a.items,i(c,k))
 end
-SpiffBoy.trace(c.name.." carries "..tostring(#i).." cartridges")
+SpiffBoy.trace(c.name.." carries "..tostring(#j).." cartridges")
 end
 end
 end
 
-local function a(c,i,j)
+local function a(c,j,k)
 for d=1,#c-1,2 do
-if c[d]==i then
-c[d+1]=j
+if c[d]==j then
+c[d+1]=k
 end
 end
 end
 
-local function m()
-local n=SpiffBoy.Sandbox.cartridgeLootScale()
-local o=e*SpiffBoy.Sandbox.linkCableLootScale()
-local i=SpiffBoy.Cartridges.lootable()
-for p,c in ipairs(i)do
-for q,j in ipairs(h(c))do
-local d=ProceduralDistributions.list[j]
+local function o()
+local p=SpiffBoy.Sandbox.cartridgeLootScale()
+local q=e*SpiffBoy.Sandbox.linkCableLootScale()
+local j=SpiffBoy.Cartridges.lootable()
+for l,c in ipairs(j)do
+for r,k in ipairs(h(c))do
+local d=ProceduralDistributions.list[k]
 if d and type(d.items)=="table"then
-a(d.items,c.item,c.loot.weight*n)
+a(d.items,c.item,c.loot.weight*p)
 end
 end
 end
-for j,d in ipairs(b)do
+for k,d in ipairs(b)do
 local c=ProceduralDistributions.list[d]
 if c and type(c.items)=="table"then
-a(c.items,SpiffBoy.CABLE_ITEM,o)
+a(c.items,SpiffBoy.CABLE_ITEM,q)
 end
 end
 local d=SuburbsDistributions and SuburbsDistributions.all
 if type(d)=="table"then
-local p=SpiffBoy.Sandbox.zombiesCarryCartridges()
-for r,j in ipairs(f)do
-local c=d[j.name]
+local r=SpiffBoy.Sandbox.zombiesCarryCartridges()
+for s,k in ipairs(f)do
+local c=d[k.name]
 if type(c)=="table"and type(c.items)=="table"then
-for s,q in ipairs(i)do
-a(c.items,q.item,p and j.weight or 0)
+for t,l in ipairs(j)do
+a(c.items,l.item,r and i(k,l)or 0)
 end
 end
 end
@@ -132,6 +136,6 @@ end
 ItemPickerJava.Parse()
 end
 
-Events.OnPreDistributionMerge.Add(k)
-Events.OnPostDistributionMerge.Add(l)
-Events.OnInitGlobalModData.Add(m)
+Events.OnPreDistributionMerge.Add(m)
+Events.OnPostDistributionMerge.Add(n)
+Events.OnInitGlobalModData.Add(o)

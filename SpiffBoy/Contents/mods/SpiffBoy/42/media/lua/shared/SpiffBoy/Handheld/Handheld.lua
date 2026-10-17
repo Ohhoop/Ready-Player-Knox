@@ -142,12 +142,16 @@ end
 return e
 end
 
-function a.cartridgeItem(e)
-local b=a.newItem(e.type)
-if b then
-a.setCartridgeSave(b,a.recordSave(e))
+function a.cartridgeItem(b)
+if not getScriptManager():FindItem(b.type)then
+SpiffBoy.log("cannot recreate the cartridge "..b.type..": no loaded mod defines that item")
+return nil
 end
-return b
+local e=a.newItem(b.type)
+if e then
+a.setCartridgeSave(e,a.recordSave(b))
+end
+return e
 end
 
 function a.batteryItem(e)

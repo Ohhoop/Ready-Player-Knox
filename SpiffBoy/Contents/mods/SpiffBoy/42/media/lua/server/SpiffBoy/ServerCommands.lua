@@ -3,54 +3,73 @@ require"SpiffBoy/Core/Commands"
 require"SpiffBoy/Core/SaveData"
 require"SpiffBoy/Handheld/Handheld"
 
-local l=SpiffBoy.COMMAND_MODULE
-local m=1000
-local n=40
-local o=5000
+local m=SpiffBoy.COMMAND_MODULE
+local n=1000
+local o=40
+local p=5000
+local q=1000
+local r=10
 
 local i={}
+local j={}
 local e={}
 
-local function p(a,b,c)
-sendServerCommand(a,l,b,c)
+local function s(a,b,c)
+sendServerCommand(a,m,b,c)
 end
 
-local function j(a)
+local function k(a)
 if SpiffBoy.isFinite(a)then
 return a
 end
 return nil
 end
 
-local function q(a)
-if type(a)=="table"then
-return a
+local function t(d)
+local b=d:getOnlineID()
+local c=getTimestampMs()
+local a=j[b]
+if not a or c-a.startMs>=q then
+a={startMs=c,count=0}
+j[b]=a
 end
-return nil
+a.count=a.count+1
+return a.count<=r
 end
 
-local function r(c,a)
+local function u(b,a)
 if type(a)~="table"or not SpiffBoy.isInteger(a.itemId)then
 return
 end
-local b=c:getInventory():getItemWithIDRecursiv(a.itemId)
-if not b or not SpiffBoy.Handheld.isConsole(b)then
+if not t(b)then
+SpiffBoy.trace("save of player "..tostring(b:getOnlineID()).." refused by the rate")
 return
 end
-SpiffBoy.Handheld.applySaved(b,q(a.save),j(a.battery),j(a.volume))
-syncItemModData(c,b)
+if a.save~=nil then
+local c=SpiffBoy.SaveData.check(a.save)
+if c then
+SpiffBoy.log("save of player "..tostring(b:getOnlineID()).." refused: "..c)
+return
+end
+end
+local c=b:getInventory():getItemWithIDRecursiv(a.itemId)
+if not c or not SpiffBoy.Handheld.isConsole(c)then
+return
+end
+SpiffBoy.Handheld.applySaved(c,a.save,k(a.battery),k(a.volume))
+syncItemModData(b,c)
 end
 
-local function s(d)
+local function v(d)
 local b=d:getOnlineID()
 local c=getTimestampMs()
 local a=i[b]
-if not a or c-a.startMs>=m then
+if not a or c-a.startMs>=n then
 a={startMs=c,count=0}
 i[b]=a
 end
 a.count=a.count+1
-return a.count<=n
+return a.count<=o
 end
 
 local function c(g,f,h)
@@ -66,13 +85,13 @@ e[b]=a
 end
 a[f]=a[f]+1
 a.listeners=a.listeners+(h or 0)
-if d-a.startMs>=o then
+if d-a.startMs>=p then
 SpiffBoy.log("chip relay: player "..tostring(b).." in "..tostring(d-a.startMs).." ms, relayed "..a.relayed.." to "..a.listeners.." listeners in all, refused size "..a.size..", rate "..a.rate..", empty "..a.empty)
 e[b]=nil
 end
 end
 
-local function t(a,b)
+local function w(a,b)
 if type(b)~="table"or not SpiffBoy.isInteger(b.t)then
 return
 end
@@ -81,7 +100,7 @@ if f<1 or f>SpiffBoy.CHIP_MAX_EVENTS then
 c(a,"size")
 return
 end
-if not s(a)then
+if not v(a)then
 c(a,"rate")
 return
 end
@@ -96,20 +115,20 @@ if#d==0 then
 c(a,"empty")
 return
 end
-local u={id=a:getOnlineID(),t=b.t,e=SpiffBoy.wireList(d)}
-local k=getOnlinePlayers()
+local x={id=a:getOnlineID(),t=b.t,e=SpiffBoy.wireList(d)}
+local l=getOnlinePlayers()
 local g=0
-for v=0,k:size()-1 do
-local h=k:get(v)
+for y=0,l:size()-1 do
+local h=l:get(y)
 if h~=a and SpiffBoy.withinHearing(h,a)then
-p(h,SpiffBoy.COMMAND_CHIP,u)
+s(h,SpiffBoy.COMMAND_CHIP,x)
 g=g+1
 end
 end
 c(a,"relayed",g)
 end
 
-SpiffBoy.Commands.fromClient(SpiffBoy.COMMAND_SAVE_HANDHELD,r)
-SpiffBoy.Commands.fromClient(SpiffBoy.COMMAND_CHIP,t)
+SpiffBoy.Commands.fromClient(SpiffBoy.COMMAND_SAVE_HANDHELD,u)
+SpiffBoy.Commands.fromClient(SpiffBoy.COMMAND_CHIP,w)
 
 Events.OnClientCommand.Add(SpiffBoy.Commands.onClientCommand)

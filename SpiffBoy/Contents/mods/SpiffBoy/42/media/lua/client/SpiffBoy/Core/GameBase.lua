@@ -27,6 +27,10 @@ return a
 end
 
 function SpiffBoyGameBase:persist()
+local a=SpiffBoy.SaveData.check(self.save)
+if a then
+error("SpiffBoy: the game "..tostring(self.context.definition.id).." cannot save, "..a)
+end
 self.context.persist(self.save)
 end
 

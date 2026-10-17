@@ -8,6 +8,6 @@ module SpiffBoy
         Icon = SpiffBoy_Cartridge_Lanterways,
         WorldStaticModel = SpiffBoy.Cartridge_Lanterways,
         MetalValue = 1.0,
-        Tags = base:hasmetal,
+        Tags = base:hasmetal;spiffboy:cartridge,
     }
 }

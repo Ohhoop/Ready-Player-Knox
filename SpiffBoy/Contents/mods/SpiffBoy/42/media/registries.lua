@@ -1,0 +1,1 @@
+ItemTag.register("spiffboy:cartridge")

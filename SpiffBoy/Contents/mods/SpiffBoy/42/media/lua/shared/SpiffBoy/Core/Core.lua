@@ -3,6 +3,7 @@ require"SpiffBoy/Core/Random"
 
 SpiffBoy=SpiffBoy or{}
 
+SpiffBoy.API_VERSION=1
 SpiffBoy.COMMAND_MODULE="SpiffBoy"
 SpiffBoy.MOD_ID="SpiffBoy"
 SpiffBoy.MOD_DATA_KEY="SpiffBoy"
