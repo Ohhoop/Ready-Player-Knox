@@ -1,4 +1,5 @@
 require"SpiffBoy/Core/Core"
+require"SpiffBoy/Core/Sandbox"
 require"SpiffBoy/Core/Commands"
 
 SpiffBoyChipLink={}
@@ -14,7 +15,7 @@ local n=5000
 function a.new(d)
 local b=setmetatable({},a)
 b.playerObj=d
-b.networked=isClient()
+b.networked=isClient()and SpiffBoy.Sandbox.othersHearConsole()
 b.tick=0
 b.events={}
 b.lastSendMs=0

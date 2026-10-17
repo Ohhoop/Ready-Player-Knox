@@ -1,5 +1,6 @@
 require"ISUI/ISPanel"
 require"SpiffBoy/Core/Core"
+require"SpiffBoy/Core/Sandbox"
 require"SpiffBoy/Framework/Cartridges"
 require"SpiffBoy/Handheld/Handheld"
 require"SpiffBoy/Core/Runtime"
@@ -1092,7 +1093,7 @@ function SpiffBoyHandheldWindow:everySecond()
 if not self.powered then
 return nil
 end
-if not isGamePaused()then
+if not isGamePaused()and SpiffBoy.Sandbox.batteriesDrain()then
 self:drainBattery()
 end
 if not self.hidden then
@@ -1192,7 +1193,7 @@ self.noiseCounter=r.period
 local s=self:volume()
 local v=self.playerObj
 local a=v:getCurrentSquare()
-if not self.powered or s<=0 or not a or self:hasHeadphones()then
+if not self.powered or s<=0 or not a or self:hasHeadphones()or not SpiffBoy.Sandbox.noiseAttractsZombies()then
 return
 end
 addSound(v,a:getX(),a:getY(),a:getZ(),self:noiseRange(a),math.floor(r.loudness*s))

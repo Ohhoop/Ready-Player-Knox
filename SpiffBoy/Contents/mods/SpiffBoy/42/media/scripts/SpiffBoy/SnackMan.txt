@@ -8,6 +8,6 @@ module SpiffBoy
         Icon = SpiffBoy_Cartridge_SnackMan,
         WorldStaticModel = SpiffBoy.Cartridge_SnackMan,
         MetalValue = 1.0,
-        Tags = base:hasmetal;base:miscelectronic,
+        Tags = base:hasmetal,
     }
 }

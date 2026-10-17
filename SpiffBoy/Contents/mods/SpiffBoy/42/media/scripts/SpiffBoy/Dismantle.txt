@@ -1,0 +1,40 @@
+module SpiffBoy
+{
+    craftRecipe DismantleSpiffBoyCartridge
+    {
+        timedAction = DismantleElectrical,
+        time = 60,
+        OnTest = SpiffBoyRecipes.canDismantle,
+        Tags = InHandCraft;Electrical,
+        category = Electrical,
+        xpAward = Electricity:2,
+        inputs
+        {
+            item 1 tags[base:screwdriver] mode:keep flags[NoBrokenItems],
+            item 1 [SpiffBoy.Cartridge_Serpent;SpiffBoy.Cartridge_BrickDrop;SpiffBoy.Cartridge_BrickBash;SpiffBoy.Cartridge_DrTile;SpiffBoy.Cartridge_DoubleRaccoon;SpiffBoy.Cartridge_SnackMan;SpiffBoy.Cartridge_PipeBomber;SpiffBoy.Cartridge_StreetBiter;SpiffBoy.Cartridge_Lanterways;SpiffBoy.Cartridge_QuickStart] mode:destroy flags[ItemCount],
+        }
+        outputs
+        {
+            item 1 Base.ElectronicsScrap,
+        }
+    }
+
+    craftRecipe DismantleSpiffBoyLinkCable
+    {
+        timedAction = DismantleElectrical,
+        time = 60,
+        OnTest = SpiffBoyRecipes.canDismantle,
+        Tags = InHandCraft;Electrical,
+        category = Electrical,
+        xpAward = Electricity:2,
+        inputs
+        {
+            item 1 tags[base:screwdriver] mode:keep flags[NoBrokenItems],
+            item 1 [SpiffBoy.LinkCable] mode:destroy flags[ItemCount],
+        }
+        outputs
+        {
+            item 1 Base.ElectricWire,
+        }
+    }
+}

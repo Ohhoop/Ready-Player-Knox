@@ -1,0 +1,77 @@
+VERSION = 1,
+
+option SpiffBoy.PlayingEasesMood
+{
+    type = boolean,
+    default = true,
+    page = SpiffBoy,
+    translation = SpiffBoy_PlayingEasesMood,
+}
+
+option SpiffBoy.NoiseAttractsZombies
+{
+    type = boolean,
+    default = true,
+    page = SpiffBoy,
+    translation = SpiffBoy_NoiseAttractsZombies,
+}
+
+option SpiffBoy.BatteriesDrain
+{
+    type = boolean,
+    default = true,
+    page = SpiffBoy,
+    translation = SpiffBoy_BatteriesDrain,
+}
+
+option SpiffBoy.Dismantling
+{
+    type = boolean,
+    default = true,
+    page = SpiffBoy,
+    translation = SpiffBoy_Dismantling,
+}
+
+option SpiffBoy.CartridgeLoot
+{
+    type = enum,
+    numValues = 4,
+    default = 3,
+    page = SpiffBoy,
+    translation = SpiffBoy_CartridgeLoot,
+}
+
+option SpiffBoy.LinkCableLoot
+{
+    type = enum,
+    numValues = 4,
+    default = 3,
+    page = SpiffBoy,
+    translation = SpiffBoy_LinkCableLoot,
+}
+
+option SpiffBoy.ConsoleCartridgeChance
+{
+    type = integer,
+    min = 0,
+    max = 100,
+    default = 50,
+    page = SpiffBoy,
+    translation = SpiffBoy_ConsoleCartridgeChance,
+}
+
+option SpiffBoy.ZombiesCarryCartridges
+{
+    type = boolean,
+    default = true,
+    page = SpiffBoy,
+    translation = SpiffBoy_ZombiesCarryCartridges,
+}
+
+option SpiffBoy.OthersHearConsole
+{
+    type = boolean,
+    default = true,
+    page = SpiffBoy,
+    translation = SpiffBoy_OthersHearConsole,
+}
