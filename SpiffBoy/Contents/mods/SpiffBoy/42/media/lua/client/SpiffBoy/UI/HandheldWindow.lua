@@ -57,7 +57,7 @@ local E=0
 local X=1
 local Y=2
 local e={x=-4,w=4,h=20,onY=41,offY=47,hitMargin=4}
-local aw="UIToggleTickBox"
+local aw="SpiffBoy_PowerSwitch"
 local y=1/4
 local F=1
 local d={x=n,w=4,h=22,y=43,hitMargin=4}
@@ -65,7 +65,7 @@ local Z=e.x-e.hitMargin
 local ax=d.x+d.w+d.hitMargin
 local z=10
 local ay=7
-local az="UISelectListItem"
+local az="SpiffBoy_VolumeWheel"
 local aA=2
 local aB=0.15
 local j=SpiffBoy.Cartridges.SHADES[4]
@@ -125,7 +125,7 @@ plugged={name="link_plugged",w=22,h=56,reach=36},
 slide={name="plug_link",w=24,h=60,pin=8,dx=-1},
 }
 local i={travel=40,snap=1,ease=1.5,start=0.10,reach=0.90,gone=0.90}
-local aV="UIToggleTickBox"
+local aV="SpiffBoy_PartClick"
 local aW="SpiffBoyPlugHeadphonesAction"
 local aX="SpiffBoyUnplugHeadphonesAction"
 local aY="SpiffBoyPlugCableAction"

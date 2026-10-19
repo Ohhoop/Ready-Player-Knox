@@ -1,0 +1,38 @@
+module SpiffBoy
+{
+    sound SpiffBoy_PowerSwitch
+    {
+        category = UI,
+        is3D = false,
+        clip
+        {
+            file = media/sound/SpiffBoy/shell/switch.wav,
+            distanceMax = 0,
+            volume = 0.5,
+        }
+    }
+
+    sound SpiffBoy_PartClick
+    {
+        category = UI,
+        is3D = false,
+        clip
+        {
+            file = media/sound/SpiffBoy/shell/click.wav,
+            distanceMax = 0,
+            volume = 0.5,
+        }
+    }
+
+    sound SpiffBoy_VolumeWheel
+    {
+        category = UI,
+        is3D = false,
+        clip
+        {
+            file = media/sound/SpiffBoy/shell/click.wav,
+            distanceMax = 0,
+            volume = 0.2,
+        }
+    }
+}
