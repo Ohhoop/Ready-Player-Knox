@@ -6,5 +6,5 @@
 	"visibility"		"0"
 	"contentfolder"		"SpiffBoy/Contents"
 	"previewfile"		"../Development/art/presentation/thumbnail.gif"
-	"changenote"		"0.1.0: first version of SpiffBoy"
+	"changenote"		"0.1.1: description images now load in every country"
 }
