@@ -1,4 +1,4 @@
-[img]https://i.imgur.com/DX9mD5C.png[/img]
+[img]https://cdn.jsdelivr.net/gh/Ohhoop/SpiffBoy@main/art/description/header-spiffboy.png[/img]
 Damas y caballeros... con ustedes... ¡la [b]SpiffBoy[/b]!
 ¡Con una enorme pantalla de 180 por 120 píxeles para una inmersión total!
 ¡Puzle! ¡Acción! ¡Carreras! ¡Aventura! ¡Y mucho más!
@@ -8,7 +8,7 @@ Conéctate y [i]guárdatelo para ti.[/i]
 ¡[b]SpiffBoy[/b]! Juega donde sea. Juega cuando sea. Juega [i]mientras todavía puedas.[/i]
 ¡Consigue la tuya hoy! [i]Pilas no incluidas.[/i]
 
-[img]https://i.imgur.com/FXDLBNF.gif[/img]
+[img]https://cdn.jsdelivr.net/gh/Ohhoop/SpiffBoy@main/art/description/showcase.gif[/img]
 
 [b]Diversión a lo grande que cabe en tu bolsillo[/b]
 Basada en el Videojuego que ya conoces, la SpiffBoy por fin cumple lo que prometía: horas de aventura en la palma de tu mano y música que tararearás durante días. Cada cartucho es una nueva sorpresa. Encuéntralos, insértalos y compruébalo tú mismo.
@@ -24,7 +24,7 @@ La SpiffBoy está hecha para comportarse como las consolas portátiles de la ép
 - No hay nada como un buen juego para espantar el aburrimiento y levantar el ánimo.
 
 
-[img]https://i.imgur.com/sVROmET.png[/img]
+[img]https://cdn.jsdelivr.net/gh/Ohhoop/SpiffBoy@main/art/description/header-cartridges.png[/img]
 [b]Ahí fuera, esperándote[/b]
 Los cartuchos y los cables de enlace se esconden por todo Knox County, en los lugares donde esperarías que un niño los dejara olvidados. Algunas consolas afortunadas incluso aparecen con un juego todavía dentro. La búsqueda es parte de la diversión.
 
@@ -32,15 +32,15 @@ Los cartuchos y los cables de enlace se esconden por todo Knox County, en los lu
 Cada cartucho guarda su propia partida. Préstaselo a un amigo, cámbialo o guárdalo en el bolsillo: tu progreso va adonde vaya el cartucho.
 
 
-[img]https://i.imgur.com/06m1zUR.png[/img]
+[img]https://cdn.jsdelivr.net/gh/Ohhoop/SpiffBoy@main/art/description/header-spifflink.png[/img]
 Conecta el Cable de enlace SpiffBoy entre dos consolas y reta a un amigo, siempre que se quede cerca. En línea o uno al lado del otro en pantalla dividida, tu amigo solo tiene que aceptar el cable y la partida empieza en sus manos.
 
 
-[img]https://i.imgur.com/03wIo7b.png[/img]
+[img]https://cdn.jsdelivr.net/gh/Ohhoop/SpiffBoy@main/art/description/header-make-it-yours.png[/img]
 Ajusta la SpiffBoy a tu gusto: las opciones sandbox deciden cómo encaja en tu mundo, desde la multitud que atrae su sonido hasta el buen humor que aporta; los ajustes de controles te dejan elegir tus botones, y las opciones del mod definen cómo se ve en tu pantalla.
 
 
-[img]https://i.imgur.com/iZ0r7eO.png[/img]
+[img]https://cdn.jsdelivr.net/gh/Ohhoop/SpiffBoy@main/art/description/header-more-games.png[/img]
 [b]¡Busca el Sello de Calidad Spiffco![/b]
 Diez juegos son solo el principio. Si te gustaría crear un juego para la SpiffBoy, la siguiente parte de esta sección te enseña cómo. Enséñame tu juego y lo añadiré a la lista de abajo (las plazas son limitadas, la descripción solo admite cierta cantidad de texto).
 - ¡Sé el primero! 🙂
@@ -49,7 +49,7 @@ Diez juegos son solo el principio. Si te gustaría crear un juego para la SpiffB
 ¿Siempre has soñado con crear tu propio juego? Cualquier mod puede añadir sus propios cartuchos a la SpiffBoy. El [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3825220785]SpiffBoy SDK[/url] tiene todo lo que necesitas para crear uno: una guía, dos cartuchos de ejemplo para aprender, un cartucho en blanco para tu etiqueta y herramientas para crear y probar tu propio juego. La consola está hecha para imitar una consola física real, con sus limitaciones técnicas.
 
 
-[img]https://i.imgur.com/w3Uz0Ye.png[/img]
+[img]https://cdn.jsdelivr.net/gh/Ohhoop/SpiffBoy@main/art/description/header-qa.png[/img]
 Q: ¿Funciona en multijugador?
 A: Sí.
 
@@ -83,7 +83,7 @@ No dudes en compartir tus opiniones, reportes de bugs e ideas en la sección de 
 
 Si todavía no has visto el vídeo de presentación, por favor hazlo, ¡me llevó MUCHÍSIMO tiempo hacerlo, jaja! ¡Gracias!
 
-[img]https://i.imgur.com/lja52Fs.gif[/img]
+[img]https://cdn.jsdelivr.net/gh/Ohhoop/SpiffBoy@main/art/description/footer-anim.gif[/img]
 
 Workshop ID: 3825220364
 Mod ID: SpiffBoy

@@ -1,4 +1,4 @@
-[img]https://i.imgur.com/DX9mD5C.png[/img]
+[img]https://cdn.jsdelivr.net/gh/Ohhoop/SpiffBoy@main/art/description/header-spiffboy.png[/img]
 Mine damer og herrer... vi præsenterer... [b]SpiffBoy[/b]!
 Med en kæmpe skærm på 180 gange 120 pixels for total indlevelse!
 Gåder! Action! Racerløb! Eventyr! Og meget mere!
@@ -8,7 +8,7 @@ Sæt stikket i, og [i]hold det for dig selv.[/i]
 [b]SpiffBoy[/b]! Spil overalt. Spil når som helst. Spil [i]mens du stadig kan.[/i]
 Køb din i dag! [i]Batterier medfølger ikke.[/i]
 
-[img]https://i.imgur.com/FXDLBNF.gif[/img]
+[img]https://cdn.jsdelivr.net/gh/Ohhoop/SpiffBoy@main/art/description/showcase.gif[/img]
 
 [b]Stor fornøjelse, der passer i lommen[/b]
 SpiffBoy bygger på Håndholdt spillekonsol, som du allerede kender, og gør endelig, hvad den lovede: timevis af eventyr i din hånd og musik, du vil nynne på i dagevis. Hver spilkassette er en ny overraskelse. Find dem, sæt dem i, og se selv.
@@ -24,7 +24,7 @@ SpiffBoy er bygget til at opføre sig som tidens håndholdte konsoller, helt ned
 - Intet slår et godt spil, når kedsomheden skal jages væk og humøret op.
 
 
-[img]https://i.imgur.com/sVROmET.png[/img]
+[img]https://cdn.jsdelivr.net/gh/Ohhoop/SpiffBoy@main/art/description/header-cartridges.png[/img]
 [b]Derude og venter på dig[/b]
 Spilkassetter og linkkabler ligger gemt over hele Knox County, de steder hvor man ville forvente, at et barn havde efterladt dem. Nogle heldige konsoller bliver endda fundet med et spil i. Jagten er en del af det sjove.
 
@@ -32,15 +32,15 @@ Spilkassetter og linkkabler ligger gemt over hele Knox County, de steder hvor ma
 Hver spilkassette har sit eget gemte spil. Lån den ud til en ven, byt den, eller gem den i lommen: dine fremskridt følger med, hvor end kassetten går hen.
 
 
-[img]https://i.imgur.com/06m1zUR.png[/img]
+[img]https://cdn.jsdelivr.net/gh/Ohhoop/SpiffBoy@main/art/description/header-spifflink.png[/img]
 Sæt et SpiffBoy-linkkabel mellem to konsoller og udfordr en ven, så længe vedkommende bliver i nærheden. Online eller side om side i delt skærm, din ven skal bare acceptere kablet, så starter spillet i deres hænder.
 
 
-[img]https://i.imgur.com/03wIo7b.png[/img]
+[img]https://cdn.jsdelivr.net/gh/Ohhoop/SpiffBoy@main/art/description/header-make-it-yours.png[/img]
 Indstil SpiffBoy, som du vil have den: sandbox-indstillingerne afgør, hvordan den passer ind i din verden, fra det publikum, lyden tiltrækker, til det gode humør, den giver, kontrolindstillingerne lader dig vælge dine knapper, og mod-indstillingerne bestemmer, hvordan den ser ud på din skærm.
 
 
-[img]https://i.imgur.com/iZ0r7eO.png[/img]
+[img]https://cdn.jsdelivr.net/gh/Ohhoop/SpiffBoy@main/art/description/header-more-games.png[/img]
 [b]Kig efter Spiffco-kvalitetsseglet![/b]
 Ti spil er kun begyndelsen. Hvis du gerne vil lave et spil til SpiffBoy, viser næste del af denne sektion dig hvordan. Vis mig dit spil, så tilføjer jeg det til listen nedenfor (der er begrænset plads, beskrivelsen kan kun rumme så meget tekst).
 - Bliv den første! 🙂
@@ -49,7 +49,7 @@ Ti spil er kun begyndelsen. Hvis du gerne vil lave et spil til SpiffBoy, viser n
 Har du altid drømt om at lave dit eget spil? Enhver mod kan tilføje sine egne spilkassetter til SpiffBoy. [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3825220785]SpiffBoy SDK[/url] har alt, hvad du skal bruge for at bygge et: en guide, to eksempelkassetter at lære af, en blank kassette til din etiket og værktøjer til at lave og teste dit eget spil. Konsollen er bygget til at efterligne en ægte fysisk konsol med dens tekniske begrænsninger.
 
 
-[img]https://i.imgur.com/w3Uz0Ye.png[/img]
+[img]https://cdn.jsdelivr.net/gh/Ohhoop/SpiffBoy@main/art/description/header-qa.png[/img]
 Q: Virker det i multiplayer?
 A: Ja.
 
@@ -83,7 +83,7 @@ Del gerne din feedback, fejlrapporter og idéer i kommentarfeltet, jeg læser al
 
 Hvis du ikke har set videopræsentationen endnu, så gør det, den tog mig SÅ lang tid at lave, haha. Tak!
 
-[img]https://i.imgur.com/lja52Fs.gif[/img]
+[img]https://cdn.jsdelivr.net/gh/Ohhoop/SpiffBoy@main/art/description/footer-anim.gif[/img]
 
 Workshop ID: 3825220364
 Mod ID: SpiffBoy

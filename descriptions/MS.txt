@@ -1,4 +1,4 @@
-[img]https://i.imgur.com/DX9mD5C.png[/img]
+[img]https://cdn.jsdelivr.net/gh/Ohhoop/SpiffBoy@main/art/description/header-spiffboy.png[/img]
 Tuan-tuan dan puan-puan... dengan bangganya... [b]SpiffBoy[/b]!
 Dengan skrin gergasi 180 kali 120 piksel untuk pengalaman sepenuhnya!
 Teka-teki! Aksi! Lumba! Pengembaraan! Dan banyak lagi!
@@ -8,7 +8,7 @@ Sambungkan, dan [i]simpan untuk diri sendiri.[/i]
 [b]SpiffBoy[/b]! Main di mana-mana. Main bila-bila masa. Main [i]selagi anda masih mampu.[/i]
 Dapatkan milik anda hari ini! [i]Bateri tidak disertakan.[/i]
 
-[img]https://i.imgur.com/FXDLBNF.gif[/img]
+[img]https://cdn.jsdelivr.net/gh/Ohhoop/SpiffBoy@main/art/description/showcase.gif[/img]
 
 [b]Keseronokan besar yang muat dalam poket[/b]
 Dibina daripada Konsol Permainan Pegang Tangan yang anda sudah kenali, SpiffBoy akhirnya menunaikan janjinya: berjam-jam pengembaraan di tapak tangan anda dan muzik yang akan anda dendangkan berhari-hari. Setiap kartrij ialah kejutan baharu. Cari, masukkan, dan lihat sendiri.
@@ -24,7 +24,7 @@ SpiffBoy dibina untuk berkelakuan seperti konsol pegang tangan zaman itu, hingga
 - Tiada yang lebih baik daripada permainan yang seronok untuk menghalau kebosanan dan menaikkan semangat.
 
 
-[img]https://i.imgur.com/sVROmET.png[/img]
+[img]https://cdn.jsdelivr.net/gh/Ohhoop/SpiffBoy@main/art/description/header-cartridges.png[/img]
 [b]Di luar sana, menanti anda[/b]
 Kartrij dan kabel pautan tersembunyi di seluruh Knox County, di tempat yang biasanya ditinggalkan oleh kanak-kanak. Ada konsol bertuah yang ditemui dengan permainan masih di dalamnya. Pemburuan itu sebahagian daripada keseronokan.
 
@@ -32,15 +32,15 @@ Kartrij dan kabel pautan tersembunyi di seluruh Knox County, di tempat yang bias
 Setiap kartrij mempunyai simpanannya sendiri. Pinjamkan kepada rakan, tukarkan, atau simpan dalam poket: kemajuan anda pergi ke mana sahaja kartrij itu pergi.
 
 
-[img]https://i.imgur.com/06m1zUR.png[/img]
+[img]https://cdn.jsdelivr.net/gh/Ohhoop/SpiffBoy@main/art/description/header-spifflink.png[/img]
 Sambungkan Kabel Pautan SpiffBoy di antara dua konsol dan cabar rakan anda, selagi dia kekal berdekatan. Dalam talian atau bersebelahan dalam skrin pisah, rakan anda cuma perlu menerima kabel itu dan permainan bermula di tangannya.
 
 
-[img]https://i.imgur.com/03wIo7b.png[/img]
+[img]https://cdn.jsdelivr.net/gh/Ohhoop/SpiffBoy@main/art/description/header-make-it-yours.png[/img]
 Laraskan SpiffBoy mengikut citarasa anda: pilihan sandbox menentukan bagaimana ia sesuai dengan dunia anda, daripada orang ramai yang ditarik oleh bunyinya hingga suasana ceria yang dibawanya, tetapan kawalan membolehkan anda memilih butang, dan pilihan mod menentukan rupanya pada skrin anda.
 
 
-[img]https://i.imgur.com/iZ0r7eO.png[/img]
+[img]https://cdn.jsdelivr.net/gh/Ohhoop/SpiffBoy@main/art/description/header-more-games.png[/img]
 [b]Cari Meterai Kualiti Spiffco![/b]
 Sepuluh permainan hanyalah permulaan. Jika anda ingin membuat permainan untuk SpiffBoy, bahagian seterusnya menunjukkan caranya. Tunjukkan permainan anda dan saya akan menambahnya ke senarai di bawah (tempat terhad, penerangan hanya boleh memuatkan teks sebanyak itu).
 - Jadilah yang pertama! 🙂
@@ -49,7 +49,7 @@ Sepuluh permainan hanyalah permulaan. Jika anda ingin membuat permainan untuk Sp
 Selalu bermimpi membuat permainan sendiri? Mana-mana mod boleh menambah kartrijnya sendiri ke SpiffBoy. [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3825220785]SpiffBoy SDK[/url] mempunyai semua yang anda perlukan untuk membinanya: panduan, dua kartrij contoh untuk dipelajari, kartrij kosong untuk label anda, dan alatan untuk membuat dan menguji permainan anda sendiri. Konsol ini dibina untuk meniru konsol fizikal sebenar, lengkap dengan kekangan teknikalnya.
 
 
-[img]https://i.imgur.com/w3Uz0Ye.png[/img]
+[img]https://cdn.jsdelivr.net/gh/Ohhoop/SpiffBoy@main/art/description/header-qa.png[/img]
 Q: Adakah ia berfungsi dalam multiplayer?
 A: Ya.
 
@@ -83,7 +83,7 @@ Jangan segan berkongsi maklum balas, laporan pepijat dan idea di ruangan komen, 
 
 Jika anda belum menonton video persembahan, sila tonton, ia mengambil masa SANGAT lama untuk dibuat, haha. Terima kasih!
 
-[img]https://i.imgur.com/lja52Fs.gif[/img]
+[img]https://cdn.jsdelivr.net/gh/Ohhoop/SpiffBoy@main/art/description/footer-anim.gif[/img]
 
 Workshop ID: 3825220364
 Mod ID: SpiffBoy

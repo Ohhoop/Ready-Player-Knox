@@ -1,4 +1,4 @@
-[img]https://i.imgur.com/DX9mD5C.png[/img]
+[img]https://cdn.jsdelivr.net/gh/Ohhoop/SpiffBoy@main/art/description/header-spiffboy.png[/img]
 Dámy a pánové... představujeme... [b]SpiffBoy[/b]!
 S obřím displejem 180 na 120 pixelů pro dokonalé pohlcení!
 Logické hry! Akce! Závody! Dobrodružství! A mnohem víc!
@@ -8,7 +8,7 @@ Zapojte a [i]nechte si to pro sebe.[/i]
 [b]SpiffBoy[/b]! Hrajte kdekoli. Hrajte kdykoli. Hrajte, [i]dokud ještě můžete.[/i]
 Pořiďte si ho ještě dnes! [i]Baterie nejsou součástí balení.[/i]
 
-[img]https://i.imgur.com/FXDLBNF.gif[/img]
+[img]https://cdn.jsdelivr.net/gh/Ohhoop/SpiffBoy@main/art/description/showcase.gif[/img]
 
 [b]Velká zábava, která se vejde do kapsy[/b]
 SpiffBoy, postavený na Přenosné herní konzoli, kterou už znáte, konečně dělá to, co sliboval: hodiny dobrodružství na dlani a hudbu, kterou si budete broukat ještě celé dny. Každá herní kazeta je nové překvapení. Najděte je, zasuňte je a přesvědčte se sami.
@@ -24,7 +24,7 @@ SpiffBoy byl navržen tak, aby se choval jako přenosné konzole té doby, až d
 - Nic nezažene nudu a nezvedne náladu lépe než dobrá hra.
 
 
-[img]https://i.imgur.com/sVROmET.png[/img]
+[img]https://cdn.jsdelivr.net/gh/Ohhoop/SpiffBoy@main/art/description/header-cartridges.png[/img]
 [b]Venku na vás čekají[/b]
 Herní kazety a propojovací kabely se skrývají po celém Knox County, na místech, kde byste čekali, že je tam nechalo nějaké dítě. Některé šťastné konzole se dokonce najdou s hrou ještě uvnitř. Hledání je součástí zábavy.
 
@@ -32,15 +32,15 @@ Herní kazety a propojovací kabely se skrývají po celém Knox County, na mís
 Každá herní kazeta má vlastní uloženou hru. Půjčte ji kamarádovi, vyměňte ji nebo si ji nechte v kapse: váš postup jde všude tam, kam jde kazeta.
 
 
-[img]https://i.imgur.com/06m1zUR.png[/img]
+[img]https://cdn.jsdelivr.net/gh/Ohhoop/SpiffBoy@main/art/description/header-spifflink.png[/img]
 Zapojte Propojovací kabel SpiffBoy mezi dvě konzole a vyzvěte kamaráda, pokud zůstane poblíž. Online nebo vedle sebe na rozdělené obrazovce: kamarádovi stačí kabel přijmout a hra mu začne v rukou.
 
 
-[img]https://i.imgur.com/03wIo7b.png[/img]
+[img]https://cdn.jsdelivr.net/gh/Ohhoop/SpiffBoy@main/art/description/header-make-it-yours.png[/img]
 Nalaďte si konzoli SpiffBoy podle svého: sandboxové možnosti určují, jak zapadne do vašeho světa, od davu, který přiláká její zvuk, po dobrou náladu, kterou přináší, nastavení ovládání vám dovolí vybrat si tlačítka a možnosti modu určují, jak vypadá na obrazovce.
 
 
-[img]https://i.imgur.com/iZ0r7eO.png[/img]
+[img]https://cdn.jsdelivr.net/gh/Ohhoop/SpiffBoy@main/art/description/header-more-games.png[/img]
 [b]Hledejte Pečeť kvality Spiffco![/b]
 Deset her je jen začátek. Pokud byste chtěli vytvořit hru pro konzoli SpiffBoy, další část této sekce vám ukáže jak. Ukažte mi svou hru a přidám ji do seznamu níže (počet míst je omezený, popis pojme jen tolik textu).
 - Buďte první! 🙂
@@ -49,7 +49,7 @@ Deset her je jen začátek. Pokud byste chtěli vytvořit hru pro konzoli SpiffB
 Vždycky jste snili o vlastní hře? Jakýkoli mod může do konzole SpiffBoy přidat vlastní herní kazety. [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3825220785]SpiffBoy SDK[/url] obsahuje vše, co k tomu potřebujete: návod, dvě ukázkové kazety, ze kterých se můžete učit, prázdnou kazetu pro váš štítek a nástroje k vytvoření a otestování vlastní hry. Konzole je postavena tak, aby napodobovala skutečnou fyzickou konzoli, včetně jejích technických omezení.
 
 
-[img]https://i.imgur.com/w3Uz0Ye.png[/img]
+[img]https://cdn.jsdelivr.net/gh/Ohhoop/SpiffBoy@main/art/description/header-qa.png[/img]
 Q: Funguje to v multiplayeru?
 A: Ano.
 
@@ -83,7 +83,7 @@ Své postřehy, hlášení chyb a nápady klidně pište do komentářů, čtu v
 
 Pokud jste ještě neviděli video prezentaci, určitě se podívejte, dalo mi STRAŠNĚ moc práce, haha. Díky!
 
-[img]https://i.imgur.com/lja52Fs.gif[/img]
+[img]https://cdn.jsdelivr.net/gh/Ohhoop/SpiffBoy@main/art/description/footer-anim.gif[/img]
 
 Workshop ID: 3825220364
 Mod ID: SpiffBoy
