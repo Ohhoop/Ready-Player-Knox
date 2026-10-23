@@ -59,6 +59,9 @@ A: Da, serverul și fiecare jucător.
 Q: Este compatibil cu alte moduri?
 A: Da, atâta timp cât nu modifică Consola de Jocuri Portabilă vanilla.
 
+Q: Funcționează cu Project Viewpoint?
+A: Da, în toate vederile. Dacă ceva nu arată bine, raportați în discuția Bug Reports.
+
 Q: Pot păstra consola fără efectele ei asupra jocului?
 A: Da, opțiunile sandbox le pot dezactiva.
 

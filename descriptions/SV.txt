@@ -59,6 +59,9 @@ A: Ja, servern och alla spelare.
 Q: Är det kompatibelt med andra moddar?
 A: Ja, så länge de inte ändrar spelets egen handhållna spelkonsol.
 
+Q: Fungerar det med Project Viewpoint?
+A: Ja, i alla vyer. Om något ser fel ut, rapportera det i diskussionen Bug Reports.
+
 Q: Kan jag behålla konsolen utan dess effekter på spelet?
 A: Ja, sandbox-inställningarna kan stänga av dem.
 

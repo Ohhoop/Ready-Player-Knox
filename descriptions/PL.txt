@@ -59,6 +59,9 @@ A: Tak, serwer i każdy gracz.
 Q: Czy jest kompatybilny z innymi modami?
 A: Tak, o ile nie zmieniają vanillowego przedmiotu Konsola do gier – przenośna.
 
+Q: Czy działa z Project Viewpoint?
+A: Tak, w każdym widoku. Jeśli coś wygląda źle, zgłoś to w dyskusji Bug Reports.
+
 Q: Czy mogę zachować konsolę bez jej wpływu na rozgrywkę?
 A: Tak, opcje piaskownicy pozwalają go wyłączyć.
 

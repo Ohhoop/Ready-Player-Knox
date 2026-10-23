@@ -59,6 +59,9 @@ A: Ja, serveren og alle spillere.
 Q: Er det kompatibelt med andre mods?
 A: Ja, så længe de ikke ændrer vanilla-genstanden Håndholdt spillekonsol.
 
+Q: Virker det med Project Viewpoint?
+A: Ja, i alle visninger. Hvis noget ser forkert ud, så meld det i diskussionen Bug Reports.
+
 Q: Kan jeg beholde konsollen uden dens effekter på gameplayet?
 A: Ja, sandbox-indstillingerne kan slå dem fra.
 

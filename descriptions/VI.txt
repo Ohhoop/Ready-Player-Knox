@@ -59,6 +59,9 @@ A: Có, cả máy chủ và mọi người chơi.
 Q: Mod có tương thích với các mod khác không?
 A: Có, miễn là chúng không thay đổi Máy Chơi Game Cầm Tay gốc của trò chơi.
 
+Q: Có chạy được với Project Viewpoint không?
+A: Có, ở mọi góc nhìn. Nếu thấy gì lạ, hãy báo trong thảo luận Bug Reports.
+
 Q: Tôi có thể giữ chiếc máy mà không có các hiệu ứng lên lối chơi không?
 A: Có, các tùy chọn sandbox có thể tắt chúng.
 

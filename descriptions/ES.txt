@@ -59,6 +59,9 @@ A: Sí, el servidor y cada jugador.
 Q: ¿Es compatible con otros mods?
 A: Sí, siempre que no modifiquen el Videojuego vanilla.
 
+Q: ¿Funciona con Project Viewpoint?
+A: Sí, en todas las vistas. Si algo no va bien, avísame en la discusión Bug Reports.
+
 Q: ¿Puedo conservar la consola sin sus efectos en la jugabilidad?
 A: Sí, las opciones sandbox pueden desactivarlos.
 

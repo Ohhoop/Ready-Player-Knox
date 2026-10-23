@@ -59,6 +59,9 @@ A: Ya, pelayan dan setiap pemain.
 Q: Adakah ia serasi dengan mod lain?
 A: Ya, selagi mod itu tidak mengubah Konsol Permainan Pegang Tangan vanilla.
 
+Q: Adakah ia berfungsi dengan Project Viewpoint?
+A: Ya, dalam semua paparan. Jika ada yang pelik, laporkan dalam perbincangan Bug Reports.
+
 Q: Bolehkah saya simpan konsol tanpa kesannya pada permainan?
 A: Boleh, pilihan sandbox boleh mematikannya.
 

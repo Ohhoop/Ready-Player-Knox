@@ -59,6 +59,9 @@ A: Igen, a szervernek és minden játékosnak.
 Q: Kompatibilis más modokkal?
 A: Igen, amíg nem módosítják a vanilla Videójáték tárgyat.
 
+Q: Működik a Project Viewpointtal?
+A: Igen, minden nézetben. Ha valami nem stimmel, jelezd a Bug Reports beszélgetésben.
+
 Q: Megtarthatom a konzolt a játékmenetre gyakorolt hatásai nélkül?
 A: Igen, a sandbox opciókkal kikapcsolhatók.
 

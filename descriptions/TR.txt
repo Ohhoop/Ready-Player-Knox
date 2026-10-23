@@ -59,6 +59,9 @@ A: Evet, hem sunucunun hem de her oyuncunun.
 Q: Diğer modlarla uyumlu mu?
 A: Evet, vanilla Video Oyunu'nu değiştirmedikleri sürece.
 
+Q: Project Viewpoint ile çalışıyor mu?
+A: Evet, her görünümde. Bir şey tuhaf görünürse Bug Reports tartışmasında bildirin.
+
 Q: Konsolu oynanışa etkileri olmadan tutabilir miyim?
 A: Evet, sandbox seçenekleri bunları kapatabilir.
 
