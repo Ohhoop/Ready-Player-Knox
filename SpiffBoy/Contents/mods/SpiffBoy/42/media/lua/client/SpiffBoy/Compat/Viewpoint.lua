@@ -1,27 +1,37 @@
 require"SpiffBoy/Core/CameraShift"
 require"SpiffBoy/UI/HandheldWindow"
+require"SpiffBoy/Handheld/HandheldAction"
 
-local c=0
-local d="first"
+local d=0
+local e="first"
 
-local e=SpiffBoy.CameraShift.begin
-local f=SpiffBoyHandheldWindow.holdZoomIn
+local f=SpiffBoy.CameraShift.begin
+local g=SpiffBoyHandheldWindow.holdZoomIn
+local h=SpiffBoyHandheldAction.new
 
-local function a(g)
+local function a(c)
 local b=Viewpoint and Viewpoint.View
-return g==c and b~=nil and b.next()~=d
+return c==d and b~=nil and b.next()~=e
 end
 
-function SpiffBoy.CameraShift.begin(b,g,h)
+function SpiffBoy.CameraShift.begin(b,c,i)
 if a(b:getPlayerNum())then
 return
 end
-e(b,g,h)
+f(b,c,i)
 end
 
 function SpiffBoyHandheldWindow:holdZoomIn()
 if a(self.playerNum)then
 return
 end
-f(self)
+g(self)
+end
+
+function SpiffBoyHandheldAction:new(b,i,j)
+local c=h(self,b,i,j)
+if a(b:getPlayerNum())then
+c.stopOnAim=false
+end
+return c
 end
