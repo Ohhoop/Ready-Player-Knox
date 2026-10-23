@@ -1,4 +1,4 @@
-[img]https://cdn.jsdelivr.net/gh/Ohhoop/SpiffBoy@main/art/description/header-spiffboy.png[/img]
+[img]https://ohhoop.github.io/SpiffBoy/i/spiffboy.png[/img]
 レディース・アンド・ジェントルメン……ついに登場……[b]SpiffBoy[/b]！
 180×120ピクセルの大画面で、圧倒的な没入感！
 パズル！アクション！レース！アドベンチャー！まだまだあるぞ！
@@ -8,7 +8,7 @@
 [b]SpiffBoy[/b]！どこでも遊べる。いつでも遊べる。[i]遊べるうちに遊んでおこう。[/i]
 今すぐ手に入れよう！[i]電池は付属しません。[/i]
 
-[img]https://cdn.jsdelivr.net/gh/Ohhoop/SpiffBoy@main/art/description/showcase.gif[/img]
+[img]https://ohhoop.github.io/SpiffBoy/i/showcase.gif[/img]
 
 [b]ポケットに収まる大きな楽しさ[/b]
 おなじみの携帯型ゲーム機をベースに、SpiffBoyはついに約束を果たしました。手のひらの中で何時間も続く冒険と、何日も口ずさみたくなる音楽です。カセットはどれも新しい驚きでいっぱい。見つけて、差し込んで、その目で確かめてください。
@@ -24,7 +24,7 @@ SpiffBoyは、あの時代の携帯ゲーム機と同じように動くよう、
 - 退屈を吹き飛ばして気分を上げるなら、良いゲームが一番です。
 
 
-[img]https://cdn.jsdelivr.net/gh/Ohhoop/SpiffBoy@main/art/description/header-cartridges.png[/img]
+[img]https://ohhoop.github.io/SpiffBoy/i/cartridges.png[/img]
 [b]あなたを待っている[/b]
 カセットと通信ケーブルはKnox Countyのあちこちに隠れています。子どもが置き忘れていきそうな場所を探してみましょう。運が良ければ、ゲームが入ったままのゲーム機が見つかることも。探すのも楽しみのうちです。
 
@@ -32,15 +32,15 @@ SpiffBoyは、あの時代の携帯ゲーム機と同じように動くよう、
 カセットはそれぞれ自分のセーブデータを持っています。友だちに貸しても、交換しても、ポケットにしまっておいても大丈夫。カセットの行く先に、あなたの進行状況もついていきます。
 
 
-[img]https://cdn.jsdelivr.net/gh/Ohhoop/SpiffBoy@main/art/description/header-spifflink.png[/img]
+[img]https://ohhoop.github.io/SpiffBoy/i/spifflink.png[/img]
 2台のゲーム機をSpiffBoy通信ケーブルでつなげば、友だちに挑戦できます。ただし、相手が近くにいる間だけ。オンラインでも、画面分割で隣同士でも、友だちはケーブルを受け入れるだけで、その手の中でゲームが始まります。
 
 
-[img]https://cdn.jsdelivr.net/gh/Ohhoop/SpiffBoy@main/art/description/header-make-it-yours.png[/img]
+[img]https://ohhoop.github.io/SpiffBoy/i/yours.png[/img]
 SpiffBoyを好みに合わせて調整しましょう。サンドボックスオプションでは、サウンドが引き寄せる人だかりから、もたらす良い気分まで、世界へのなじませ方を決められます。操作設定ではボタンを選べ、Modオプションでは画面上の見た目を整えられます。
 
 
-[img]https://cdn.jsdelivr.net/gh/Ohhoop/SpiffBoy@main/art/description/header-more-games.png[/img]
+[img]https://ohhoop.github.io/SpiffBoy/i/games.png[/img]
 [b]Spiffco品質シールが目印！[/b]
 10本のゲームはほんの始まりにすぎません。SpiffBoy用のゲームを作ってみたい方は、このセクションの続きで作り方を紹介しています。あなたのゲームを見せてくれれば、下のリストに追加します（説明文に書ける量には限りがあるので、枠は限られています）。
 - 一番乗りを目指そう！🙂
@@ -49,7 +49,7 @@ SpiffBoyを好みに合わせて調整しましょう。サンドボックスオ
 自分のゲームを作るのが夢でしたか？どのModでも、SpiffBoyに独自のカセットを追加できます。[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3825220785]SpiffBoy SDK[/url]には必要なものがすべて揃っています。ガイド、学習用のサンプルカセット2本、ラベル用の空のカセット、そしてゲームを作ってテストするためのツールです。このゲーム機は、技術的な制約も含めて、実在する物理的なゲーム機を再現するように作られています。
 
 
-[img]https://cdn.jsdelivr.net/gh/Ohhoop/SpiffBoy@main/art/description/header-qa.png[/img]
+[img]https://ohhoop.github.io/SpiffBoy/i/qa.png[/img]
 Q: マルチプレイで使えますか？
 A: はい。
 
@@ -83,7 +83,7 @@ A: はい。安全に削除することもできますが、当然ながらカ�
 
 紹介動画をまだ見ていない方は、ぜひご覧ください。作るのに本当にすごく時間がかかったんです、ハハ。ありがとうございます！
 
-[img]https://cdn.jsdelivr.net/gh/Ohhoop/SpiffBoy@main/art/description/footer-anim.gif[/img]
+[img]https://ohhoop.github.io/SpiffBoy/i/footer.gif[/img]
 
 Workshop ID: 3825220364
 Mod ID: SpiffBoy

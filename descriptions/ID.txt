@@ -1,4 +1,4 @@
-[img]https://cdn.jsdelivr.net/gh/Ohhoop/SpiffBoy@main/art/description/header-spiffboy.png[/img]
+[img]https://ohhoop.github.io/SpiffBoy/i/spiffboy.png[/img]
 Hadirin sekalian... inilah dia... [b]SpiffBoy[/b]!
 Dengan layar raksasa 180 kali 120 piksel untuk imersi total!
 Puzzle! Aksi! Balapan! Petualangan! Dan masih banyak lagi!
@@ -8,7 +8,7 @@ Colokkan, dan [i]simpan untuk dirimu sendiri.[/i]
 [b]SpiffBoy[/b]! Main di mana saja. Main kapan saja. Main [i]selagi kamu masih bisa.[/i]
 Dapatkan milikmu hari ini! [i]Baterai tidak termasuk.[/i]
 
-[img]https://cdn.jsdelivr.net/gh/Ohhoop/SpiffBoy@main/art/description/showcase.gif[/img]
+[img]https://ohhoop.github.io/SpiffBoy/i/showcase.gif[/img]
 
 [b]Keseruan besar yang muat di saku[/b]
 Dibangun dari Konsol Game Genggam yang sudah kamu kenal, SpiffBoy akhirnya menepati janjinya: berjam-jam petualangan di telapak tanganmu dan musik yang akan terus kamu senandungkan berhari-hari. Setiap kartrid adalah kejutan baru. Temukan, masukkan, dan lihat sendiri.
@@ -24,7 +24,7 @@ SpiffBoy dibuat agar berperilaku seperti konsol genggam di eranya, sampai ke det
 - Tidak ada yang mengalahkan game seru untuk mengusir bosan dan menaikkan semangat.
 
 
-[img]https://cdn.jsdelivr.net/gh/Ohhoop/SpiffBoy@main/art/description/header-cartridges.png[/img]
+[img]https://ohhoop.github.io/SpiffBoy/i/cartridges.png[/img]
 [b]Di luar sana, menunggumu[/b]
 Kartrid dan kabel link tersembunyi di seluruh Knox County, di tempat-tempat yang biasa ditinggalkan anak-anak. Beberapa konsol yang beruntung bahkan ditemukan dengan game masih di dalamnya. Perburuannya adalah bagian dari keseruan.
 
@@ -32,15 +32,15 @@ Kartrid dan kabel link tersembunyi di seluruh Knox County, di tempat-tempat yang
 Setiap kartrid punya save sendiri. Pinjamkan ke teman, tukarkan, atau simpan di saku: progresmu ikut ke mana pun kartrid itu pergi.
 
 
-[img]https://cdn.jsdelivr.net/gh/Ohhoop/SpiffBoy@main/art/description/header-spifflink.png[/img]
+[img]https://ohhoop.github.io/SpiffBoy/i/spifflink.png[/img]
 Colokkan Kabel Link SpiffBoy di antara dua konsol dan tantang temanmu, selama dia tetap berada di dekatmu. Online atau berdampingan di layar terpisah, temanmu cukup menerima kabelnya dan game langsung dimulai di tangannya.
 
 
-[img]https://cdn.jsdelivr.net/gh/Ohhoop/SpiffBoy@main/art/description/header-make-it-yours.png[/img]
+[img]https://ohhoop.github.io/SpiffBoy/i/yours.png[/img]
 Atur SpiffBoy sesuai seleramu: opsi sandbox menentukan bagaimana ia menyatu dengan duniamu, dari kerumunan yang ditarik suaranya hingga suasana hati baik yang dibawanya, pengaturan kontrol memungkinkanmu memilih tombol, dan opsi mod menentukan tampilannya di layarmu.
 
 
-[img]https://cdn.jsdelivr.net/gh/Ohhoop/SpiffBoy@main/art/description/header-more-games.png[/img]
+[img]https://ohhoop.github.io/SpiffBoy/i/games.png[/img]
 [b]Carilah Segel Kualitas Spiffco![/b]
 Sepuluh game hanyalah permulaan. Jika kamu ingin membuat game untuk SpiffBoy, bagian berikutnya dari bagian ini menunjukkan caranya. Tunjukkan game-mu dan saya akan menambahkannya ke daftar di bawah (tempat terbatas, deskripsi hanya bisa memuat teks sebanyak itu).
 - Jadilah yang pertama! 🙂
@@ -49,7 +49,7 @@ Sepuluh game hanyalah permulaan. Jika kamu ingin membuat game untuk SpiffBoy, ba
 Selalu bermimpi membuat game sendiri? Mod apa pun bisa menambahkan kartridnya sendiri ke SpiffBoy. [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3825220785]SpiffBoy SDK[/url] punya semua yang kamu butuhkan untuk membuatnya: panduan, dua kartrid contoh untuk dipelajari, kartrid kosong untuk labelmu, dan alat untuk membuat serta menguji game-mu sendiri. Konsol ini dibuat untuk meniru konsol fisik sungguhan, lengkap dengan batasan teknisnya.
 
 
-[img]https://cdn.jsdelivr.net/gh/Ohhoop/SpiffBoy@main/art/description/header-qa.png[/img]
+[img]https://ohhoop.github.io/SpiffBoy/i/qa.png[/img]
 Q: Apakah bisa di multiplayer?
 A: Ya.
 
@@ -83,7 +83,7 @@ Jangan ragu membagikan masukan, laporan bug, dan ide di bagian komentar, saya me
 
 Kalau kamu belum menonton video presentasinya, tontonlah, membuatnya butuh waktu SANGAT lama, haha. Terima kasih!
 
-[img]https://cdn.jsdelivr.net/gh/Ohhoop/SpiffBoy@main/art/description/footer-anim.gif[/img]
+[img]https://ohhoop.github.io/SpiffBoy/i/footer.gif[/img]
 
 Workshop ID: 3825220364
 Mod ID: SpiffBoy

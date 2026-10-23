@@ -1,4 +1,4 @@
-[img]https://cdn.jsdelivr.net/gh/Ohhoop/SpiffBoy@main/art/description/header-spiffboy.png[/img]
+[img]https://ohhoop.github.io/SpiffBoy/i/spiffboy.png[/img]
 Hölgyeim és uraim... íme... a [b]SpiffBoy[/b]!
 Hatalmas, 180 × 120 pixeles kijelzővel a teljes beleélésért!
 Logikai játékok! Akció! Verseny! Kaland! És még sok más!
@@ -8,7 +8,7 @@ Dugd be, és [i]tartsd meg magadnak.[/i]
 [b]SpiffBoy[/b]! Játssz bárhol. Játssz bármikor. Játssz, [i]amíg még lehet.[/i]
 Szerezd be még ma! [i]Az elemeket nem tartalmazza.[/i]
 
-[img]https://cdn.jsdelivr.net/gh/Ohhoop/SpiffBoy@main/art/description/showcase.gif[/img]
+[img]https://ohhoop.github.io/SpiffBoy/i/showcase.gif[/img]
 
 [b]Nagy móka, ami elfér a zsebedben[/b]
 A már jól ismert Videójáték kézi konzolra épülő SpiffBoy végre azt nyújtja, amit ígért: órákig tartó kalandot a tenyeredben, és zenét, amit napokig dúdolni fogsz. Minden játékkazetta új meglepetés. Keresd meg őket, told be, és győződj meg róla magad.
@@ -24,7 +24,7 @@ A SpiffBoy úgy készült, hogy a korabeli kézi konzolokhoz hasonlóan viselked
 - Semmi sem űzi el jobban az unalmat és dobja fel a hangulatot, mint egy jó játék.
 
 
-[img]https://cdn.jsdelivr.net/gh/Ohhoop/SpiffBoy@main/art/description/header-cartridges.png[/img]
+[img]https://ohhoop.github.io/SpiffBoy/i/cartridges.png[/img]
 [b]Valahol odakint rád várnak[/b]
 A játékkazetták és a linkkábelek egész Knox County területén rejtőznek, olyan helyeken, ahol egy gyerek hagyná őket. Néhány szerencsés konzolban még játék is lapul. A keresgélés a móka része.
 
@@ -32,15 +32,15 @@ A játékkazetták és a linkkábelek egész Knox County területén rejtőznek,
 Minden játékkazetta saját mentést tárol. Add kölcsön egy barátodnak, cseréld el, vagy tartsd a zsebedben: a haladásod oda megy, ahová a kazetta.
 
 
-[img]https://cdn.jsdelivr.net/gh/Ohhoop/SpiffBoy@main/art/description/header-spifflink.png[/img]
+[img]https://ohhoop.github.io/SpiffBoy/i/spifflink.png[/img]
 Csatlakoztasd a SpiffBoy linkkábelt két konzol közé, és hívd ki egy barátodat, amíg a közelben marad. Online vagy egymás mellett osztott képernyőn: a barátodnak csak el kell fogadnia a kábelt, és a játék már az ő kezében indul.
 
 
-[img]https://cdn.jsdelivr.net/gh/Ohhoop/SpiffBoy@main/art/description/header-make-it-yours.png[/img]
+[img]https://ohhoop.github.io/SpiffBoy/i/yours.png[/img]
 Hangold a SpiffBoy konzolt a saját ízlésedre: a sandbox opciók döntik el, hogyan illik a világodba, a hangja által vonzott tömegtől a jókedvig, amit hoz, az irányítási beállításokban kiválaszthatod a gombjaidat, a mod opciói pedig azt alakítják, hogyan néz ki a képernyődön.
 
 
-[img]https://cdn.jsdelivr.net/gh/Ohhoop/SpiffBoy@main/art/description/header-more-games.png[/img]
+[img]https://ohhoop.github.io/SpiffBoy/i/games.png[/img]
 [b]Keresd a Spiffco minőségi pecsétet![/b]
 A tíz játék csak a kezdet. Ha szeretnél játékot készíteni a SpiffBoy konzolra, a szakasz következő része megmutatja, hogyan. Mutasd meg a játékodat, és felveszem az alábbi listára (a helyek száma korlátozott, a leírásba csak ennyi szöveg fér).
 - Legyél te az első! 🙂
@@ -49,7 +49,7 @@ A tíz játék csak a kezdet. Ha szeretnél játékot készíteni a SpiffBoy kon
 Mindig is saját játékot akartál készíteni? Bármelyik mod hozzáadhat saját játékkazettákat a SpiffBoy konzolhoz. A [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3825220785]SpiffBoy SDK[/url] mindent tartalmaz, ami kell: útmutatót, két példakazettát a tanuláshoz, egy üres kazettát a saját címkédhez, valamint eszközöket a saját játékod elkészítéséhez és teszteléséhez. A konzol úgy készült, hogy egy valódi fizikai konzolt utánozzon, annak technikai korlátaival együtt.
 
 
-[img]https://cdn.jsdelivr.net/gh/Ohhoop/SpiffBoy@main/art/description/header-qa.png[/img]
+[img]https://ohhoop.github.io/SpiffBoy/i/qa.png[/img]
 Q: Működik többjátékos módban?
 A: Igen.
 
@@ -83,7 +83,7 @@ Nyugodtan írd meg a visszajelzéseidet, hibajelentéseidet és ötleteidet a ho
 
 Ha még nem láttad a bemutató videót, nézd meg, NAGYON sokáig készült, haha. Köszi!
 
-[img]https://cdn.jsdelivr.net/gh/Ohhoop/SpiffBoy@main/art/description/footer-anim.gif[/img]
+[img]https://ohhoop.github.io/SpiffBoy/i/footer.gif[/img]
 
 Workshop ID: 3825220364
 Mod ID: SpiffBoy

@@ -1,4 +1,4 @@
-[img]https://cdn.jsdelivr.net/gh/Ohhoop/SpiffBoy@main/art/description/header-spiffboy.png[/img]
+[img]https://ohhoop.github.io/SpiffBoy/i/spiffboy.png[/img]
 Bayanlar ve baylar... karşınızda... [b]SpiffBoy[/b]!
 Tam bir sürükleyicilik için dev 180 x 120 piksel ekran!
 Bulmaca! Aksiyon! Yarış! Macera! Ve daha fazlası!
@@ -8,7 +8,7 @@ Takın ve [i]bunu kendinize saklayın.[/i]
 [b]SpiffBoy[/b]! Her yerde oynayın. Her zaman oynayın. [i]Hâlâ fırsatınız varken[/i] oynayın.
 Hemen bugün edinin! [i]Piller dahil değildir.[/i]
 
-[img]https://cdn.jsdelivr.net/gh/Ohhoop/SpiffBoy@main/art/description/showcase.gif[/img]
+[img]https://ohhoop.github.io/SpiffBoy/i/showcase.gif[/img]
 
 [b]Cebinize sığan büyük eğlence[/b]
 Zaten tanıdığınız Video Oyunu üzerine kurulan SpiffBoy sonunda vaat ettiğini yapıyor: avucunuzun içinde saatlerce macera ve günlerce mırıldanacağınız müzikler. Her kartuş yeni bir sürpriz. Onları bulun, takın ve kendiniz görün.
@@ -24,7 +24,7 @@ SpiffBoy, o dönemin el konsolları gibi davranmak üzere en küçük ayrıntıs
 - Can sıkıntısını kovmak ve moralinizi yükseltmek için iyi bir oyunun yerini hiçbir şey tutamaz.
 
 
-[img]https://cdn.jsdelivr.net/gh/Ohhoop/SpiffBoy@main/art/description/header-cartridges.png[/img]
+[img]https://ohhoop.github.io/SpiffBoy/i/cartridges.png[/img]
 [b]Orada bir yerde, sizi bekliyorlar[/b]
 Kartuşlar ve bağlantı kabloları Knox County'nin dört bir yanında, bir çocuğun bırakabileceği yerlerde saklanıyor. Bazı şanslı konsollar içinde hâlâ bir oyunla bulunuyor. Av, eğlencenin bir parçası.
 
@@ -32,15 +32,15 @@ Kartuşlar ve bağlantı kabloları Knox County'nin dört bir yanında, bir çoc
 Her kartuşun kendi kaydı vardır. Bir arkadaşınıza ödünç verin, takas edin ya da cebinizde tutun: kartuş nereye giderse ilerlemeniz de oraya gider.
 
 
-[img]https://cdn.jsdelivr.net/gh/Ohhoop/SpiffBoy@main/art/description/header-spifflink.png[/img]
+[img]https://ohhoop.github.io/SpiffBoy/i/spifflink.png[/img]
 SpiffBoy bağlantı kablosunu iki konsol arasına takın ve yakınınızda kaldığı sürece bir arkadaşınıza meydan okuyun. Çevrimiçi ya da bölünmüş ekranda yan yana, arkadaşınızın tek yapması gereken kabloyu kabul etmek ve oyun onun ellerinde başlar.
 
 
-[img]https://cdn.jsdelivr.net/gh/Ohhoop/SpiffBoy@main/art/description/header-make-it-yours.png[/img]
+[img]https://ohhoop.github.io/SpiffBoy/i/yours.png[/img]
 SpiffBoy'u zevkinize göre ayarlayın: sandbox seçenekleri, sesinin topladığı kalabalıktan getirdiği keyfe kadar onun dünyanıza nasıl uyacağını belirler, kontrol ayarları tuşlarınızı seçmenizi sağlar ve mod seçenekleri ekranınızda nasıl görüneceğini şekillendirir.
 
 
-[img]https://cdn.jsdelivr.net/gh/Ohhoop/SpiffBoy@main/art/description/header-more-games.png[/img]
+[img]https://ohhoop.github.io/SpiffBoy/i/games.png[/img]
 [b]Spiffco Kalite Mührünü arayın![/b]
 On oyun sadece başlangıç. SpiffBoy için bir oyun yapmak isterseniz, bu bölümün devamı size nasıl yapılacağını gösteriyor. Oyununuzu bana gösterin, aşağıdaki listeye ekleyeyim (yer sınırlı, açıklama ancak bu kadar metin alabiliyor).
 - İlk siz olun! 🙂
@@ -49,7 +49,7 @@ On oyun sadece başlangıç. SpiffBoy için bir oyun yapmak isterseniz, bu böl�
 Hep kendi oyununuzu yapmayı mı hayal ettiniz? Her mod SpiffBoy'a kendi kartuşlarını ekleyebilir. [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3825220785]SpiffBoy SDK[/url] bir oyun yapmak için ihtiyacınız olan her şeyi içerir: bir rehber, örnek alınacak iki kartuş, etiketiniz için boş bir kartuş ve kendi oyununuzu yapıp test etmek için araçlar. Konsol, teknik kısıtlamalarıyla birlikte gerçek bir fiziksel konsolu taklit edecek şekilde tasarlandı.
 
 
-[img]https://cdn.jsdelivr.net/gh/Ohhoop/SpiffBoy@main/art/description/header-qa.png[/img]
+[img]https://ohhoop.github.io/SpiffBoy/i/qa.png[/img]
 Q: Çok oyunculu modda çalışıyor mu?
 A: Evet.
 
@@ -83,7 +83,7 @@ Geri bildirimlerinizi, hata raporlarınızı ve fikirlerinizi yorumlar bölümü
 
 Video tanıtımına henüz göz atmadıysanız lütfen izleyin, yapması ÇOK uzun sürdü, haha. Teşekkürler!
 
-[img]https://cdn.jsdelivr.net/gh/Ohhoop/SpiffBoy@main/art/description/footer-anim.gif[/img]
+[img]https://ohhoop.github.io/SpiffBoy/i/footer.gif[/img]
 
 Workshop ID: 3825220364
 Mod ID: SpiffBoy

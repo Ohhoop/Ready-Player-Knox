@@ -1,4 +1,4 @@
-[img]https://cdn.jsdelivr.net/gh/Ohhoop/SpiffBoy@main/art/description/header-spiffboy.png[/img]
+[img]https://ohhoop.github.io/SpiffBoy/i/spiffboy.png[/img]
 Doamnelor și domnilor... vă prezentăm... [b]SpiffBoy[/b]!
 Cu un ecran uriaș de 180 pe 120 de pixeli pentru o imersiune totală!
 Puzzle! Acțiune! Curse! Aventură! Și multe altele!
@@ -8,7 +8,7 @@ Conectează-te și [i]păstrează totul doar pentru tine.[/i]
 [b]SpiffBoy[/b]! Joacă oriunde. Joacă oricând. Joacă [i]cât încă mai poți.[/i]
 Ia-l pe al tău chiar azi! [i]Bateriile nu sunt incluse.[/i]
 
-[img]https://cdn.jsdelivr.net/gh/Ohhoop/SpiffBoy@main/art/description/showcase.gif[/img]
+[img]https://ohhoop.github.io/SpiffBoy/i/showcase.gif[/img]
 
 [b]Distracție mare care încape în buzunar[/b]
 Construit pe Consola de Jocuri Portabilă pe care o știi deja, SpiffBoy face în sfârșit ce a promis: ore de aventură în palma ta și muzică pe care o vei fredona zile întregi. Fiecare cartuș e o nouă surpriză. Găsește-le, introdu-le și vezi singur.
@@ -24,7 +24,7 @@ SpiffBoy a fost construit să se comporte ca consolele portabile ale epocii, pâ
 - Nimic nu alungă plictiseala și nu-ți ridică moralul ca un joc bun.
 
 
-[img]https://cdn.jsdelivr.net/gh/Ohhoop/SpiffBoy@main/art/description/header-cartridges.png[/img]
+[img]https://ohhoop.github.io/SpiffBoy/i/cartridges.png[/img]
 [b]Undeva acolo, te așteaptă[/b]
 Cartușele și cablurile link sunt ascunse prin tot Knox County, în locurile în care te-ai aștepta să le lase un copil. Unele console norocoase sunt găsite chiar cu un joc încă înăuntru. Căutarea face parte din distracție.
 
@@ -32,15 +32,15 @@ Cartușele și cablurile link sunt ascunse prin tot Knox County, în locurile î
 Fiecare cartuș își păstrează propria salvare. Împrumută-l unui prieten, schimbă-l sau ține-l în buzunar: progresul tău merge oriunde merge cartușul.
 
 
-[img]https://cdn.jsdelivr.net/gh/Ohhoop/SpiffBoy@main/art/description/header-spifflink.png[/img]
+[img]https://ohhoop.github.io/SpiffBoy/i/spifflink.png[/img]
 Conectează Cablul link SpiffBoy între două console și provoacă un prieten, atâta timp cât rămâne aproape. Online sau unul lângă altul în split-screen, prietenul tău trebuie doar să accepte cablul și jocul începe în mâinile lui.
 
 
-[img]https://cdn.jsdelivr.net/gh/Ohhoop/SpiffBoy@main/art/description/header-make-it-yours.png[/img]
+[img]https://ohhoop.github.io/SpiffBoy/i/yours.png[/img]
 Reglează SpiffBoy după gustul tău: opțiunile sandbox decid cum se potrivește în lumea ta, de la mulțimea pe care o atrage sunetul lui până la buna dispoziție pe care o aduce, setările de control te lasă să-ți alegi butoanele, iar opțiunile modului stabilesc cum arată pe ecranul tău.
 
 
-[img]https://cdn.jsdelivr.net/gh/Ohhoop/SpiffBoy@main/art/description/header-more-games.png[/img]
+[img]https://ohhoop.github.io/SpiffBoy/i/games.png[/img]
 [b]Caută Sigiliul de Calitate Spiffco![/b]
 Zece jocuri sunt doar începutul. Dacă ai vrea să faci un joc pentru SpiffBoy, următoarea parte a acestei secțiuni îți arată cum. Arată-mi jocul tău și îl adaug în lista de mai jos (locurile sunt limitate, descrierea poate cuprinde doar atât text).
 - Fii primul! 🙂
@@ -49,7 +49,7 @@ Zece jocuri sunt doar începutul. Dacă ai vrea să faci un joc pentru SpiffBoy,
 Ai visat mereu să-ți faci propriul joc? Orice mod poate adăuga propriile cartușe în SpiffBoy. [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3825220785]SpiffBoy SDK[/url] are tot ce-ți trebuie: un ghid, două cartușe exemplu din care să înveți, un cartuș gol pentru eticheta ta și unelte ca să-ți faci și să-ți testezi propriul joc. Consola este construită să imite o consolă fizică reală, cu constrângerile ei tehnice.
 
 
-[img]https://cdn.jsdelivr.net/gh/Ohhoop/SpiffBoy@main/art/description/header-qa.png[/img]
+[img]https://ohhoop.github.io/SpiffBoy/i/qa.png[/img]
 Q: Funcționează în multiplayer?
 A: Da.
 
@@ -83,7 +83,7 @@ Nu ezita să lași păreri, rapoarte de bug-uri și idei în secțiunea de comen
 
 Dacă n-ai văzut încă prezentarea video, te rog s-o vezi, mi-a luat ATÂT de mult s-o fac, haha. Mulțumesc!
 
-[img]https://cdn.jsdelivr.net/gh/Ohhoop/SpiffBoy@main/art/description/footer-anim.gif[/img]
+[img]https://ohhoop.github.io/SpiffBoy/i/footer.gif[/img]
 
 Workshop ID: 3825220364
 Mod ID: SpiffBoy

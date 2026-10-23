@@ -1,4 +1,4 @@
-[img]https://cdn.jsdelivr.net/gh/Ohhoop/SpiffBoy@main/art/description/header-spiffboy.png[/img]
+[img]https://ohhoop.github.io/SpiffBoy/i/spiffboy.png[/img]
 Дамы и господа... встречайте... [b]SpiffBoy[/b]!
 Огромный экран 180 на 120 пикселей для полного погружения!
 Головоломки! Экшен! Гонки! Приключения! И не только!
@@ -8,7 +8,7 @@
 [b]SpiffBoy[/b]! Играйте где угодно. Играйте когда угодно. Играйте, [i]пока ещё можете.[/i]
 Купите свой уже сегодня! [i]Батарейки в комплект не входят.[/i]
 
-[img]https://cdn.jsdelivr.net/gh/Ohhoop/SpiffBoy@main/art/description/showcase.gif[/img]
+[img]https://ohhoop.github.io/SpiffBoy/i/showcase.gif[/img]
 
 [b]Большое веселье, которое помещается в карман[/b]
 Созданный на основе знакомой вам портативной игровой консоли, SpiffBoy наконец делает обещанное: часы приключений на ладони и музыка, которую вы будете напевать ещё много дней. Каждый картридж - новый сюрприз. Найдите их, вставьте и убедитесь сами.
@@ -24,7 +24,7 @@ SpiffBoy ведёт себя как портативные консоли той
 - Ничто так не прогоняет скуку и не поднимает настроение, как хорошая игра.
 
 
-[img]https://cdn.jsdelivr.net/gh/Ohhoop/SpiffBoy@main/art/description/header-cartridges.png[/img]
+[img]https://ohhoop.github.io/SpiffBoy/i/cartridges.png[/img]
 [b]Где-то там, они ждут вас[/b]
 Картриджи и линк-кабели спрятаны по всему Knox County, в тех местах, где их мог бы оставить ребёнок. Некоторые счастливые консоли находят даже с игрой внутри. Поиски - часть веселья.
 
@@ -32,15 +32,15 @@ SpiffBoy ведёт себя как портативные консоли той
 У каждого картриджа своё сохранение. Одолжите его другу, обменяйте или держите в кармане: ваш прогресс следует за картриджем, куда бы он ни отправился.
 
 
-[img]https://cdn.jsdelivr.net/gh/Ohhoop/SpiffBoy@main/art/description/header-spifflink.png[/img]
+[img]https://ohhoop.github.io/SpiffBoy/i/spifflink.png[/img]
 Соедините две консоли Линк-кабелем SpiffBoy и бросьте вызов другу, пока он остаётся рядом. По сети или бок о бок на разделённом экране: другу достаточно принять кабель, и игра начнётся у него в руках.
 
 
-[img]https://cdn.jsdelivr.net/gh/Ohhoop/SpiffBoy@main/art/description/header-make-it-yours.png[/img]
+[img]https://ohhoop.github.io/SpiffBoy/i/yours.png[/img]
 Настройте SpiffBoy под себя: параметры песочницы определяют, как он вписывается в ваш мир, от толпы, которую собирает его звук, до хорошего настроения, которое он дарит; настройки управления задают кнопки, а параметры мода - его вид на экране.
 
 
-[img]https://cdn.jsdelivr.net/gh/Ohhoop/SpiffBoy@main/art/description/header-more-games.png[/img]
+[img]https://ohhoop.github.io/SpiffBoy/i/games.png[/img]
 [b]Ищите знак качества Spiffco![/b]
 Десять игр - это только начало. Хотите сделать игру для SpiffBoy? Ниже показано, как. Покажите мне свою игру, и я добавлю её в список ниже (мест немного, описание вмещает ограниченное количество текста).
 - Станьте первым! 🙂
@@ -49,7 +49,7 @@ SpiffBoy ведёт себя как портативные консоли той
 Всегда мечтали сделать собственную игру? Любой мод может добавить свои картриджи в SpiffBoy. В [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3825220785]SpiffBoy SDK[/url] есть всё необходимое: руководство, два картриджа-примера для обучения, пустой картридж для вашей наклейки и инструменты для создания и тестирования своей игры. Консоль имитирует настоящую физическую консоль со всеми её техническими ограничениями.
 
 
-[img]https://cdn.jsdelivr.net/gh/Ohhoop/SpiffBoy@main/art/description/header-qa.png[/img]
+[img]https://ohhoop.github.io/SpiffBoy/i/qa.png[/img]
 Q: Работает ли это в мультиплеере?
 A: Да.
 
@@ -83,7 +83,7 @@ A: Да, но при удалении вы потеряете сохранени
 
 Если вы ещё не посмотрели видеопрезентацию, обязательно посмотрите, я делал её ОЧЕНЬ долго, ха-ха. Спасибо!
 
-[img]https://cdn.jsdelivr.net/gh/Ohhoop/SpiffBoy@main/art/description/footer-anim.gif[/img]
+[img]https://ohhoop.github.io/SpiffBoy/i/footer.gif[/img]
 
 Workshop ID: 3825220364
 Mod ID: SpiffBoy

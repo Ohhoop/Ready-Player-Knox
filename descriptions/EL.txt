@@ -1,4 +1,4 @@
-[img]https://cdn.jsdelivr.net/gh/Ohhoop/SpiffBoy@main/art/description/header-spiffboy.png[/img]
+[img]https://ohhoop.github.io/SpiffBoy/i/spiffboy.png[/img]
 Κυρίες και κύριοι... σας παρουσιάζουμε... το [b]SpiffBoy[/b]!
 Με τεράστια οθόνη 180 επί 120 pixel για απόλυτη εμβύθιση!
 Γρίφοι! Δράση! Αγώνες! Περιπέτεια! Και πολλά ακόμα!
@@ -8,7 +8,7 @@
 [b]SpiffBoy[/b]! Παίξτε παντού. Παίξτε οποτεδήποτε. Παίξτε [i]όσο ακόμα μπορείτε.[/i]
 Αποκτήστε το σήμερα! [i]Οι μπαταρίες δεν περιλαμβάνονται.[/i]
 
-[img]https://cdn.jsdelivr.net/gh/Ohhoop/SpiffBoy@main/art/description/showcase.gif[/img]
+[img]https://ohhoop.github.io/SpiffBoy/i/showcase.gif[/img]
 
 [b]Μεγάλη διασκέδαση που χωράει στην τσέπη σας[/b]
 Το SpiffBoy κάνει επιτέλους ό,τι υποσχόταν η Φορητή κονσόλα παιχνιδιών: ώρες περιπέτειας στην παλάμη σας και μουσική για να σιγοτραγουδάτε μέρες. Κάθε κασέτα είναι νέα έκπληξη. Βρείτε τες και δείτε μόνοι σας.
@@ -24,7 +24,7 @@
 - Τίποτα δεν διώχνει την πλήξη και δεν ανεβάζει τη διάθεση όσο ένα καλό παιχνίδι.
 
 
-[img]https://cdn.jsdelivr.net/gh/Ohhoop/SpiffBoy@main/art/description/header-cartridges.png[/img]
+[img]https://ohhoop.github.io/SpiffBoy/i/cartridges.png[/img]
 [b]Εκεί έξω, σας περιμένουν[/b]
 Κασέτες και καλώδια κρύβονται σε όλο το Knox County, εκεί όπου θα τα άφηνε ένα παιδί. Μερικές τυχερές κονσόλες έχουν ακόμα παιχνίδι μέσα. Το κυνήγι είναι μέρος της διασκέδασης.
 
@@ -32,15 +32,15 @@
 Κάθε κασέτα κρατά τη δική της αποθήκευση. Δανείστε τη, ανταλλάξτε τη ή κρατήστε τη: η πρόοδός σας πάει όπου πάει η κασέτα.
 
 
-[img]https://cdn.jsdelivr.net/gh/Ohhoop/SpiffBoy@main/art/description/header-spifflink.png[/img]
+[img]https://ohhoop.github.io/SpiffBoy/i/spifflink.png[/img]
 Συνδέστε δύο κονσόλες με το Καλώδιο σύνδεσης SpiffBoy και προκαλέστε έναν φίλο, αρκεί να μείνει κοντά. Online ή σε split-screen, αρκεί να δεχτεί το καλώδιο και το παιχνίδι ξεκινά στα χέρια του.
 
 
-[img]https://cdn.jsdelivr.net/gh/Ohhoop/SpiffBoy@main/art/description/header-make-it-yours.png[/img]
+[img]https://ohhoop.github.io/SpiffBoy/i/yours.png[/img]
 Ρυθμίστε το SpiffBoy όπως θέλετε: οι ρυθμίσεις sandbox ορίζουν πώς ταιριάζει στον κόσμο σας, από το πλήθος που τραβά ο ήχος του ως την καλή διάθεση που φέρνει· ο χειρισμός ορίζει τα κουμπιά και οι επιλογές του mod την εμφάνιση στην οθόνη.
 
 
-[img]https://cdn.jsdelivr.net/gh/Ohhoop/SpiffBoy@main/art/description/header-more-games.png[/img]
+[img]https://ohhoop.github.io/SpiffBoy/i/games.png[/img]
 [b]Αναζητήστε τη Σφραγίδα Ποιότητας Spiffco![/b]
 Τα δέκα παιχνίδια είναι μόνο η αρχή. Θέλετε να φτιάξετε παιχνίδι για το SpiffBoy; Η συνέχεια σας δείχνει πώς. Δείξτε μου το παιχνίδι σας και θα το προσθέσω στη λίστα παρακάτω (οι θέσεις είναι λίγες, η περιγραφή χωράει περιορισμένο κείμενο).
 - Γίνετε οι πρώτοι! 🙂
@@ -49,7 +49,7 @@
 Ονειρεύεστε το δικό σας παιχνίδι; Κάθε mod μπορεί να προσθέσει κασέτες στο SpiffBoy. Το [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3825220785]SpiffBoy SDK[/url] έχει ό,τι χρειάζεστε: οδηγό, δύο κασέτες-παραδείγματα, μια κενή κασέτα για την ετικέτα σας και εργαλεία για να φτιάξετε και να δοκιμάσετε το παιχνίδι σας. Η κονσόλα μιμείται μια πραγματική φυσική κονσόλα, με τους τεχνικούς της περιορισμούς.
 
 
-[img]https://cdn.jsdelivr.net/gh/Ohhoop/SpiffBoy@main/art/description/header-qa.png[/img]
+[img]https://ohhoop.github.io/SpiffBoy/i/qa.png[/img]
 Q: Λειτουργεί στο multiplayer;
 A: Ναι.
 
@@ -83,7 +83,7 @@ A: Ναι, αλλά αν το αφαιρέσετε θα χάσετε τις απ
 
 Αν δεν έχετε δει το βίντεο παρουσίασης, ρίξτε μια ματιά, μου πήρε ΤΟΣΟ πολύ χρόνο, χαχα. Ευχαριστώ!
 
-[img]https://cdn.jsdelivr.net/gh/Ohhoop/SpiffBoy@main/art/description/footer-anim.gif[/img]
+[img]https://ohhoop.github.io/SpiffBoy/i/footer.gif[/img]
 
 Workshop ID: 3825220364
 Mod ID: SpiffBoy
