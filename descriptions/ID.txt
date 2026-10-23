@@ -1,0 +1,90 @@
+[img]https://i.imgur.com/sVROmET.png[/img]
+
+Hadirin sekalian... inilah dia... [b]SpiffBoy[/b]!
+Dengan layar raksasa 180 kali 120 piksel untuk imersi total!
+Puzzle! Aksi! Balapan! Petualangan! Dan masih banyak lagi!
+[b]Sepuluh game[/b] tersedia sejak [b]hari pertama[/b]! [i]Kartrid dijual terpisah.[/i]
+Tantang temanmu dengan Kabel Link [b]SpiffBoy[/b]!
+Colokkan, dan [i]simpan untuk dirimu sendiri.[/i]
+[b]SpiffBoy[/b]! Main di mana saja. Main kapan saja. Main [i]selagi kamu masih bisa.[/i]
+Dapatkan milikmu hari ini! [i]Baterai tidak termasuk.[/i]
+
+[img]https://i.imgur.com/FXDLBNF.gif[/img]
+
+[b]Keseruan besar yang muat di saku[/b]
+Dibangun dari Konsol Game Genggam yang sudah kamu kenal, SpiffBoy akhirnya menepati janjinya: berjam-jam petualangan di telapak tanganmu dan musik yang akan terus kamu senandungkan berhari-hari. Setiap kartrid adalah kejutan baru. Temukan, masukkan, dan lihat sendiri.
+
+[b]Persis seperti aslinya[/b]
+SpiffBoy dibuat agar berperilaku seperti konsol genggam di eranya, sampai ke detail kecil. Kalau dulu kamu akan mencobanya di konsolmu, silakan coba juga di SpiffBoy. Kamu mungkin akan terkejut.
+
+[b]Dirancang untuk gaya hidupmu[/b]
+- Colokan headphone bawaan, jadi kamu bisa tetap fokus pada game tanpa menarik perhatian orang-orang di sekitarmu.
+- Suara yang terdengar jauh: mainkan dengan keras, dan kamu bisa menarik kerumunan yang tidak kamu undang.
+- Bertenaga baterai, jadi kamu bisa bermain di mana saja, bahkan saat listrik padam.
+- Main dengan keyboard atau controller.
+- Tidak ada yang mengalahkan game seru untuk mengusir bosan dan menaikkan semangat.
+
+[img]https://i.imgur.com/03wIo7b.png[/img]
+
+[b]Di luar sana, menunggumu[/b]
+Kartrid dan kabel link tersembunyi di seluruh Knox County, di tempat-tempat yang biasa ditinggalkan anak-anak. Beberapa konsol yang beruntung bahkan ditemukan dengan game masih di dalamnya. Perburuannya adalah bagian dari keseruan.
+
+[b]Progresmu ikut ke mana pun[/b]
+Setiap kartrid punya save sendiri. Pinjamkan ke teman, tukarkan, atau simpan di saku: progresmu ikut ke mana pun kartrid itu pergi.
+
+[img]https://i.imgur.com/iZ0r7eO.png[/img]
+
+Colokkan Kabel Link SpiffBoy di antara dua konsol dan tantang temanmu, selama dia tetap berada di dekatmu. Online atau berdampingan di layar terpisah, temanmu cukup menerima kabelnya dan game langsung dimulai di tangannya.
+
+[img]https://i.imgur.com/w3Uz0Ye.png[/img]
+
+Atur SpiffBoy sesuai seleramu: opsi sandbox menentukan bagaimana ia menyatu dengan duniamu, dari kerumunan yang ditarik suaranya hingga suasana hati baik yang dibawanya, pengaturan kontrol memungkinkanmu memilih tombol, dan opsi mod menentukan tampilannya di layarmu.
+
+[img]https://i.imgur.com/DX9mD5C.png[/img]
+
+[b]Carilah Segel Kualitas Spiffco![/b]
+Sepuluh game hanyalah permulaan. Jika kamu ingin membuat game untuk SpiffBoy, bagian berikutnya dari bagian ini menunjukkan caranya. Tunjukkan game-mu dan saya akan menambahkannya ke daftar di bawah (tempat terbatas, deskripsi hanya bisa memuat teks sebanyak itu).
+- Jadilah yang pertama! 🙂
+
+[b]Buat game-mu sendiri[/b]
+Selalu bermimpi membuat game sendiri? Mod apa pun bisa menambahkan kartridnya sendiri ke SpiffBoy. [url=https://steamcommunity.com/sharedfiles/filedetails/?id=SDK_PROD_ID]SpiffBoy SDK[/url] punya semua yang kamu butuhkan untuk membuatnya: panduan, dua kartrid contoh untuk dipelajari, kartrid kosong untuk labelmu, dan alat untuk membuat serta menguji game-mu sendiri. Konsol ini dibuat untuk meniru konsol fisik sungguhan, lengkap dengan batasan teknisnya.
+
+[img]https://i.imgur.com/06m1zUR.png[/img]
+
+Q: Apakah bisa di multiplayer?
+A: Ya.
+
+Q: Apakah setiap pemain di server perlu memasangnya?
+A: Ya, server dan setiap pemain.
+
+Q: Apakah kompatibel dengan mod lain?
+A: Ya, selama mod itu tidak mengubah Konsol Game Genggam vanilla.
+
+Q: Bisakah saya menyimpan konsolnya tanpa efeknya pada gameplay?
+A: Bisa, opsi sandbox dapat mematikannya.
+
+Q: Konsol saya tidak mau menyala.
+A: Konsolnya butuh baterai.
+
+Q: Apakah sudah diterjemahkan?
+A: Ke semua bahasa yang didukung game.
+
+Q: Apakah akan ada game lain?
+A: Mod lain bisa menambahkannya melalui SpiffBoy SDK.
+
+Q: Bisakah kamu membuat Pokem...?
+A: Tentu tidak, saya tidak mau dituntut sampai lenyap.
+
+Q: Apakah aman ditambahkan atau dihapus di tengah save?
+A: Ya. Kamu juga bisa menghapusnya dengan aman, tapi tentu saja file save kartridmu akan hilang.
+
+Terima kasih khusus untuk [url=https://steamcommunity.com/id/raffataff/myworkshopfiles/]raffataffattack[/url] atas model 3D kartrid dan beberapa idenya!
+
+Jangan ragu membagikan masukan, laporan bug, dan ide di bagian komentar, saya membaca semuanya.
+
+Kalau kamu belum menonton video presentasinya, tontonlah, membuatnya butuh waktu SANGAT lama, haha. Terima kasih!
+
+[img]https://i.imgur.com/lja52Fs.gif[/img]
+
+Workshop ID: PROD_WORKSHOP_ID
+Mod ID: SpiffBoy

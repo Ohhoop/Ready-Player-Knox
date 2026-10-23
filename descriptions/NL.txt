@@ -1,0 +1,90 @@
+[img]https://i.imgur.com/sVROmET.png[/img]
+
+Dames en heren... maak kennis met... de [b]SpiffBoy[/b]!
+Met een enorm scherm van 180 bij 120 pixels voor totale onderdompeling!
+Puzzels! Actie! Racen! Avontuur! En nog veel meer!
+[b]Tien spellen[/b] beschikbaar vanaf [b]dag één[/b]! [i]Spelcassettes apart verkrijgbaar.[/i]
+Daag een vriend uit met de [b]SpiffBoy[/b]-linkkabel!
+Inpluggen, en [i]hou het voor jezelf.[/i]
+[b]SpiffBoy[/b]! Speel overal. Speel altijd. Speel [i]zolang het nog kan.[/i]
+Haal 'm vandaag nog! [i]Batterijen niet inbegrepen.[/i]
+
+[img]https://i.imgur.com/FXDLBNF.gif[/img]
+
+[b]Groot plezier dat in je broekzak past[/b]
+Gebouwd op het Computerspel, de handheld die je al kent, doet de SpiffBoy eindelijk wat hij beloofde: urenlang avontuur in de palm van je hand en muziek die je nog dagen neuriet. Elke cassette is een nieuwe verrassing. Vind ze, schuif ze erin en zie het zelf.
+
+[b]Net als het echte werk[/b]
+De SpiffBoy is gemaakt om zich te gedragen als de handheld consoles uit die tijd, tot in de kleinste details. Als je iets toen op de jouwe zou hebben geprobeerd, probeer het dan gerust op de SpiffBoy. Misschien sta je versteld.
+
+[b]Ontworpen voor jouw manier van leven[/b]
+- Ingebouwde koptelefoonaansluiting, zodat je gefocust blijft op je spel zonder de aandacht te trekken van de mensen om je heen.
+- Een geluid dat ver draagt: zet hem hard en je trekt misschien een menigte aan die je niet hebt uitgenodigd.
+- Werkt op batterijen, dus je kunt overal spelen, zelfs als de stroom is uitgevallen.
+- Speel met het toetsenbord of een controller.
+- Niets verjaagt de verveling zo goed als een goed spel, en het vrolijkt je meteen op.
+
+[img]https://i.imgur.com/03wIo7b.png[/img]
+
+[b]Ergens daarbuiten, wachtend op jou[/b]
+Spelcassettes en linkkabels liggen verstopt door heel Knox County, op plekken waar je zou verwachten dat een kind ze laat liggen. Sommige gelukkige consoles worden zelfs gevonden met nog een spel erin. De zoektocht hoort bij de pret.
+
+[b]Je voortgang reist met je mee[/b]
+Elke cassette heeft zijn eigen save. Leen hem uit aan een vriend, ruil hem of hou hem in je zak: je voortgang gaat mee waar de cassette ook heen gaat.
+
+[img]https://i.imgur.com/iZ0r7eO.png[/img]
+
+Sluit de SpiffBoy-linkkabel aan tussen twee consoles en daag een vriend uit, zolang die in de buurt blijft. Online of naast elkaar in splitscreen, je vriend hoeft alleen de kabel te accepteren en het spel begint in zijn handen.
+
+[img]https://i.imgur.com/w3Uz0Ye.png[/img]
+
+Stel de SpiffBoy in naar jouw smaak: de sandbox-opties bepalen hoe hij in je wereld past, van de menigte die zijn geluid aantrekt tot het goede humeur dat hij brengt, met de besturingsinstellingen kies je je knoppen, en de modopties bepalen hoe hij er op je scherm uitziet.
+
+[img]https://i.imgur.com/DX9mD5C.png[/img]
+
+[b]Let op het Spiffco-kwaliteitszegel![/b]
+Tien spellen is pas het begin. Wil je een spel maken voor de SpiffBoy, dan laat het volgende deel van deze sectie zien hoe. Laat me je spel zien en ik zet het in de lijst hieronder (de plekken zijn beperkt, de beschrijving kan maar zoveel tekst bevatten).
+- Wees de eerste! 🙂
+
+[b]Maak je eigen spellen[/b]
+Altijd al gedroomd van je eigen spel? Elke mod kan zijn eigen cassettes aan de SpiffBoy toevoegen. De [url=https://steamcommunity.com/sharedfiles/filedetails/?id=SDK_PROD_ID]SpiffBoy SDK[/url] heeft alles wat je nodig hebt om er een te bouwen: een handleiding, twee voorbeeldcassettes om van te leren, een blanco cassette voor je label en tools om je eigen spel te maken en te testen. De console is gebouwd om een echte fysieke console na te bootsen, met zijn technische beperkingen.
+
+[img]https://i.imgur.com/06m1zUR.png[/img]
+
+Q: Werkt het in multiplayer?
+A: Ja.
+
+Q: Heeft elke speler het nodig op een server?
+A: Ja, de server en elke speler.
+
+Q: Is het compatibel met andere mods?
+A: Ja, zolang ze het vanilla Computerspel niet aanpassen.
+
+Q: Kan ik de console houden zonder de effecten op de gameplay?
+A: Ja, de sandbox-opties kunnen ze uitschakelen.
+
+Q: Mijn console gaat niet aan.
+A: Hij heeft batterijen nodig.
+
+Q: Is het vertaald?
+A: In elke taal die het spel ondersteunt.
+
+Q: Komen er meer spellen?
+A: Andere mods kunnen ze toevoegen via de SpiffBoy SDK.
+
+Q: Maak je ook Pokem...?
+A: Absoluut niet, ik wil niet worden aangeklaagd tot er niets meer van me over is.
+
+Q: Is het veilig om het midden in een save toe te voegen of te verwijderen?
+A: Ja. Je kunt het ook veilig verwijderen, maar dan ben je natuurlijk de saves van je cassettes kwijt.
+
+Speciale dank aan [url=https://steamcommunity.com/id/raffataff/myworkshopfiles/]raffataffattack[/url] voor het 3D-model van de cassette en een aantal ideeën!
+
+Deel gerust je feedback, bugmeldingen en ideeën in de reacties, ik lees alles.
+
+Heb je de videopresentatie nog niet bekeken, doe dat dan zeker, het heeft me ZO lang gekost om te maken, haha. Bedankt!
+
+[img]https://i.imgur.com/lja52Fs.gif[/img]
+
+Workshop ID: PROD_WORKSHOP_ID
+Mod ID: SpiffBoy

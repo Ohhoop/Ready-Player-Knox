@@ -1,0 +1,90 @@
+[img]https://i.imgur.com/sVROmET.png[/img]
+
+Tuan-tuan dan puan-puan... dengan bangganya... [b]SpiffBoy[/b]!
+Dengan skrin gergasi 180 kali 120 piksel untuk pengalaman sepenuhnya!
+Teka-teki! Aksi! Lumba! Pengembaraan! Dan banyak lagi!
+[b]Sepuluh permainan[/b] tersedia sejak [b]hari pertama[/b]! [i]Kartrij dijual berasingan.[/i]
+Cabar rakan anda dengan Kabel Pautan [b]SpiffBoy[/b]!
+Sambungkan, dan [i]simpan untuk diri sendiri.[/i]
+[b]SpiffBoy[/b]! Main di mana-mana. Main bila-bila masa. Main [i]selagi anda masih mampu.[/i]
+Dapatkan milik anda hari ini! [i]Bateri tidak disertakan.[/i]
+
+[img]https://i.imgur.com/FXDLBNF.gif[/img]
+
+[b]Keseronokan besar yang muat dalam poket[/b]
+Dibina daripada Konsol Permainan Pegang Tangan yang anda sudah kenali, SpiffBoy akhirnya menunaikan janjinya: berjam-jam pengembaraan di tapak tangan anda dan muzik yang akan anda dendangkan berhari-hari. Setiap kartrij ialah kejutan baharu. Cari, masukkan, dan lihat sendiri.
+
+[b]Sama seperti yang sebenar[/b]
+SpiffBoy dibina untuk berkelakuan seperti konsol pegang tangan zaman itu, hingga ke butiran kecil. Jika dahulu anda akan mencubanya pada konsol anda, silakan cuba pada SpiffBoy. Anda mungkin terkejut.
+
+[b]Direka untuk gaya hidup anda[/b]
+- Bicu fon kepala terbina dalam, supaya anda boleh terus fokus pada permainan tanpa menarik perhatian orang di sekeliling anda.
+- Bunyi yang sampai jauh: main dengan kuat, dan anda mungkin menarik orang ramai yang tidak anda jemput.
+- Menggunakan bateri, jadi anda boleh bermain di mana-mana, walaupun ketika bekalan elektrik terputus.
+- Main dengan papan kekunci atau alat kawalan.
+- Tiada yang lebih baik daripada permainan yang seronok untuk menghalau kebosanan dan menaikkan semangat.
+
+[img]https://i.imgur.com/03wIo7b.png[/img]
+
+[b]Di luar sana, menanti anda[/b]
+Kartrij dan kabel pautan tersembunyi di seluruh Knox County, di tempat yang biasanya ditinggalkan oleh kanak-kanak. Ada konsol bertuah yang ditemui dengan permainan masih di dalamnya. Pemburuan itu sebahagian daripada keseronokan.
+
+[b]Kemajuan anda ikut ke mana sahaja[/b]
+Setiap kartrij mempunyai simpanannya sendiri. Pinjamkan kepada rakan, tukarkan, atau simpan dalam poket: kemajuan anda pergi ke mana sahaja kartrij itu pergi.
+
+[img]https://i.imgur.com/iZ0r7eO.png[/img]
+
+Sambungkan Kabel Pautan SpiffBoy di antara dua konsol dan cabar rakan anda, selagi dia kekal berdekatan. Dalam talian atau bersebelahan dalam skrin pisah, rakan anda cuma perlu menerima kabel itu dan permainan bermula di tangannya.
+
+[img]https://i.imgur.com/w3Uz0Ye.png[/img]
+
+Laraskan SpiffBoy mengikut citarasa anda: pilihan sandbox menentukan bagaimana ia sesuai dengan dunia anda, daripada orang ramai yang ditarik oleh bunyinya hingga suasana ceria yang dibawanya, tetapan kawalan membolehkan anda memilih butang, dan pilihan mod menentukan rupanya pada skrin anda.
+
+[img]https://i.imgur.com/DX9mD5C.png[/img]
+
+[b]Cari Meterai Kualiti Spiffco![/b]
+Sepuluh permainan hanyalah permulaan. Jika anda ingin membuat permainan untuk SpiffBoy, bahagian seterusnya menunjukkan caranya. Tunjukkan permainan anda dan saya akan menambahnya ke senarai di bawah (tempat terhad, penerangan hanya boleh memuatkan teks sebanyak itu).
+- Jadilah yang pertama! 🙂
+
+[b]Buat permainan anda sendiri[/b]
+Selalu bermimpi membuat permainan sendiri? Mana-mana mod boleh menambah kartrijnya sendiri ke SpiffBoy. [url=https://steamcommunity.com/sharedfiles/filedetails/?id=SDK_PROD_ID]SpiffBoy SDK[/url] mempunyai semua yang anda perlukan untuk membinanya: panduan, dua kartrij contoh untuk dipelajari, kartrij kosong untuk label anda, dan alatan untuk membuat dan menguji permainan anda sendiri. Konsol ini dibina untuk meniru konsol fizikal sebenar, lengkap dengan kekangan teknikalnya.
+
+[img]https://i.imgur.com/06m1zUR.png[/img]
+
+Q: Adakah ia berfungsi dalam multiplayer?
+A: Ya.
+
+Q: Adakah setiap pemain di pelayan memerlukannya?
+A: Ya, pelayan dan setiap pemain.
+
+Q: Adakah ia serasi dengan mod lain?
+A: Ya, selagi mod itu tidak mengubah Konsol Permainan Pegang Tangan vanilla.
+
+Q: Bolehkah saya simpan konsol tanpa kesannya pada permainan?
+A: Boleh, pilihan sandbox boleh mematikannya.
+
+Q: Konsol saya tidak mahu hidup.
+A: Ia memerlukan bateri.
+
+Q: Adakah ia diterjemah?
+A: Ke dalam setiap bahasa yang disokong oleh permainan.
+
+Q: Adakah akan ada lebih banyak permainan?
+A: Mod lain boleh menambahnya melalui SpiffBoy SDK.
+
+Q: Bolehkah anda buat Pokem...?
+A: Sudah tentu tidak, saya tidak mahu disaman sampai lenyap.
+
+Q: Adakah selamat untuk menambah atau membuang di tengah-tengah simpanan?
+A: Ya. Anda juga boleh membuangnya dengan selamat, tetapi sudah tentu anda akan kehilangan fail simpanan kartrij anda.
+
+Terima kasih khas kepada [url=https://steamcommunity.com/id/raffataff/myworkshopfiles/]raffataffattack[/url] atas model 3D kartrij dan beberapa idea!
+
+Jangan segan berkongsi maklum balas, laporan pepijat dan idea di ruangan komen, saya baca semuanya.
+
+Jika anda belum menonton video persembahan, sila tonton, ia mengambil masa SANGAT lama untuk dibuat, haha. Terima kasih!
+
+[img]https://i.imgur.com/lja52Fs.gif[/img]
+
+Workshop ID: PROD_WORKSHOP_ID
+Mod ID: SpiffBoy

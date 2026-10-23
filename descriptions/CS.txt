@@ -1,0 +1,90 @@
+[img]https://i.imgur.com/sVROmET.png[/img]
+
+Dámy a pánové... představujeme... [b]SpiffBoy[/b]!
+S obřím displejem 180 na 120 pixelů pro dokonalé pohlcení!
+Logické hry! Akce! Závody! Dobrodružství! A mnohem víc!
+[b]Deset her[/b] k dispozici [b]hned první den[/b]! [i]Herní kazety se prodávají samostatně.[/i]
+Vyzvěte kamaráda s Propojovacím kabelem [b]SpiffBoy[/b]!
+Zapojte a [i]nechte si to pro sebe.[/i]
+[b]SpiffBoy[/b]! Hrajte kdekoli. Hrajte kdykoli. Hrajte, [i]dokud ještě můžete.[/i]
+Pořiďte si ho ještě dnes! [i]Baterie nejsou součástí balení.[/i]
+
+[img]https://i.imgur.com/FXDLBNF.gif[/img]
+
+[b]Velká zábava, která se vejde do kapsy[/b]
+SpiffBoy, postavený na Přenosné herní konzoli, kterou už znáte, konečně dělá to, co sliboval: hodiny dobrodružství na dlani a hudbu, kterou si budete broukat ještě celé dny. Každá herní kazeta je nové překvapení. Najděte je, zasuňte je a přesvědčte se sami.
+
+[b]Jako ta skutečná[/b]
+SpiffBoy byl navržen tak, aby se choval jako přenosné konzole té doby, až do posledního detailu. Pokud byste něco tehdy zkusili na té své, klidně to zkuste i na konzoli SpiffBoy. Možná budete překvapeni.
+
+[b]Navržen pro váš způsob života[/b]
+- Vestavěný konektor pro sluchátka, takže se můžete soustředit na hru a nepřitahovat pozornost lidí kolem sebe.
+- Zvuk, který se nese: hrajte nahlas a můžete přilákat dav, který jste nezvali.
+- Běží na baterie, takže můžete hrát kdekoli, i když vypadne proud.
+- Hrajte na klávesnici nebo s ovladačem.
+- Nic nezažene nudu a nezvedne náladu lépe než dobrá hra.
+
+[img]https://i.imgur.com/03wIo7b.png[/img]
+
+[b]Venku na vás čekají[/b]
+Herní kazety a propojovací kabely se skrývají po celém Knox County, na místech, kde byste čekali, že je tam nechalo nějaké dítě. Některé šťastné konzole se dokonce najdou s hrou ještě uvnitř. Hledání je součástí zábavy.
+
+[b]Váš postup cestuje s vámi[/b]
+Každá herní kazeta má vlastní uloženou hru. Půjčte ji kamarádovi, vyměňte ji nebo si ji nechte v kapse: váš postup jde všude tam, kam jde kazeta.
+
+[img]https://i.imgur.com/iZ0r7eO.png[/img]
+
+Zapojte Propojovací kabel SpiffBoy mezi dvě konzole a vyzvěte kamaráda, pokud zůstane poblíž. Online nebo vedle sebe na rozdělené obrazovce: kamarádovi stačí kabel přijmout a hra mu začne v rukou.
+
+[img]https://i.imgur.com/w3Uz0Ye.png[/img]
+
+Nalaďte si konzoli SpiffBoy podle svého: sandboxové možnosti určují, jak zapadne do vašeho světa, od davu, který přiláká její zvuk, po dobrou náladu, kterou přináší, nastavení ovládání vám dovolí vybrat si tlačítka a možnosti modu určují, jak vypadá na obrazovce.
+
+[img]https://i.imgur.com/DX9mD5C.png[/img]
+
+[b]Hledejte Pečeť kvality Spiffco![/b]
+Deset her je jen začátek. Pokud byste chtěli vytvořit hru pro konzoli SpiffBoy, další část této sekce vám ukáže jak. Ukažte mi svou hru a přidám ji do seznamu níže (počet míst je omezený, popis pojme jen tolik textu).
+- Buďte první! 🙂
+
+[b]Vytvořte si vlastní hry[/b]
+Vždycky jste snili o vlastní hře? Jakýkoli mod může do konzole SpiffBoy přidat vlastní herní kazety. [url=https://steamcommunity.com/sharedfiles/filedetails/?id=SDK_PROD_ID]SpiffBoy SDK[/url] obsahuje vše, co k tomu potřebujete: návod, dvě ukázkové kazety, ze kterých se můžete učit, prázdnou kazetu pro váš štítek a nástroje k vytvoření a otestování vlastní hry. Konzole je postavena tak, aby napodobovala skutečnou fyzickou konzoli, včetně jejích technických omezení.
+
+[img]https://i.imgur.com/06m1zUR.png[/img]
+
+Q: Funguje to v multiplayeru?
+A: Ano.
+
+Q: Musí ho mít na serveru každý hráč?
+A: Ano, server i každý hráč.
+
+Q: Je kompatibilní s jinými mody?
+A: Ano, pokud nemění vanilla Přenosnou herní konzoli.
+
+Q: Můžu si konzoli nechat bez jejích vlivů na hratelnost?
+A: Ano, sandboxové možnosti je umí vypnout.
+
+Q: Moje konzole se nechce zapnout.
+A: Potřebuje baterie.
+
+Q: Je přeložený?
+A: Do všech jazyků, které hra podporuje.
+
+Q: Budou další hry?
+A: Další mody je mohou přidat přes SpiffBoy SDK.
+
+Q: Můžeš udělat Pokem...?
+A: Rozhodně ne, nechci, aby mě zažalovali do posledního haléře.
+
+Q: Je bezpečné ho přidat nebo odebrat uprostřed hry?
+A: Ano. Můžete ho také bezpečně odebrat, ale samozřejmě přijdete o uložené hry na herních kazetách.
+
+Velké díky [url=https://steamcommunity.com/id/raffataff/myworkshopfiles/]raffataffattack[/url] za 3D model herní kazety a některé nápady!
+
+Své postřehy, hlášení chyb a nápady klidně pište do komentářů, čtu všechno.
+
+Pokud jste ještě neviděli video prezentaci, určitě se podívejte, dalo mi STRAŠNĚ moc práce, haha. Díky!
+
+[img]https://i.imgur.com/lja52Fs.gif[/img]
+
+Workshop ID: PROD_WORKSHOP_ID
+Mod ID: SpiffBoy

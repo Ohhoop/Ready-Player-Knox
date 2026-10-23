@@ -1,0 +1,90 @@
+[img]https://i.imgur.com/sVROmET.png[/img]
+
+Doamnelor și domnilor... vă prezentăm... [b]SpiffBoy[/b]!
+Cu un ecran uriaș de 180 pe 120 de pixeli pentru o imersiune totală!
+Puzzle! Acțiune! Curse! Aventură! Și multe altele!
+[b]Zece jocuri[/b] disponibile [b]din prima zi[/b]! [i]Cartușele se vând separat.[/i]
+Provoacă un prieten cu Cablul link [b]SpiffBoy[/b]!
+Conectează-te și [i]păstrează totul doar pentru tine.[/i]
+[b]SpiffBoy[/b]! Joacă oriunde. Joacă oricând. Joacă [i]cât încă mai poți.[/i]
+Ia-l pe al tău chiar azi! [i]Bateriile nu sunt incluse.[/i]
+
+[img]https://i.imgur.com/FXDLBNF.gif[/img]
+
+[b]Distracție mare care încape în buzunar[/b]
+Construit pe Consola de Jocuri Portabilă pe care o știi deja, SpiffBoy face în sfârșit ce a promis: ore de aventură în palma ta și muzică pe care o vei fredona zile întregi. Fiecare cartuș e o nouă surpriză. Găsește-le, introdu-le și vezi singur.
+
+[b]Exact ca una adevărată[/b]
+SpiffBoy a fost construit să se comporte ca consolele portabile ale epocii, până la cele mai mici detalii. Dacă ai fi încercat ceva pe a ta pe vremuri, încearcă liniștit și pe SpiffBoy. S-ar putea să fii surprins.
+
+[b]Gândit pentru stilul tău de viață[/b]
+- Mufă pentru căști încorporată, ca să rămâi concentrat pe joc fără să atragi atenția celor din jurul tău.
+- Un sunet care se aude departe: joacă tare și s-ar putea să atragi o mulțime pe care n-ai invitat-o.
+- Merge pe baterii, ca să poți juca oriunde, chiar și când nu e curent.
+- Joacă cu tastatura sau cu un controller.
+- Nimic nu alungă plictiseala și nu-ți ridică moralul ca un joc bun.
+
+[img]https://i.imgur.com/03wIo7b.png[/img]
+
+[b]Undeva acolo, te așteaptă[/b]
+Cartușele și cablurile link sunt ascunse prin tot Knox County, în locurile în care te-ai aștepta să le lase un copil. Unele console norocoase sunt găsite chiar cu un joc încă înăuntru. Căutarea face parte din distracție.
+
+[b]Progresul tău călătorește cu tine[/b]
+Fiecare cartuș își păstrează propria salvare. Împrumută-l unui prieten, schimbă-l sau ține-l în buzunar: progresul tău merge oriunde merge cartușul.
+
+[img]https://i.imgur.com/iZ0r7eO.png[/img]
+
+Conectează Cablul link SpiffBoy între două console și provoacă un prieten, atâta timp cât rămâne aproape. Online sau unul lângă altul în split-screen, prietenul tău trebuie doar să accepte cablul și jocul începe în mâinile lui.
+
+[img]https://i.imgur.com/w3Uz0Ye.png[/img]
+
+Reglează SpiffBoy după gustul tău: opțiunile sandbox decid cum se potrivește în lumea ta, de la mulțimea pe care o atrage sunetul lui până la buna dispoziție pe care o aduce, setările de control te lasă să-ți alegi butoanele, iar opțiunile modului stabilesc cum arată pe ecranul tău.
+
+[img]https://i.imgur.com/DX9mD5C.png[/img]
+
+[b]Caută Sigiliul de Calitate Spiffco![/b]
+Zece jocuri sunt doar începutul. Dacă ai vrea să faci un joc pentru SpiffBoy, următoarea parte a acestei secțiuni îți arată cum. Arată-mi jocul tău și îl adaug în lista de mai jos (locurile sunt limitate, descrierea poate cuprinde doar atât text).
+- Fii primul! 🙂
+
+[b]Fă-ți propriile jocuri[/b]
+Ai visat mereu să-ți faci propriul joc? Orice mod poate adăuga propriile cartușe în SpiffBoy. [url=https://steamcommunity.com/sharedfiles/filedetails/?id=SDK_PROD_ID]SpiffBoy SDK[/url] are tot ce-ți trebuie: un ghid, două cartușe exemplu din care să înveți, un cartuș gol pentru eticheta ta și unelte ca să-ți faci și să-ți testezi propriul joc. Consola este construită să imite o consolă fizică reală, cu constrângerile ei tehnice.
+
+[img]https://i.imgur.com/06m1zUR.png[/img]
+
+Q: Funcționează în multiplayer?
+A: Da.
+
+Q: Trebuie să-l aibă fiecare jucător pe un server?
+A: Da, serverul și fiecare jucător.
+
+Q: Este compatibil cu alte moduri?
+A: Da, atâta timp cât nu modifică Consola de Jocuri Portabilă vanilla.
+
+Q: Pot păstra consola fără efectele ei asupra jocului?
+A: Da, opțiunile sandbox le pot dezactiva.
+
+Q: Consola mea nu pornește.
+A: Are nevoie de baterii.
+
+Q: Este tradus?
+A: În toate limbile suportate de joc.
+
+Q: Vor mai fi jocuri?
+A: Alte moduri le pot adăuga prin SpiffBoy SDK.
+
+Q: Poți face Pokem...?
+A: Sigur că nu, nu vreau să fiu dat în judecată până la ruină.
+
+Q: E sigur să-l adaug sau să-l scot în mijlocul unei salvări?
+A: Da. Îl poți scoate în siguranță, dar bineînțeles că vei pierde salvările cartușelor.
+
+Mulțumiri speciale lui [url=https://steamcommunity.com/id/raffataff/myworkshopfiles/]raffataffattack[/url] pentru modelul 3D al cartușului și pentru câteva dintre idei!
+
+Nu ezita să lași păreri, rapoarte de bug-uri și idei în secțiunea de comentarii, citesc tot.
+
+Dacă n-ai văzut încă prezentarea video, te rog s-o vezi, mi-a luat ATÂT de mult s-o fac, haha. Mulțumesc!
+
+[img]https://i.imgur.com/lja52Fs.gif[/img]
+
+Workshop ID: PROD_WORKSHOP_ID
+Mod ID: SpiffBoy

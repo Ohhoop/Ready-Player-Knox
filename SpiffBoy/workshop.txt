@@ -1,5 +1,5 @@
 version=1
 title=SpiffBoy
 description=Plays the SpiffBoy handheld game console and its cartridges for real.
-tags=
+tags=Build 42;Items;Multiplayer;Silly/Fun
 visibility=public

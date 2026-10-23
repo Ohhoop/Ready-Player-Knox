@@ -1,0 +1,90 @@
+[img]https://i.imgur.com/sVROmET.png[/img]
+
+Hyvät naiset ja herrat... tässä se on... [b]SpiffBoy[/b]!
+Valtava 180 kertaa 120 pikselin näyttö täydelliseen uppoutumiseen!
+Pulmia! Toimintaa! Kilpa-ajoa! Seikkailua! Ja paljon muuta!
+[b]Kymmenen peliä[/b] saatavilla [b]heti ensimmäisenä päivänä[/b]! [i]Pelikasetit myydään erikseen.[/i]
+Haasta kaveri [b]SpiffBoy[/b]-linkkikaapelilla!
+Kytke kiinni ja [i]pidä se omana tietonasi.[/i]
+[b]SpiffBoy[/b]! Pelaa missä vain. Pelaa milloin vain. Pelaa [i]niin kauan kuin vielä voit.[/i]
+Hanki omasi tänään! [i]Paristot eivät sisälly.[/i]
+
+[img]https://i.imgur.com/FXDLBNF.gif[/img]
+
+[b]Iso hauskuus, joka mahtuu taskuun[/b]
+SpiffBoy rakentuu jo tuttuun käsikonsoliin, Videopeliin, ja tekee vihdoin sen, mitä se lupasi: tuntikausia seikkailua kämmenelläsi ja musiikkia, jota hyräilet vielä päiväkausia. Jokainen pelikasetti on uusi yllätys. Etsi ne, työnnä paikalleen ja katso itse.
+
+[b]Aivan kuin oikea[/b]
+SpiffBoy on tehty toimimaan kuin aikansa käsikonsolit, pienimpiä yksityiskohtia myöten. Jos olisit kokeillut jotain omallasi silloin, kokeile sitä rohkeasti SpiffBoylla. Saatat yllättyä.
+
+[b]Suunniteltu sinun elämäntapaasi varten[/b]
+- Sisäänrakennettu kuulokeliitäntä, joten voit keskittyä peliisi herättämättä ympärilläsi olevien huomiota.
+- Kantava ääni: pelaa kovalla, niin saatat houkutella paikalle väkijoukon, jota et kutsunut.
+- Toimii paristoilla, joten voit pelata missä vain, silloinkin kun sähköt ovat poikki.
+- Pelaa näppäimistöllä tai ohjaimella.
+- Mikään ei voita hyvää peliä, kun tylsyys pitää karkottaa ja mieliala nostaa.
+
+[img]https://i.imgur.com/03wIo7b.png[/img]
+
+[b]Jossain tuolla sinua odottamassa[/b]
+Pelikasetteja ja linkkikaapeleita on piilossa ympäri Knox Countya, paikoissa, joihin voisit kuvitella lapsen jättäneen ne. Joistakin onnekkaista konsoleista löytyy jopa peli vielä sisältä. Etsintä on osa hauskuutta.
+
+[b]Edistymisesi kulkee mukanasi[/b]
+Jokaisella pelikasetilla on oma tallennuksensa. Lainaa se kaverille, vaihda se tai pidä se taskussasi: edistymisesi kulkee sinne, minne kasettikin.
+
+[img]https://i.imgur.com/iZ0r7eO.png[/img]
+
+Kytke SpiffBoy-linkkikaapeli kahden konsolin väliin ja haasta kaveri, kunhan hän pysyy lähellä. Verkossa tai vierekkäin jaetulla näytöllä, kaverisi tarvitsee vain hyväksyä kaapeli, niin peli alkaa hänen käsissään.
+
+[img]https://i.imgur.com/w3Uz0Ye.png[/img]
+
+Säädä SpiffBoy mieleiseksesi: sandbox-asetukset päättävät, miten se sopii maailmaasi, sen äänen houkuttelemasta väkijoukosta sen tuomaan hyvään mielialaan, ohjausasetuksilla valitset omat painikkeesi, ja modin asetukset määräävät, miltä se näyttää näytölläsi.
+
+[img]https://i.imgur.com/DX9mD5C.png[/img]
+
+[b]Etsi Spiffco-laatusinettiä![/b]
+Kymmenen peliä on vasta alkua. Jos haluaisit tehdä pelin SpiffBoylle, tämän osion seuraava osa näyttää, miten. Näytä minulle pelisi, niin lisään sen alla olevaan listaan (paikkoja on rajoitetusti, kuvaukseen mahtuu vain tietty määrä tekstiä).
+- Ole ensimmäinen! 🙂
+
+[b]Tee omia pelejäsi[/b]
+Oletko aina haaveillut oman pelin tekemisestä? Mikä tahansa modi voi lisätä SpiffBoyhin omia pelikasettejaan. [url=https://steamcommunity.com/sharedfiles/filedetails/?id=SDK_PROD_ID]SpiffBoy SDK[/url] sisältää kaiken, mitä tarvitset pelin rakentamiseen: oppaan, kaksi esimerkkikasettia opiskeltavaksi, tyhjän kasetin omaa etikettiäsi varten sekä työkalut oman pelisi tekemiseen ja testaamiseen. Konsoli on rakennettu jäljittelemään oikeaa fyysistä konsolia teknisine rajoituksineen.
+
+[img]https://i.imgur.com/06m1zUR.png[/img]
+
+Q: Toimiiko se moninpelissä?
+A: Kyllä.
+
+Q: Tarvitseeko jokainen pelaaja sen palvelimella?
+A: Kyllä, sekä palvelin että jokainen pelaaja.
+
+Q: Onko se yhteensopiva muiden modien kanssa?
+A: Kyllä, kunhan ne eivät muuta pelin omaa Videopeli-esinettä.
+
+Q: Voinko pitää konsolin ilman sen vaikutuksia pelattavuuteen?
+A: Kyllä, sandbox-asetuksilla ne voi kytkeä pois.
+
+Q: Konsolini ei käynnisty.
+A: Se tarvitsee paristot.
+
+Q: Onko se käännetty?
+A: Kaikille kielille, joita peli tukee.
+
+Q: Tuleeko lisää pelejä?
+A: Muut modit voivat lisätä niitä SpiffBoy SDK:n kautta.
+
+Q: Voitko tehdä Pokem...?
+A: En todellakaan, en halua joutua oikeuteen ja menettää kaikkea.
+
+Q: Onko turvallista lisätä tai poistaa se kesken tallennuksen?
+A: Kyllä. Voit myös poistaa sen turvallisesti, mutta menetät tietenkin pelikasettiesi tallennukset.
+
+Erityiskiitos käyttäjälle [url=https://steamcommunity.com/id/raffataff/myworkshopfiles/]raffataffattack[/url] kasetin 3D-mallista ja osasta ideoista!
+
+Jaa palautteesi, bugiraporttisi ja ideasi kommenttiosiossa, luen kaiken.
+
+Jos et ole vielä katsonut esittelyvideota, katso se, sen tekeminen kesti NIIN kauan, haha. Kiitos!
+
+[img]https://i.imgur.com/lja52Fs.gif[/img]
+
+Workshop ID: PROD_WORKSHOP_ID
+Mod ID: SpiffBoy

@@ -1,0 +1,90 @@
+[img]https://i.imgur.com/sVROmET.png[/img]
+
+Damas y caballeros... con ustedes... ¡la [b]SpiffBoy[/b]!
+¡Con una enorme pantalla de 180 por 120 píxeles para una inmersión total!
+¡Rompecabezas! ¡Acción! ¡Carreras! ¡Aventura! ¡Y mucho más!
+¡[b]Diez juegos[/b] disponibles desde el [b]primer día[/b]! [i]Cartuchos a la venta por separado.[/i]
+¡Reta a un amigo con el Cable de enlace [b]SpiffBoy[/b]!
+Conéctate y [i]guárdatelo para ti.[/i]
+¡[b]SpiffBoy[/b]! Juega donde sea. Juega cuando sea. Juega [i]mientras todavía puedas.[/i]
+¡Consigue la tuya hoy! [i]Pilas no incluidas.[/i]
+
+[img]https://i.imgur.com/FXDLBNF.gif[/img]
+
+[b]Diversión en grande que cabe en tu bolsillo[/b]
+Basada en la Consola de videojuegos portátil que ya conoces, la SpiffBoy por fin cumple lo que prometía: horas de aventura en la palma de tu mano y música que vas a tararear por días. Cada cartucho es una nueva sorpresa. Encuéntralos, insértalos y compruébalo tú mismo.
+
+[b]Igual que la de verdad[/b]
+La SpiffBoy está hecha para comportarse como las consolas portátiles de la época, hasta en los pequeños detalles. Lo que habrías probado en la tuya en ese entonces, pruébalo sin miedo en la SpiffBoy. Puede que te sorprenda.
+
+[b]Diseñada para tu estilo de vida[/b]
+- Conector de audífonos integrado, para que te concentres en tu partida sin llamar la atención de la gente a tu alrededor.
+- Un sonido que llega lejos: súbele todo el volumen y puede que atraigas a una multitud que no invitaste.
+- Funciona con pilas, para que juegues donde sea, incluso cuando se va la luz.
+- Juega con el teclado o con un control.
+- No hay nada como un buen juego para espantar el aburrimiento y levantar el ánimo.
+
+[img]https://i.imgur.com/03wIo7b.png[/img]
+
+[b]Allá afuera, esperándote[/b]
+Los cartuchos y los cables de enlace están escondidos por todo Knox County, en los lugares donde esperarías que un niño los dejara olvidados. Algunas consolas afortunadas hasta aparecen con un juego todavía adentro. La búsqueda es parte de la diversión.
+
+[b]Tu progreso viaja contigo[/b]
+Cada cartucho guarda su propia partida. Préstaselo a un amigo, intercámbialo o guárdalo en el bolsillo: tu progreso va adonde vaya el cartucho.
+
+[img]https://i.imgur.com/iZ0r7eO.png[/img]
+
+Conecta el Cable de enlace SpiffBoy entre dos consolas y reta a un amigo, siempre que se quede cerca. En línea o lado a lado en pantalla dividida, tu amigo solo tiene que aceptar el cable y la partida empieza en sus manos.
+
+[img]https://i.imgur.com/w3Uz0Ye.png[/img]
+
+Ajusta la SpiffBoy a tu gusto: las opciones sandbox deciden cómo encaja en tu mundo, desde la multitud que atrae su sonido hasta el buen humor que trae; los ajustes de controles te dejan elegir tus botones, y las opciones del mod definen cómo se ve en tu pantalla.
+
+[img]https://i.imgur.com/DX9mD5C.png[/img]
+
+[b]¡Busca el Sello de Calidad Spiffco![/b]
+Diez juegos son solo el comienzo. Si te gustaría hacer un juego para la SpiffBoy, la siguiente parte de esta sección te enseña cómo. Muéstrame tu juego y lo agrego a la lista de abajo (los lugares son limitados, la descripción solo aguanta cierta cantidad de texto).
+- ¡Sé el primero! 🙂
+
+[b]Crea tus propios juegos[/b]
+¿Siempre soñaste con hacer tu propio juego? Cualquier mod puede agregar sus propios cartuchos a la SpiffBoy. El [url=https://steamcommunity.com/sharedfiles/filedetails/?id=SDK_PROD_ID]SpiffBoy SDK[/url] tiene todo lo que necesitas para crear uno: una guía, dos cartuchos de ejemplo para aprender, un cartucho en blanco para tu etiqueta y herramientas para crear y probar tu propio juego. La consola está hecha para imitar una consola física real, con sus limitaciones técnicas.
+
+[img]https://i.imgur.com/06m1zUR.png[/img]
+
+Q: ¿Funciona en multijugador?
+A: Sí.
+
+Q: En un servidor, ¿todos los jugadores lo necesitan?
+A: Sí, el servidor y todos los jugadores.
+
+Q: ¿Es compatible con otros mods?
+A: Sí, siempre que no modifiquen la Consola de videojuegos portátil vanilla.
+
+Q: ¿Puedo quedarme con la consola sin sus efectos en el gameplay?
+A: Sí, las opciones sandbox pueden desactivarlos.
+
+Q: Mi consola no prende.
+A: Necesita pilas.
+
+Q: ¿Está traducido?
+A: A todos los idiomas que soporta el juego.
+
+Q: ¿Va a haber más juegos?
+A: Otros mods pueden agregarlos con el SpiffBoy SDK.
+
+Q: ¿Puedes hacer un Pokem...?
+A: Claro que no, no quiero que me demanden hasta dejarme en la ruina.
+
+Q: ¿Es seguro agregarlo o quitarlo a mitad de una partida?
+A: Sí. También puedes quitarlo sin problema, pero obviamente vas a perder las partidas guardadas de tus cartuchos.
+
+¡Un agradecimiento especial a [url=https://steamcommunity.com/id/raffataff/myworkshopfiles/]raffataffattack[/url] por el modelo 3D del cartucho y algunas de las ideas!
+
+Siéntete libre de compartir tus comentarios, reportes de bugs e ideas en la sección de comentarios, leo todo.
+
+Si todavía no viste el video de presentación, por favor míralo, ¡me tomó MUCHÍSIMO tiempo hacerlo, jaja! ¡Gracias!
+
+[img]https://i.imgur.com/lja52Fs.gif[/img]
+
+Workshop ID: PROD_WORKSHOP_ID
+Mod ID: SpiffBoy
