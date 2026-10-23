@@ -1,5 +1,4 @@
-[img]https://i.imgur.com/sVROmET.png[/img]
-
+[img]https://i.imgur.com/DX9mD5C.png[/img]
 Bayanlar ve baylar... karşınızda... [b]SpiffBoy[/b]!
 Tam bir sürükleyicilik için dev 180 x 120 piksel ekran!
 Bulmaca! Aksiyon! Yarış! Macera! Ve daha fazlası!
@@ -24,33 +23,33 @@ SpiffBoy, o dönemin el konsolları gibi davranmak üzere en küçük ayrıntıs
 - Klavyeyle veya oyun kumandasıyla oynayın.
 - Can sıkıntısını kovmak ve moralinizi yükseltmek için iyi bir oyunun yerini hiçbir şey tutamaz.
 
-[img]https://i.imgur.com/03wIo7b.png[/img]
 
+[img]https://i.imgur.com/sVROmET.png[/img]
 [b]Orada bir yerde, sizi bekliyorlar[/b]
 Kartuşlar ve bağlantı kabloları Knox County'nin dört bir yanında, bir çocuğun bırakabileceği yerlerde saklanıyor. Bazı şanslı konsollar içinde hâlâ bir oyunla bulunuyor. Av, eğlencenin bir parçası.
 
 [b]İlerlemeniz sizinle gelir[/b]
 Her kartuşun kendi kaydı vardır. Bir arkadaşınıza ödünç verin, takas edin ya da cebinizde tutun: kartuş nereye giderse ilerlemeniz de oraya gider.
 
-[img]https://i.imgur.com/iZ0r7eO.png[/img]
 
+[img]https://i.imgur.com/06m1zUR.png[/img]
 SpiffBoy bağlantı kablosunu iki konsol arasına takın ve yakınınızda kaldığı sürece bir arkadaşınıza meydan okuyun. Çevrimiçi ya da bölünmüş ekranda yan yana, arkadaşınızın tek yapması gereken kabloyu kabul etmek ve oyun onun ellerinde başlar.
 
-[img]https://i.imgur.com/w3Uz0Ye.png[/img]
 
+[img]https://i.imgur.com/03wIo7b.png[/img]
 SpiffBoy'u zevkinize göre ayarlayın: sandbox seçenekleri, sesinin topladığı kalabalıktan getirdiği keyfe kadar onun dünyanıza nasıl uyacağını belirler, kontrol ayarları tuşlarınızı seçmenizi sağlar ve mod seçenekleri ekranınızda nasıl görüneceğini şekillendirir.
 
-[img]https://i.imgur.com/DX9mD5C.png[/img]
 
+[img]https://i.imgur.com/iZ0r7eO.png[/img]
 [b]Spiffco Kalite Mührünü arayın![/b]
 On oyun sadece başlangıç. SpiffBoy için bir oyun yapmak isterseniz, bu bölümün devamı size nasıl yapılacağını gösteriyor. Oyununuzu bana gösterin, aşağıdaki listeye ekleyeyim (yer sınırlı, açıklama ancak bu kadar metin alabiliyor).
 - İlk siz olun! 🙂
 
 [b]Kendi oyunlarınızı yapın[/b]
-Hep kendi oyununuzu yapmayı mı hayal ettiniz? Her mod SpiffBoy'a kendi kartuşlarını ekleyebilir. [url=https://steamcommunity.com/sharedfiles/filedetails/?id=SDK_PROD_ID]SpiffBoy SDK[/url] bir oyun yapmak için ihtiyacınız olan her şeyi içerir: bir rehber, örnek alınacak iki kartuş, etiketiniz için boş bir kartuş ve kendi oyununuzu yapıp test etmek için araçlar. Konsol, teknik kısıtlamalarıyla birlikte gerçek bir fiziksel konsolu taklit edecek şekilde tasarlandı.
+Hep kendi oyununuzu yapmayı mı hayal ettiniz? Her mod SpiffBoy'a kendi kartuşlarını ekleyebilir. [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3825220785]SpiffBoy SDK[/url] bir oyun yapmak için ihtiyacınız olan her şeyi içerir: bir rehber, örnek alınacak iki kartuş, etiketiniz için boş bir kartuş ve kendi oyununuzu yapıp test etmek için araçlar. Konsol, teknik kısıtlamalarıyla birlikte gerçek bir fiziksel konsolu taklit edecek şekilde tasarlandı.
 
-[img]https://i.imgur.com/06m1zUR.png[/img]
 
+[img]https://i.imgur.com/w3Uz0Ye.png[/img]
 Q: Çok oyunculu modda çalışıyor mu?
 A: Evet.
 
@@ -86,5 +85,5 @@ Video tanıtımına henüz göz atmadıysanız lütfen izleyin, yapması ÇOK uz
 
 [img]https://i.imgur.com/lja52Fs.gif[/img]
 
-Workshop ID: PROD_WORKSHOP_ID
+Workshop ID: 3825220364
 Mod ID: SpiffBoy

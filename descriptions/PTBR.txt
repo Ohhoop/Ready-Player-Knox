@@ -1,5 +1,4 @@
-[img]https://i.imgur.com/sVROmET.png[/img]
-
+[img]https://i.imgur.com/DX9mD5C.png[/img]
 Senhoras e senhores... apresentando... o [b]SpiffBoy[/b]!
 Com uma tela gigante de 180 por 120 pixels para imersão total!
 Quebra-cabeça! Ação! Corrida! Aventura! E muito mais!
@@ -24,33 +23,33 @@ O SpiffBoy foi feito para se comportar como os portáteis da época, até nos m�
 - Jogue com o teclado ou com um controle.
 - Nada como um bom jogo para espantar o tédio e levantar o astral.
 
-[img]https://i.imgur.com/03wIo7b.png[/img]
 
+[img]https://i.imgur.com/sVROmET.png[/img]
 [b]Lá fora, esperando por você[/b]
 Cartuchos e cabos link estão escondidos por todo o Knox County, nos lugares onde você esperaria que uma criança os deixasse. Alguns consoles sortudos são encontrados até com um jogo ainda dentro. A caçada faz parte da diversão.
 
 [b]Seu progresso vai com você[/b]
 Cada cartucho guarda o próprio save. Empreste para um amigo, troque ou guarde no bolso: seu progresso vai aonde o cartucho for.
 
-[img]https://i.imgur.com/iZ0r7eO.png[/img]
 
+[img]https://i.imgur.com/06m1zUR.png[/img]
 Conecte o Cabo link SpiffBoy entre dois consoles e desafie um amigo, desde que ele fique por perto. Online ou lado a lado em tela dividida, seu amigo só precisa aceitar o cabo e o jogo começa nas mãos dele.
 
-[img]https://i.imgur.com/w3Uz0Ye.png[/img]
 
+[img]https://i.imgur.com/03wIo7b.png[/img]
 Ajuste o SpiffBoy do seu jeito: as opções de sandbox decidem como ele se encaixa no seu mundo, da multidão que o som atrai ao bom humor que ele traz, as configurações de controles deixam você escolher seus botões, e as opções do mod definem como ele aparece na sua tela.
 
-[img]https://i.imgur.com/DX9mD5C.png[/img]
 
+[img]https://i.imgur.com/iZ0r7eO.png[/img]
 [b]Procure o Selo de Qualidade Spiffco![/b]
 Dez jogos são só o começo. Se você quiser criar um jogo para o SpiffBoy, a próxima parte desta seção mostra como. Me mostre o seu jogo e eu o adiciono à lista abaixo (as vagas são limitadas, a descrição só comporta uma certa quantidade de texto).
 - Seja o primeiro! 🙂
 
 [b]Crie seus próprios jogos[/b]
-Sempre sonhou em criar seu próprio jogo? Qualquer mod pode adicionar seus próprios cartuchos ao SpiffBoy. O [url=https://steamcommunity.com/sharedfiles/filedetails/?id=SDK_PROD_ID]SpiffBoy SDK[/url] tem tudo o que você precisa para criar um: um guia, dois cartuchos de exemplo para aprender, um cartucho em branco para o seu rótulo e ferramentas para criar e testar o seu próprio jogo. O console foi feito para imitar um console físico de verdade, com suas limitações técnicas.
+Sempre sonhou em criar seu próprio jogo? Qualquer mod pode adicionar seus próprios cartuchos ao SpiffBoy. O [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3825220785]SpiffBoy SDK[/url] tem tudo o que você precisa para criar um: um guia, dois cartuchos de exemplo para aprender, um cartucho em branco para o seu rótulo e ferramentas para criar e testar o seu próprio jogo. O console foi feito para imitar um console físico de verdade, com suas limitações técnicas.
 
-[img]https://i.imgur.com/06m1zUR.png[/img]
 
+[img]https://i.imgur.com/w3Uz0Ye.png[/img]
 Q: Funciona no multiplayer?
 A: Sim.
 
@@ -86,5 +85,5 @@ Se você ainda não viu o vídeo de apresentação, veja, levou MUITO tempo para
 
 [img]https://i.imgur.com/lja52Fs.gif[/img]
 
-Workshop ID: PROD_WORKSHOP_ID
+Workshop ID: 3825220364
 Mod ID: SpiffBoy

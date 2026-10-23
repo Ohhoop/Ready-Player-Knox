@@ -1,5 +1,4 @@
-[img]https://i.imgur.com/sVROmET.png[/img]
-
+[img]https://i.imgur.com/DX9mD5C.png[/img]
 Meine Damen und Herren... wir präsentieren... den [b]SpiffBoy[/b]!
 Mit einem riesigen Bildschirm von 180 mal 120 Pixeln für totales Eintauchen!
 Puzzle! Action! Rennen! Abenteuer! Und noch mehr!
@@ -24,33 +23,33 @@ Der SpiffBoy wurde gebaut, um sich wie die Handheld-Konsolen von damals zu verha
 - Spiel mit Tastatur oder Controller.
 - Nichts vertreibt die Langeweile und hebt die Laune so gut wie ein gutes Spiel.
 
-[img]https://i.imgur.com/03wIo7b.png[/img]
 
+[img]https://i.imgur.com/sVROmET.png[/img]
 [b]Da draußen warten sie auf dich[/b]
 Spielmodule und Linkkabel verstecken sich überall in Knox County, an Orten, an denen man erwarten würde, dass ein Kind sie liegen lässt. Manche glücklichen Konsolen werden sogar mit einem Spiel darin gefunden. Die Suche gehört zum Spaß dazu.
 
 [b]Dein Fortschritt reist mit dir[/b]
 Jedes Spielmodul hat seinen eigenen Spielstand. Leih es einem Freund, tausch es oder behalt es in der Tasche: Dein Fortschritt geht überall hin, wo das Spielmodul hingeht.
 
-[img]https://i.imgur.com/iZ0r7eO.png[/img]
 
+[img]https://i.imgur.com/06m1zUR.png[/img]
 Steck das SpiffBoy-Linkkabel zwischen zwei Konsolen und fordere einen Freund heraus, solange er in der Nähe bleibt. Online oder Seite an Seite im geteilten Bildschirm: Dein Freund muss nur das Kabel annehmen, und das Spiel startet in seinen Händen.
 
-[img]https://i.imgur.com/w3Uz0Ye.png[/img]
 
+[img]https://i.imgur.com/03wIo7b.png[/img]
 Stell den SpiffBoy nach deinem Geschmack ein: Die Sandbox-Optionen bestimmen, wie er in deine Welt passt, von der Menge, die sein Klang anlockt, bis zur guten Laune, die er bringt; in den Steuerungseinstellungen wählst du deine Tasten, und die Mod-Optionen legen fest, wie er auf deinem Bildschirm aussieht.
 
-[img]https://i.imgur.com/DX9mD5C.png[/img]
 
+[img]https://i.imgur.com/iZ0r7eO.png[/img]
 [b]Achte auf das Spiffco-Qualitätssiegel![/b]
 Zehn Spiele sind erst der Anfang. Wenn du ein Spiel für den SpiffBoy machen möchtest, zeigt dir der nächste Teil dieses Abschnitts, wie es geht. Zeig mir dein Spiel, und ich füge es der Liste unten hinzu (die Plätze sind begrenzt, die Beschreibung fasst nur so viel Text).
 - Sei der Erste! 🙂
 
 [b]Mach deine eigenen Spiele[/b]
-Schon immer davon geträumt, dein eigenes Spiel zu machen? Jeder Mod kann dem SpiffBoy eigene Spielmodule hinzufügen. Das [url=https://steamcommunity.com/sharedfiles/filedetails/?id=SDK_PROD_ID]SpiffBoy SDK[/url] hat alles, was du dafür brauchst: eine Anleitung, zwei Beispielmodule zum Lernen, ein leeres Spielmodul für dein Etikett und Werkzeuge, um dein eigenes Spiel zu erstellen und zu testen. Die Konsole ist so gebaut, dass sie eine echte physische Konsole mit ihren technischen Einschränkungen nachahmt.
+Schon immer davon geträumt, dein eigenes Spiel zu machen? Jeder Mod kann dem SpiffBoy eigene Spielmodule hinzufügen. Das [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3825220785]SpiffBoy SDK[/url] hat alles, was du dafür brauchst: eine Anleitung, zwei Beispielmodule zum Lernen, ein leeres Spielmodul für dein Etikett und Werkzeuge, um dein eigenes Spiel zu erstellen und zu testen. Die Konsole ist so gebaut, dass sie eine echte physische Konsole mit ihren technischen Einschränkungen nachahmt.
 
-[img]https://i.imgur.com/06m1zUR.png[/img]
 
+[img]https://i.imgur.com/w3Uz0Ye.png[/img]
 Q: Funktioniert es im Multiplayer?
 A: Ja.
 
@@ -86,5 +85,5 @@ Falls du die Videopräsentation noch nicht gesehen hast, schau sie dir bitte an,
 
 [img]https://i.imgur.com/lja52Fs.gif[/img]
 
-Workshop ID: PROD_WORKSHOP_ID
+Workshop ID: 3825220364
 Mod ID: SpiffBoy

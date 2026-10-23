@@ -1,5 +1,4 @@
-[img]https://i.imgur.com/sVROmET.png[/img]
-
+[img]https://i.imgur.com/DX9mD5C.png[/img]
 신사 숙녀 여러분... 드디어 소개합니다... [b]SpiffBoy[/b]!
 180 x 120 픽셀의 초대형 화면으로 완벽한 몰입감을!
 퍼즐! 액션! 레이싱! 어드벤처! 그리고 더 많이!
@@ -24,33 +23,33 @@ SpiffBoy는 그 시절 휴대용 게임기처럼 작동하도록, 작은 디테�
 - 키보드나 컨트롤러로 플레이할 수 있습니다.
 - 지루함을 날리고 기분을 끌어올리는 데 좋은 게임만 한 것이 없습니다.
 
-[img]https://i.imgur.com/03wIo7b.png[/img]
 
+[img]https://i.imgur.com/sVROmET.png[/img]
 [b]저 바깥에서 여러분을 기다립니다[/b]
 카트리지와 통신 케이블은 Knox County 곳곳에, 아이들이 두고 갔을 법한 곳에 숨어 있습니다. 운 좋은 게임기 안에는 게임이 꽂힌 채로 발견되기도 합니다. 찾는 것도 재미의 일부입니다.
 
 [b]진행 상황은 언제나 함께[/b]
 카트리지마다 자체 세이브가 있습니다. 친구에게 빌려주든, 교환하든, 주머니에 넣어 두든, 카트리지가 가는 곳에 여러분의 진행 상황도 함께 갑니다.
 
-[img]https://i.imgur.com/iZ0r7eO.png[/img]
 
+[img]https://i.imgur.com/06m1zUR.png[/img]
 두 게임기 사이에 SpiffBoy 통신 케이블을 꽂고 친구에게 도전하세요. 단, 친구가 가까이 있는 동안만입니다. 온라인이든 화면 분할로 나란히 앉아서든, 친구는 케이블을 수락하기만 하면 손안에서 게임이 시작됩니다.
 
-[img]https://i.imgur.com/w3Uz0Ye.png[/img]
 
+[img]https://i.imgur.com/03wIo7b.png[/img]
 SpiffBoy를 취향대로 조정하세요. 샌드박스 옵션은 사운드가 끌어들이는 관객부터 가져다주는 좋은 기분까지, 여러분의 세계에 어떻게 녹아들지를 정하고, 조작 설정에서는 버튼을 고를 수 있으며, 모드 옵션은 화면에서 보이는 모습을 다듬습니다.
 
-[img]https://i.imgur.com/DX9mD5C.png[/img]
 
+[img]https://i.imgur.com/iZ0r7eO.png[/img]
 [b]Spiffco 품질 인증 마크를 확인하세요![/b]
 게임 10종은 시작에 불과합니다. SpiffBoy용 게임을 만들고 싶다면, 이 섹션의 다음 부분에서 방법을 알려 드립니다. 여러분의 게임을 보여 주시면 아래 목록에 추가하겠습니다 (설명란에 들어갈 수 있는 글자 수에 한계가 있어 자리가 한정되어 있습니다).
 - 첫 번째 주인공이 되어 보세요! 🙂
 
 [b]나만의 게임 만들기[/b]
-나만의 게임을 만드는 꿈을 꿔 본 적이 있나요? 어떤 모드든 SpiffBoy에 자체 카트리지를 추가할 수 있습니다. [url=https://steamcommunity.com/sharedfiles/filedetails/?id=SDK_PROD_ID]SpiffBoy SDK[/url]에는 필요한 모든 것이 들어 있습니다. 가이드, 보고 배울 수 있는 예제 카트리지 2개, 라벨을 붙일 빈 카트리지, 그리고 게임을 만들고 테스트할 도구까지. 이 게임기는 기술적 제약까지 포함해 실제 물리적인 게임기를 재현하도록 만들어졌습니다.
+나만의 게임을 만드는 꿈을 꿔 본 적이 있나요? 어떤 모드든 SpiffBoy에 자체 카트리지를 추가할 수 있습니다. [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3825220785]SpiffBoy SDK[/url]에는 필요한 모든 것이 들어 있습니다. 가이드, 보고 배울 수 있는 예제 카트리지 2개, 라벨을 붙일 빈 카트리지, 그리고 게임을 만들고 테스트할 도구까지. 이 게임기는 기술적 제약까지 포함해 실제 물리적인 게임기를 재현하도록 만들어졌습니다.
 
-[img]https://i.imgur.com/06m1zUR.png[/img]
 
+[img]https://i.imgur.com/w3Uz0Ye.png[/img]
 Q: 멀티플레이에서 작동하나요?
 A: 네.
 
@@ -86,5 +85,5 @@ A: 네. 안전하게 제거할 수도 있지만, 당연히 카트리지 세이�
 
 [img]https://i.imgur.com/lja52Fs.gif[/img]
 
-Workshop ID: PROD_WORKSHOP_ID
+Workshop ID: 3825220364
 Mod ID: SpiffBoy

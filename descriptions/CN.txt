@@ -1,5 +1,4 @@
-[img]https://i.imgur.com/sVROmET.png[/img]
-
+[img]https://i.imgur.com/DX9mD5C.png[/img]
 女士们，先生们……隆重推出……[b]SpiffBoy[/b]！
 超大 180 × 120 像素屏幕，带来全方位沉浸体验！
 益智！动作！竞速！冒险！还有更多！
@@ -24,33 +23,33 @@ SpiffBoy 的设计力求像那个年代的掌机一样运作，连小细节也�
 - 支持键盘或手柄操作。
 - 没有什么比一款好游戏更能赶走无聊、振奋精神。
 
-[img]https://i.imgur.com/03wIo7b.png[/img]
 
+[img]https://i.imgur.com/sVROmET.png[/img]
 [b]就在外面，等着你[/b]
 卡带和联机线藏遍了 Knox County，就在你以为孩子会随手丢下它们的地方。有些幸运的游戏机里甚至还插着一张游戏。寻宝本身就是乐趣的一部分。
 
 [b]进度随身带[/b]
 每张卡带都有自己的存档。借给朋友、拿去交换，或者揣在口袋里：卡带去哪儿，你的进度就跟到哪儿。
 
-[img]https://i.imgur.com/iZ0r7eO.png[/img]
 
+[img]https://i.imgur.com/06m1zUR.png[/img]
 在两台游戏机之间插上 SpiffBoy 联机线，就能挑战好友，只要对方待在附近。无论是在线还是分屏并肩游玩，你的朋友只需接受联机线，游戏就会在他们手中开始。
 
-[img]https://i.imgur.com/w3Uz0Ye.png[/img]
 
+[img]https://i.imgur.com/03wIo7b.png[/img]
 随心调校你的 SpiffBoy：沙盒选项决定它如何融入你的世界，从它的声音招来的人群到它带来的好心情；按键设置让你选择自己的按键；模组选项则决定它在屏幕上的样子。
 
-[img]https://i.imgur.com/DX9mD5C.png[/img]
 
+[img]https://i.imgur.com/iZ0r7eO.png[/img]
 [b]认准 Spiffco 品质印章！[/b]
 十款游戏只是开始。如果你想为 SpiffBoy 制作游戏，本节的下一部分会教你怎么做。把你的游戏给我看看，我会把它加入下面的列表（名额有限，简介能容纳的文字就这么多）。
 - 来当第一个吧！🙂
 
 [b]制作你自己的游戏[/b]
-一直梦想制作自己的游戏？任何模组都能为 SpiffBoy 添加自己的卡带。[url=https://steamcommunity.com/sharedfiles/filedetails/?id=SDK_PROD_ID]SpiffBoy SDK[/url] 提供你所需的一切：一份指南、两张可供学习的示例卡带、一张用来贴上你自己标签的空白卡带，以及制作和测试游戏的工具。这台游戏机模仿真实的实体游戏机打造，连同它的技术限制。
+一直梦想制作自己的游戏？任何模组都能为 SpiffBoy 添加自己的卡带。[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3825220785]SpiffBoy SDK[/url] 提供你所需的一切：一份指南、两张可供学习的示例卡带、一张用来贴上你自己标签的空白卡带，以及制作和测试游戏的工具。这台游戏机模仿真实的实体游戏机打造，连同它的技术限制。
 
-[img]https://i.imgur.com/06m1zUR.png[/img]
 
+[img]https://i.imgur.com/w3Uz0Ye.png[/img]
 Q: 多人游戏中能用吗？
 A: 能。
 
@@ -86,5 +85,5 @@ A: 可以。你也可以安全地移除它，不过当然，你会失去卡带�
 
 [img]https://i.imgur.com/lja52Fs.gif[/img]
 
-Workshop ID: PROD_WORKSHOP_ID
+Workshop ID: 3825220364
 Mod ID: SpiffBoy

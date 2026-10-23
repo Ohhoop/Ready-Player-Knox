@@ -1,5 +1,4 @@
-[img]https://i.imgur.com/sVROmET.png[/img]
-
+[img]https://i.imgur.com/DX9mD5C.png[/img]
 Hyvät naiset ja herrat... tässä se on... [b]SpiffBoy[/b]!
 Valtava 180 kertaa 120 pikselin näyttö täydelliseen uppoutumiseen!
 Pulmia! Toimintaa! Kilpa-ajoa! Seikkailua! Ja paljon muuta!
@@ -24,33 +23,33 @@ SpiffBoy on tehty toimimaan kuin aikansa käsikonsolit, pienimpiä yksityiskohti
 - Pelaa näppäimistöllä tai ohjaimella.
 - Mikään ei voita hyvää peliä, kun tylsyys pitää karkottaa ja mieliala nostaa.
 
-[img]https://i.imgur.com/03wIo7b.png[/img]
 
+[img]https://i.imgur.com/sVROmET.png[/img]
 [b]Jossain tuolla sinua odottamassa[/b]
 Pelikasetteja ja linkkikaapeleita on piilossa ympäri Knox Countya, paikoissa, joihin voisit kuvitella lapsen jättäneen ne. Joistakin onnekkaista konsoleista löytyy jopa peli vielä sisältä. Etsintä on osa hauskuutta.
 
 [b]Edistymisesi kulkee mukanasi[/b]
 Jokaisella pelikasetilla on oma tallennuksensa. Lainaa se kaverille, vaihda se tai pidä se taskussasi: edistymisesi kulkee sinne, minne kasettikin.
 
-[img]https://i.imgur.com/iZ0r7eO.png[/img]
 
+[img]https://i.imgur.com/06m1zUR.png[/img]
 Kytke SpiffBoy-linkkikaapeli kahden konsolin väliin ja haasta kaveri, kunhan hän pysyy lähellä. Verkossa tai vierekkäin jaetulla näytöllä, kaverisi tarvitsee vain hyväksyä kaapeli, niin peli alkaa hänen käsissään.
 
-[img]https://i.imgur.com/w3Uz0Ye.png[/img]
 
+[img]https://i.imgur.com/03wIo7b.png[/img]
 Säädä SpiffBoy mieleiseksesi: sandbox-asetukset päättävät, miten se sopii maailmaasi, sen äänen houkuttelemasta väkijoukosta sen tuomaan hyvään mielialaan, ohjausasetuksilla valitset omat painikkeesi, ja modin asetukset määräävät, miltä se näyttää näytölläsi.
 
-[img]https://i.imgur.com/DX9mD5C.png[/img]
 
+[img]https://i.imgur.com/iZ0r7eO.png[/img]
 [b]Etsi Spiffco-laatusinettiä![/b]
 Kymmenen peliä on vasta alkua. Jos haluaisit tehdä pelin SpiffBoylle, tämän osion seuraava osa näyttää, miten. Näytä minulle pelisi, niin lisään sen alla olevaan listaan (paikkoja on rajoitetusti, kuvaukseen mahtuu vain tietty määrä tekstiä).
 - Ole ensimmäinen! 🙂
 
 [b]Tee omia pelejäsi[/b]
-Oletko aina haaveillut oman pelin tekemisestä? Mikä tahansa modi voi lisätä SpiffBoyhin omia pelikasettejaan. [url=https://steamcommunity.com/sharedfiles/filedetails/?id=SDK_PROD_ID]SpiffBoy SDK[/url] sisältää kaiken, mitä tarvitset pelin rakentamiseen: oppaan, kaksi esimerkkikasettia opiskeltavaksi, tyhjän kasetin omaa etikettiäsi varten sekä työkalut oman pelisi tekemiseen ja testaamiseen. Konsoli on rakennettu jäljittelemään oikeaa fyysistä konsolia teknisine rajoituksineen.
+Oletko aina haaveillut oman pelin tekemisestä? Mikä tahansa modi voi lisätä SpiffBoyhin omia pelikasettejaan. [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3825220785]SpiffBoy SDK[/url] sisältää kaiken, mitä tarvitset pelin rakentamiseen: oppaan, kaksi esimerkkikasettia opiskeltavaksi, tyhjän kasetin omaa etikettiäsi varten sekä työkalut oman pelisi tekemiseen ja testaamiseen. Konsoli on rakennettu jäljittelemään oikeaa fyysistä konsolia teknisine rajoituksineen.
 
-[img]https://i.imgur.com/06m1zUR.png[/img]
 
+[img]https://i.imgur.com/w3Uz0Ye.png[/img]
 Q: Toimiiko se moninpelissä?
 A: Kyllä.
 
@@ -86,5 +85,5 @@ Jos et ole vielä katsonut esittelyvideota, katso se, sen tekeminen kesti NIIN k
 
 [img]https://i.imgur.com/lja52Fs.gif[/img]
 
-Workshop ID: PROD_WORKSHOP_ID
+Workshop ID: 3825220364
 Mod ID: SpiffBoy

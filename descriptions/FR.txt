@@ -1,5 +1,4 @@
-[img]https://i.imgur.com/sVROmET.png[/img]
-
+[img]https://i.imgur.com/DX9mD5C.png[/img]
 Mesdames et messieurs... voici... la [b]SpiffBoy[/b] !
 Avec un gigantesque écran de 180 par 120 pixels pour une immersion totale !
 Réflexion ! Action ! Course ! Aventure ! Et plus encore !
@@ -24,33 +23,33 @@ La SpiffBoy a été conçue pour se comporter comme les consoles portables de l'
 - Jouez au clavier ou à la manette.
 - Rien de tel qu'un bon jeu pour chasser l'ennui et remonter le moral.
 
-[img]https://i.imgur.com/03wIo7b.png[/img]
 
+[img]https://i.imgur.com/sVROmET.png[/img]
 [b]Quelque part, elles vous attendent[/b]
 Les cassettes et les câbles de liaison se cachent partout dans Knox County, aux endroits où l'on s'attendrait à ce qu'un enfant les laisse traîner. Certaines consoles chanceuses sont même retrouvées avec un jeu encore dedans. La chasse fait partie du plaisir.
 
 [b]Votre progression vous suit partout[/b]
 Chaque cassette garde sa propre sauvegarde. Prêtez-la à un ami, échangez-la ou gardez-la dans votre poche : votre progression va partout où va la cassette.
 
-[img]https://i.imgur.com/iZ0r7eO.png[/img]
 
+[img]https://i.imgur.com/06m1zUR.png[/img]
 Branchez le Câble de liaison SpiffBoy entre deux consoles et défiez un ami, tant qu'il reste près de vous. En ligne ou côte à côte en écran partagé, votre ami n'a qu'à accepter le câble et la partie démarre entre ses mains.
 
-[img]https://i.imgur.com/w3Uz0Ye.png[/img]
 
+[img]https://i.imgur.com/03wIo7b.png[/img]
 Réglez la SpiffBoy à votre goût : les options sandbox décident de sa place dans votre monde, de la foule que son son attire à la bonne humeur qu'elle apporte, les réglages des commandes vous laissent choisir vos boutons, et les options du mod façonnent son apparence à l'écran.
 
-[img]https://i.imgur.com/DX9mD5C.png[/img]
 
+[img]https://i.imgur.com/iZ0r7eO.png[/img]
 [b]Recherchez le Sceau de qualité Spiffco ![/b]
 Dix jeux, ce n'est que le début. Si vous aimeriez créer un jeu pour la SpiffBoy, la suite de cette section vous montre comment. Montrez-moi votre jeu et je l'ajouterai à la liste ci-dessous (les places sont limitées, la description ne peut contenir qu'une quantité limitée de texte).
 - Soyez le premier ! 🙂
 
 [b]Créez vos propres jeux[/b]
-Vous avez toujours rêvé de créer votre propre jeu ? N'importe quel mod peut ajouter ses propres cassettes à la SpiffBoy. Le [url=https://steamcommunity.com/sharedfiles/filedetails/?id=SDK_PROD_ID]SpiffBoy SDK[/url] contient tout ce qu'il faut pour en construire une : un guide, deux cassettes d'exemple pour apprendre, une cassette vierge pour votre étiquette, et des outils pour créer et tester votre propre jeu. La console est conçue pour imiter une vraie console physique, avec ses contraintes techniques.
+Vous avez toujours rêvé de créer votre propre jeu ? N'importe quel mod peut ajouter ses propres cassettes à la SpiffBoy. Le [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3825220785]SpiffBoy SDK[/url] contient tout ce qu'il faut pour en construire une : un guide, deux cassettes d'exemple pour apprendre, une cassette vierge pour votre étiquette, et des outils pour créer et tester votre propre jeu. La console est conçue pour imiter une vraie console physique, avec ses contraintes techniques.
 
-[img]https://i.imgur.com/06m1zUR.png[/img]
 
+[img]https://i.imgur.com/w3Uz0Ye.png[/img]
 Q : Est-ce que ça fonctionne en multijoueur ?
 A : Oui.
 
@@ -86,5 +85,5 @@ Si vous n'avez pas encore vu la vidéo de présentation, allez-y, elle m'a pris 
 
 [img]https://i.imgur.com/lja52Fs.gif[/img]
 
-Workshop ID: PROD_WORKSHOP_ID
+Workshop ID: 3825220364
 Mod ID: SpiffBoy

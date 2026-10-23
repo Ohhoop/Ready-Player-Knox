@@ -1,5 +1,4 @@
-[img]https://i.imgur.com/sVROmET.png[/img]
-
+[img]https://i.imgur.com/DX9mD5C.png[/img]
 レディース・アンド・ジェントルメン……ついに登場……[b]SpiffBoy[/b]！
 180×120ピクセルの大画面で、圧倒的な没入感！
 パズル！アクション！レース！アドベンチャー！まだまだあるぞ！
@@ -24,33 +23,33 @@ SpiffBoyは、あの時代の携帯ゲーム機と同じように動くよう、
 - キーボードでもコントローラーでも遊べます。
 - 退屈を吹き飛ばして気分を上げるなら、良いゲームが一番です。
 
-[img]https://i.imgur.com/03wIo7b.png[/img]
 
+[img]https://i.imgur.com/sVROmET.png[/img]
 [b]あなたを待っている[/b]
 カセットと通信ケーブルはKnox Countyのあちこちに隠れています。子どもが置き忘れていきそうな場所を探してみましょう。運が良ければ、ゲームが入ったままのゲーム機が見つかることも。探すのも楽しみのうちです。
 
 [b]進行状況はいつも一緒[/b]
 カセットはそれぞれ自分のセーブデータを持っています。友だちに貸しても、交換しても、ポケットにしまっておいても大丈夫。カセットの行く先に、あなたの進行状況もついていきます。
 
-[img]https://i.imgur.com/iZ0r7eO.png[/img]
 
+[img]https://i.imgur.com/06m1zUR.png[/img]
 2台のゲーム機をSpiffBoy通信ケーブルでつなげば、友だちに挑戦できます。ただし、相手が近くにいる間だけ。オンラインでも、画面分割で隣同士でも、友だちはケーブルを受け入れるだけで、その手の中でゲームが始まります。
 
-[img]https://i.imgur.com/w3Uz0Ye.png[/img]
 
+[img]https://i.imgur.com/03wIo7b.png[/img]
 SpiffBoyを好みに合わせて調整しましょう。サンドボックスオプションでは、サウンドが引き寄せる人だかりから、もたらす良い気分まで、世界へのなじませ方を決められます。操作設定ではボタンを選べ、Modオプションでは画面上の見た目を整えられます。
 
-[img]https://i.imgur.com/DX9mD5C.png[/img]
 
+[img]https://i.imgur.com/iZ0r7eO.png[/img]
 [b]Spiffco品質シールが目印！[/b]
 10本のゲームはほんの始まりにすぎません。SpiffBoy用のゲームを作ってみたい方は、このセクションの続きで作り方を紹介しています。あなたのゲームを見せてくれれば、下のリストに追加します（説明文に書ける量には限りがあるので、枠は限られています）。
 - 一番乗りを目指そう！🙂
 
 [b]自分だけのゲームを作ろう[/b]
-自分のゲームを作るのが夢でしたか？どのModでも、SpiffBoyに独自のカセットを追加できます。[url=https://steamcommunity.com/sharedfiles/filedetails/?id=SDK_PROD_ID]SpiffBoy SDK[/url]には必要なものがすべて揃っています。ガイド、学習用のサンプルカセット2本、ラベル用の空のカセット、そしてゲームを作ってテストするためのツールです。このゲーム機は、技術的な制約も含めて、実在する物理的なゲーム機を再現するように作られています。
+自分のゲームを作るのが夢でしたか？どのModでも、SpiffBoyに独自のカセットを追加できます。[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3825220785]SpiffBoy SDK[/url]には必要なものがすべて揃っています。ガイド、学習用のサンプルカセット2本、ラベル用の空のカセット、そしてゲームを作ってテストするためのツールです。このゲーム機は、技術的な制約も含めて、実在する物理的なゲーム機を再現するように作られています。
 
-[img]https://i.imgur.com/06m1zUR.png[/img]
 
+[img]https://i.imgur.com/w3Uz0Ye.png[/img]
 Q: マルチプレイで使えますか？
 A: はい。
 
@@ -86,5 +85,5 @@ A: はい。安全に削除することもできますが、当然ながらカ�
 
 [img]https://i.imgur.com/lja52Fs.gif[/img]
 
-Workshop ID: PROD_WORKSHOP_ID
+Workshop ID: 3825220364
 Mod ID: SpiffBoy

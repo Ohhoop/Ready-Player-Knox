@@ -1,5 +1,4 @@
-[img]https://i.imgur.com/sVROmET.png[/img]
-
+[img]https://i.imgur.com/DX9mD5C.png[/img]
 Panie i panowie... oto... [b]SpiffBoy[/b]!
 Z gigantycznym ekranem 180 na 120 pikseli dla pełnej immersji!
 Łamigłówki! Akcja! Wyścigi! Przygoda! I nie tylko!
@@ -24,33 +23,33 @@ SpiffBoy został zaprojektowany tak, by zachowywał się jak przenośne konsole 
 - Graj na klawiaturze lub kontrolerze.
 - Nic tak nie przegania nudy i nie poprawia humoru jak dobra gra.
 
-[img]https://i.imgur.com/03wIo7b.png[/img]
 
+[img]https://i.imgur.com/sVROmET.png[/img]
 [b]Gdzieś tam czekają na ciebie[/b]
 Kartridże i kable link są ukryte w całym Knox County, w miejscach, w których spodziewałbyś się, że zostawi je dzieciak. Niektóre szczęśliwe konsole znajduje się nawet z grą w środku. Poszukiwania to część zabawy.
 
 [b]Twoje postępy podróżują z tobą[/b]
 Każdy kartridż ma własny zapis. Pożycz go znajomemu, wymień albo trzymaj w kieszeni: twoje postępy idą wszędzie tam, gdzie kartridż.
 
-[img]https://i.imgur.com/iZ0r7eO.png[/img]
 
+[img]https://i.imgur.com/06m1zUR.png[/img]
 Podłącz Kabel link SpiffBoy między dwiema konsolami i rzuć wyzwanie znajomemu, o ile zostanie blisko. Online albo obok siebie na podzielonym ekranie: znajomy musi tylko zaakceptować kabel, a gra zaczyna się w jego rękach.
 
-[img]https://i.imgur.com/w3Uz0Ye.png[/img]
 
+[img]https://i.imgur.com/03wIo7b.png[/img]
 Dostosuj konsolę SpiffBoy do swoich upodobań: opcje piaskownicy decydują, jak wpasowuje się w twój świat, od tłumu, który ściąga jej dźwięk, po dobry humor, który przynosi; ustawienia sterowania pozwalają wybrać przyciski, a opcje moda kształtują jej wygląd na ekranie.
 
-[img]https://i.imgur.com/DX9mD5C.png[/img]
 
+[img]https://i.imgur.com/iZ0r7eO.png[/img]
 [b]Szukaj Pieczęci Jakości Spiffco![/b]
 Dziesięć gier to dopiero początek. Jeśli chcesz stworzyć grę na konsolę SpiffBoy, następna część tej sekcji pokazuje, jak to zrobić. Pokaż mi swoją grę, a dodam ją do listy poniżej (liczba miejsc ograniczona, opis pomieści tylko tyle tekstu).
 - Bądź pierwszy! 🙂
 
 [b]Twórz własne gry[/b]
-Zawsze marzyłeś o stworzeniu własnej gry? Każdy mod może dodać własne kartridże do konsoli SpiffBoy. [url=https://steamcommunity.com/sharedfiles/filedetails/?id=SDK_PROD_ID]SpiffBoy SDK[/url] ma wszystko, czego potrzebujesz: poradnik, dwa przykładowe kartridże do nauki, pusty kartridż na twoją etykietę oraz narzędzia do tworzenia i testowania własnej gry. Konsola została zbudowana tak, by naśladować prawdziwą fizyczną konsolę, z jej ograniczeniami technicznymi.
+Zawsze marzyłeś o stworzeniu własnej gry? Każdy mod może dodać własne kartridże do konsoli SpiffBoy. [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3825220785]SpiffBoy SDK[/url] ma wszystko, czego potrzebujesz: poradnik, dwa przykładowe kartridże do nauki, pusty kartridż na twoją etykietę oraz narzędzia do tworzenia i testowania własnej gry. Konsola została zbudowana tak, by naśladować prawdziwą fizyczną konsolę, z jej ograniczeniami technicznymi.
 
-[img]https://i.imgur.com/06m1zUR.png[/img]
 
+[img]https://i.imgur.com/w3Uz0Ye.png[/img]
 Q: Czy to działa w trybie wieloosobowym?
 A: Tak.
 
@@ -86,5 +85,5 @@ Jeśli jeszcze nie widziałeś prezentacji wideo, koniecznie ją obejrzyj, jej z
 
 [img]https://i.imgur.com/lja52Fs.gif[/img]
 
-Workshop ID: PROD_WORKSHOP_ID
+Workshop ID: 3825220364
 Mod ID: SpiffBoy

@@ -1,5 +1,4 @@
-[img]https://i.imgur.com/sVROmET.png[/img]
-
+[img]https://i.imgur.com/DX9mD5C.png[/img]
 Thưa quý vị... xin giới thiệu... [b]SpiffBoy[/b]!
 Với màn hình khổng lồ 180 x 120 điểm ảnh cho trải nghiệm đắm chìm trọn vẹn!
 Giải đố! Hành động! Đua xe! Phiêu lưu! Và còn nhiều nữa!
@@ -24,33 +23,33 @@ SpiffBoy được tạo ra để hoạt động giống những máy chơi game 
 - Chơi bằng bàn phím hoặc tay cầm.
 - Không gì bằng một trò chơi hay để xua tan buồn chán và vực dậy tinh thần.
 
-[img]https://i.imgur.com/03wIo7b.png[/img]
 
+[img]https://i.imgur.com/sVROmET.png[/img]
 [b]Ngoài kia, đang chờ bạn[/b]
 Băng game và cáp kết nối nằm rải rác khắp Knox County, ở những nơi mà bạn nghĩ một đứa trẻ sẽ để quên. Một vài chiếc máy may mắn thậm chí còn được tìm thấy với một trò chơi bên trong. Cuộc săn lùng cũng là một phần của niềm vui.
 
 [b]Tiến trình luôn theo bạn[/b]
 Mỗi băng game giữ bản lưu riêng. Cho bạn bè mượn, đem trao đổi hoặc giữ trong túi: tiến trình của bạn đi theo băng game đến bất cứ đâu.
 
-[img]https://i.imgur.com/iZ0r7eO.png[/img]
 
+[img]https://i.imgur.com/06m1zUR.png[/img]
 Cắm Cáp Kết Nối SpiffBoy giữa hai máy và thách đấu bạn bè, miễn là họ ở gần bạn. Trực tuyến hay ngồi cạnh nhau với màn hình chia đôi, bạn của bạn chỉ cần chấp nhận cáp và trò chơi sẽ bắt đầu trong tay họ.
 
-[img]https://i.imgur.com/w3Uz0Ye.png[/img]
 
+[img]https://i.imgur.com/03wIo7b.png[/img]
 Tùy chỉnh SpiffBoy theo ý thích: các tùy chọn sandbox quyết định cách nó hòa vào thế giới của bạn, từ đám đông mà âm thanh của nó thu hút đến tâm trạng vui vẻ mà nó mang lại, phần cài đặt điều khiển cho phép bạn chọn nút, và các tùy chọn mod định hình vẻ ngoài của nó trên màn hình.
 
-[img]https://i.imgur.com/DX9mD5C.png[/img]
 
+[img]https://i.imgur.com/iZ0r7eO.png[/img]
 [b]Hãy tìm Con Dấu Chất Lượng Spiffco![/b]
 Mười trò chơi chỉ là khởi đầu. Nếu bạn muốn làm một trò chơi cho SpiffBoy, phần tiếp theo sẽ chỉ cho bạn cách làm. Hãy cho tôi xem trò chơi của bạn và tôi sẽ thêm nó vào danh sách bên dưới (số chỗ có hạn, phần mô tả chỉ chứa được chừng ấy chữ).
 - Hãy là người đầu tiên! 🙂
 
 [b]Tự làm trò chơi của riêng bạn[/b]
-Luôn mơ ước tự làm một trò chơi? Bất kỳ mod nào cũng có thể thêm băng game của riêng mình vào SpiffBoy. [url=https://steamcommunity.com/sharedfiles/filedetails/?id=SDK_PROD_ID]SpiffBoy SDK[/url] có mọi thứ bạn cần: một bản hướng dẫn, hai băng game mẫu để học hỏi, một băng game trống cho nhãn của bạn, và các công cụ để làm và thử nghiệm trò chơi của riêng bạn. Chiếc máy được tạo ra để mô phỏng một máy chơi game thật, với đầy đủ giới hạn kỹ thuật của nó.
+Luôn mơ ước tự làm một trò chơi? Bất kỳ mod nào cũng có thể thêm băng game của riêng mình vào SpiffBoy. [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3825220785]SpiffBoy SDK[/url] có mọi thứ bạn cần: một bản hướng dẫn, hai băng game mẫu để học hỏi, một băng game trống cho nhãn của bạn, và các công cụ để làm và thử nghiệm trò chơi của riêng bạn. Chiếc máy được tạo ra để mô phỏng một máy chơi game thật, với đầy đủ giới hạn kỹ thuật của nó.
 
-[img]https://i.imgur.com/06m1zUR.png[/img]
 
+[img]https://i.imgur.com/w3Uz0Ye.png[/img]
 Q: Mod có hoạt động trong chế độ nhiều người chơi không?
 A: Có.
 
@@ -86,5 +85,5 @@ Nếu bạn chưa xem video giới thiệu, hãy xem nhé, tôi đã mất RẤT
 
 [img]https://i.imgur.com/lja52Fs.gif[/img]
 
-Workshop ID: PROD_WORKSHOP_ID
+Workshop ID: 3825220364
 Mod ID: SpiffBoy

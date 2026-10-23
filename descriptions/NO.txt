@@ -1,5 +1,4 @@
-[img]https://i.imgur.com/sVROmET.png[/img]
-
+[img]https://i.imgur.com/DX9mD5C.png[/img]
 Mine damer og herrer... vi presenterer... [b]SpiffBoy[/b]!
 Med en enorm skjerm på 180 ganger 120 piksler for total innlevelse!
 Puslespill! Action! Racing! Eventyr! Og mye mer!
@@ -24,33 +23,33 @@ SpiffBoy er laget for å oppføre seg som datidens håndholdte konsoller, helt n
 - Spill med tastatur eller kontroller.
 - Ingenting slår et godt spill når kjedsomheten skal jages bort og humøret løftes.
 
-[img]https://i.imgur.com/03wIo7b.png[/img]
 
+[img]https://i.imgur.com/sVROmET.png[/img]
 [b]Der ute og venter på deg[/b]
 Spillkassetter og linkkabler ligger gjemt over hele Knox County, på steder der du ville forventet at en unge hadde lagt dem igjen. Noen heldige konsoller blir til og med funnet med et spill fortsatt i. Jakten er en del av moroa.
 
 [b]Fremgangen din følger med deg[/b]
 Hver spillkassett har sitt eget lagrede spill. Lån den bort til en venn, bytt den, eller ha den i lomma: fremgangen din blir med dit kassetten går.
 
-[img]https://i.imgur.com/iZ0r7eO.png[/img]
 
+[img]https://i.imgur.com/06m1zUR.png[/img]
 Koble en SpiffBoy-linkkabel mellom to konsoller og utfordre en venn, så lenge vedkommende holder seg i nærheten. På nett eller side om side i delt skjerm, vennen din trenger bare å godta kabelen, så starter spillet i hendene deres.
 
-[img]https://i.imgur.com/w3Uz0Ye.png[/img]
 
+[img]https://i.imgur.com/03wIo7b.png[/img]
 Still inn SpiffBoy slik du vil ha den: sandbox-innstillingene bestemmer hvordan den passer inn i verdenen din, fra publikummet lyden trekker til det gode humøret den gir, kontrollinnstillingene lar deg velge knappene dine, og mod-innstillingene bestemmer hvordan den ser ut på skjermen.
 
-[img]https://i.imgur.com/DX9mD5C.png[/img]
 
+[img]https://i.imgur.com/iZ0r7eO.png[/img]
 [b]Se etter Spiffco-kvalitetsseglet![/b]
 Ti spill er bare begynnelsen. Hvis du vil lage et spill til SpiffBoy, viser neste del av denne seksjonen deg hvordan. Vis meg spillet ditt, så legger jeg det til i listen under (plassene er begrenset, beskrivelsen har bare plass til så mye tekst).
 - Bli den første! 🙂
 
 [b]Lag dine egne spill[/b]
-Har du alltid drømt om å lage ditt eget spill? Enhver mod kan legge til sine egne spillkassetter i SpiffBoy. [url=https://steamcommunity.com/sharedfiles/filedetails/?id=SDK_PROD_ID]SpiffBoy SDK[/url] har alt du trenger for å bygge et: en guide, to eksempelkassetter å lære av, en blank kassett til etiketten din og verktøy for å lage og teste ditt eget spill. Konsollen er bygget for å etterligne en ekte fysisk konsoll, med sine tekniske begrensninger.
+Har du alltid drømt om å lage ditt eget spill? Enhver mod kan legge til sine egne spillkassetter i SpiffBoy. [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3825220785]SpiffBoy SDK[/url] har alt du trenger for å bygge et: en guide, to eksempelkassetter å lære av, en blank kassett til etiketten din og verktøy for å lage og teste ditt eget spill. Konsollen er bygget for å etterligne en ekte fysisk konsoll, med sine tekniske begrensninger.
 
-[img]https://i.imgur.com/06m1zUR.png[/img]
 
+[img]https://i.imgur.com/w3Uz0Ye.png[/img]
 Q: Fungerer det i flerspiller?
 A: Ja.
 
@@ -86,5 +85,5 @@ Hvis du ikke har sett videopresentasjonen ennå, så gjør det, den tok meg SÅ 
 
 [img]https://i.imgur.com/lja52Fs.gif[/img]
 
-Workshop ID: PROD_WORKSHOP_ID
+Workshop ID: 3825220364
 Mod ID: SpiffBoy
