@@ -1,7 +1,7 @@
 id=SpiffBoy
 name=SpiffBoy
 description=Plays the SpiffBoy handheld game console and its cartridges for real.
-modversion=0.1.1
+modversion=0.1.2
 poster=poster.png
 icon=poster.png
 versionMin=42.0
