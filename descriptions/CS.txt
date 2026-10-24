@@ -59,8 +59,8 @@ A: Ano, server i každý hráč.
 Q: Je kompatibilní s jinými mody?
 A: Ano, pokud nemění vanilla Přenosnou herní konzoli.
 
-Q: Funguje to s Project Viewpoint?
-A: Ano, ve všech pohledech. Pokud něco nesedí, nahlaste to v diskusi Bug Reports.
+Q: Funguje to s Project Viewpoint a pz3d?
+A: Ano. Pokud něco nesedí, nahlaste to v diskusi Bug Reports.
 
 Q: Můžu si konzoli nechat bez jejích vlivů na hratelnost?
 A: Ano, sandboxové možnosti je umí vypnout.

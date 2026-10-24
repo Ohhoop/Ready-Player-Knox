@@ -59,8 +59,8 @@ A: Ja, serveren og alle spillerne.
 Q: Er det kompatibelt med andre mods?
 A: Ja, så lenge de ikke endrer vanilla-gjenstanden Videospill.
 
-Q: Fungerer det med Project Viewpoint?
-A: Ja, i alle visninger. Hvis noe ser feil ut, meld fra i diskusjonen Bug Reports.
+Q: Fungerer det med Project Viewpoint og pz3d?
+A: Ja. Hvis noe ser feil ut, meld fra i diskusjonen Bug Reports.
 
 Q: Kan jeg beholde konsollen uten effektene den har på spillingen?
 A: Ja, sandbox-innstillingene kan slå dem av.

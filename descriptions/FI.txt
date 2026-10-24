@@ -59,8 +59,8 @@ A: Kyllä, sekä palvelin että jokainen pelaaja.
 Q: Onko se yhteensopiva muiden modien kanssa?
 A: Kyllä, kunhan ne eivät muuta pelin omaa Videopeli-esinettä.
 
-Q: Toimiiko se Project Viewpointin kanssa?
-A: Kyllä, kaikissa näkymissä. Jos jokin näyttää oudolta, ilmoita siitä Bug Reports -keskustelussa.
+Q: Toimiiko se Project Viewpointin ja pz3d:n kanssa?
+A: Kyllä. Jos jokin näyttää oudolta, ilmoita siitä Bug Reports -keskustelussa.
 
 Q: Voinko pitää konsolin ilman sen vaikutuksia pelattavuuteen?
 A: Kyllä, sandbox-asetuksilla ne voi kytkeä pois.

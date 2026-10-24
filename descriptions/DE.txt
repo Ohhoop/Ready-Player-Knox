@@ -59,8 +59,8 @@ A: Ja, der Server und jeder Spieler.
 Q: Ist es mit anderen Mods kompatibel?
 A: Ja, solange sie das Vanilla-Videospiel nicht verändern.
 
-Q: Funktioniert es mit Project Viewpoint?
-A: Ja, in jeder Ansicht. Falls etwas nicht stimmt, meldet es bitte in der Diskussion Bug Reports.
+Q: Funktioniert es mit Project Viewpoint und pz3d?
+A: Ja. Falls etwas nicht stimmt, meldet es bitte in der Diskussion Bug Reports.
 
 Q: Kann ich die Konsole ohne ihre Auswirkungen auf das Gameplay behalten?
 A: Ja, die Sandbox-Optionen können sie abschalten.

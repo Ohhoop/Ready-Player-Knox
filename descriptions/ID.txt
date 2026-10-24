@@ -59,8 +59,8 @@ A: Ya, server dan setiap pemain.
 Q: Apakah kompatibel dengan mod lain?
 A: Ya, selama mod itu tidak mengubah Konsol Game Genggam vanilla.
 
-Q: Apakah berfungsi dengan Project Viewpoint?
-A: Ya, di semua tampilan. Jika ada yang aneh, laporkan di diskusi Bug Reports.
+Q: Apakah berfungsi dengan Project Viewpoint dan pz3d?
+A: Ya. Jika ada yang aneh, laporkan di diskusi Bug Reports.
 
 Q: Bisakah saya menyimpan konsolnya tanpa efeknya pada gameplay?
 A: Bisa, opsi sandbox dapat mematikannya.

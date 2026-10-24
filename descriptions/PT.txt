@@ -59,8 +59,8 @@ A: Sim, o servidor e todos os jogadores.
 Q: É compatível com outros mods?
 A: Sim, desde que não alterem a Consola de Jogos Portátil vanilla.
 
-Q: Funciona com o Project Viewpoint?
-A: Sim, em todas as vistas. Se algo não estiver bem, reporte na discussão Bug Reports.
+Q: Funciona com o Project Viewpoint e o pz3d?
+A: Sim. Se algo não estiver bem, reporte na discussão Bug Reports.
 
 Q: Posso manter a consola sem os seus efeitos na jogabilidade?
 A: Sim, as opções sandbox podem desativá-los.

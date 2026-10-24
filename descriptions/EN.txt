@@ -59,8 +59,8 @@ A: Yes, the server and every player.
 Q: Is it compatible with other mods?
 A: Yes, as long as they do not change the vanilla Handheld Game Console.
 
-Q: Does it work with Project Viewpoint?
-A: Yes, in every view. If anything looks off, please report it in the Bug Reports discussion.
+Q: Does it work with Project Viewpoint and pz3d?
+A: Yes. If anything looks off, please report it in the Bug Reports discussion.
 
 Q: Can I keep the console without its effects on gameplay?
 A: Yes, the sandbox options can turn them off.

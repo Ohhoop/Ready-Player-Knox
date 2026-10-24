@@ -59,8 +59,8 @@ A: Ja, de server en elke speler.
 Q: Is het compatibel met andere mods?
 A: Ja, zolang ze het vanilla Computerspel niet aanpassen.
 
-Q: Werkt het met Project Viewpoint?
-A: Ja, in elke weergave. Klopt er iets niet, meld het dan in de discussie Bug Reports.
+Q: Werkt het met Project Viewpoint en pz3d?
+A: Ja. Klopt er iets niet, meld het dan in de discussie Bug Reports.
 
 Q: Kan ik de console houden zonder de effecten op de gameplay?
 A: Ja, de sandbox-opties kunnen ze uitschakelen.

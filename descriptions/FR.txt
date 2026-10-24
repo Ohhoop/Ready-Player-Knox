@@ -59,8 +59,8 @@ A : Oui, le serveur et chaque joueur.
 Q : Est-ce compatible avec d'autres mods ?
 A : Oui, tant qu'ils ne modifient pas la Console de jeu portable vanilla.
 
-Q : Est-ce compatible avec Project Viewpoint ?
-A : Oui, dans toutes les vues. Si quelque chose cloche, signalez-le dans la discussion Bug Reports.
+Q : Est-ce compatible avec Project Viewpoint et pz3d ?
+A : Oui. Si quelque chose cloche, signalez-le dans la discussion Bug Reports.
 
 Q : Puis-je garder la console sans ses effets sur le gameplay ?
 A : Oui, les options sandbox permettent de les désactiver.
