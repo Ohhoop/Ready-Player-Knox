@@ -5,23 +5,23 @@ require"SpiffBoy/Core/SaveData"
 SpiffBoyGameBase={}
 SpiffBoyGameBase.__index=SpiffBoyGameBase
 
-function SpiffBoyGameBase:derive(b)
+function SpiffBoyGameBase:derive(name)
 local a={}
 a.__index=a
-a.Type=b
+a.Type=name
 setmetatable(a,self)
 return a
 end
 
-function SpiffBoyGameBase:new(c,b)
+function SpiffBoyGameBase:new(runtime,context)
 local a=setmetatable({},self)
-a.screen=c.view
-a.context=b
-a.random=SpiffBoyRandom.new(b.seed)
-a.save=SpiffBoy.SaveData.clean(b.save)
-a.chip=b.chip
-a.sequencer=b.sequencer
-a.link=b.link
+a.screen=runtime.view
+a.context=context
+a.random=SpiffBoyRandom.new(context.seed)
+a.save=SpiffBoy.SaveData.clean(context.save)
+a.chip=context.chip
+a.sequencer=context.sequencer
+a.link=context.link
 a:init()
 return a
 end
@@ -37,8 +37,8 @@ end
 function SpiffBoyGameBase:init()
 end
 
-function SpiffBoyGameBase:tick(a,b)
+function SpiffBoyGameBase:tick(inputs,tick)
 end
 
-function SpiffBoyGameBase:draw(a)
+function SpiffBoyGameBase:draw(screen)
 end

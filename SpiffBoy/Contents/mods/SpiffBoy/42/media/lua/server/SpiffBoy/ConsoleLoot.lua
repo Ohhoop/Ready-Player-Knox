@@ -7,32 +7,32 @@ require"SpiffBoy/Framework/Cartridges"
 require"SpiffBoy/Handheld/Handheld"
 require"SpiffBoy/Core/Sandbox"
 
-local b=1000000
+local a=1000000
 
-local function f(a,d)
-if SpiffBoy.Handheld.getCartridge(a)or ZombRand(100)>=SpiffBoy.Sandbox.consoleCartridgeChance()then
+local function e(console,cartridges)
+if SpiffBoy.Handheld.getCartridge(console)or ZombRand(100)>=SpiffBoy.Sandbox.consoleCartridgeChance()then
 return
 end
-local c=SpiffBoy.Cartridges.pickWeighted(d,ZombRand(b)/b)
-SpiffBoy.Handheld.setCartridge(a,SpiffBoy.Handheld.newRecord(c.item,{}))
-SpiffBoy.trace("console spawned with "..c.id.." in "..tostring(a:getContainer()and a:getContainer():getType()))
+local b=SpiffBoy.Cartridges.pickWeighted(cartridges,ZombRand(a)/a)
+SpiffBoy.Handheld.setCartridge(console,SpiffBoy.Handheld.newRecord(b.item,{}))
+SpiffBoy.trace("console spawned with "..b.id.." in "..tostring(console:getContainer()and console:getContainer():getType()))
 end
 
-local function g(i,j,a)
-if not instanceof(a,"ItemContainer")then
+local function f(roomName,containerType,container)
+if not instanceof(container,"ItemContainer")then
 return
 end
-local c=SpiffBoy.Cartridges.lootable()
-if#c==0 then
+local b=SpiffBoy.Cartridges.lootable()
+if#b==0 then
 return
 end
-local d=a:getItems()
-for h=0,d:size()-1 do
-local e=d:get(h)
-if SpiffBoy.Handheld.isConsole(e)then
-f(e,c)
+local c=container:getItems()
+for g=0,c:size()-1 do
+local d=c:get(g)
+if SpiffBoy.Handheld.isConsole(d)then
+e(d,b)
 end
 end
 end
 
-Events.OnFillContainer.Add(g)
+Events.OnFillContainer.Add(f)

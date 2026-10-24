@@ -2,13 +2,13 @@ require"SpiffBoy/Games/QuickStart/Base"
 require"SpiffBoy/Games/QuickStart/Maps/Circuits"
 require"SpiffBoy/Games/QuickStart/Art"
 
-local p=SpiffBoy.QuickStart
+local n=SpiffBoy.QuickStart
 
 local a={}
-p.Tracks=a
+n.Tracks=a
 
-local l=p.TILE
-local m=string.byte
+local k=n.TILE
+local l=string.byte
 local b=math.floor
 
 a.ROAD="road"
@@ -30,28 +30,28 @@ a.STRIPES=-2
 local g=a.CHECKER
 local d=a.STRIPES
 
-local k,s,x,y,t,z,A=a.ROAD,a.OFFROAD,a.MUD,a.WATER,a.WALL,a.BOOST,a.RAMP
+local j,q,v,w,r,z,A=a.ROAD,a.OFFROAD,a.MUD,a.WATER,a.WALL,a.BOOST,a.RAMP
 
-local function e(h,i,j,n)
+local function e(clear,sky,shades,surfaces)
 local c,f={},{}
-for o,q in pairs(j)do
-c[m(o)]=q
+for h,i in pairs(shades)do
+c[l(h)]=i
 end
-for o,q in pairs(n)do
-f[m(o)]=q
+for h,i in pairs(surfaces)do
+f[l(h)]=i
 end
-return{clear=m(h),sky=i,shades=c,surfaces=f}
+return{clear=l(clear),sky=sky,shades=c,surfaces=f}
 end
 
-local B={["#"]=k,c=k,k=k,f=k,w=k,s=k,b=z,r=A,o=x,["~"]=y,["="]=t,["."]=s}
+local B={["#"]=j,c=j,k=j,f=j,w=j,s=j,b=z,r=A,o=v,["~"]=w,["="]=r,["."]=q}
 
-local function f(h)
+local function f(changes)
 local c={}
-for i,j in pairs(B)do
-c[i]=j
+for h,i in pairs(B)do
+c[h]=i
 end
-for i,j in pairs(h or{})do
-c[i]=j
+for h,i in pairs(changes or{})do
+c[h]=i
 end
 return c
 end
@@ -61,11 +61,11 @@ town=e(".","sky_town",{["."]=3,["#"]=2,c=4,w=4,o=2,s=g,b=d,r=1},f()),
 docks=e("~","sky_docks",{["~"]=1,["."]=2,["#"]=3,w=4,o=2,s=g,b=d,r=1},f()),
 woods=e(".","sky_woods",{["."]=1,["#"]=3,k=4,f=1,o=2,s=g,b=d,r=2},f()),
 farm=e(".","sky_farm",{["."]=3,["#"]=4,w=2,["~"]=1,s=g,b=d,r=2},f()),
-mall=e(".","sky_mall",{["."]=2,["#"]=3,c=4,w=4,s=g,b=d,r=1},f({w=s})),
+mall=e(".","sky_mall",{["."]=2,["#"]=3,c=4,w=4,s=g,b=d,r=1},f({w=q})),
 prison=e(".","sky_prison",{["."]=4,["#"]=2,k=1,f=4,["="]=1,s=g,b=d,r=1},f()),
 highway=e(".","sky_highway",{["."]=3,["#"]=1,c=4,w=2,s=g,b=d,r=2},f()),
 military=e(".","sky_military",{["."]=4,["#"]=2,k=1,f=4,w=3,["="]=1,s=g,b=d,r=1},f()),
-station=e("#","sky_station",{["#"]=2,["="]=4,w=4,c=3,o=1,b=d,["."]=3},f({w=t})),
+station=e("#","sky_station",{["#"]=2,["="]=4,w=4,c=3,o=1,b=d,["."]=3},f({w=r})),
 lot=e("#","sky_lot",{["#"]=2,["="]=4,w=4,["."]=3,b=d},f()),
 }
 
@@ -142,153 +142,153 @@ spiffos={art="spiffos",radius=0},
 dumpster={art="dumpster",radius=5},
 }
 
-local function C(q,r)
+local function C(objects,extent)
 local i=a.DECOR_CELL
-local c=math.ceil(r/i)
-local j={}
+local c=math.ceil(extent/i)
+local m={}
 for h=1,c*c do
-j[h]={}
+m[h]={}
 end
-for D,h in ipairs(q)do
+for x,h in ipairs(objects)do
 if a.DECOR[h.kind]then
-local n="decor_"..h.kind
-local u={art=n,entry=p.Atlas[n],x=h.x,y=h.y}
-local v=math.min(c-1,math.max(0,b(h.x/i)))
-local w=math.min(c-1,math.max(0,b(h.y/i)))
-local o=j[w*c+v+1]
-o[#o+1]=u
+local o="decor_"..h.kind
+local s={art=o,entry=n.Atlas[o],x=h.x,y=h.y}
+local t=math.min(c-1,math.max(0,b(h.x/i)))
+local u=math.min(c-1,math.max(0,b(h.y/i)))
+local p=m[u*c+t+1]
+p[#p+1]=s
 end
 end
-return j,c
+return m,c
 end
 
-local function D(r,u)
+local function D(objects,extent)
 local i=a.SOLID_CELL
-local h=math.ceil(u/i)
-local o={}
+local h=math.ceil(extent/i)
+local p={}
 for c=1,h*h do
-o[c]={}
+p[c]={}
 end
-for J,c in ipairs(r)do
-local j=a.DECOR[c.kind]
-if j and j.radius>0 then
-local v={x=c.x*a.UNIT,y=c.y*a.UNIT,radius=j.radius*a.UNIT}
-local n=j.radius+a.SOLID_MARGIN+1
-local w,E=math.max(0,b((c.x-n)/i)),math.min(h-1,b((c.x+n)/i))
-local F,G=math.max(0,b((c.y-n)/i)),math.min(h-1,b((c.y+n)/i))
-for H=F,G do
-for I=w,E do
-local q=o[H*h+I+1]
-q[#q+1]=v
-end
-end
+for H,c in ipairs(objects)do
+local m=a.DECOR[c.kind]
+if m and m.radius>0 then
+local t={x=c.x*a.UNIT,y=c.y*a.UNIT,radius=m.radius*a.UNIT}
+local o=m.radius+a.SOLID_MARGIN+1
+local u,x=math.max(0,b((c.x-o)/i)),math.min(h-1,b((c.x+o)/i))
+local y,E=math.max(0,b((c.y-o)/i)),math.min(h-1,b((c.y+o)/i))
+for F=y,E do
+for G=u,x do
+local s=p[F*h+G+1]
+s[#s+1]=t
 end
 end
-return o,h
 end
-
-function a.solidsNear(c,o,q)
-local n=a.SOLID_CELL*a.UNIT
-local h,i=b(o/n),b(q/n)
-local j=c.solidCount
-if h<0 or i<0 or h>=j or i>=j then
-return c.noSolids
 end
-return c.solidCells[i*j+h+1]
+return p,h
 end
 
-local function E(n,u,v,o,w,F)
+function a.solidsNear(track,x,y)
+local m=a.SOLID_CELL*a.UNIT
+local c,h=b(x/m),b(y/m)
+local i=track.solidCount
+if c<0 or h<0 or c>=i or h>=i then
+return track.noSolids
+end
+return track.solidCells[h*i+c+1]
+end
+
+local function E(row,cells,base,size,mirrored,id)
 local c=0
-local i,r=1,#n
-while i<=r do
-local G=m(n,i)
+local i,p=1,#row
+while i<=p do
+local s=l(row,i)
 local h=i+1
-local j=0
-while h<=r do
-local q=m(n,h)-48
-if q<0 or q>9 then
+local m=0
+while h<=p do
+local o=l(row,h)-48
+if o<0 or o>9 then
 break
 end
-j=j*10+q
+m=m*10+o
 h=h+1
 end
-for H=1,j do
-local q=c+H-1
-local I=w and(o-1-q)or q
-u[v+I+1]=G
+for t=1,m do
+local o=c+t-1
+local u=mirrored and(size-1-o)or o
+cells[base+u+1]=s
 end
-c=c+j
+c=c+m
 i=h
 end
-if c~=o then
-error("QuickStart: a row of map "..F.." decodes to "..c.." tiles instead of "..o)
+if c~=size then
+error("QuickStart: a row of map "..id.." decodes to "..c.." tiles instead of "..size)
 end
 end
 
-local function q(i,j,n)
+local function o(list,extent,mirrored)
 local h={}
-for o,c in ipairs(i or{})do
-h[o]={x=n and(j-c[1])or c[1],y=c[2]}
+for i,c in ipairs(list or{})do
+h[i]={x=mirrored and(extent-c[1])or c[1],y=c[2]}
 end
 return h
 end
 
-local function F(i,j,n)
+local function F(list,extent,mirrored)
 local h={}
-for o,c in pairs(i or{})do
-h[o]={points=q(c.points,j,n),loopFrom=c.loop[1],loopLength=c.loop[2]}
+for i,c in pairs(list or{})do
+h[i]={points=o(c.points,extent,mirrored),loopFrom=c.loop[1],loopLength=c.loop[2]}
 end
 return h
 end
 
-function a.load(n,i)
-local c=p.Maps[n]
+function a.load(id,mirrored)
+local c=n.Maps[id]
 if not c then
-error("QuickStart: no map named "..tostring(n))
+error("QuickStart: no map named "..tostring(id))
 end
-local j=c.size
-local u={}
-for h=1,j do
-E(c.rows[h],u,(h-1)*j,j,i,n)
+local i=c.size
+local s={}
+for h=1,i do
+E(c.rows[h],s,(h-1)*i,i,mirrored,id)
 end
-local h=j*l
-local r={}
-for v,o in ipairs(c.objects)do
-r[v]={kind=o[1],x=i and(h-o[2])or o[2],y=o[3]}
+local h=i*k
+local p={}
+for t,m in ipairs(c.objects)do
+p[t]={kind=m[1],x=mirrored and(h-m[2])or m[2],y=m[3]}
 end
-local o=a.STYLES[c.style]
-if not o then
-error("QuickStart: map "..n.." has no style "..tostring(c.style))
+local m=a.STYLES[c.style]
+if not m then
+error("QuickStart: map "..id.." has no style "..tostring(c.style))
 end
-local G,H=C(r,h)
-local I,J=D(r,h)
-local v={}
-local K=o.shades[o.clear]
-for w=1,j*j do
-v[w]=o.shades[u[w]]or K
+local x,y=C(p,h)
+local G,H=D(p,h)
+local t={}
+local I=m.shades[m.clear]
+for u=1,i*i do
+t[u]=m.shades[s[u]]or I
 end
 return{
-id=n,kind=c.kind,mirrored=i,size=j,extent=h,cells=u,style=o,shadeGrid=v,
-decorCells=G,decorCount=H,solidCells=I,solidCount=J,noSolids={},
-waypoints=q(c.waypoints,h,i),spawns=q(c.spawns,h,i),
-targets=q(c.targets,h,i),paths=F(c.paths,h,i),objects=r,
+id=id,kind=c.kind,mirrored=mirrored,size=i,extent=h,cells=s,style=m,shadeGrid=t,
+decorCells=x,decorCount=y,solidCells=G,solidCount=H,noSolids={},
+waypoints=o(c.waypoints,h,mirrored),spawns=o(c.spawns,h,mirrored),
+targets=o(c.targets,h,mirrored),paths=F(c.paths,h,mirrored),objects=p,
 }
 end
 
-function a.at(c,n,o)
-local h,i=b(n/l),b(o/l)
-local j=c.size
-if h<0 or i<0 or h>=j or i>=j then
-return c.style.clear
+function a.at(track,x,y)
+local c,h=b(x/k),b(y/k)
+local i=track.size
+if c<0 or h<0 or c>=i or h>=i then
+return track.style.clear
 end
-return c.cells[i*j+h+1]
+return track.cells[h*i+c+1]
 end
 
-function a.surfaceAt(c,n,o)
-local h,i=b(n/l),b(o/l)
-local j=c.size
-if h<0 or i<0 or h>=j or i>=j then
-return t
+function a.surfaceAt(track,x,y)
+local c,h=b(x/k),b(y/k)
+local i=track.size
+if c<0 or h<0 or c>=i or h>=i then
+return r
 end
-return c.style.surfaces[c.cells[i*j+h+1]]or s
+return track.style.surfaces[track.cells[h*i+c+1]]or q
 end

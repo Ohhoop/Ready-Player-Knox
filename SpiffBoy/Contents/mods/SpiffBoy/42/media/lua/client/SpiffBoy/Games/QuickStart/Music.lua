@@ -2,10 +2,10 @@ require"SpiffBoy/Core/Core"
 require"SpiffBoy/Core/Tunes"
 require"SpiffBoy/Games/QuickStart/Base"
 
-local p=SpiffBoy.QuickStart
+local o=SpiffBoy.QuickStart
 
 local a={}
-p.Music=a
+o.Music=a
 
 a.TITLE="title"
 a.MENU="menu"
@@ -48,83 +48,83 @@ a.CAN="can"
 local c="v13 y1 n{36 88 120}"
 local d="v10 y2 n{52 68}"
 local g="v3 y1 n104"
-local n="v6 y4 n72"
-local l="v8 y1 n{60 76}"
+local m="v6 y4 n72"
+local k="v8 y1 n{60 76}"
 
-local t={
+local s={
 road={c,g,d,g,c,c,d,g},
 swing={c,g,g,d,g,g,c,d},
-drive={c,g,d,g,c,g,d,n},
-march={c,l,d,l,c,l,d,d},
+drive={c,g,d,g,c,g,d,m},
+march={c,k,d,k,c,k,d,d},
 funk={c,g,d,c,g,c,d,g},
 punk={c,d,c,d,c,d,c,d},
 }
-local u=table.concat({c,d,d,d,c,l,l,n}," ")
+local t=table.concat({c,d,d,d,c,k,k,m}," ")
 
-local v={
+local u={
 c="{ceg}",f="{fa>c}",g="{gb>d}",am="{ace}",dm="{dfa}",em="{egb}",d="{df+a}",a="{ac+e}",
 e="{eg+b}",bm="{bd>f+}",["b-"]="{b->df}",["e-"]="{e-gb-}",gm="{gb->d}",cm="{ce-g}",fm="{fa->c}",
 b="{bd+f+}",["f+m"]="{f+ac+}",
 }
 
-local function m(b,e)
-return b..table.concat(e," | ")
+local function l(header,bars)
+return header..table.concat(bars," | ")
 end
 
-local function q(f,h)
-local i=table.concat(t[f]," ")
+local function p(groove,count)
+local f=table.concat(s[groove]," ")
 local b={}
-for e=1,h do
-b[e]=(e%8==0)and u or i
+for e=1,count do
+b[e]=(e%8==0)and t or f
 end
 return b
 end
 
-local function w(b,e)
-return b.." "..b.." "..e.." "..b.." >"..b.."< "..e.." "..b.." "..e
+local function v(root,fifth)
+return root.." "..root.." "..fifth.." "..root.." >"..root.."< "..fifth.." "..root.." "..fifth
 end
 
-local function x(b)
-return b.." "..b.." "..b.." "..b.." "..b.." "..b.." >"..b.."< "..b
+local function w(root)
+return root.." "..root.." "..root.." "..root.." "..root.." "..root.." >"..root.."< "..root
 end
 
-local function y(b)
-return b.."4 r "..b.." r "..b.." "..b.."4"
+local function x(chord)
+return chord.."4 r "..chord.." r "..chord.." "..chord.."4"
 end
 
-local function j(b)
-return"r "..b.." r "..b.." r "..b.." r "..b
+local function j(chord)
+return"r "..chord.." r "..chord.." r "..chord.." r "..chord
 end
 
-local function r(f,i)
+local function q(builder,list)
 local e={}
-for h,b in ipairs(i)do
+for f,b in ipairs(list)do
 if type(b)=="table"then
-e[h]=f(b[1],b[2])
+e[f]=builder(b[1],b[2])
 else
-e[h]=f(b)
+e[f]=builder(b)
 end
 end
 return e
 end
 
-local function z(e)
+local function y(names)
 local b={}
-for f,h in ipairs(e)do
-b[f]=v[h]
+for e,f in ipairs(names)do
+b[e]=u[f]
 end
 return b
 end
 
-local function e(i,k,f,o,s,h,A)
-local b="t"..i.." "
-local B=r(A or y,z(o))
+local function e(tempo,lead,melody,harmony,roots,groove,compStyle)
+local b="t"..tempo.." "
+local f=q(compStyle or x,y(harmony))
 return{
 loop=true,
-pulse1=m(b.."@"..k.." v12 y0 q6 l8 ",f),
-pulse2=m(b.."@2 v6 y0 q5 l8 o3 ",B),
-wave=m(b.."@5 v3 l8 o2 ",r(h=="march"and x or w,s)),
-noise=m(b.."l8 ",q(h,#f)),
+pulse1=l(b.."@"..lead.." v12 y0 q6 l8 ",melody),
+pulse2=l(b.."@2 v6 y0 q5 l8 o3 ",f),
+wave=l(b.."@5 v3 l8 o2 ",q(groove=="march"and w or v,roots)),
+noise=l(b.."l8 ",p(groove,#melody)),
 }
 end
 
@@ -197,11 +197,11 @@ b[a.MAP]=e(120,3,{
 "o4 e4 g a b2","o4 a4 g e d2","o4 e4 g a b4 o5 d4","o5 c2 o4 b2",
 },{"em","am","em","g"},{{"e","b"},{"a","e"},{"e","b"},{"g","d"}},"swing",j)
 
-b[a.INTRO]={pulse1="t150 @1 v12 y2 l8 o5 c e g >c4 r <g >c2",pulse2="t150 @2 v7 y2 l8 o4 e g >c e4 r c e2",wave="t150 @5 v3 l4 o2 c g c2",noise="t150 l4 "..c.." "..d.." l2 "..n}
+b[a.INTRO]={pulse1="t150 @1 v12 y2 l8 o5 c e g >c4 r <g >c2",pulse2="t150 @2 v7 y2 l8 o4 e g >c e4 r c e2",wave="t150 @5 v3 l4 o2 c g c2",noise="t150 l4 "..c.." "..d.." l2 "..m}
 b[a.RESULTS]=e(128,2,{
 "o5 c4 e g a4 g e","o5 f4 e d c2","o4 a4 o5 c e g4 e c","o5 d2. r4",
 },{"c","f","am","g"},{{"c","g"},{"f","c"},{"a","e"},{"g","d"}},"swing",j)
-b[a.PODIUM]={pulse1="t132 @1 v12 y0 q7 l8 o5 c4 e g >c4 <b >c | d4 c <b >c2 | <a4 >c e d4 c <a | g2 >c2",pulse2="t132 @2 v7 y0 q6 l8 o4 e4 g >c e4 d e | f4 e d e2 | c4 e a f4 e c | <b2 >e2",wave="t132 @5 v3 l4 o2 c g f g | f c g g | a e f d | g g c2",noise="t132 l8 "..table.concat(q("road",4)," | ")}
+b[a.PODIUM]={pulse1="t132 @1 v12 y0 q7 l8 o5 c4 e g >c4 <b >c | d4 c <b >c2 | <a4 >c e d4 c <a | g2 >c2",pulse2="t132 @2 v7 y0 q6 l8 o4 e4 g >c e4 d e | f4 e d e2 | c4 e a f4 e c | <b2 >e2",wave="t132 @5 v3 l4 o2 c g f g | f c g g | a e f d | g g c2",noise="t132 l8 "..table.concat(p("road",4)," | ")}
 b[a.GOAL]={pulse1="t180 @1 v13 y1 l16 o5 c e g >c <g >c e g >c4",pulse2="t180 @2 v8 y1 l16 o4 e g >c e c e g >c e4"}
 b[a.LOST]={pulse1="t110 @2 v11 y2 l8 o4 e d c <b4 a4",pulse2="t110 @2 v6 y2 l8 o3 g f e d4 c4"}
 b[a.RECORD]={pulse1="t170 @1 v13 y1 l16 o5 g >c e g e c <g >c4 e4",pulse2="t170 @2 v8 y1 l16 o5 e g >c e c <g e g4 >c4"}
@@ -228,46 +228,46 @@ b[a.HOP]={pulse1="t240 @2 v7 y1 l32 o4 g >d"}
 b[a.RIOT]={pulse1="t220 @1 v11 y0 l16 o5 c d e f g a b >c4"}
 b[a.CAN]={pulse2="t200 @2 v10 y2 l16 o4 e c <a4"}
 
-local function A(k,B)
+local function z(text,amount)
 local i={}
-local f,s=1,string.len(k)
-while f<=s do
-local o=string.sub(k,f,f)
-local C=f==1 or string.sub(k,f-1,f-1)==" "
-if o=="t"and C then
+local f,r=1,string.len(text)
+while f<=r do
+local n=string.sub(text,f,f)
+local A=f==1 or string.sub(text,f-1,f-1)==" "
+if n=="t"and A then
 local h=f+1
-while h<=s and string.byte(k,h)>=48 and string.byte(k,h)<=57 do
+while h<=r and string.byte(text,h)>=48 and string.byte(text,h)<=57 do
 h=h+1
 end
 if h>f+1 then
-i[#i+1]="t"..(tonumber(string.sub(k,f+1,h-1))+B)
+i[#i+1]="t"..(tonumber(string.sub(text,f+1,h-1))+amount)
 f=h
 else
-i[#i+1]=o
+i[#i+1]=n
 f=f+1
 end
 else
-i[#i+1]=o
+i[#i+1]=n
 f=f+1
 end
 end
 return table.concat(i)
 end
 
-local function k(f,o)
-local h={loop=f.loop}
-for s,i in pairs(f)do
-if type(i)=="string"then
-h[s]=A(i,o)
+local function i(tune,amount)
+local f={loop=tune.loop}
+for n,h in pairs(tune)do
+if type(h)=="string"then
+f[n]=z(h,amount)
 end
 end
-return h
+return f
 end
 
 for h,f in pairs(a.TRACKS)do
-b[f..a.FAST]=k(b[f],18)
+b[f..a.FAST]=i(b[f],18)
 end
 
 a.TUNES=b
 
-SpiffBoy.Tunes.register(p.ID,b)
+SpiffBoy.Tunes.register(o.ID,b)

@@ -31,20 +31,20 @@ local j=c.." "..h.." "..f.." "..h.." "..c.." "..c.." "..f.." "..h
 local o=c.." r "..f.." r "..f.." n64 v9 y2 n64 n64"
 local g="r "..h.." r n80"
 
-local function b(e,i)
-return e..table.concat(i," | ")
+local function b(header,bars)
+return header..table.concat(bars," | ")
 end
 
-local function l(e)
-return e.." >"..e.."< "..e.." "..e.." >"..e.."< "..e.." "..e.." >"..e.."<"
+local function l(root)
+return root.." >"..root.."< "..root.." "..root.." >"..root.."< "..root.." "..root.." >"..root.."<"
 end
 
-local function e(m,k)
+local function e(pattern,count)
 local i={}
-for p=1,k-1 do
-i[p]=m
+for k=1,count-1 do
+i[k]=pattern
 end
-i[k]=o
+i[count]=o
 return i
 end
 
@@ -58,18 +58,18 @@ local B={"c","c","c","g","a-","f","a-","g"}
 local C={d="{df+a}",g="{gb>d}",a="{ac+e}",e="{egb}",c="{ce-g}",f="{fa>c}",["b-"]="{b->df}"}
 local D="{dfa}"
 
-local function k(m)
+local function k(roots)
 local i={}
-for s,t in ipairs(m)do
-i[s]=l(t)
+for m,s in ipairs(roots)do
+i[m]=l(s)
 end
 return i
 end
 
-local function m(u,v)
+local function m(roots,minorD)
 local i={}
-for s,t in ipairs(u)do
-if t=="d"and v then
+for s,t in ipairs(roots)do
+if t=="d"and minorD then
 i[s]=D
 else
 i[s]=C[t]
@@ -78,13 +78,13 @@ end
 return i
 end
 
-local function s(t,u)
+local function s(first,second)
 local i={}
-for w,v in ipairs(t)do
-i[#i+1]=v
+for u,t in ipairs(first)do
+i[#i+1]=t
 end
-for w,v in ipairs(u)do
-i[#i+1]=v
+for u,t in ipairs(second)do
+i[#i+1]=t
 end
 return i
 end

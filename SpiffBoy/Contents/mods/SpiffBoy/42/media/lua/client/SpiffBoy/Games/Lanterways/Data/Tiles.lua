@@ -37,6 +37,6 @@ a.LEGEND={
 ["s"]={walk=true,kind="stairs"},
 }
 
-function a.get(c)
-return a.LEGEND[c]
+function a.get(char)
+return a.LEGEND[char]
 end

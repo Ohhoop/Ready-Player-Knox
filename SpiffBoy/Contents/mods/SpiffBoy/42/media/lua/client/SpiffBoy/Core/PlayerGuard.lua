@@ -2,95 +2,95 @@ require"ISUI/ISInventoryPage"
 require"SpiffBoy/Core/Core"
 
 SpiffBoy.PlayerGuard=SpiffBoy.PlayerGuard or{}
-local e=SpiffBoy.PlayerGuard
+local d=SpiffBoy.PlayerGuard
 
 local a={}
 
-local i=ISInventoryPage.onMouseMove
+local g=ISInventoryPage.onMouseMove
 
-function ISInventoryPage:onMouseMove(b,c)
+function ISInventoryPage:onMouseMove(dx,dy)
 if self.isCollapsed and a[self.player]then
 self.mouseOver=true
 return
 end
-i(self,b,c)
+g(self,dx,dy)
 end
 
-local function f(b)
-return{getPlayerInventory(b),getPlayerLoot(b)}
+local function e(playerNum)
+return{getPlayerInventory(playerNum),getPlayerLoot(playerNum)}
 end
 
-local function j(d,c)
-c.pinned={}
-for g,b in ipairs(f(d))do
+local function h(playerNum,guard)
+guard.pinned={}
+for c,b in ipairs(e(playerNum))do
 if b then
-c.pinned[g]=b.pin==true
+guard.pinned[c]=b.pin==true
 b:collapse()
 b:collapseNow()
 end
 end
 end
 
-local function k(d,b)
-for g,c in ipairs(f(d))do
-if c and b.pinned and b.pinned[g]then
-c:setPinned()
+local function i(playerNum,guard)
+for c,b in ipairs(e(playerNum))do
+if b and guard.pinned and guard.pinned[c]then
+b:setPinned()
 end
 end
 end
 
-function e.hold(b,g)
-local c=b:getPlayerNum()
-if a[c]then
+function d.hold(playerObj,window)
+local b=playerObj:getPlayerNum()
+if a[b]then
 return
 end
-local d={
-playerObj=b,
-window=g,
-shove=b:isAuthorizeShoveStomp(),
-melee=b:isAuthorizeMeleeAction(),
+local c={
+playerObj=playerObj,
+window=window,
+shove=playerObj:isAuthorizeShoveStomp(),
+melee=playerObj:isAuthorizeMeleeAction(),
 }
-b:setBlockMovement(true)
-b:setAuthorizeShoveStomp(false)
-b:setAuthorizeMeleeAction(false)
-j(c,d)
-local h=getJoypadData(c)
-if h then
-d.previousFocus=h.focus
-setJoypadFocus(c,g)
+playerObj:setBlockMovement(true)
+playerObj:setAuthorizeShoveStomp(false)
+playerObj:setAuthorizeMeleeAction(false)
+h(b,c)
+local f=getJoypadData(b)
+if f then
+c.previousFocus=f.focus
+setJoypadFocus(b,window)
 end
-a[c]=d
+a[b]=c
 end
 
-function e.release(d)
-local c=d:getPlayerNum()
+function d.release(playerObj)
+local c=playerObj:getPlayerNum()
 local b=a[c]
 if not b then
 return
 end
 a[c]=nil
-d:setBlockMovement(false)
-d:setAuthorizeShoveStomp(b.shove)
-d:setAuthorizeMeleeAction(b.melee)
-k(c,b)
-local g=getJoypadData(c)
-if g and g.focus==b.window then
+playerObj:setBlockMovement(false)
+playerObj:setAuthorizeShoveStomp(b.shove)
+playerObj:setAuthorizeMeleeAction(b.melee)
+i(c,b)
+local f=getJoypadData(c)
+if f and f.focus==b.window then
 setJoypadFocus(c,b.previousFocus)
 end
 end
 
-function e.hitReason(b)
-if b:isDead()then
+function d.hitReason(playerObj)
+if playerObj:isDead()then
 return"dead"
 end
-if b:hasHitReaction()or b:isStaggerBack()then
+if playerObj:hasHitReaction()or playerObj:isStaggerBack()then
 return"hit"
 end
 return nil
 end
 
 local function c()
-for d,b in pairs(a)do
+for f,b in pairs(a)do
 b.playerObj:setBlockMovement(false)
 b.playerObj:setAuthorizeShoveStomp(true)
 b.playerObj:setAuthorizeMeleeAction(true)

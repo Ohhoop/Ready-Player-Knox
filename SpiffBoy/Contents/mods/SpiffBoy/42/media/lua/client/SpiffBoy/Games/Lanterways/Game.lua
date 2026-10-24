@@ -42,7 +42,7 @@ a.MODE_ENDING="ending"
 a.MODE_CARD="card"
 
 local h={fade=20,swirl=42,typeSpeed=2,emote=40}
-local m=SpiffBoy.TICK_RATE
+local l=SpiffBoy.TICK_RATE
 local j={width=168,lines=3}
 
 function a:init()
@@ -61,11 +61,11 @@ self:readOptions()
 self:openTitle()
 end
 
-function a:art(f)
-local c=self.textures[f]
+function a:art(name)
+local c=self.textures[name]
 if not c then
-c=self.context.art(f)
-self.textures[f]=c
+c=self.context.art(name)
+self.textures[name]=c
 end
 return c
 end
@@ -93,17 +93,17 @@ self.save.options={music=self.mix.music,effects=self.mix.effects}
 self:persist()
 end
 
-function a:effect(c)
-self.sequencer:effect(e.effectName(c))
+function a:effect(name)
+self.sequencer:effect(e.effectName(name))
 end
 
-function a:playMusic(c)
-if self.music==c and self.sequencer:isPlaying()then
+function a:playMusic(name)
+if self.music==name and self.sequencer:isPlaying()then
 return
 end
-self.music=c
+self.music=name
 self.sequencer:stop()
-self.sequencer:play(c)
+self.sequencer:play(name)
 end
 
 function a:stopMusic()
@@ -111,10 +111,10 @@ self.music=nil
 self.sequencer:stop()
 end
 
-function a:playJingle(c)
+function a:playJingle(name)
 self.music=nil
 self.sequencer:stop()
-self.sequencer:play(c)
+self.sequencer:play(name)
 end
 
 function a:resumeMapMusic()
@@ -130,19 +130,19 @@ self:stopMusic()
 end
 end
 
-function a:tick(g,k)
+function a:tick(inputs,tick)
 self.clock=self.clock+1
-local c=g[1]
+local c=inputs[1]
 if self.shake>0 then
 self.shake=self.shake-1
 end
 self:tickFade()
 local f=self.mode
 if f==a.MODE_FIELD then
-self.state.time=self.state.time+1/m
+self.state.time=self.state.time+1/l
 self:tickField(c)
 elseif f==a.MODE_BATTLE then
-self.state.time=self.state.time+1/m
+self.state.time=self.state.time+1/l
 self:tickBattleMode(c)
 elseif f==a.MODE_MENU then
 self:tickMenu(c)
@@ -159,10 +159,10 @@ self:tickTitle(c)
 end
 end
 
-function a:startFade(f,g)
+function a:startFade(direction,ticks)
 local c=self.fade
-c.target=f=="out"and 3 or 0
-c.speed=3/(g or h.fade)
+c.target=direction=="out"and 3 or 0
+c.speed=3/(ticks or h.fade)
 c.done=c.level==c.target
 end
 
@@ -191,31 +191,31 @@ self:enterField(self.state.map,self.state.x,self.state.y,self.state.dir)
 self:runScene("intro")
 end
 
-function a:loadJourney(c,f)
-self.state=c
-self.slot=f
+function a:loadJourney(state,slot)
+self.state=state
+self.slot=slot
 self.shadeShift=0
-self:enterField(c.map,c.x,c.y,c.dir)
+self:enterField(state.map,state.x,state.y,state.dir)
 self:startFade("in")
-b.trace("journey loaded from slot "..f.." at step "..c.step.." on "..c.map)
+b.trace("journey loaded from slot "..slot.." at step "..state.step.." on "..state.map)
 end
 
-function a:saveJourney(c)
-local f=self.field.player
+function a:saveJourney(slot)
+local c=self.field.player
 self.state.map=self.field.id
-self.state.x,self.state.y,self.state.dir=f.x,f.y,f.dir
+self.state.x,self.state.y,self.state.dir=c.x,c.y,c.dir
 if type(self.save.slots)~="table"then
 self.save.slots={}
 end
-self.save.slots[c]=o.encode(self.state)
+self.save.slots[slot]=o.encode(self.state)
 self:persist()
-self.slot=c
-b.trace("journey saved in slot "..c.." at step "..self.state.step.." on "..self.state.map)
+self.slot=slot
+b.trace("journey saved in slot "..slot.." at step "..self.state.step.." on "..self.state.map)
 end
 
-function a:enterField(c,g,k,l)
-self.field=n.new(self,c,g,k,l)
-self.state.map=c
+function a:enterField(mapId,x,y,dir)
+self.field=n.new(self,mapId,x,y,dir)
+self.state.map=mapId
 self.mode=a.MODE_FIELD
 self.dialog=nil
 self.choice=nil
@@ -228,15 +228,15 @@ self:showBanner()
 if self.field.map.visit then
 d.setFlag(self.state,"v_"..self.field.map.visit,true)
 end
-for p,f in ipairs(self.field.map.enter or{})do
-if not self.script and d.meets(self.state,f.when)then
-self:runScene(f.script)
+for f,c in ipairs(self.field.map.enter or{})do
+if not self.script and d.meets(self.state,c.when)then
+self:runScene(c.script)
 end
 end
 end
 
-function a:warp(c,f,g,k)
-self.pendingWarp={map=c,x=f,y=g,dir=b.DIRECTION_INDEX[k or"down"]or 1}
+function a:warp(mapId,x,y,dir)
+self.pendingWarp={map=mapId,x=x,y=y,dir=b.DIRECTION_INDEX[dir or"down"]or 1}
 self:effect("door")
 self:startFade("out",12)
 end
@@ -251,13 +251,13 @@ self:enterField(c.map,c.x,c.y,c.dir)
 self:startFade("in",12)
 end
 
-function a:runScene(c)
-self.script=i.new(i.named(c),c)
-b.trace("scene "..c)
+function a:runScene(name)
+self.script=i.new(i.named(name),name)
+b.trace("scene "..name)
 end
 
-function a:runCommands(c,f)
-self.script=i.new(c,f)
+function a:runCommands(commands,name)
+self.script=i.new(commands,name)
 end
 
 function a:storyChanged()
@@ -286,59 +286,59 @@ end
 return false
 end
 
-function a:openDialog(c,f,g)
-local k=b.text(f,g)
-self:openText(c,k)
+function a:openDialog(speaker,key,argument)
+local c=b.text(key,argument)
+self:openText(speaker,c)
 end
 
-function a:openText(l,p)
-local c=self.screen:wrapText(p,j.width)
+function a:openText(speaker,text)
+local c=self.screen:wrapText(text,j.width)
 local f={}
 for k=1,#c,j.lines do
 local g={}
-for q=k,math.min(#c,k+j.lines-1)do
-g[#g+1]=c[q]
+for m=k,math.min(#c,k+j.lines-1)do
+g[#g+1]=c[m]
 end
 f[#f+1]=g
 end
-self.dialog={speaker=l,pages=f,page=1,shown=0}
+self.dialog={speaker=speaker,pages=f,page=1,shown=0}
 end
 
-function a:notice(c,f,g)
-self:openText(nil,b.text(c,f,g))
+function a:notice(key,first,second)
+self:openText(nil,b.text(key,first,second))
 self:effect("item")
 end
 
-function a:openChoice(c,f,g)
-if c then
-self:openDialog(nil,c,g)
+function a:openChoice(question,options,argument)
+if question then
+self:openDialog(nil,question,argument)
 self.dialog.holding=true
 end
-self.choice={options=f,selected=1}
+self.choice={options=options,selected=1}
 self.choiceResult=nil
 end
 
-function a:emote(c,g)
-local f=self.field:actor(c)
-if f then
-c=f.id
+function a:emote(actorId,kind)
+local c=self.field:actor(actorId)
+if c then
+actorId=c.id
 end
-self.emotes[c]={kind=g,timer=h.emote}
+self.emotes[actorId]={kind=kind,timer=h.emote}
 self:effect("emote")
 end
 
-function a:openTitleCard(c,f)
-self.card={key=c,subKey=f,timer=0}
+function a:openTitleCard(key,subKey)
+self.card={key=key,subKey=subKey,timer=0}
 self.cardReturn=self.mode
 self.mode=a.MODE_CARD
 self.dialog={card=true,pages={},page=1,shown=0}
 self:playJingle(e.CHAPTER)
 end
 
-function a:tickCard(c)
-local f=self.card
-f.timer=f.timer+1
-if f.timer>60 and c and(c.pressed.a or c.pressed.start)then
+function a:tickCard(input)
+local c=self.card
+c.timer=c.timer+1
+if c.timer>60 and input and(input.pressed.a or input.pressed.start)then
 self.card=nil
 self.dialog=nil
 self.mode=self.cardReturn
@@ -346,27 +346,27 @@ self:resumeMapMusic()
 end
 end
 
-function a:tickDialog(f)
+function a:tickDialog(input)
 local c=self.dialog
-local k=c.pages[c.page]
-local g=0
-for p,l in ipairs(k or{})do
-g=g+string.len(l)
+local g=c.pages[c.page]
+local f=0
+for m,k in ipairs(g or{})do
+f=f+string.len(k)
 end
-if c.shown<g then
+if c.shown<f then
 c.shown=c.shown+h.typeSpeed
 if self.clock%6==0 then
 self:effect("talk")
 end
-if f and(f.pressed.a or f.pressed.b)then
-c.shown=g
+if input and(input.pressed.a or input.pressed.b)then
+c.shown=f
 end
 return
 end
 if c.holding and c.page>=#c.pages then
 return
 end
-if f and(f.pressed.a or f.pressed.b)then
+if input and(input.pressed.a or input.pressed.b)then
 if c.page<#c.pages then
 c.page=c.page+1
 c.shown=0
@@ -388,34 +388,34 @@ end
 return c.shown>=f
 end
 
-function a:tickChoice(c)
-local f=self.choice
+function a:tickChoice(input)
+local c=self.choice
 if self.dialog and not self:dialogComplete()then
-self:tickDialog(c)
+self:tickDialog(input)
 return
 end
-if not c then
+if not input then
 return
 end
-local g=b.verticalStep(c.pressed)
-if g~=0 then
-f.selected=b.wrap(f.selected+g,#f.options)
+local f=b.verticalStep(input.pressed)
+if f~=0 then
+c.selected=b.wrap(c.selected+f,#c.options)
 self:effect("cursor")
 end
-if c.pressed.a then
-self.choiceResult=f.selected
+if input.pressed.a then
+self.choiceResult=c.selected
 self.choice=nil
 self.dialog=nil
 self:effect("confirm")
 end
 end
 
-function a:tickField(f)
+function a:tickField(input)
 local c=self.field
-for k,g in pairs(self.emotes)do
-g.timer=g.timer-1
-if g.timer<=0 then
-self.emotes[k]=nil
+for g,f in pairs(self.emotes)do
+f.timer=f.timer-1
+if f.timer<=0 then
+self.emotes[g]=nil
 end
 end
 if self.pendingWarp then
@@ -432,12 +432,12 @@ end
 return
 end
 if self.choice then
-self:tickChoice(f)
+self:tickChoice(input)
 c:advanceActors()
 return
 end
 if self.dialog then
-self:tickDialog(f)
+self:tickDialog(input)
 c:advanceActors()
 return
 end
@@ -451,7 +451,7 @@ self:resumeAfterScene()
 end
 return
 end
-self:tickPlayer(f)
+self:tickPlayer(input)
 c:wanderNpcs()
 c:updateCamera()
 end
@@ -464,10 +464,10 @@ end
 end
 end
 
-function a:tickPlayer(k)
+function a:tickPlayer(input)
 local g=self.field
-local p=g.player
-if p.moving then
+local m=g.player
+if m.moving then
 local c=g:advanceActors()
 if c then
 self:arrived()
@@ -475,15 +475,15 @@ end
 return
 end
 g:advanceActors()
-if not k then
+if not input then
 return
 end
-local l,f=k.pressed,k.held
-if l.start then
+local k,f=input.pressed,input.held
+if k.start then
 self:openMenu()
 return
 end
-if l.a then
+if k.a then
 self:interact()
 return
 end
@@ -498,7 +498,7 @@ elseif f.right then
 c=4
 end
 if c then
-if not g:walkPlayer(c,f.b)and l[b.DIRECTIONS[c].name]then
+if not g:walkPlayer(c,f.b)and k[b.DIRECTIONS[c].name]then
 self:effect("bump")
 end
 end
@@ -526,9 +526,9 @@ if k then
 self:runScene(k.script)
 return
 end
-local l=g:countStep()
-if l then
-self:startBattle(l,{})
+local m=g:countStep()
+if m then
+self:startBattle(m,{})
 end
 end
 
@@ -537,8 +537,8 @@ local g=self.field
 local f,c=g:interactionAhead()
 if f=="npc"then
 local k=c.definition
-local l=g.player
-c.dir=({2,1,4,3})[l.dir]
+local m=g.player
+c.dir=({2,1,4,3})[m.dir]
 if k then
 self:talkTo(k)
 end
@@ -561,64 +561,64 @@ self:runScene("bellpost")
 end
 end
 
-function a:talkTo(c)
-local g=c.talk
-if type(g)=="string"then
-self:runScene(g)
+function a:talkTo(definition)
+local f=definition.talk
+if type(f)=="string"then
+self:runScene(f)
 return
 end
-for k,f in ipairs(g or{})do
-if d.meets(self.state,f.when)then
-if f.script then
-self:runScene(f.script)
+for g,c in ipairs(f or{})do
+if d.meets(self.state,c.when)then
+if c.script then
+self:runScene(c.script)
 else
-self:runCommands({{"say",c.name or c.sprite,f.say}},c.id)
+self:runCommands({{"say",definition.name or definition.sprite,c.say}},definition.id)
 end
 return
 end
 end
 end
 
-function a:openChest(c)
-if d.hasFlag(self.state,c.flag)then
+function a:openChest(chest)
+if d.hasFlag(self.state,chest.flag)then
 self:runCommands({{"say",nil,"ChestEmpty"}},"chest")
 return
 end
-d.setFlag(self.state,c.flag,true)
+d.setFlag(self.state,chest.flag,true)
 self:effect("chest")
-if c.gold then
-self:runCommands({{"gold",c.gold}},"chest")
+if chest.gold then
+self:runCommands({{"gold",chest.gold}},"chest")
 else
-self:runCommands({{"give",c.item,c.count or 1}},"chest")
+self:runCommands({{"give",chest.item,chest.count or 1}},"chest")
 end
 end
 
-function a:tendLamp(c)
-if self.field:lampLit(c)then
-self:runCommands({{"say",nil,c.litText or"LampLit"}},"lamp")
+function a:tendLamp(lamp)
+if self.field:lampLit(lamp)then
+self:runCommands({{"say",nil,lamp.litText or"LampLit"}},"lamp")
 return
 end
-if c.when and not d.meets(self.state,c.when)then
-self:runCommands({{"say",nil,c.lockedText or"LampLocked"}},"lamp")
+if lamp.when and not d.meets(self.state,lamp.when)then
+self:runCommands({{"say",nil,lamp.lockedText or"LampLocked"}},"lamp")
 return
 end
-d.setFlag(self.state,c.flag,true)
+d.setFlag(self.state,lamp.flag,true)
 self:effect("lamp")
-local f=0
+local c=0
 if self.field.map.fog then
-f=self.field:refreshReveal()
+c=self.field:refreshReveal()
 end
-if c.script then
-self:runScene(c.script)
-elseif f>0 then
+if lamp.script then
+self:runScene(lamp.script)
+elseif c>0 then
 self:runCommands({{"say",nil,"LampLights"},{"sfx","bright"},{"say",nil,"IsletRevealed"}},"lamp")
 else
 self:runCommands({{"say",nil,"LampLights"}},"lamp")
 end
 end
 
-function a:startBattle(c,f)
-self.pendingBattle={troop=c,options=f,timer=h.swirl}
+function a:startBattle(troop,options)
+self.pendingBattle={troop=troop,options=options,timer=h.swirl}
 self:stopMusic()
 self:effect("ambush")
 end
@@ -631,41 +631,41 @@ self.mode=a.MODE_BATTLE
 self:playMusic(c.options.music or e.BATTLE)
 end
 
-function a:tickBattleMode(c)
-self.battleScene:tick(c)
+function a:tickBattleMode(input)
+self.battleScene:tick(input)
 end
 
-function a:endBattle(c)
-local f=self.battleScene.options
+function a:endBattle(result)
+local c=self.battleScene.options
 self.battleScene=nil
-if c=="lose"and f.forgiving then
-for k,g in ipairs(d.active(self.state))do
-g.hp=math.max(1,g.hp)
+if result=="lose"and c.forgiving then
+for g,f in ipairs(d.active(self.state))do
+f.hp=math.max(1,f.hp)
 end
-elseif c=="lose"then
+elseif result=="lose"then
 self.mode=a.MODE_OVER
 self.script=nil
 self.overTimer=0
 self:playMusic(e.OVER)
 return
 end
-for k,g in ipairs(d.active(self.state))do
-if g.hp<=0 and c=="win"then
-g.hp=1
+for g,f in ipairs(d.active(self.state))do
+if f.hp<=0 and result=="win"then
+f.hp=1
 end
 end
 self.mode=a.MODE_FIELD
-self.battleResult=c
-if f.after=="heal"then
+self.battleResult=result
+if c.after=="heal"then
 d.restoreAll(self.state)
 end
 self:resumeMapMusic()
 self:startFade("in",10)
 end
 
-function a:tickOver(c)
+function a:tickOver(input)
 self.overTimer=self.overTimer+1
-if self.overTimer>90 and c and(c.pressed.a or c.pressed.start)then
+if self.overTimer>90 and input and(input.pressed.a or input.pressed.start)then
 self:openTitle()
 end
 end

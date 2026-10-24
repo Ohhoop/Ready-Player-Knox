@@ -29,36 +29,36 @@ a.ORDER={"up","left","down","right"}
 local h="#"
 local f="."
 local g="o"
-local m="S"
-local n="-"
-local o="="
+local l="S"
+local m="-"
+local n="="
 
-local function i(b)
-return(b-1+a.COLUMNS)%a.COLUMNS+1
+local function i(column)
+return(column-1+a.COLUMNS)%a.COLUMNS+1
 end
 
-local function j(l,e)
+local function j(row,runs)
 local b=0
 local c=nil
 for d=1,a.COLUMNS+1 do
-local k=d<=a.COLUMNS and l[d]==f
-if k and not c then
+local e=d<=a.COLUMNS and row[d]==f
+if e and not c then
 c=d
-elseif not k and c then
+elseif not e and c then
 b=b+1
-e[b*2-1]=c
-e[b*2]=d-1
+runs[b*2-1]=c
+runs[b*2]=d-1
 c=nil
 end
 end
 return b
 end
 
-function a.new(k)
-local l=SpiffBoy.SnackMan.Layouts[k]
+function a.new(index)
+local k=SpiffBoy.SnackMan.Layouts[index]
 local b=setmetatable({},a)
-b.index=k
-b.decor=l.decor
+b.index=index
+b.decor=k.decor
 b.tiles={}
 b.chips={}
 b.bats={}
@@ -67,11 +67,11 @@ b.runCounts={}
 b.total=0
 b.left=0
 for c=1,a.ROWS do
-local p=l.rows[c]
+local o=k.rows[c]
 b.tiles[c]={}
 b.chips[c]={}
 for d=1,a.COLUMNS do
-local e=string.sub(p,d,d)
+local e=string.sub(o,d,d)
 b.tiles[c][d]=e
 if e==f or e==g then
 b.chips[c][d]=e
@@ -82,7 +82,7 @@ end
 else
 b.chips[c][d]=false
 end
-if e==m then
+if e==l then
 b.start={x=d,y=c}
 end
 end
@@ -96,52 +96,52 @@ b.left=b.total
 return b
 end
 
-function a:isOpen(d,b)
-if b<1 or b>a.ROWS then
+function a:isOpen(x,y)
+if y<1 or y>a.ROWS then
 return false
 end
-local c=self.tiles[b][i(d)]
-return c~=h and c~=n and c~=o
+local b=self.tiles[y][i(x)]
+return b~=h and b~=m and b~=n
 end
 
-function a:isTunnel(b,c)
-return c==self.tunnelRow and(b<=a.TUNNEL or b>a.COLUMNS-a.TUNNEL)
+function a:isTunnel(x,y)
+return y==self.tunnelRow and(x<=a.TUNNEL or x>a.COLUMNS-a.TUNNEL)
 end
 
-function a:eat(k,c)
-local e=i(k)
-local b=self.chips[c]
+function a:eat(x,y)
+local d=i(x)
+local b=self.chips[y]
 if not b then
 return nil
 end
-local d=b[e]
-if not d then
+local c=b[d]
+if not c then
 return nil
 end
-b[e]=false
+b[d]=false
 self.left=self.left-1
-if d==f then
-self.runCounts[c]=j(b,self.runs[c])
+if c==f then
+self.runCounts[y]=j(b,self.runs[y])
 end
-return d
+return c
 end
 
 function a:eaten()
 return self.total-self.left
 end
 
-function a:chipRuns(b)
-return self.runs[b],self.runCounts[b]
+function a:chipRuns(y)
+return self.runs[y],self.runCounts[y]
 end
 
-function a:hasBat(b,c)
-return self.chips[c][b]==g
+function a:hasBat(x,y)
+return self.chips[y][x]==g
 end
 
-function a.centre(b,c)
-return(b-1)*a.TILE+a.TILE/2,(c-1)*a.TILE+a.TILE/2
+function a.centre(x,y)
+return(x-1)*a.TILE+a.TILE/2,(y-1)*a.TILE+a.TILE/2
 end
 
-function a.tileAt(b,c)
-return math.floor(b/a.TILE)+1,math.floor(c/a.TILE)+1
+function a.tileAt(px,py)
+return math.floor(px/a.TILE)+1,math.floor(py/a.TILE)+1
 end

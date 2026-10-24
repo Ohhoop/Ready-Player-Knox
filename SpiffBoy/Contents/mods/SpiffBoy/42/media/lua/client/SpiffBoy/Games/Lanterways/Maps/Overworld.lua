@@ -4,31 +4,31 @@ require"SpiffBoy/Games/Lanterways/Maps/MurkSea"
 require"SpiffBoy/Games/Lanterways/Music"
 
 local c=SpiffBoy.Lanterways
-local g=c.Maps
+local f=c.Maps
 local i=c.MapRows
 local j=c.Music
 local e=c.MurkSea.sites
 
-local function a(f,h)
-local b=e[f]
+local function a(name,fields)
+local b=e[name]
 if not b then
-error("Lanterways: no place named "..f.." on the Murk Sea")
+error("Lanterways: no place named "..name.." on the Murk Sea")
 end
-local d=h or{}
+local d=fields or{}
 d.x,d.y=b.x,b.y
 return d
 end
 
-local function b(d,f,h,k,l,m)
-return a(d,{to=f,tx=h,ty=k,dir=l,when=m})
+local function b(name,to,tx,ty,dir,when)
+return a(name,{to=to,tx=tx,ty=ty,dir=dir,when=when})
 end
 
-local function d(k,f)
-local h=e[k]
-return{kind="watchlight",x=h.x,y=h.y,w=2,h=3,door=1,to="watch"..f,tx=5,ty=14,dir="up",region=f,flag="w_"..f}
+local function d(name,region)
+local g=e[name]
+return{kind="watchlight",x=g.x,y=g.y,w=2,h=3,door=1,to="watch"..region,tx=5,ty=14,dir="up",region=region,flag="w_"..region}
 end
 
-g.murksea={
+f.murksea={
 rows=i.murksea,
 place="murksea",
 banner="murksea",
@@ -195,7 +195,7 @@ b("spireGate","spire",17,38,"up"),
 },
 }
 
-for k,f in ipairs(c.MurkSea.extraLamps)do
-local h=g.murksea.lamps
-h[#h+1]=a(f.site,{flag=f.flag})
+for k,g in ipairs(c.MurkSea.extraLamps)do
+local h=f.murksea.lamps
+h[#h+1]=a(g.site,{flag=g.flag})
 end

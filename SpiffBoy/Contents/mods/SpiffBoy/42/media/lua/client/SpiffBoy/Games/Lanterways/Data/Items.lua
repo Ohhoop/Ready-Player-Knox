@@ -199,26 +199,26 @@ e.code=d
 a.CODES[d]=b
 end
 
-function a.get(b)
-return a.LIST[b]
+function a.get(id)
+return a.LIST[id]
 end
 
-function a.isEquipment(b)
-return b.kind=="weapon"or b.kind=="armor"or b.kind=="charm"
+function a.isEquipment(item)
+return item.kind=="weapon"or item.kind=="armor"or item.kind=="charm"
 end
 
-function a.fits(d,b)
-if b.kind=="weapon"then
-return b.wield==d.weapon
-elseif b.kind=="armor"then
-return c.Characters.canWear(d,b.wear)
+function a.fits(character,item)
+if item.kind=="weapon"then
+return item.wield==character.weapon
+elseif item.kind=="armor"then
+return c.Characters.canWear(character,item.wear)
 end
-return b.kind=="charm"
+return item.kind=="charm"
 end
 
-function a.sellPrice(b)
-if not b.price or b.price<=0 or b.kind=="key"then
+function a.sellPrice(item)
+if not item.price or item.price<=0 or item.kind=="key"then
 return 0
 end
-return math.floor(b.price/2)
+return math.floor(item.price/2)
 end

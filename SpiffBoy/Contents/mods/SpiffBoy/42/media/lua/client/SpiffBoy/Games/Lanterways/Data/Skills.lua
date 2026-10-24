@@ -1,9 +1,9 @@
 require"SpiffBoy/Games/Lanterways/Base"
 
-local d=SpiffBoy.Lanterways
+local c=SpiffBoy.Lanterways
 
 local a={}
-d.Skills=a
+c.Skills=a
 
 a.LIST={
 kindle={cost=3,target="enemy",kind="magic",power=16,element="flame",fx="flame"},
@@ -107,16 +107,16 @@ a.DUO_GLOW=50
 a.BOND_NEEDED=30
 a.BOND_CAP=99
 
-for c,b in pairs(a.LIST)do
-b.id=c
+for d,b in pairs(a.LIST)do
+b.id=d
 b.cost=b.cost or 0
 end
 
-function a.get(b)
-return a.LIST[b]
+function a.get(id)
+return a.LIST[id]
 end
 
-function a.usableInField(c)
-local b=c.kind
-return not c.bright and(b=="heal"or b=="cure"or b=="revive")
+function a.usableInField(skill)
+local b=skill.kind
+return not skill.bright and(b=="heal"or b=="cure"or b=="revive")
 end

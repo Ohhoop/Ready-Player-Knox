@@ -39,76 +39,76 @@ a.AHEAD=4
 a.FLANK=2
 a.SCHEDULE={420,1200,420,1200,300,1200,300}
 
-local l={
+local j={
 {hero=0.75,heroBat=0.85,zombie=0.70,scared=0.45,tunnel=0.40},
 {hero=0.85,heroBat=0.90,zombie=0.80,scared=0.50,tunnel=0.45},
 {hero=0.90,heroBat=0.95,zombie=0.85,scared=0.55,tunnel=0.50},
 }
-local m={
+local k={
 {0,0,240,480},
 {0,0,150,300},
 {0,0,60,120},
 }
-local n={180,120,90}
-local h=#SpiffBoy.SnackMan.Layouts
-local o=0.03
-local p=0.12
-local q=0.02
-local r=0.06
-local s=7
-local t=1
-local u=60
+local l={180,120,90}
+local g=#SpiffBoy.SnackMan.Layouts
+local m=0.03
+local n=0.12
+local o=0.02
+local p=0.06
+local q=7
+local r=1
+local s=60
 
-local function v(b)
-if b<=1 then
+local function t(level)
+if level<=1 then
 return 1
-elseif b<=4 then
+elseif level<=4 then
 return 2
 end
 return 3
 end
 
-function a.level(d,i,w)
-local e=v(d)
-local b=l[e]
-local j=math.floor((d-1)/h)
-local f=math.min(p,j*o)
-local k=math.min(r,j*q)
-local g={}
-for c=1,w do
-if i then
-g[c]=(c-1)*n[e]
+function a.level(level,horde,count)
+local d=t(level)
+local b=j[d]
+local h=math.floor((level-1)/g)
+local e=math.min(n,h*m)
+local i=math.min(p,h*o)
+local f={}
+for c=1,count do
+if horde then
+f[c]=(c-1)*l[d]
 else
-g[c]=m[e][c]
+f[c]=k[d][c]
 end
 end
-local c=b.zombie+f
-if i then
+local c=b.zombie+e
+if horde then
 c=c*a.HORDE_SPEED
 end
 return{
-hero=b.hero+k,
-heroBat=b.heroBat+k,
+hero=b.hero+i,
+heroBat=b.heroBat+i,
 zombie=c,
-scared=b.scared+f,
-tunnel=b.tunnel+f,
-batTicks=math.max(t,s-d)*u,
-releases=g,
+scared=b.scared+e,
+tunnel=b.tunnel+e,
+batTicks=math.max(r,q-level)*s,
+releases=f,
 }
 end
 
-function a.kinds(c,d)
-if not d then
+function a.kinds(level,horde)
+if not horde then
 return a.CLASSIC_KINDS
 end
 local b={}
-local e=math.min(a.HORDE_MAX,a.HORDE_START+c-1)
-for f=1,e do
-b[f]=a.HORDE_KIND
+local c=math.min(a.HORDE_MAX,a.HORDE_START+level-1)
+for d=1,c do
+b[d]=a.HORDE_KIND
 end
 return b
 end
 
-function a.mazeOf(b)
-return(b-1)%h+1
+function a.mazeOf(level)
+return(level-1)%g+1
 end

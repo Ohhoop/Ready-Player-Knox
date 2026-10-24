@@ -9,148 +9,148 @@ a.MAX_ENTRIES=512
 a.MAX_STRING=128
 a.MAX_KEY=32
 
-local function f(b)
-if type(b)=="string"then
-if string.len(b)>a.MAX_KEY then
+local function d(key)
+if type(key)=="string"then
+if string.len(key)>a.MAX_KEY then
 return nil
 end
-return b
+return key
 end
-if SpiffBoy.isInteger(b)then
-return b
+if SpiffBoy.isInteger(key)then
+return key
 end
 return nil
 end
 
-local function g(b,e,c)
-local d=type(b)
-if d=="number"then
-if not SpiffBoy.isFinite(b)then
+local function e(value,depth,budget)
+local b=type(value)
+if b=="number"then
+if not SpiffBoy.isFinite(value)then
 return nil
 end
-return b
+return value
 end
-if d=="boolean"then
-return b
+if b=="boolean"then
+return value
 end
-if d=="string"then
-if string.len(b)>a.MAX_STRING then
-return string.sub(b,1,a.MAX_STRING)
+if b=="string"then
+if string.len(value)>a.MAX_STRING then
+return string.sub(value,1,a.MAX_STRING)
 end
-return b
+return value
 end
-if d~="table"or e>=a.MAX_DEPTH then
+if b~="table"or depth>=a.MAX_DEPTH then
 return nil
 end
-local h={}
-for k,l in pairs(b)do
-if c.left<=0 then
+local c={}
+for h,i in pairs(value)do
+if budget.left<=0 then
 break
 end
-local i=f(k)
-if i~=nil then
-c.left=c.left-1
-local j=g(l,e+1,c)
-if j~=nil then
-h[i]=j
+local f=d(h)
+if f~=nil then
+budget.left=budget.left-1
+local g=e(i,depth+1,budget)
+if g~=nil then
+c[f]=g
 end
 end
 end
-return h
+return c
 end
 
-function a.clean(b)
-if type(b)~="table"then
+function a.clean(value)
+if type(value)~="table"then
 return{}
 end
-return g(b,0,{left=a.MAX_ENTRIES})or{}
+return e(value,0,{left=a.MAX_ENTRIES})or{}
 end
 
-local function k(b,c)
-if c==nil then
-return tostring(b)
+local function h(key,inner)
+if inner==nil then
+return tostring(key)
 end
-return tostring(b).."."..c
+return tostring(key).."."..inner
 end
 
-local function h(b,i,d)
-local c=type(b)
-if c=="number"then
-if not SpiffBoy.isFinite(b)then
+local function f(value,depth,budget)
+local b=type(value)
+if b=="number"then
+if not SpiffBoy.isFinite(value)then
 return"holds a number that is not finite"
 end
 return nil
 end
-if c=="boolean"then
+if b=="boolean"then
 return nil
 end
-if c=="string"then
-if string.len(b)>a.MAX_STRING then
-return"holds a string of "..string.len(b).." characters, at most "..a.MAX_STRING.." are kept"
+if b=="string"then
+if string.len(value)>a.MAX_STRING then
+return"holds a string of "..string.len(value).." characters, at most "..a.MAX_STRING.." are kept"
 end
 return nil
 end
-if c~="table"then
-return"holds a "..c..", only numbers, strings, booleans and tables are kept"
+if b~="table"then
+return"holds a "..b..", only numbers, strings, booleans and tables are kept"
 end
-if i>=a.MAX_DEPTH then
+if depth>=a.MAX_DEPTH then
 return"holds a table nested deeper than "..a.MAX_DEPTH.." levels"
 end
-for e,l in pairs(b)do
-if f(e)==nil then
-return"holds the key "..tostring(e)..", keys are whole numbers or strings of at most "..a.MAX_KEY.." characters"
+for c,i in pairs(value)do
+if d(c)==nil then
+return"holds the key "..tostring(c)..", keys are whole numbers or strings of at most "..a.MAX_KEY.." characters"
 end
-d.left=d.left-1
-if d.left<0 then
+budget.left=budget.left-1
+if budget.left<0 then
 return"holds more than "..a.MAX_ENTRIES.." entries"
 end
-local j,m=h(l,i+1,d)
-if j then
-return j,k(e,m)
+local g,j=f(i,depth+1,budget)
+if g then
+return g,h(c,j)
 end
 end
 return nil
 end
 
-function a.check(b)
-if type(b)~="table"then
-return"the save is a "..type(b)..", not a table"
+function a.check(save)
+if type(save)~="table"then
+return"the save is a "..type(save)..", not a table"
 end
-local c,d=h(b,0,{left=a.MAX_ENTRIES})
+local b,c=f(save,0,{left=a.MAX_ENTRIES})
+if b==nil then
+return nil
+end
 if c==nil then
-return nil
+return"the save "..b
 end
-if d==nil then
-return"the save "..c
-end
-return"the save at "..d.." "..c
+return"the save at "..c.." "..b
 end
 
-local function c(i,d)
+local function c(value,depth)
 local b=0
-for j,e in pairs(i)do
+for i,g in pairs(value)do
 b=b+1
-if type(e)=="table"and d+1<a.MAX_DEPTH then
-b=b+c(e,d+1)
+if type(g)=="table"and depth+1<a.MAX_DEPTH then
+b=b+c(g,depth+1)
 end
 end
 return b
 end
 
-function a.measure(b)
-if type(b)~="table"then
-error("SpiffBoy: a save is measured as a table, not a "..type(b))
+function a.measure(save)
+if type(save)~="table"then
+error("SpiffBoy: a save is measured as a table, not a "..type(save))
 end
-return c(b,0)
+return c(save,0)
 end
 
-function a.fromStore(b)
-if type(b)~="table"then
+function a.fromStore(store)
+if type(store)~="table"then
 return{}
 end
-return a.clean(b.save)
+return a.clean(store.save)
 end
 
-function a.toStore(b,d)
-b.save=a.clean(d)
+function a.toStore(store,save)
+store.save=a.clean(save)
 end

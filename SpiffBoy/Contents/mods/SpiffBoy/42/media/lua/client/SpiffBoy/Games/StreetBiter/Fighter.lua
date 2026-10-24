@@ -16,18 +16,18 @@ a.STAND_HEIGHT=54
 a.CROUCH_HEIGHT=34
 a.AIR_HEIGHT=46
 
-local p=1.3
-local q=1.0
-local r=5.2
+local o=1.3
+local p=1.0
+local q=5.2
 local j=1.6
-local s=0.28
+local r=0.28
 local f=24
-local t=20
-local u=10
+local s=20
+local t=10
 local k=8
-local v=3.2
-local w=1.6
-local x=40
+local u=3.2
+local v=1.6
+local w=40
 local y=12
 local z=8
 local A=30
@@ -53,29 +53,29 @@ local D={idle=true,walk=true,crouch=true}
 local E={idle=true,walk=true,crouch=true,block=true}
 local F={knocked=true,down=true,rise=true,ko=true,win=true,wait=true}
 
-function a.new(d,g,h)
+function a.new(definition,x,facing)
 local b=setmetatable({},a)
-b.definition=d
-b.maxHp=d.health
+b.definition=definition
+b.maxHp=definition.health
 b.specials={}
-for m,e in ipairs(d.specials)do
-b.specials[#b.specials+1]={motion=i.MOTIONS[e.motion].pattern,button=e.button,move=c.SPECIALS[e.move]}
+for e,d in ipairs(definition.specials)do
+b.specials[#b.specials+1]={motion=i.MOTIONS[d.motion].pattern,button=d.button,move=c.SPECIALS[d.move]}
 end
 b.chainList={}
-for m,e in ipairs(i.STANDARD_CHAINS)do
-b.chainList[#b.chainList+1]=e
+for e,d in ipairs(i.STANDARD_CHAINS)do
+b.chainList[#b.chainList+1]=d
 end
-b.chainList[#b.chainList+1]=d.chain
+b.chainList[#b.chainList+1]=definition.chain
 b.drift=0
-b:reset(g,h)
+b:reset(x,facing)
 return b
 end
 
-function a:reset(b,d)
-self.x=b
+function a:reset(x,facing)
+self.x=x
 self.y=0
 self.vy=0
-self.facing=d
+self.facing=facing
 self.hp=self.maxHp
 self.state=a.STATE_WAIT
 self.timer=0
@@ -91,8 +91,8 @@ self.pushX=0
 self.pushTicks=0
 self.direction=5
 self.history={}
-for e=1,f do
-self.history[e]=5
+for b=1,f do
+self.history[b]=5
 end
 self.prevA=false
 self.prevB=false
@@ -147,65 +147,65 @@ local e=self.x+b.far*self.facing
 return{left=math.min(d,e),right=math.max(d,e),bottom=self.y+b.low,top=self.y+b.high,move=b}
 end
 
-local function G(e,g)
+local function x(held,facing)
 local b=0
-if e.right then
+if held.right then
 b=b+1
 end
-if e.left then
+if held.left then
 b=b-1
 end
-b=b*g
+b=b*facing
 local d=0
-if e.up then
+if held.up then
 d=d-1
 end
-if e.down then
+if held.down then
 d=d+1
 end
 return 5+b-d*3
 end
 
-local function e(b)
-return b<=3
+local function e(direction)
+return direction<=3
 end
 
-local function H(b)
-return b>=7
+local function G(direction)
+return direction>=7
 end
 
-local function g(b)
-return b==1 or b==4 or b==7
+local function g(direction)
+return direction==1 or direction==4 or direction==7
 end
 
-local function m(b)
-return b==3 or b==6 or b==9
+local function m(direction)
+return direction==3 or direction==6 or direction==9
 end
 
-function a:readInput(b)
-self.direction=G(b,self.facing)
+function a:readInput(held)
+self.direction=x(held,self.facing)
 self.history[self.clock%f+1]=self.direction
 self.bufferA=math.max(0,self.bufferA-1)
 self.bufferB=math.max(0,self.bufferB-1)
-if b.a and not self.prevA then
+if held.a and not self.prevA then
 self.bufferA=k
 self.pressDirection=self.direction
 end
-if b.b and not self.prevB then
+if held.b and not self.prevB then
 self.bufferB=k
 self.pressDirection=self.direction
 end
-self.prevA=b.a
-self.prevB=b.b
+self.prevA=held.a
+self.prevB=held.b
 end
 
-function a:holdInput(b)
+function a:holdInput(held)
 self.clock=self.clock+1
-self:readInput(b)
+self:readInput(held)
 end
 
-function a:pressed(b)
-if b=="a"then
+function a:pressed(button)
+if button=="a"then
 return self.bufferA>0
 end
 return self.bufferB>0
@@ -216,48 +216,48 @@ self.bufferA=0
 self.bufferB=0
 end
 
-function a:directionAgo(b)
-return self.history[(self.clock-b)%f+1]
+function a:directionAgo(ago)
+return self.history[(self.clock-ago)%f+1]
 end
 
-function a:motion(h)
-local b=#h
+function a:motion(pattern)
+local b=#pattern
 local d=nil
-for n=0,t-1 do
-local I=self:directionAgo(n)
-local J=h[b]
-local o=false
-for L,K in ipairs(J)do
-if K==I then
-o=true
+for h=0,s-1 do
+local H=self:directionAgo(h)
+local I=pattern[b]
+local n=false
+for K,J in ipairs(I)do
+if J==H then
+n=true
 end
 end
-if o then
+if n then
 if d==nil then
-d=n
+d=h
 end
 b=b-1
 if b==0 then
-return d<u
+return d<t
 end
 end
 end
 return false
 end
 
-function a:startMove(b,d)
+function a:startMove(move,world)
 self:takePress()
 self.state=a.STATE_ATTACK
-self.move=b
+self.move=move
 self.moveTick=0
 self.connected=false
 self.hitDone=false
 self.armourUsed=false
-self.crouching=b.crouch==true
-if b.air then
+self.crouching=move.crouch==true
+if move.air then
 self.airAttacked=true
 end
-d:onMoveStarted(self,b)
+world:onMoveStarted(self,move)
 end
 
 function a:chainStep()
@@ -268,20 +268,20 @@ end
 return b
 end
 
-function a:openChains(d)
+function a:openChains(name)
 self.chains={}
-for h,b in ipairs(self.chainList)do
-if b[1]==d then
+for d,b in ipairs(self.chainList)do
+if b[1]==name then
 self.chains[#self.chains+1]={chain=b,step=1}
 end
 end
 end
 
-function a:followChains(n)
+function a:followChains(name)
 local b={}
-for o,d in ipairs(self.chains)do
+for n,d in ipairs(self.chains)do
 local h=d.chain
-if d.step<#h and h[d.step+1]==n then
+if d.step<#h and h[d.step+1]==name then
 b[#b+1]={chain=h,step=d.step+1}
 end
 end
@@ -289,13 +289,13 @@ self.chains=b
 return#b>0
 end
 
-function a:trySpecial(d)
+function a:trySpecial(world)
 if self:airborne()then
 return false
 end
-for h,b in ipairs(self.specials)do
+for d,b in ipairs(self.specials)do
 if self:pressed(b.button)and self:motion(b.motion)then
-self:startMove(b.move,d)
+self:startMove(b.move,world)
 self.chains={}
 return true
 end
@@ -319,20 +319,20 @@ end
 return c.NORMALS[c.normalFor(self.pressDirection,b,self:airborne())]
 end
 
-function a:tryAttack(d)
-if self:trySpecial(d)then
+function a:tryAttack(world)
+if self:trySpecial(world)then
 return true
 end
 local b=self:normalPressed()
 if not b then
 return false
 end
-self:startMove(b,d)
+self:startMove(b,world)
 self:openChains(b.name)
 return true
 end
 
-function a:tryCancel(h)
+function a:tryCancel(world)
 local b=self.move
 if not self.connected or c.SPECIALS[b.name]then
 return false
@@ -340,21 +340,21 @@ end
 if self.moveTick<b.startup+1 or self.moveTick>c.length(b)then
 return false
 end
-if self:trySpecial(h)then
+if self:trySpecial(world)then
 return true
 end
 local d=self:normalPressed()
 if d and self:followChains(d.name)then
-self:startMove(d,h)
+self:startMove(d,world)
 return true
 end
 return false
 end
 
-function a:control(h)
+function a:control(world)
 local b=self.direction
-if H(b)then
-self.vy=r
+if G(b)then
+self.vy=q
 self.y=0.01
 self.state=a.STATE_JUMP
 self.crouching=false
@@ -366,7 +366,7 @@ self.drift=-j*self.facing
 else
 self.drift=0
 end
-h:onJump(self)
+world:onJump(self)
 return
 end
 if e(b)then
@@ -378,21 +378,21 @@ self.crouching=false
 local d=self.definition.speed
 if m(b)then
 self.state=a.STATE_WALK
-self.x=self.x+p*d*self.facing
+self.x=self.x+o*d*self.facing
 elseif g(b)then
 self.state=a.STATE_WALK
-self.x=self.x-q*d*self.facing
+self.x=self.x-p*d*self.facing
 else
 self.state=a.STATE_IDLE
 end
 end
 
-function a:tickAttack(h)
+function a:tickAttack(world)
 local b=self.move
 self.moveTick=self.moveTick+1
 local d=self.moveTick
 if d==b.startup+1 and b.projectile then
-h:spawnProjectile(self,b.projectile)
+world:spawnProjectile(self,b.projectile)
 end
 if b.dash and c.isActive(b,d)then
 self.x=self.x+b.dash*self.facing
@@ -407,7 +407,7 @@ if b.hop and d==b.startup then
 self.vy=b.hop
 self.y=math.max(self.y,0.01)
 end
-if self:tryCancel(h)then
+if self:tryCancel(world)then
 return
 end
 if b.air or b.rise or b.hop then
@@ -434,15 +434,15 @@ self.airAttacked=false
 self.state=a.STATE_IDLE
 end
 
-function a:tickStunned(d)
+function a:tickStunned(world)
 local b=self.state
 if b==a.STATE_KNOCKED or b==a.STATE_KO then
 if not self:airborne()and self.fell then
 if b==a.STATE_KNOCKED then
 self.state=a.STATE_DOWN
-self.timer=x
+self.timer=w
 end
-d:onLanded(self)
+world:onLanded(self)
 self.fell=false
 end
 return
@@ -467,12 +467,12 @@ if not self:airborne()then
 return
 end
 self.y=self.y+self.vy
-self.vy=self.vy-s
+self.vy=self.vy-r
 local b=self.state
 if b==a.STATE_JUMP or(b==a.STATE_ATTACK and self.move.air)then
 self.x=self.x+self.drift
 elseif b==a.STATE_KNOCKED or b==a.STATE_KO then
-self.x=self.x-w*self.facing
+self.x=self.x-v*self.facing
 end
 if self.y<=0 then
 self.y=0
@@ -483,89 +483,89 @@ end
 end
 end
 
-function a:update(h,b)
+function a:update(held,world)
 self.clock=self.clock+1
-self:readInput(h)
+self:readInput(held)
 if self.pushTicks>0 then
 self.pushTicks=self.pushTicks-1
 self.x=self.x+self.pushX
 end
 self:fly()
-local d=self.state
-if d==a.STATE_ATTACK then
-self:tickAttack(b)
-elseif d==a.STATE_JUMP then
-if not self:tryAttack(b)then
+local b=self.state
+if b==a.STATE_ATTACK then
+self:tickAttack(world)
+elseif b==a.STATE_JUMP then
+if not self:tryAttack(world)then
 self.state=a.STATE_JUMP
 end
-elseif D[d]then
-if not self:tryAttack(b)then
-self:control(b)
+elseif D[b]then
+if not self:tryAttack(world)then
+self:control(world)
 end
-elseif d~=a.STATE_WAIT and d~=a.STATE_WIN then
-self:tickStunned(b)
+elseif b~=a.STATE_WAIT and b~=a.STATE_WIN then
+self:tickStunned(world)
 end
 self.x=SpiffBoy.clamp(self.x,self.minX,self.maxX)
 end
 
-function a:canBlock(b)
-if not E[self.state]or self:airborne()or b==c.GUARD_NONE then
+function a:canBlock(guard)
+if not E[self.state]or self:airborne()or guard==c.GUARD_NONE then
 return false
 end
 if not g(self.direction)then
 return false
 end
-local d=e(self.direction)
-if b==c.GUARD_LOW then
-return d
+local b=e(self.direction)
+if guard==c.GUARD_LOW then
+return b
 end
-if b==c.GUARD_OVERHEAD then
-return not d
+if guard==c.GUARD_OVERHEAD then
+return not b
 end
 return true
 end
 
-function a:pushAway(d,h)
+function a:pushAway(distance,fromX)
 local b=1
-if self.x<h then
+if self.x<fromX then
 b=-1
 end
-self.pushX=b*d/l
+self.pushX=b*distance/l
 self.pushTicks=l
 end
 
-function a:block(b,d)
+function a:block(hit,fromX)
 self.state=a.STATE_BLOCK
 self.crouching=e(self.direction)
-self.timer=math.max(1,b.blockstun)
-self.hp=math.max(0,self.hp-(b.chip or 0))
-self:pushAway(math.max(2,math.floor(b.push/2)),d)
+self.timer=math.max(1,hit.blockstun)
+self.hp=math.max(0,self.hp-(hit.chip or 0))
+self:pushAway(math.max(2,math.floor(hit.push/2)),fromX)
 self.move=nil
 self.chains={}
 end
 
-function a:takeHit(b,h)
-self.hp=math.max(0,self.hp-b.damage)
+function a:takeHit(hit,fromX)
+self.hp=math.max(0,self.hp-hit.damage)
 self.move=nil
 self.chains={}
 self.drift=0
-local d=self.hp==0
-if d or b.knockdown or self:airborne()then
-self.state=d and a.STATE_KO or a.STATE_KNOCKED
-self.vy=v
+local b=self.hp==0
+if b or hit.knockdown or self:airborne()then
+self.state=b and a.STATE_KO or a.STATE_KNOCKED
+self.vy=u
 self.y=math.max(self.y,0.01)
 self.fell=true
 self.crouching=false
 else
 self.state=a.STATE_HIT
-self.timer=b.hitstun
+self.timer=hit.hitstun
 end
-self:pushAway(b.push,h)
+self:pushAway(hit.push,fromX)
 end
 
-function a:absorb(b)
+function a:absorb(hit)
 self.armourUsed=true
-self.hp=math.max(1,self.hp-math.floor(b.damage/2))
+self.hp=math.max(1,self.hp-math.floor(hit.damage/2))
 end
 
 function a:celebrate()

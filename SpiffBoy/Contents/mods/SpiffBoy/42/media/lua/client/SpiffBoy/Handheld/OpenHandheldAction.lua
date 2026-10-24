@@ -6,13 +6,13 @@ require"SpiffBoy/UI/HandheldWindow"
 
 SpiffBoyOpenHandheldAction=ISBaseTimedAction:derive("SpiffBoyOpenHandheldAction")
 
-local function c(d,a)
-local b=SpiffBoyHandheldWindow.hiddenOn(a)
-if b then
-b:reveal()
+local function b(playerObj,console)
+local a=SpiffBoyHandheldWindow.hiddenOn(console)
+if a then
+a:reveal()
 return
 end
-SpiffBoyHandheldWindow.open(d,a)
+SpiffBoyHandheldWindow.open(playerObj,console)
 end
 
 function SpiffBoyOpenHandheldAction:isValid()
@@ -23,13 +23,13 @@ function SpiffBoyOpenHandheldAction:perform()
 ISBaseTimedAction.perform(self)
 local a=self.character:getInventory():getItemById(self.consoleId)
 if a then
-c(self.character,a)
+b(self.character,a)
 end
 end
 
-function SpiffBoyOpenHandheldAction:new(b,d)
-local a=ISBaseTimedAction.new(self,b)
-a.consoleId=d:getID()
+function SpiffBoyOpenHandheldAction:new(character,console)
+local a=ISBaseTimedAction.new(self,character)
+a.consoleId=console:getID()
 a.maxTime=1
 a.useProgressBar=false
 a.stopOnWalk=false
@@ -37,11 +37,11 @@ a.stopOnRun=false
 return a
 end
 
-function SpiffBoyOpenHandheldAction.playFor(a,b)
-if b:getContainer()==a:getInventory()then
-c(a,b)
+function SpiffBoyOpenHandheldAction.playFor(playerObj,console)
+if console:getContainer()==playerObj:getInventory()then
+b(playerObj,console)
 return
 end
-ISInventoryPaneContextMenu.transferIfNeeded(a,b)
-ISTimedActionQueue.add(SpiffBoyOpenHandheldAction:new(a,b))
+ISInventoryPaneContextMenu.transferIfNeeded(playerObj,console)
+ISTimedActionQueue.add(SpiffBoyOpenHandheldAction:new(playerObj,console))
 end

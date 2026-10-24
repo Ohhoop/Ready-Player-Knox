@@ -4,18 +4,18 @@ require"SpiffBoy/Handheld/WornHeadphones"
 
 local a=SpiffBoy.WornHeadphones
 
-function a.wear(c,b)
-local d=a.apply(c,b)
+function a.wear(playerObj,wornType)
+local b=a.apply(playerObj,wornType)
 if SpiffBoy.isDevBuild()then
-SpiffBoy.log("worn headphones "..tostring(b)..", changed "..tostring(d))
+SpiffBoy.log("worn headphones "..tostring(wornType)..", changed "..tostring(b))
 end
 if isClient()then
-sendClientCommand(c,SpiffBoy.COMMAND_MODULE,a.COMMAND,{type=b})
+sendClientCommand(playerObj,SpiffBoy.COMMAND_MODULE,a.COMMAND,{type=wornType})
 end
 end
 
-local function b(d,c)
-a.wear(c,nil)
+local function b(playerNum,playerObj)
+a.wear(playerObj,nil)
 end
 
 Events.OnCreatePlayer.Add(b)

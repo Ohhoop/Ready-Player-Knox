@@ -7,27 +7,27 @@ require"SpiffBoy/Games/QuickStart/Kart"
 require"SpiffBoy/Games/QuickStart/Items"
 require"SpiffBoy/Games/QuickStart/Brain"
 
-local i=SpiffBoy.QuickStart
-local j=i.Fixed
-local p=i.Tracks
-local J=i.Roster
-local b=i.Kart
-local f=i.Items
-local q=i.Brain
+local j=SpiffBoy.QuickStart
+local k=j.Fixed
+local o=j.Tracks
+local H=j.Roster
+local c=j.Kart
+local f=j.Items
+local p=j.Brain
 
-local c={}
-i.Race=c
+local d={}
+j.Race=d
 
 local g=math.floor
-local h=j.UNIT
-local z=j.FINE
+local h=k.UNIT
+local y=k.FINE
 
-c.MODE_GP="gp"
-c.MODE_VS="vs"
-c.MODE_TT="tt"
-c.MODE_BATTLE="battle"
+d.MODE_GP="gp"
+d.MODE_VS="vs"
+d.MODE_TT="tt"
+d.MODE_BATTLE="battle"
 
-c.TIMING={
+d.TIMING={
 intro=300,
 countdown=180,
 lights={30,90,150},
@@ -41,233 +41,233 @@ startEarly=45,
 stallTicks=40,
 }
 
-local d=c.TIMING
+local e=d.TIMING
 
-local function v(k,l)
+local function u(track,kind)
 local a={}
-for m,e in ipairs(k.objects)do
-if e.kind==l then
-a[#a+1]={x=e.x*h,y=e.y*h,wait=0}
+for i,b in ipairs(track.objects)do
+if b.kind==kind then
+a[#a+1]={x=b.x*h,y=b.y*h,wait=0}
 end
 end
 return a
 end
 
-local function w(u,m)
-local e=u.waypoints
-local k=#e
-local x=g((m-1)/2)
-local n=1+x*d.gridGap
-local l=(k-n)%k+1
-local a,o=e[l],e[l%k+1]
-local r=j.atan2(o.y-a.y,o.x-a.x)
-local s=g(r/z)
-local t=((m-1)%2==0)and-d.gridSide or d.gridSide
-local y=a.x-g(j.sin(s)*t/j.ONE)
-local A=a.y+g(j.cos(s)*t/j.ONE)
-return y*h,A*h,r,l,-n
+local function v(track,place)
+local b=track.waypoints
+local i=#b
+local t=g((place-1)/2)
+local m=1+t*e.gridGap
+local l=(i-m)%i+1
+local a,n=b[l],b[l%i+1]
+local q=k.atan2(n.y-a.y,n.x-a.x)
+local r=g(q/y)
+local s=((place-1)%2==0)and-e.gridSide or e.gridSide
+local w=a.x-g(k.sin(r)*s/k.ONE)
+local x=a.y+g(k.cos(r)*s/k.ONE)
+return w*h,x*h,q,l,-m
 end
 
-function c.new(a)
-local k=p.load(a.track,a.cc.mirrored)
-local e={
-mode=a.mode,battle=a.mode==c.MODE_BATTLE,track=k,cc=a.cc,
-random=SpiffBoyRandom.new(a.seed),tick=0,phase="intro",phaseTick=0,raceTick=0,
+function d.new(params)
+local b=o.load(params.track,params.cc.mirrored)
+local a={
+mode=params.mode,battle=params.mode==d.MODE_BATTLE,track=b,cc=params.cc,
+random=SpiffBoyRandom.new(params.seed),tick=0,phase="intro",phaseTick=0,raceTick=0,
 karts={},minds={},seats={},
-crates=a.mode==c.MODE_TT and{}or v(k,"crate"),
-money=(a.mode==c.MODE_BATTLE or a.mode==c.MODE_TT)and{}or v(k,"money"),
+crates=params.mode==d.MODE_TT and{}or u(b,"crate"),
+money=(params.mode==d.MODE_BATTLE or params.mode==d.MODE_TT)and{}or u(b,"money"),
 hazards={},shots={},helicopter=nil,storm=0,events={},finishOrder={},items=true,inputs={},
 lapTimes={},ghost=nil,humanRank=1,seatPrev={},
 }
-for l,n in ipairs(a.grid)do
-local r,s,t,o,u
-if e.battle then
-local m=k.spawns[l]
-r,s=m.x*h,m.y*h
-local x=k.extent/2
-t=j.atan2(x-m.y,x-m.x)
-o,u=1,0
-else
-r,s,t,o,u=w(k,l)
-end
-local m=b.new(n.driver,r,s,t,a.cc)
-m.wp,m.progress,m.lastSafe=o,u,o
-m.seat=n.seat
-e.karts[l]=m
-e.lapTimes[l]={}
-if n.seat then
-e.seats[n.seat]=l
-else
-e.minds[l]=q.new(e.random,a.cc)
-end
-end
-if a.mode==c.MODE_TT then
-local l=e.karts[1]
-l.item,l.itemCount=f.COFFEE3,3
-end
-if a.ghost then
-local n,o,r,m,s=w(k,1)
-local l=b.new(a.ghost.driver,n,o,r,a.cc)
-l.wp,l.progress,l.lastSafe=m,s,m
-l.item,l.itemCount=f.COFFEE3,3
-e.ghost={kart=l,reader=a.ghost.reader}
-end
-if a.skipIntro then
-e.phase="countdown"
-end
-return e
-end
-
-local function A(k,a)
-local o=k.track.waypoints
-local l=#o
-local s,t=g(a.x/h),g(a.y/h)
-local m,r=a.wp,nil
-for y=-2,d.lapSearch do
-local e=i.wrapIndex(a.wp+y,l)
-local n,u=o[e].x-s,o[e].y-t
-local x=n*n+u*u
-if not r or x<r then
-m,r=e,x
-end
-end
-local e=m-a.wp
-if e>l/2 then
-e=e-l
-elseif e<-l/2 then
-e=e+l
-end
-a.progress=a.progress+e
-a.wp=m
-if p.surfaceAt(k.track,s,t)~=p.WATER and a.z==0 then
-a.lastSafe=m
-end
-local n=g(a.progress/l)+1
-if n>a.lap and n>=2 then
-local u=k.lapTimes[a.place]
-u[#u+1]=k.raceTick
-k.events[#k.events+1]={kind="lap",kart=a.place,lap=n}
-end
-a.lap=math.max(1,n)
-end
-
-local function B(n,a)
-local e=n.track.waypoints
-local k=e[a.wp%#e+1]
-local l,m=k.x-g(a.x/h),k.y-g(a.y/h)
-return l*l+m*m
-end
-
-local k
-local l={}
-
-local function C(m,n)
-local a,e=k[m],k[n]
-if a.out~=e.out then
-return not a.out
-end
-if a.out then
-if a.outTick~=e.outTick then
-return a.outTick>e.outTick
-end
-return m<n
-end
-if a.cans~=e.cans then
-return a.cans>e.cans
-end
-if a.hits~=e.hits then
-return a.hits<e.hits
-end
-return m<n
-end
-
-local function D(e,m)
-local a,n=k[e],k[m]
-if a.finished~=n.finished then
-return a.finished
-end
-if a.finished then
-return a.finishTick<n.finishTick or(a.finishTick==n.finishTick and e<m)
-end
-if a.progress~=n.progress then
-return a.progress>n.progress
-end
-if l[e]~=l[m]then
-return l[e]<l[m]
-end
-return e<m
-end
-
-local function r(a)
-local m={}
-for e=1,#a.karts do
-m[e]=e
-end
-local e=a.karts
-k=e
+for i,m in ipairs(params.grid)do
+local q,r,s,n,t
 if a.battle then
-table.sort(m,C)
+local l=b.spawns[i]
+q,r=l.x*h,l.y*h
+local w=b.extent/2
+s=k.atan2(w-l.y,w-l.x)
+n,t=1,0
 else
-for n=1,#e do
-l[n]=B(a,e[n])
+q,r,s,n,t=v(b,i)
 end
-table.sort(m,D)
-end
-k=nil
-for n,o in ipairs(m)do
-e[o].rank=n
-end
-a.order=m
-local n=#e
-for s,o in pairs(a.seats)do
-n=math.min(n,e[o].rank)
-end
-a.humanRank=n
-end
-
-local function x(a,o)
-local m=a.inputs
-for e,n in ipairs(a.karts)do
-if n.seat and not n.finished then
-m[e]=o[n.seat]or 0
+local l=c.new(m.driver,q,r,s,params.cc)
+l.wp,l.progress,l.lastSafe=n,t,n
+l.seat=m.seat
+a.karts[i]=l
+a.lapTimes[i]={}
+if m.seat then
+a.seats[m.seat]=i
 else
-if not a.minds[e]then
-a.minds[e]=q.new(a.random,a.cc)
-end
-m[e]=q.think(a,e,a.minds[e])
+a.minds[i]=p.new(a.random,params.cc)
 end
 end
-return m
+if params.mode==d.MODE_TT then
+local i=a.karts[1]
+i.item,i.itemCount=f.COFFEE3,3
+end
+if params.ghost then
+local m,n,q,l,r=v(b,1)
+local i=c.new(params.ghost.driver,m,n,q,params.cc)
+i.wp,i.progress,i.lastSafe=l,r,l
+i.item,i.itemCount=f.COFFEE3,3
+a.ghost={kart=i,reader=params.ghost.reader}
+end
+if params.skipIntro then
+a.phase="countdown"
+end
+return a
 end
 
-local function E(a,e)
-local m=a.karts[e]
-m.finished=true
-m.finishTick=a.raceTick
-a.finishOrder[#a.finishOrder+1]=e
-a.events[#a.events+1]={kind="finish",kart=e}
+local function z(world,kart)
+local m=world.track.waypoints
+local b=#m
+local q,r=g(kart.x/h),g(kart.y/h)
+local i,n=kart.wp,nil
+for w=-2,e.lapSearch do
+local a=j.wrapIndex(kart.wp+w,b)
+local l,s=m[a].x-q,m[a].y-r
+local t=l*l+s*s
+if not n or t<n then
+i,n=a,t
+end
+end
+local a=i-kart.wp
+if a>b/2 then
+a=a-b
+elseif a<-b/2 then
+a=a+b
+end
+kart.progress=kart.progress+a
+kart.wp=i
+if o.surfaceAt(world.track,q,r)~=o.WATER and kart.z==0 then
+kart.lastSafe=i
+end
+local l=g(kart.progress/b)+1
+if l>kart.lap and l>=2 then
+local s=world.lapTimes[kart.place]
+s[#s+1]=world.raceTick
+world.events[#world.events+1]={kind="lap",kart=kart.place,lap=l}
+end
+kart.lap=math.max(1,l)
 end
 
-local function F(a)
-if a.battle then
-local e=0
-for n,m in ipairs(a.karts)do
-if not m.out then
-e=e+1
+local function A(world,kart)
+local a=world.track.waypoints
+local b=a[kart.wp%#a+1]
+local i,l=b.x-g(kart.x/h),b.y-g(kart.y/h)
+return i*i+l*l
+end
+
+local m
+local n={}
+
+local function B(a,b)
+local i,l=m[a],m[b]
+if i.out~=l.out then
+return not i.out
+end
+if i.out then
+if i.outTick~=l.outTick then
+return i.outTick>l.outTick
+end
+return a<b
+end
+if i.cans~=l.cans then
+return i.cans>l.cans
+end
+if i.hits~=l.hits then
+return i.hits<l.hits
+end
+return a<b
+end
+
+local function C(a,b)
+local i,l=m[a],m[b]
+if i.finished~=l.finished then
+return i.finished
+end
+if i.finished then
+return i.finishTick<l.finishTick or(i.finishTick==l.finishTick and a<b)
+end
+if i.progress~=l.progress then
+return i.progress>l.progress
+end
+if n[a]~=n[b]then
+return n[a]<n[b]
+end
+return a<b
+end
+
+local function q(world)
+local b={}
+for a=1,#world.karts do
+b[a]=a
+end
+local a=world.karts
+m=a
+if world.battle then
+table.sort(b,B)
+else
+for i=1,#a do
+n[i]=A(world,a[i])
+end
+table.sort(b,C)
+end
+m=nil
+for i,l in ipairs(b)do
+a[l].rank=i
+end
+world.order=b
+local i=#a
+for r,l in pairs(world.seats)do
+i=math.min(i,a[l].rank)
+end
+world.humanRank=i
+end
+
+local function w(world,seatBits)
+local b=world.inputs
+for a,i in ipairs(world.karts)do
+if i.seat and not i.finished then
+b[a]=seatBits[i.seat]or 0
+else
+if not world.minds[a]then
+world.minds[a]=p.new(world.random,world.cc)
+end
+b[a]=p.think(world,a,world.minds[a])
 end
 end
-return e<=1 or a.raceTick>=d.battleTicks
+return b
 end
-local e=0
-for n,m in pairs(a.seats)do
-e=e+1
-if not a.karts[m].finished then
+
+local function D(world,place)
+local a=world.karts[place]
+a.finished=true
+a.finishTick=world.raceTick
+world.finishOrder[#world.finishOrder+1]=place
+world.events[#world.events+1]={kind="finish",kart=place}
+end
+
+local function E(world)
+if world.battle then
+local a=0
+for i,b in ipairs(world.karts)do
+if not b.out then
+a=a+1
+end
+end
+return a<=1 or world.raceTick>=e.battleTicks
+end
+local a=0
+for i,b in pairs(world.seats)do
+a=a+1
+if not world.karts[b].finished then
 return false
 end
 end
-if e==0 then
-for n,m in ipairs(a.karts)do
-if not m.finished then
+if a==0 then
+for i,b in ipairs(world.karts)do
+if not b.finished then
 return false
 end
 end
@@ -275,13 +275,13 @@ end
 return true
 end
 
-local function G(e)
-local m=e.ghost
-local n=m.reader:next()
-local a=m.kart
-local o=a.bits
-b.step(a,n,e.track,{},0)
-if b.has(n,b.B)and not b.has(o,b.B)and a.item then
+local function F(world)
+local b=world.ghost
+local i=b.reader:next()
+local a=b.kart
+local l=a.bits
+c.step(a,i,world.track,{},0)
+if c.has(i,c.B)and not c.has(l,c.B)and a.item then
 a.boost=math.max(a.boost,f.TUNING.coffeeBoost)
 a.itemCount=a.itemCount-1
 if a.itemCount<=0 then
@@ -290,170 +290,170 @@ end
 end
 end
 
-local function H(a,I)
-a.phaseTick=a.phaseTick+1
-local s=d.countdown-a.phaseTick
-local y=x(a,I)
-for e,m in pairs(a.minds)do
-y[e]=s<=m.startAt and b.UP or 0
+local function G(world,seatBits)
+world.phaseTick=world.phaseTick+1
+local r=e.countdown-world.phaseTick
+local x=w(world,seatBits)
+for a,b in pairs(world.minds)do
+x[a]=r<=b.startAt and c.UP or 0
 end
-local m={}
-for e,n in ipairs(a.karts)do
-m[e]={kart=n,bits=y[e],place=e}
+local b={}
+for a,i in ipairs(world.karts)do
+b[a]={kart=i,bits=x[a],place=a}
 end
-if a.ghost then
-m[#m+1]={kart=a.ghost.kart,bits=a.ghost.reader:next(),place=0}
+if world.ghost then
+b[#b+1]={kart=world.ghost.kart,bits=world.ghost.reader:next(),place=0}
 end
-for K,t in ipairs(m)do
-local u,n=t.kart,t.place
-local o=b.countdown(u,t.bits,s)
-if o then
-local e=n==0 and{}or a.events
-if o>d.startEarly then
-b.startSpin(u,d.stallTicks)
-e[#e+1]={kind="stall",kart=n}
-elseif o>=b.TUNING.startWindow[2]and o<=b.TUNING.startWindow[1]then
-b.boostFor(u,b.TUNING.startBoost,e,n)
-e[#e+1]={kind="quickstart",kart=n}
-end
-end
-end
-for n,e in ipairs(d.lights)do
-if a.phaseTick==e then
-a.events[#a.events+1]={kind="light"}
-end
-end
-if s<=0 then
-a.phase="race"
-a.events[#a.events+1]={kind="go"}
-end
-end
-
-local function o(a,t)
-a.raceTick=a.raceTick+1
-local u=x(a,t)
-for m,e in ipairs(a.karts)do
-e.place=m
-if not e.out then
-local n,s=u[m],e.bits
-b.step(e,n,a.track,a.events,m)
-if b.has(n,b.UP)and not b.has(s,b.UP)then
-e.upTap=a.raceTick
-end
-if a.items and e.respawn==0 and e.spin==0 then
-if b.has(n,b.B)and not b.has(s,b.B)then
-local y=a.raceTick-e.upTap<=f.TUNING.comboTicks
-f.use(a,m,b.has(n,b.DOWN),y)
-end
-end
-if not a.battle then
-A(a,e)
-if not e.finished and e.progress>=d.laps*#a.track.waypoints then
-E(a,m)
+for I,s in ipairs(b)do
+local t,i=s.kart,s.place
+local l=c.countdown(t,s.bits,r)
+if l then
+local a=i==0 and{}or world.events
+if l>e.startEarly then
+c.startSpin(t,e.stallTicks)
+a[#a+1]={kind="stall",kart=i}
+elseif l>=c.TUNING.startWindow[2]and l<=c.TUNING.startWindow[1]then
+c.boostFor(t,c.TUNING.startBoost,a,i)
+a[#a+1]={kind="quickstart",kart=i}
 end
 end
 end
-end
-for e=1,#a.karts do
-for s=e+1,#a.karts do
-local m,n=a.karts[e],a.karts[s]
-if b.collide(m,n)then
-if m.invincible>0 and n.invincible==0 then
-f.hit(a,s,f.TUNING.spinTicks)
-elseif n.invincible>0 and m.invincible==0 then
-f.hit(a,e,f.TUNING.spinTicks)
+for i,a in ipairs(e.lights)do
+if world.phaseTick==a then
+world.events[#world.events+1]={kind="light"}
 end
 end
-end
-end
-if a.items then
-f.step(a)
-end
-if a.ghost then
-G(a)
-end
-r(a)
-if a.phase=="race"and F(a)then
-a.phase="finish"
-a.phaseTick=0
-a.events[#a.events+1]={kind="done"}
+if r<=0 then
+world.phase="race"
+world.events[#world.events+1]={kind="go"}
 end
 end
 
-function c.step(a,e)
-a.tick=a.tick+1
-local m=a.events
-for n=#m,1,-1 do
-m[n]=nil
+local function l(world,seatBits)
+world.raceTick=world.raceTick+1
+local s=w(world,seatBits)
+for b,a in ipairs(world.karts)do
+a.place=b
+if not a.out then
+local i,r=s[b],a.bits
+c.step(a,i,world.track,world.events,b)
+if c.has(i,c.UP)and not c.has(r,c.UP)then
+a.upTap=world.raceTick
 end
-local s=a.seatPrev
-a.seatPrev={}
-for n,t in pairs(e)do
-a.seatPrev[n]=t
-end
-if a.phase=="intro"then
-a.phaseTick=a.phaseTick+1
-local n=false
-for t,u in pairs(e)do
-if b.has(u,b.A)and not b.has(s[t]or 0,b.A)then
-n=true
+if world.items and a.respawn==0 and a.spin==0 then
+if c.has(i,c.B)and not c.has(r,c.B)then
+local t=world.raceTick-a.upTap<=f.TUNING.comboTicks
+f.use(world,b,c.has(i,c.DOWN),t)
 end
 end
-if n or a.phaseTick>=d.intro then
-a.phase="countdown"
-a.phaseTick=0
+if not world.battle then
+z(world,a)
+if not a.finished and a.progress>=e.laps*#world.track.waypoints then
+D(world,b)
 end
-r(a)
-elseif a.phase=="countdown"then
-H(a,e)
-r(a)
-elseif a.phase=="race"then
-o(a,e)
-elseif a.phase=="finish"then
-a.phaseTick=a.phaseTick+1
-o(a,e)
-if a.phaseTick>=d.afterFinish then
-a.phase="done"
+end
+end
+end
+for a=1,#world.karts do
+for r=a+1,#world.karts do
+local b,i=world.karts[a],world.karts[r]
+if c.collide(b,i)then
+if b.invincible>0 and i.invincible==0 then
+f.hit(world,r,f.TUNING.spinTicks)
+elseif i.invincible>0 and b.invincible==0 then
+f.hit(world,a,f.TUNING.spinTicks)
+end
+end
+end
+end
+if world.items then
+f.step(world)
+end
+if world.ghost then
+F(world)
+end
+q(world)
+if world.phase=="race"and E(world)then
+world.phase="finish"
+world.phaseTick=0
+world.events[#world.events+1]={kind="done"}
+end
+end
+
+function d.step(world,seatBits)
+world.tick=world.tick+1
+local a=world.events
+for b=#a,1,-1 do
+a[b]=nil
+end
+local i=world.seatPrev
+world.seatPrev={}
+for b,r in pairs(seatBits)do
+world.seatPrev[b]=r
+end
+if world.phase=="intro"then
+world.phaseTick=world.phaseTick+1
+local b=false
+for r,s in pairs(seatBits)do
+if c.has(s,c.A)and not c.has(i[r]or 0,c.A)then
+b=true
+end
+end
+if b or world.phaseTick>=e.intro then
+world.phase="countdown"
+world.phaseTick=0
+end
+q(world)
+elseif world.phase=="countdown"then
+G(world,seatBits)
+q(world)
+elseif world.phase=="race"then
+l(world,seatBits)
+elseif world.phase=="finish"then
+world.phaseTick=world.phaseTick+1
+l(world,seatBits)
+if world.phaseTick>=e.afterFinish then
+world.phase="done"
 end
 end
 end
 
-function c.skipIntro(a)
-if a.phase=="intro"then
-a.phase="countdown"
-a.phaseTick=0
+function d.skipIntro(world)
+if world.phase=="intro"then
+world.phase="countdown"
+world.phaseTick=0
 end
 end
 
-function c.finishTimes(e)
-local n={}
-local s=d.laps*#e.track.waypoints
-local t=0
-for I,u in ipairs(e.order)do
-local m=e.karts[u]
+function d.finishTimes(world)
+local i={}
+local r=e.laps*#world.track.waypoints
+local s=0
+for I,t in ipairs(world.order)do
+local b=world.karts[t]
 local a
-if m.finished then
-a=m.finishTick
+if b.finished then
+a=b.finishTick
 else
-local y=SpiffBoy.clamp(m.progress,1,s-1)
-a=math.max(e.raceTick+1,g(e.raceTick*s/y))
+local x=SpiffBoy.clamp(b.progress,1,r-1)
+a=math.max(world.raceTick+1,g(world.raceTick*r/x))
 end
-a=math.max(a,t+1)
-n[u]=a
-t=a
+a=math.max(a,s+1)
+i[t]=a
+s=a
 end
-return n
-end
-
-function c.lapOf(a)
-return math.min(d.laps,math.max(1,a.lap))
+return i
 end
 
-function c.checksum(m)
-local a=m.tick%65521
-for n,e in ipairs(m.karts)do
-a=(a*31+e.x%65521+e.y%65521*7+e.heading*3+(e.item or 0)*11+e.rank)%65521
+function d.lapOf(kart)
+return math.min(e.laps,math.max(1,kart.lap))
 end
-a=(a+#m.shots*13+#m.hazards*17)%65521
+
+function d.checksum(world)
+local a=world.tick%65521
+for i,b in ipairs(world.karts)do
+a=(a*31+b.x%65521+b.y%65521*7+b.heading*3+(b.item or 0)*11+b.rank)%65521
+end
+a=(a+#world.shots*13+#world.hazards*17)%65521
 return a
 end

@@ -6,15 +6,15 @@ SpiffBoyChipLink={}
 SpiffBoyChipLink.__index=SpiffBoyChipLink
 local a=SpiffBoyChipLink
 
-local l=100
-local m=2000
-local e=SpiffBoy.CHIP_MAX_EVENTS
+local k=100
+local l=2000
+local d=SpiffBoy.CHIP_MAX_EVENTS
 local c=1
-local n=5000
+local m=5000
 
-function a.new(d)
+function a.new(playerObj)
 local b=setmetatable({},a)
-b.playerObj=d
+b.playerObj=playerObj
 b.networked=isClient()and SpiffBoy.Sandbox.othersHearConsole()
 b.tick=0
 b.events={}
@@ -29,29 +29,29 @@ b.tracedBatches=0
 return b
 end
 
-function a:push(b)
+function a:push(event)
 if not self.networked or self.private then
 return
 end
-b.t=self.tick
-self.events[#self.events+1]=b
-if#self.events>=e then
+event.t=self.tick
+self.events[#self.events+1]=event
+if#self.events>=d then
 self:send()
 end
 end
 
-function a:traceSend(b)
+function a:traceSend(now)
 if not SpiffBoy.isDevBuild()then
 return
 end
 if self.traceStartMs==0 then
 SpiffBoy.log("chip link: first batch sent, cartridge "..tostring(self.cartridge)..", private "..tostring(self.private))
-self.traceStartMs=b
+self.traceStartMs=now
 end
 self.tracedBatches=self.tracedBatches+1
-if b-self.traceStartMs>=n then
-SpiffBoy.log("chip link: "..tostring(self.tracedBatches).." batches sent in "..tostring(b-self.traceStartMs).." ms, tick "..tostring(self.tick)..", cartridge "..tostring(self.cartridge)..", private "..tostring(self.private))
-self.traceStartMs=b
+if now-self.traceStartMs>=m then
+SpiffBoy.log("chip link: "..tostring(self.tracedBatches).." batches sent in "..tostring(now-self.traceStartMs).." ms, tick "..tostring(self.tick)..", cartridge "..tostring(self.cartridge)..", private "..tostring(self.private))
+self.traceStartMs=now
 self.tracedBatches=0
 end
 end
@@ -63,19 +63,19 @@ self.lastSendMs=getTimestampMs()
 self:traceSend(self.lastSendMs)
 end
 
-local function f(b)
-b:push({k=SpiffBoy.CHIP_EVENT_ON,c=b.cartridge,v=b.volume})
+local function e(link)
+link:push({k=SpiffBoy.CHIP_EVENT_ON,c=link.cartridge,v=link.volume})
 end
 
-local function g(b)
-b:push({k=SpiffBoy.CHIP_EVENT_OFF})
+local function f(link)
+link:push({k=SpiffBoy.CHIP_EVENT_OFF})
 end
 
-function a:powerOn(b,d)
-self.cartridge=b
-self.volume=d
+function a:powerOn(cartridge,volume)
+self.cartridge=cartridge
+self.volume=volume
 self.frozen=false
-f(self)
+e(self)
 end
 
 function a:powerOff()
@@ -84,7 +84,7 @@ return
 end
 self.cartridge=nil
 self.frozen=false
-g(self)
+f(self)
 end
 
 function a:freeze()
@@ -95,82 +95,82 @@ self.frozen=true
 self:push({k=SpiffBoy.CHIP_EVENT_FREEZE})
 end
 
-function a:setVolume(b)
-self.volume=b
+function a:setVolume(volume)
+self.volume=volume
 if self.cartridge then
-self:push({k=SpiffBoy.CHIP_EVENT_VOLUME,v=b})
+self:push({k=SpiffBoy.CHIP_EVENT_VOLUME,v=volume})
 end
 end
 
-function a:setPrivate(b)
-if self.private==b then
+function a:setPrivate(private)
+if self.private==private then
 return
 end
 if SpiffBoy.isDevBuild()then
-SpiffBoy.log("chip link: private "..tostring(b))
+SpiffBoy.log("chip link: private "..tostring(private))
 end
-if b then
+if private then
 if self.cartridge then
-g(self)
+f(self)
 end
 self.private=true
 return
 end
 self.private=false
 if self.cartridge then
-f(self)
+e(self)
 self.lastBeatMs=0
 end
 end
 
-function a:onChipWrite(b,d)
-self:push({k=SpiffBoy.CHIP_EVENT_WRITE,r=b,v=d})
+function a:onChipWrite(register,value)
+self:push({k=SpiffBoy.CHIP_EVENT_WRITE,r=register,v=value})
 end
 
-function a:onChipWave(b)
-self:push({k=SpiffBoy.CHIP_EVENT_WAVE,n=b})
+function a:onChipWave(name)
+self:push({k=SpiffBoy.CHIP_EVENT_WAVE,n=name})
 end
 
-function a:onSequencerPlay(b)
-self:push({k=SpiffBoy.CHIP_EVENT_PLAY,n=b})
+function a:onSequencerPlay(name)
+self:push({k=SpiffBoy.CHIP_EVENT_PLAY,n=name})
 end
 
 function a:onSequencerStop()
 self:push({k=SpiffBoy.CHIP_EVENT_STOP})
 end
 
-function a:onSequencerEffect(b)
-self:push({k=SpiffBoy.CHIP_EVENT_EFFECT,n=b})
+function a:onSequencerEffect(name)
+self:push({k=SpiffBoy.CHIP_EVENT_EFFECT,n=name})
 end
 
-function a:onSequencerMix(b,d)
-self:push({k=SpiffBoy.CHIP_EVENT_MIX,m=b,f=d})
+function a:onSequencerMix(music,effects)
+self:push({k=SpiffBoy.CHIP_EVENT_MIX,m=music,f=effects})
 end
 
 function a:step()
 self.tick=self.tick+1
 end
 
-function a:flush(b)
+function a:flush(sequencer)
 if not self.networked then
 return
 end
-local d=getTimestampMs()
-if self.cartridge and not self.private and d-self.lastBeatMs>=m then
-self.lastBeatMs=d
-local h,i=nil,0
-local j,k=c,c
-if b then
-h,i=b:state()
-j,k=b:mix()
+local b=getTimestampMs()
+if self.cartridge and not self.private and b-self.lastBeatMs>=l then
+self.lastBeatMs=b
+local g,h=nil,0
+local i,j=c,c
+if sequencer then
+g,h=sequencer:state()
+i,j=sequencer:mix()
 end
-self:push({k=SpiffBoy.CHIP_EVENT_BEAT,c=self.cartridge,v=self.volume,n=h,p=i,m=j,f=k,z=self.frozen})
+self:push({k=SpiffBoy.CHIP_EVENT_BEAT,c=self.cartridge,v=self.volume,n=g,p=h,m=i,f=j,z=self.frozen})
 end
-local h=#self.events
-if h==0 then
+local g=#self.events
+if g==0 then
 return
 end
-if h<e and d-self.lastSendMs<l then
+if g<d and b-self.lastSendMs<k then
 return
 end
 self:send()

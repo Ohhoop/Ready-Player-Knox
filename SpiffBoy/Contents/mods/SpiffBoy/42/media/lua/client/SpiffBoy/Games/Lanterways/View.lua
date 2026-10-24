@@ -4,130 +4,130 @@ require"SpiffBoy/Games/Lanterways/Window"
 local b=SpiffBoyLanterwaysGame
 local a=SpiffBoy.Lanterways
 local d=a.Window
-local o=a.Party
+local m=a.Party
 
 local c=a.TILE
-local v,p=12,16
-local w,q=12,24
+local v,n=12,16
+local w,o=12,24
 local g={lampDark=0,lampLit=1,chestClosed=3,chestOpen=4,gate=5,bellpost=7,note=8,echo=9,murk=11,brazierDark=13,brazierLit=15}
 local h={span=8,grid=16,frames=2,frameTicks=40,shades={3,4}}
-local j={w=48,h=24,frames=4,ticks=8,rise=34}
-local f={y=66,h=54,textX=7,textY=69,tagX=4,tagY=51,tagH=16}
+local i={w=48,h=24,frames=4,ticks=8,rise=34}
+local e={y=66,h=54,textX=7,textY=69,tagX=4,tagY=51,tagH=16}
 local D=110
 local E=5
 local F={1}
 local G={1,2}
 local H={1,4}
-local y={3,4}
+local A={3,4}
 local I={1,2,3}
 local J={2,3,4}
-local x={1,2,3,4}
+local z={1,2,3,4}
 
-function b:darkShade(e,i)
-return math.max(1,e-i)
+function b:darkShade(shade,darkness)
+return math.max(1,shade-darkness)
 end
 
-function b:drawRegion(i,k,l,m,n,r,s,t,u,z,A)
-for B,e in ipairs(z)do
-i:sheet(k,l,m+(e-1)*s,n,r,t,u,1,self:darkShade(e,A))
+function b:drawRegion(screen,texture,sx,sy,sw,sh,rowHeight,x,y,rows,darkness)
+for j,f in ipairs(rows)do
+screen:sheet(texture,sx,sy+(f-1)*rowHeight,sw,sh,x,y,1,self:darkShade(f,darkness))
 end
 end
 
-function b:drawMapLayer(u,z,A,B)
-local e=self.field
-local l=e.map
-local C,m=l.width*c,l.height*c
-local n,r=e.camera.x+self:shakeOffset(),e.camera.y
-local i,k=math.max(0,n),math.max(0,r)
-local s=math.min(a.WIDTH,C-i)
-local t=math.min(a.HEIGHT,m-k)
+function b:drawMapLayer(screen,texture,darkness,rows)
+local f=self.field
+local l=f.map
+local u,p=l.width*c,l.height*c
+local q,r=f.camera.x+self:shakeOffset(),f.camera.y
+local j,k=math.max(0,q),math.max(0,r)
+local s=math.min(a.WIDTH,u-j)
+local t=math.min(a.HEIGHT,p-k)
 if s<=0 or t<=0 then
 return
 end
-self:drawRegion(u,z,i,k,s,t,m,i-n,k-r,B,A)
+self:drawRegion(screen,texture,j,k,s,t,p,j-q,k-r,rows,darkness)
 end
 
-function b:drawChunkedLayer(K,L,M,N)
+function b:drawChunkedLayer(screen,layer,darkness,rows)
 local l=self.field
-local m=l.map
-local n,e=m.chunk.w*c,m.chunk.h*c
-local i,k=l.camera.x+self:shakeOffset(),l.camera.y
-for z=math.floor(math.max(0,k)/e),math.floor((k+a.HEIGHT-1)/e)do
-for A=math.floor(math.max(0,i)/n),math.floor((i+a.WIDTH-1)/n)do
-local r,s=A*n,z*e
-local t,u=math.max(0,i-r),math.max(0,k-s)
-local B=math.min(n-t,i+a.WIDTH-r-t)
-local C=math.min(e-u,k+a.HEIGHT-s-u)
-if B>0 and C>0 and r<m.width*c and s<m.height*c then
-local O=self:art(L.."_"..l.id.."_"..A.."_"..z)
-self:drawRegion(K,O,t,u,B,C,e,r+t-i,s+u-k,N,M)
+local p=l.map
+local q,f=p.chunk.w*c,p.chunk.h*c
+local j,k=l.camera.x+self:shakeOffset(),l.camera.y
+for x=math.floor(math.max(0,k)/f),math.floor((k+a.HEIGHT-1)/f)do
+for y=math.floor(math.max(0,j)/q),math.floor((j+a.WIDTH-1)/q)do
+local r,s=y*q,x*f
+local t,u=math.max(0,j-r),math.max(0,k-s)
+local B=math.min(q-t,j+a.WIDTH-r-t)
+local C=math.min(f-u,k+a.HEIGHT-s-u)
+if B>0 and C>0 and r<p.width*c and s<p.height*c then
+local K=self:art(layer.."_"..l.id.."_"..y.."_"..x)
+self:drawRegion(screen,K,t,u,B,C,f,r+t-j,s+u-k,rows,darkness)
 end
 end
 end
 end
 
-function b:drawLayer(e,i,k,l)
+function b:drawLayer(screen,layer,darkness,rows)
 if self.field.map.chunk then
-self:drawChunkedLayer(e,i,k,l)
+self:drawChunkedLayer(screen,layer,darkness,rows)
 else
-self:drawMapLayer(e,self:art(i.."_"..self.field.id),k,l)
+self:drawMapLayer(screen,self:art(layer.."_"..self.field.id),darkness,rows)
 end
 end
 
-function b:drawVeil(A,B)
-local i=self.field
-local r=i.map
-local s,l=i.camera.x+self:shakeOffset(),i.camera.y
-local C=self:art("veil")
+function b:drawVeil(screen,darkness)
+local j=self.field
+local r=j.map
+local s,l=j.camera.x+self:shakeOffset(),j.camera.y
+local y=self:art("veil")
 local t=h.span*c
-local K=256/h.grid*c
-local L=math.floor(self.clock/h.frameTicks)%h.frames
+local B=256/h.grid*c
+local C=math.floor(self.clock/h.frameTicks)%h.frames
 local u=math.floor(s/c)
 for k=math.floor(l/c),math.floor((l+a.HEIGHT-1)/c)do
-for z=0,1 do
-local e,m=0,1
-for M=0,h.span-1 do
-local n=u+z*h.span+M
-if n>=0 and k>=0 and n<r.width and k<r.height and not i:seenAt(n,k)then
-e=e+m
+for x=0,1 do
+local f,p=0,1
+for K=0,h.span-1 do
+local q=u+x*h.span+K
+if q>=0 and k>=0 and q<r.width and k<r.height and not j:seenAt(q,k)then
+f=f+p
 end
-m=m*2
+p=p*2
 end
-if e>0 then
-local n=(u+z*h.span)*c-s
-local M=k*c-l
-for N,O in ipairs(h.shades)do
-local P=L*#h.shades+N-1
-A:sheet(C,e%h.grid*t,P*K+math.floor(e/h.grid)*c,t,c,n,M,1,self:darkShade(O,B))
-end
-end
-end
-end
-end
-
-function b:drawMurkWalls(l,m)
-local n=self.field
-local r=math.floor(self.clock/10)%2
-for s,e in ipairs(n.map.walls)do
-if not o.hasFlag(self.state,e.flag)then
-for i=e.y,e.y+e.h-1 do
-for k=e.x,e.x+e.w-1 do
-self:drawObject(l,g.murk+(k+i+r)%2,k,i,m,G)
+if f>0 then
+local q=(u+x*h.span)*c-s
+local K=k*c-l
+for L,M in ipairs(h.shades)do
+local N=C*#h.shades+L-1
+screen:sheet(y,f%h.grid*t,N*B+math.floor(f/h.grid)*c,t,c,q,K,1,self:darkShade(M,darkness))
 end
 end
 end
 end
 end
 
-function b:drawBeams(m,n)
-local i=self.field
-local r=math.floor(self.clock/j.ticks)%j.frames
-for s,e in ipairs(i.map.objects)do
-if e.kind=="watchlight"and o.hasFlag(self.state,e.flag)then
-local k=e.x*c+e.w*c/2-j.w/2-i.camera.x+self:shakeOffset()
-local l=e.y*c-j.rise-i.camera.y
-if k>-j.w and k<a.WIDTH and l>-j.h and l<a.HEIGHT then
-self:drawRegion(m,self:art("beam"),r*j.w,0,j.w,j.h,j.h,k,l,y,n)
+function b:drawMurkWalls(screen,darkness)
+local l=self.field
+local p=math.floor(self.clock/10)%2
+for q,f in ipairs(l.map.walls)do
+if not m.hasFlag(self.state,f.flag)then
+for j=f.y,f.y+f.h-1 do
+for k=f.x,f.x+f.w-1 do
+self:drawObject(screen,g.murk+(k+j+p)%2,k,j,darkness,G)
+end
+end
+end
+end
+end
+
+function b:drawBeams(screen,darkness)
+local j=self.field
+local p=math.floor(self.clock/i.ticks)%i.frames
+for q,f in ipairs(j.map.objects)do
+if f.kind=="watchlight"and m.hasFlag(self.state,f.flag)then
+local k=f.x*c+f.w*c/2-i.w/2-j.camera.x+self:shakeOffset()
+local l=f.y*c-i.rise-j.camera.y
+if k>-i.w and k<a.WIDTH and l>-i.h and l<a.HEIGHT then
+self:drawRegion(screen,self:art("beam"),p*i.w,0,i.w,i.h,i.h,k,l,A,darkness)
 end
 end
 end
@@ -140,296 +140,296 @@ end
 return 0
 end
 
-local function u(e)
-local i=0
-if e.moving then
-i=1+math.floor(e.frame/6)%2
+local function t(actor)
+local f=0
+if actor.moving then
+f=1+math.floor(actor.frame/6)%2
 end
-return(e.dir-1)*3+i
-end
-
-function b:drawActor(l,e,r)
-local m=self.field
-local i=e.px-m.camera.x+self:shakeOffset()
-local k=e.py-m.camera.y-(p-c)
-if i<-v or i>a.WIDTH or k<-p or k>a.HEIGHT then
-return
-end
-local s=self:art("walk_"..e.sprite)
-self:drawRegion(l,s,u(e)*v,0,v,p,p,i,k,x,r)
-local n=self.emotes[e.id]
-if n then
-d.icon(l,self.artUi,n.kind,i+1,k-11,H)
-end
+return(actor.dir-1)*3+f
 end
 
-function b:drawObject(l,m,n,r,s,t)
+function b:drawActor(screen,actor,darkness)
 local k=self.field
-local e=n*c-k.camera.x+self:shakeOffset()
-local i=r*c-k.camera.y-(q-c)
-if e<-w or e>a.WIDTH or i<-q or i>a.HEIGHT then
+local f=actor.px-k.camera.x+self:shakeOffset()
+local j=actor.py-k.camera.y-(n-c)
+if f<-v or f>a.WIDTH or j<-n or j>a.HEIGHT then
 return
 end
-self:drawRegion(l,self.artObjects,m*w,0,w,q,q,e,i,t or x,s)
+local p=self:art("walk_"..actor.sprite)
+self:drawRegion(screen,p,t(actor)*v,0,v,n,n,f,j,z,darkness)
+local l=self.emotes[actor.id]
+if l then
+d.icon(screen,self.artUi,l.kind,f+1,j-11,H)
+end
 end
 
-function b:drawFixtures(i,k)
-local n=self.field
-local l=n.map
-local r=math.floor(self.clock/12)%2
-for z,e in ipairs(l.lamps)do
-if e.brazier then
-local m=g.brazierDark
-if n:lampLit(e)then
-m=g.brazierLit+r*2
+function b:drawObject(screen,cell,tileX,tileY,darkness,rows)
+local k=self.field
+local f=tileX*c-k.camera.x+self:shakeOffset()
+local j=tileY*c-k.camera.y-(o-c)
+if f<-w or f>a.WIDTH or j<-o or j>a.HEIGHT then
+return
 end
-self:drawObject(i,m,e.x,e.y+1,k)
-self:drawObject(i,m+1,e.x+1,e.y+1,k)
-elseif n:lampLit(e)then
-self:drawObject(i,g.lampLit+r,e.x,e.y,k)
+self:drawRegion(screen,self.artObjects,cell*w,0,w,o,o,f,j,rows or z,darkness)
+end
+
+function b:drawFixtures(screen,darkness)
+local l=self.field
+local j=l.map
+local p=math.floor(self.clock/12)%2
+for s,f in ipairs(j.lamps)do
+if f.brazier then
+local k=g.brazierDark
+if l:lampLit(f)then
+k=g.brazierLit+p*2
+end
+self:drawObject(screen,k,f.x,f.y+1,darkness)
+self:drawObject(screen,k+1,f.x+1,f.y+1,darkness)
+elseif l:lampLit(f)then
+self:drawObject(screen,g.lampLit+p,f.x,f.y,darkness)
 else
-self:drawObject(i,g.lampDark,e.x,e.y,k)
-local m=e.gate
-if m then
-for s=m.y,m.y+m.h-1 do
-for t=m.x,m.x+m.w-1 do
-self:drawObject(i,g.gate+(t+s+r)%2,t,s,k,y)
+self:drawObject(screen,g.lampDark,f.x,f.y,darkness)
+local k=f.gate
+if k then
+for q=k.y,k.y+k.h-1 do
+for r=k.x,k.x+k.w-1 do
+self:drawObject(screen,g.gate+(r+q+p)%2,r,q,darkness,A)
 end
 end
 end
 end
 end
-for s,e in ipairs(l.chests)do
-if n:revealedAt(e.x,e.y)then
-local m=g.chestClosed
-if o.hasFlag(self.state,e.flag)then
-m=g.chestOpen
+for q,f in ipairs(j.chests)do
+if l:revealedAt(f.x,f.y)then
+local k=g.chestClosed
+if m.hasFlag(self.state,f.flag)then
+k=g.chestOpen
 end
-self:drawObject(i,m,e.x,e.y,k)
-end
-end
-for m,e in ipairs(l.notes)do
-if n:noteAt(e.x,e.y)then
-self:drawObject(i,g.note,e.x,e.y,k)
+self:drawObject(screen,k,f.x,f.y,darkness)
 end
 end
-for m,e in ipairs(l.echoes)do
-if n:echoAt(e.x,e.y)then
-self:drawObject(i,g.echo+r,e.x,e.y,k)
+for k,f in ipairs(j.notes)do
+if l:noteAt(f.x,f.y)then
+self:drawObject(screen,g.note,f.x,f.y,darkness)
 end
 end
-if l.bellpost and o.meets(self.state,l.bellpost.when)then
-self:drawObject(i,g.bellpost,l.bellpost.x,l.bellpost.y,k)
+for k,f in ipairs(j.echoes)do
+if l:echoAt(f.x,f.y)then
+self:drawObject(screen,g.echo+p,f.x,f.y,darkness)
+end
+end
+if j.bellpost and m.meets(self.state,j.bellpost.when)then
+self:drawObject(screen,g.bellpost,j.bellpost.x,j.bellpost.y,darkness)
 end
 end
 
-function b:drawWisps(i,k)
+function b:drawWisps(screen,darkness)
 if not self.field.map.wisps then
 return
 end
-for e=1,E do
-local n=0.15+e*0.05
-local l=(e*53+self.clock*n)%(a.WIDTH+40)-30
-local m=(e*37)%(a.HEIGHT-10)
-d.fill(i,l,m,14+(e%3)*6,1,self:darkShade(a.PAPER,k))
-d.fill(i,l+5,m+2,10,1,self:darkShade(a.PAPER,k))
+for f=1,E do
+local l=0.15+f*0.05
+local j=(f*53+self.clock*l)%(a.WIDTH+40)-30
+local k=(f*37)%(a.HEIGHT-10)
+d.fill(screen,j,k,14+(f%3)*6,1,self:darkShade(a.PAPER,darkness))
+d.fill(screen,j+5,k+2,10,1,self:darkShade(a.PAPER,darkness))
 end
 end
 
 function b:swirlDarkness()
-local e=self.pendingBattle.timer
-if e<12 then
+local f=self.pendingBattle.timer
+if f<12 then
 return 3
 end
-return(math.floor(e/5)%2==0)and 2 or 0
+return(math.floor(f/5)%2==0)and 2 or 0
 end
 
-function b:drawField(e)
-local k=self.field
-local i=self:darkness()
+function b:drawField(screen)
+local j=self.field
+local f=self:darkness()
 if self.pendingBattle then
-i=self:swirlDarkness()
+f=self:swirlDarkness()
 end
-local l=k.map
-e:clear(a.shade(self:darkShade(a.PAPER,i)))
-self:drawLayer(e,"map",i,I)
-self:drawFixtures(e,i)
-for n,m in ipairs(k:drawOrder())do
-self:drawActor(e,m,i)
+local k=j.map
+screen:clear(a.shade(self:darkShade(a.PAPER,f)))
+self:drawLayer(screen,"map",f,I)
+self:drawFixtures(screen,f)
+for p,l in ipairs(j:drawOrder())do
+self:drawActor(screen,l,f)
 end
-if l.overlay~=false then
-self:drawLayer(e,"over",i,x)
+if k.overlay~=false then
+self:drawLayer(screen,"over",f,z)
 end
-self:drawOtherFloorsHidden(e,i)
-if l.fog then
-self:drawBeams(e,i)
-self:drawVeil(e,i)
-self:drawMurkWalls(e,i)
+self:drawOtherFloorsHidden(screen,f)
+if k.fog then
+self:drawBeams(screen,f)
+self:drawVeil(screen,f)
+self:drawMurkWalls(screen,f)
 end
-self:drawWisps(e,i)
-self:drawBanner(e)
+self:drawWisps(screen,f)
+self:drawBanner(screen)
 if self.dialog and not self.dialog.card then
-self:drawDialog(e)
+self:drawDialog(screen)
 end
 if self.choice then
-self:drawChoice(e)
+self:drawChoice(screen)
 end
 end
 
-function b:drawOtherFloorsHidden(i,z)
-local e=self.field:floorBox()
-if not e then
+function b:drawOtherFloorsHidden(screen,darkness)
+local f=self.field:floorBox()
+if not f then
 return
 end
-local k,l,m=a.shade(self:darkShade(a.PAPER,z))
-local r=e.x*c-self.field.camera.x+self:shakeOffset()
-local n=e.y*c-self.field.camera.y
-local s,t=r+e.w*c,n+e.h*c
-i:rect(0,0,a.WIDTH,math.max(0,n),k,l,m,1)
-i:rect(0,t,a.WIDTH,math.max(0,a.HEIGHT-t),k,l,m,1)
-i:rect(0,n,math.max(0,r),e.h*c,k,l,m,1)
-i:rect(s,n,math.max(0,a.WIDTH-s),e.h*c,k,l,m,1)
+local j,k,l=a.shade(self:darkShade(a.PAPER,darkness))
+local q=f.x*c-self.field.camera.x+self:shakeOffset()
+local p=f.y*c-self.field.camera.y
+local r,s=q+f.w*c,p+f.h*c
+screen:rect(0,0,a.WIDTH,math.max(0,p),j,k,l,1)
+screen:rect(0,s,a.WIDTH,math.max(0,a.HEIGHT-s),j,k,l,1)
+screen:rect(0,p,math.max(0,q),f.h*c,j,k,l,1)
+screen:rect(r,p,math.max(0,a.WIDTH-r),f.h*c,j,k,l,1)
 end
 
-function b:drawBanner(i)
-local e=self.banner
-if not e then
+function b:drawBanner(screen)
+local f=self.banner
+if not f then
 return
 end
-e.timer=e.timer-1
-if e.timer<=0 then
+f.timer=f.timer-1
+if f.timer<=0 then
 self.banner=nil
 return
 end
-local k=i:textWidth(e.text)+16
-local l=math.floor((a.WIDTH-k)/2)
-d.frame(i,self.artUi,l,6,k,21)
-d.textCentre(i,e.text,a.WIDTH/2,8)
+local j=screen:textWidth(f.text)+16
+local k=math.floor((a.WIDTH-j)/2)
+d.frame(screen,self.artUi,k,6,j,21)
+d.textCentre(screen,f.text,a.WIDTH/2,8)
 end
 
 function b:showBanner()
-local e=self.field.map
-if e.banner then
-self.banner={text=a.text("Map_"..e.banner),timer=D}
+local f=self.field.map
+if f.banner then
+self.banner={text=a.text("Map_"..f.banner),timer=D}
 end
 end
 
-local function s(e,l)
-if l>=string.len(e)then
-return e
+local function r(line,count)
+if count>=string.len(line)then
+return line
 end
-local i=l
-local k=string.byte(e,i)
-if k and k>=0xD800 and k<=0xDBFF then
-i=i+1
+local f=count
+local j=string.byte(line,f)
+if j and j>=0xD800 and j<=0xDBFF then
+f=f+1
 end
-return string.sub(e,1,i)
+return string.sub(line,1,f)
 end
 
-function b:drawDialog(i)
-local e=self.dialog
-local m=self.artUi
-d.frame(i,m,0,f.y,a.WIDTH,f.h)
-if e.speaker then
-local n=a.text("Name_"..e.speaker)
-local k=a.Characters.BY_ID[e.speaker]
-local r=i:textWidth(n)+10
-local l=0
-if k then
-l=11
+function b:drawDialog(screen)
+local f=self.dialog
+local l=self.artUi
+d.frame(screen,l,0,e.y,a.WIDTH,e.h)
+if f.speaker then
+local p=a.text("Name_"..f.speaker)
+local j=a.Characters.BY_ID[f.speaker]
+local q=screen:textWidth(p)+10
+local k=0
+if j then
+k=11
 end
-d.fill(i,f.tagX,f.tagY,r+l,f.tagH,a.INK)
-if k then
-i:layers(self.artHeads,(k.index-1)*8,8,8,f.tagX+4,f.tagY+4,J)
+d.fill(screen,e.tagX,e.tagY,q+k,e.tagH,a.INK)
+if j then
+screen:layers(self.artHeads,(j.index-1)*8,8,8,e.tagX+4,e.tagY+4,J)
 end
-d.text(i,n,f.tagX+5+l,f.tagY,a.PAPER)
+d.text(screen,p,e.tagX+5+k,e.tagY,a.PAPER)
 end
-local n=e.pages[e.page]or{}
-local k=e.shown
-for r,l in ipairs(n)do
-if k<=0 then
+local p=f.pages[f.page]or{}
+local j=f.shown
+for q,k in ipairs(p)do
+if j<=0 then
 break
 end
-d.text(i,s(l,k),f.textX,f.textY+(r-1)*d.LINE)
-k=k-string.len(l)
+d.text(screen,r(k,j),e.textX,e.textY+(q-1)*d.LINE)
+j=j-string.len(k)
 end
-local l=0
-for t,r in ipairs(n)do
-l=l+string.len(r)
+local k=0
+for s,q in ipairs(p)do
+k=k+string.len(q)
 end
-if e.shown>=l and not e.holding and math.floor(self.clock/16)%2==0 then
-d.icon(i,m,"arrowDown",a.WIDTH-11,a.HEIGHT-10,F)
+if f.shown>=k and not f.holding and math.floor(self.clock/16)%2==0 then
+d.icon(screen,l,"arrowDown",a.WIDTH-11,a.HEIGHT-10,F)
 end
 end
 
-function b:drawChoice(k)
-local n=self.choice
-local e=0
-local i={}
-for m,r in ipairs(n.options)do
-local l=a.text(r)
-i[m]={label=l}
-e=math.max(e,k:textWidth(l))
+function b:drawChoice(screen)
+local p=self.choice
+local f=0
+local j={}
+for l,q in ipairs(p.options)do
+local k=a.text(q)
+j[l]={label=k}
+f=math.max(f,screen:textWidth(k))
 end
-e=e+22
-local l=#i*d.LINE+6
-local r=a.WIDTH-e-4
-local m=f.y-l-2
+f=f+22
+local k=#j*d.LINE+6
+local q=a.WIDTH-f-4
+local l=e.y-k-2
 if not self.dialog then
-m=a.HEIGHT-l-4
+l=a.HEIGHT-k-4
 end
-d.frame(k,self.artUi,r,m,e,l)
-d.list(k,self.artUi,i,r+3,m+3,e-6,#i,n.selected,1,self.clock,true)
-end
-
-function b:drawCard(i)
-local k=self.card
-i:clear(a.shade(a.INK))
-local m=i:wrapText(a.text(k.key),a.WIDTH-20)
-local e=34
-for n,l in ipairs(m)do
-d.textCentre(i,l,a.WIDTH/2,e,a.PAPER)
-e=e+d.LINE
-end
-if k.subKey then
-local l=i:wrapText(a.text(k.subKey),a.WIDTH-20)
-e=e+6
-for r,n in ipairs(l)do
-d.textCentre(i,n,a.WIDTH/2,e,a.MID)
-e=e+d.LINE
-end
-end
-local l=math.min(120,k.timer*3)
-d.fill(i,(a.WIDTH-l)/2,28,l,1,a.DARK)
+d.frame(screen,self.artUi,q,l,f,k)
+d.list(screen,self.artUi,j,q+3,l+3,f-6,#j,p.selected,1,self.clock,true)
 end
 
-function b:draw(e)
-local i=self.mode
-if i==b.MODE_FIELD then
-self:drawField(e)
-elseif i==b.MODE_BATTLE then
-self.battleScene:draw(e)
-elseif i==b.MODE_MENU then
+function b:drawCard(screen)
+local j=self.card
+screen:clear(a.shade(a.INK))
+local l=screen:wrapText(a.text(j.key),a.WIDTH-20)
+local f=34
+for p,k in ipairs(l)do
+d.textCentre(screen,k,a.WIDTH/2,f,a.PAPER)
+f=f+d.LINE
+end
+if j.subKey then
+local k=screen:wrapText(a.text(j.subKey),a.WIDTH-20)
+f=f+6
+for q,p in ipairs(k)do
+d.textCentre(screen,p,a.WIDTH/2,f,a.MID)
+f=f+d.LINE
+end
+end
+local k=math.min(120,j.timer*3)
+d.fill(screen,(a.WIDTH-k)/2,28,k,1,a.DARK)
+end
+
+function b:draw(screen)
+local f=self.mode
+if f==b.MODE_FIELD then
+self:drawField(screen)
+elseif f==b.MODE_BATTLE then
+self.battleScene:draw(screen)
+elseif f==b.MODE_MENU then
 if self:menuCoversScreen()then
-e:clear(a.shade(a.PAPER))
+screen:clear(a.shade(a.PAPER))
 else
-self:drawField(e)
+self:drawField(screen)
 end
-self:drawMenu(e)
-elseif i==b.MODE_SHOP then
+self:drawMenu(screen)
+elseif f==b.MODE_SHOP then
 if self.dialog or self.shop.screen~="choose"then
-e:clear(a.shade(a.PAPER))
+screen:clear(a.shade(a.PAPER))
 else
-self:drawField(e)
+self:drawField(screen)
 end
-self:drawShop(e)
-elseif i==b.MODE_CARD then
-self:drawCard(e)
-elseif i==b.MODE_OVER then
-self:drawOver(e)
-elseif i==b.MODE_ENDING then
-self:drawEnding(e)
+self:drawShop(screen)
+elseif f==b.MODE_CARD then
+self:drawCard(screen)
+elseif f==b.MODE_OVER then
+self:drawOver(screen)
+elseif f==b.MODE_ENDING then
+self:drawEnding(screen)
 else
-self:drawTitle(e)
+self:drawTitle(screen)
 end
 end

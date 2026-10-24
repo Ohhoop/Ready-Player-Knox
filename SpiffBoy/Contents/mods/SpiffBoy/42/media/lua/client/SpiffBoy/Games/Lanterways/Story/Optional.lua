@@ -216,8 +216,8 @@ a.leviathan_fight={
 local b={noEscape=true,forgiving=true,music="boss",seats=3}
 local c={noEscape=true,forgiving=true,music="boss",noItems=true}
 
-local function d(f)
-return{noEscape=true,forgiving=true,music="boss",onlyElement=f}
+local function d(element)
+return{noEscape=true,forgiving=true,music="boss",onlyElement=element}
 end
 
 a.arena={

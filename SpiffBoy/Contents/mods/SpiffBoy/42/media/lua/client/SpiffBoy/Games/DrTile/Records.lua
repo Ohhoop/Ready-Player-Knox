@@ -9,40 +9,40 @@ a.INITIALS_LENGTH=3
 a.SIZE=10
 a.MODES={"a","b"}
 
-local g="^([A-Za-z0-9][A-Za-z0-9][A-Za-z0-9]):(%d+)$"
-local h=9
+local f="^([A-Za-z0-9][A-Za-z0-9][A-Za-z0-9]):(%d+)$"
+local g=9
 
-local function i(c)
+local function h(saved)
 local b={}
-if type(c)~="table"then
+if type(saved)~="table"then
 return b
 end
-for j=1,a.SIZE do
-local d=c[j]
-if type(d)=="string"then
-local e,f=string.match(d,g)
-if e and string.len(f)<=h then
-b[#b+1]={initials=e,score=tonumber(f)}
+for i=1,a.SIZE do
+local c=saved[i]
+if type(c)=="string"then
+local d,e=string.match(c,f)
+if d and string.len(e)<=g then
+b[#b+1]={initials=d,score=tonumber(e)}
 end
 end
 end
 return b
 end
 
-local function e(b)
-local d={}
-for c=1,#b do
-d[c]=b[c].initials..":"..tostring(b[c].score)
+local function e(list)
+local c={}
+for b=1,#list do
+c[b]=list[b].initials..":"..tostring(list[b].score)
 end
-return d
+return c
 end
 
-function a.read(f)
+function a.read(save)
 local b={}
-local d=f.records
-for j,c in ipairs(a.MODES)do
+local d=save.records
+for i,c in ipairs(a.MODES)do
 if type(d)=="table"then
-b[c]=i(d[c])
+b[c]=h(d[c])
 else
 b[c]={}
 end
@@ -50,37 +50,37 @@ end
 return b
 end
 
-function a.write(d)
+function a.write(records)
 local b={}
-for f,c in ipairs(a.MODES)do
-b[c]=e(d[c])
+for d,c in ipairs(a.MODES)do
+b[c]=e(records[c])
 end
 return b
 end
 
-function a.rankOf(b,c)
-if c<=0 then
+function a.rankOf(list,score)
+if score<=0 then
 return nil
 end
-for d=1,#b do
-if c>b[d].score then
-return d
+for b=1,#list do
+if score>list[b].score then
+return b
 end
 end
-if#b<a.SIZE then
-return#b+1
+if#list<a.SIZE then
+return#list+1
 end
 return nil
 end
 
-function a.insert(b,f,d)
-local c=a.rankOf(b,d)
-if not c then
+function a.insert(list,initials,score)
+local b=a.rankOf(list,score)
+if not b then
 return nil
 end
-table.insert(b,c,{initials=f,score=d})
-while#b>a.SIZE do
-table.remove(b)
+table.insert(list,b,{initials=initials,score=score})
+while#list>a.SIZE do
+table.remove(list)
 end
-return c
+return b
 end

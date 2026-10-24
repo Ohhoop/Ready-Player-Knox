@@ -7,27 +7,27 @@ SpiffBoy.DoubleRaccoon.Combat=a
 
 a.DEPTH=50
 
-function a.inFront(b,c,e,f,g)
-local d=(c.x-b.x)*b.facing
-return d>=e and d<=f and math.abs(c.z-b.z)<=g
+function a.inFront(attacker,target,near,far,depth)
+local b=(target.x-attacker.x)*attacker.facing
+return b>=near and b<=far and math.abs(target.z-attacker.z)<=depth
 end
 
-function a.approach(b,c,d)
-if b<c then
-return math.min(b+d,c)
+function a.approach(value,target,step)
+if value<target then
+return math.min(value+step,target)
 end
-return math.max(b-d,c)
+return math.max(value-step,target)
 end
 
-function a.sign(b)
-if b<0 then
+function a.sign(value)
+if value<0 then
 return-1
-elseif b>0 then
+elseif value>0 then
 return 1
 end
 return 0
 end
 
-function a.clampDepth(b)
-return SpiffBoy.clamp(b,0,a.DEPTH)
+function a.clampDepth(z)
+return SpiffBoy.clamp(z,0,a.DEPTH)
 end

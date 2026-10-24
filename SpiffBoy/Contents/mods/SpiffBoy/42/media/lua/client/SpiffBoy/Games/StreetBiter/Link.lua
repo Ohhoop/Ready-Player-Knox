@@ -22,9 +22,9 @@ a.TICK_MODULUS=65536
 local g={up=1,down=2,left=4,right=8,a=16,b=32}
 local h={"up","down","left","right","a","b"}
 
-function a.new(c)
+function a.new(port)
 local b=setmetatable({},a)
-b.port=c
+b.port=port
 b.local_={}
 b.remote={}
 b.pingSent=nil
@@ -46,54 +46,54 @@ function a:leads()
 return self:seat()==1
 end
 
-function a.packInput(d)
+function a.packInput(held)
 local b=0
-for e,c in ipairs(h)do
-if d[c]then
+for d,c in ipairs(h)do
+if held[c]then
 b=b+g[c]
 end
 end
 return b
 end
 
-function a.unpackInput(d)
+function a.unpackInput(value)
 local b={}
-for f,c in ipairs(h)do
-local e=g[c]
-b[c]=math.floor(d/e)%2==1
+for e,c in ipairs(h)do
+local d=g[c]
+b[c]=math.floor(value/d)%2==1
 end
 return b
 end
 
-local function i(c)
-local b=c%a.TICK_MODULUS
+local function i(tick)
+local b=tick%a.TICK_MODULUS
 return string.char(math.floor(b/256),b%256)
 end
 
-local function j(b,c)
-return string.byte(b,c)*256+string.byte(b,c+1)
+local function j(message,position)
+return string.byte(message,position)*256+string.byte(message,position+1)
 end
 
-function a:send(b)
-self.port:send(b)
+function a:send(message)
+self.port:send(message)
 end
 
 function a:hello()
 self:send(a.KIND_HELLO)
 end
 
-function a:ping(b)
-self.pingSent=b
+function a:ping(tick)
+self.pingSent=tick
 self.pings=self.pings+1
-self:send(a.KIND_PING..i(b))
+self:send(a.KIND_PING..i(tick))
 end
 
 function a:needsPing()
 return self.pings<a.PINGS and self.pingSent==nil
 end
 
-function a:sendChoice(b)
-self:send(a.KIND_CHOICE..string.char(b))
+function a:sendChoice(index)
+self:send(a.KIND_CHOICE..string.char(index))
 end
 
 function a:nextMatch()
@@ -101,20 +101,20 @@ self.matchId=(self.matchId+1)%256
 self:reset()
 end
 
-function a:sendStart(d,e)
-local c=d
+function a:sendStart(seed,delay)
+local c=seed
 local b={}
-for f=4,1,-1 do
-b[f]=c%256
+for d=4,1,-1 do
+b[d]=c%256
 c=math.floor(c/256)
 end
-self:send(a.KIND_START..string.char(self.matchId,b[1],b[2],b[3],b[4],e))
+self:send(a.KIND_START..string.char(self.matchId,b[1],b[2],b[3],b[4],delay))
 end
 
-function a:sendInput(b,d)
-local c=a.packInput(d)
-self.local_[b]=c
-self:send(a.KIND_INPUT..string.char(self.matchId)..i(b)..string.char(c))
+function a:sendInput(tick,held)
+local b=a.packInput(held)
+self.local_[tick]=b
+self:send(a.KIND_INPUT..string.char(self.matchId)..i(tick)..string.char(b))
 end
 
 function a:reset()
@@ -137,23 +137,23 @@ local b=math.ceil(self.roundTrip/2)
 return SpiffBoy.clamp(b+a.EXTRA_DELAY,a.MIN_DELAY,a.MAX_DELAY)
 end
 
-function a:remoteInput(c)
-local b=self.remote[c]
+function a:remoteInput(tick)
+local b=self.remote[tick]
 if b==nil then
 return nil
 end
 return a.unpackInput(b)
 end
 
-function a:localInput(c)
-local b=self.local_[c]
+function a:localInput(tick)
+local b=self.local_[tick]
 if b==nil then
 return nil
 end
 return a.unpackInput(b)
 end
 
-function a:poll(k)
+function a:poll(tick)
 local d={}
 while true do
 local b=self.port:receive()
@@ -170,15 +170,15 @@ elseif c==a.KIND_PING and e==3 then
 self:send(a.KIND_PONG..string.sub(b,2,3))
 elseif c==a.KIND_PONG and e==3 then
 if self.pingSent and j(b,2)==self.pingSent%a.TICK_MODULUS then
-self.roundTrip=math.max(self.roundTrip or 0,k-self.pingSent)
+self.roundTrip=math.max(self.roundTrip or 0,tick-self.pingSent)
 self.pingSent=nil
 end
 elseif c==a.KIND_CHOICE and e==2 then
 d[#d+1]={kind=c,index=string.byte(b,2)}
 elseif c==a.KIND_START and e==7 then
 local f=0
-for l=3,6 do
-f=f*256+string.byte(b,l)
+for k=3,6 do
+f=f*256+string.byte(b,k)
 end
 self.matchId=string.byte(b,2)
 self:reset()

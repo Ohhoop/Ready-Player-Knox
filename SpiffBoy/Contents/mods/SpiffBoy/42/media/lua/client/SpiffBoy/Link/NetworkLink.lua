@@ -3,100 +3,100 @@ require"SpiffBoy/Core/Commands"
 require"SpiffBoy/Link/LinkState"
 
 SpiffBoy.NetworkLink=SpiffBoy.NetworkLink or{}
-local e=SpiffBoy.NetworkLink
-local g=SpiffBoy.LinkState
+local d=SpiffBoy.NetworkLink
+local f=SpiffBoy.LinkState
 
-local j=SpiffBoy.COMMAND_MODULE
-local k={[1]=true,[2]=true}
+local i=SpiffBoy.COMMAND_MODULE
+local j={[1]=true,[2]=true}
 
-local function l(c)
+local function k(onlineId)
 for b=0,getNumActivePlayers()-1 do
 local a=getSpecificPlayer(b)
-if a and a:getOnlineID()==c then
+if a and a:getOnlineID()==onlineId then
 return b,a
 end
 end
 return nil
 end
 
-local function f(a,b)
-sendClientCommand(a,j,SpiffBoy.COMMAND_LINK,b)
+local function e(playerObj,args)
+sendClientCommand(playerObj,i,SpiffBoy.COMMAND_LINK,args)
 end
 
-function e.offer(a,b)
-f(a,{k=SpiffBoy.LINK_OFFER,p=b})
+function d.offer(playerObj,peerId)
+e(playerObj,{k=SpiffBoy.LINK_OFFER,p=peerId})
 end
 
-function e.decline(a,b)
-f(a,{k=SpiffBoy.LINK_DECLINE,p=b})
+function d.decline(playerObj,ownerId)
+e(playerObj,{k=SpiffBoy.LINK_DECLINE,p=ownerId})
 end
 
-function e.sendData(a,b,c)
-f(a,{k=SpiffBoy.LINK_DATA,s=b,e=SpiffBoy.wireList(c)})
+function d.sendData(playerObj,sequence,messages)
+e(playerObj,{k=SpiffBoy.LINK_DATA,s=sequence,e=SpiffBoy.wireList(messages)})
 end
 
-function e.sendState(a,b,c)
-f(a,{k=SpiffBoy.LINK_STATE,c=b,o=c})
+function d.sendState(playerObj,cartridge,on)
+e(playerObj,{k=SpiffBoy.LINK_STATE,c=cartridge,o=on})
 end
 
-local function m(a,d,b)
-if SpiffBoyHandheldWindow.forPlayer(d)or not SpiffBoy.isInteger(b)then
+local function l(player,playerNum,consoleId)
+if SpiffBoyHandheldWindow.forPlayer(playerNum)or not SpiffBoy.isInteger(consoleId)then
 return
 end
-local c=a:getInventory():getItemWithIDRecursiv(b)
-if c then
-SpiffBoyHandheldWindow.open(a,c)
+local a=player:getInventory():getItemWithIDRecursiv(consoleId)
+if a then
+SpiffBoyHandheldWindow.open(player,a)
 end
 end
 
-local function n(a)
-if type(a)~="table"or not SpiffBoy.isInteger(a.me)then
+local function m(args)
+if type(args)~="table"or not SpiffBoy.isInteger(args.me)then
 return
 end
-local c,h=l(a.me)
-if not c then
+local b,g=k(args.me)
+if not b then
 return
 end
-local b=SpiffBoyHandheldWindow.forPlayer(c)
-local d=a.k
-if d==SpiffBoy.LINK_OFFER then
-if SpiffBoy.isInteger(a.p)and type(a.n)=="string"then
-local i=getPlayerByOnlineID(a.p)
-if i then
-SpiffBoy.LinkMenu.ask(h,i)
+local a=SpiffBoyHandheldWindow.forPlayer(b)
+local c=args.k
+if c==SpiffBoy.LINK_OFFER then
+if SpiffBoy.isInteger(args.p)and type(args.n)=="string"then
+local h=getPlayerByOnlineID(args.p)
+if h then
+SpiffBoy.LinkMenu.ask(g,h)
 end
 end
-elseif d==SpiffBoy.LINK_CONNECTED then
-if SpiffBoy.isInteger(a.p)and k[a.s]and type(a.n)=="string"then
-g.set(c,a.n,a.s,a.p,nil)
-if b then
-b.channel:onConnected()
+elseif c==SpiffBoy.LINK_CONNECTED then
+if SpiffBoy.isInteger(args.p)and j[args.s]and type(args.n)=="string"then
+f.set(b,args.n,args.s,args.p,nil)
+if a then
+a.channel:onConnected()
 end
-m(h,c,a.c)
+l(g,b,args.c)
 end
-elseif d==SpiffBoy.LINK_DISCONNECTED then
-g.clear(c)
-if b then
-b.channel:onDisconnected()
+elseif c==SpiffBoy.LINK_DISCONNECTED then
+f.clear(b)
+if a then
+a.channel:onDisconnected()
 end
-elseif d==SpiffBoy.LINK_REFUSED then
-if SpiffBoy.LINK_REFUSALS[a.r]and(a.n==nil or type(a.n)=="string")then
-HaloTextHelper.addText(h,getText("UI_SpiffBoy_"..a.r,a.n),"",HaloTextHelper.getColorRed())
+elseif c==SpiffBoy.LINK_REFUSED then
+if SpiffBoy.LINK_REFUSALS[args.r]and(args.n==nil or type(args.n)=="string")then
+HaloTextHelper.addText(g,getText("UI_SpiffBoy_"..args.r,args.n),"",HaloTextHelper.getColorRed())
 if SpiffBoy.isDevBuild()then
-SpiffBoy.log("link refused: "..a.r)
+SpiffBoy.log("link refused: "..args.r)
 end
 end
-elseif d==SpiffBoy.LINK_DATA then
-local i=SpiffBoy.cleanLinkMessages(a.e)
-if b and g.of(c)and i and SpiffBoy.isInteger(a.s)then
-b.channel:onData(a.s,i)
+elseif c==SpiffBoy.LINK_DATA then
+local h=SpiffBoy.cleanLinkMessages(args.e)
+if a and f.of(b)and h and SpiffBoy.isInteger(args.s)then
+a.channel:onData(args.s,h)
 end
-elseif d==SpiffBoy.LINK_STATE then
-local i=a.c
-if b and(i==nil or type(i)=="string")and type(a.o)=="boolean"then
-b.channel:onState(i,a.o)
+elseif c==SpiffBoy.LINK_STATE then
+local h=args.c
+if a and(h==nil or type(h)=="string")and type(args.o)=="boolean"then
+a.channel:onState(h,args.o)
 end
 end
 end
 
-SpiffBoy.Commands.fromServer(SpiffBoy.COMMAND_LINK,n)
+SpiffBoy.Commands.fromServer(SpiffBoy.COMMAND_LINK,m)

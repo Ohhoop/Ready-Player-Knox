@@ -5,7 +5,7 @@ require"SpiffBoy/Framework/Cartridges"
 SpiffBoy.Tunes=SpiffBoy.Tunes or{}
 local f=SpiffBoy.Tunes
 local b=SpiffBoyChip
-local B=SpiffBoy.ChipBank
+local z=SpiffBoy.ChipBank
 
 f.VOICE_KEYS={pulse1=b.PULSE1,pulse2=b.PULSE2,wave=b.WAVE,noise=b.NOISE}
 f.SILENCE={
@@ -27,158 +27,158 @@ f.LEVEL_SHIFT=16
 f.WAVE_LEVEL_SHIFT=32
 f.PERIOD_HIGH=256
 
-local T=SpiffBoy.TICK_RATE
-local U=240
-local V=120
-local W=4
-local X=4
-local Y=15
-local Z=3
-local _=2
-local aa=1
-local q=8
+local R=SpiffBoy.TICK_RATE
+local S=240
+local T=120
+local U=4
+local V=4
+local W=15
+local X=3
+local Y=2
+local Z=1
+local o=8
+local i=1
+local j=64
 local k=1
-local l=64
-local m=1
-local n=8
-local ab=20
-local ac=400
-local C=b.MAX_LEVEL
-local ad=3
+local l=8
+local _=20
+local aa=400
+local A=b.MAX_LEVEL
+local ab=3
+local ac=7
+local q=3
+local B=16
+local ad=7
 local ae=7
-local s=3
-local D=16
-local af=7
-local ag=7
-local E=64
-local F=65536
-local G=8
-local ah=16
+local C=64
+local D=65536
+local E=8
+local af=16
+local ag=64
+local ah=2
 local ai=64
-local aj=2
-local ak=64
-local al=255
-local am=255
-local H=32
-local I=C
-local t=12
-local J={c=0,d=2,e=4,f=5,g=7,a=9,b=11}
-local an=440
-local ao=4*t+9
-local ap=8
-local aq=8
-local ar=16
-local K=1000000
-local as={[0]=0,[1]=0.25,[2]=0.5,[3]=1}
-local at=0.75
-local au=0.375
-local av=0.125
-local aw=1
-local ax=2
-local ay=3
-local az={[b.PULSE1]=b.PULSE_CLOCK,[b.PULSE2]=b.PULSE_CLOCK,[b.WAVE]=b.WAVE_CLOCK}
-local L={[b.PULSE1]=true,[b.PULSE2]=true}
+local aj=255
+local ak=255
+local F=32
+local G=A
+local r=12
+local H={c=0,d=2,e=4,f=5,g=7,a=9,b=11}
+local al=440
+local am=4*r+9
+local an=8
+local ao=8
+local ap=16
+local I=1000000
+local aq={[0]=0,[1]=0.25,[2]=0.5,[3]=1}
+local ar=0.75
+local as=0.375
+local at=0.125
+local au=1
+local av=2
+local aw=3
+local ax={[b.PULSE1]=b.PULSE_CLOCK,[b.PULSE2]=b.PULSE_CLOCK,[b.WAVE]=b.WAVE_CLOCK}
+local J={[b.PULSE1]=true,[b.PULSE2]=true}
 
-local u={}
+local s={}
 
-local function aA(a)
-return an*2^((a-ao)/t)
+local function ay(index)
+return al*2^((index-am)/r)
 end
 
-local function aB(c,d)
-local a=b.MAX_PERIOD+1-math.floor(d/c+0.5)
+local function az(frequency,clock)
+local a=b.MAX_PERIOD+1-math.floor(clock/frequency+0.5)
 if a<0 or a>b.MAX_PERIOD then
 return nil
 end
 return a
 end
 
-local function o(a)
-return math.floor(a*K+0.5)/K
+local function m(time)
+return math.floor(time*I+0.5)/I
 end
 
-local function v(d,e,g)
-local h=T*U/d
-local a=h/e
+local function t(tempo,length,dots)
+local d=R*S/tempo
+local a=d/length
 local c=a
-for i=1,g do
+for e=1,dots do
 a=a/2
 c=c+a
 end
 return c
 end
 
-function f.periodBytes(a)
-return a%f.PERIOD_HIGH,math.floor(a/f.PERIOD_HIGH)
+function f.periodBytes(period)
+return period%f.PERIOD_HIGH,math.floor(period/f.PERIOD_HIGH)
 end
 
-function f.envelopeByte(c,d,e)
-local a=c*f.LEVEL_SHIFT+e
-if d then
-a=a+ap
+function f.envelopeByte(level,up,period)
+local a=level*f.LEVEL_SHIFT+period
+if up then
+a=a+an
 end
 return a
 end
 
-function f.scaleLevel(a,c)
-return math.floor(a*c+0.5)
+function f.scaleLevel(level,gain)
+return math.floor(level*gain+0.5)
 end
 
-function f.waveCode(c,d)
-local a=as[c]*d
-if a>=at then
+function f.waveCode(level,gain)
+local a=aq[level]*gain
+if a>=ar then
+return au
+elseif a>=as then
+return av
+elseif a>=at then
 return aw
-elseif a>=au then
-return ax
-elseif a>=av then
-return ay
 end
 return 0
 end
 
-local function aC(a,d)
+local function aA(text,fail)
 while true do
-local c,g,h,i=string.find(a,"%[([^%[%]]*)%](%d+)")
-if not c then
+local a,d,e,g=string.find(text,"%[([^%[%]]*)%](%d+)")
+if not a then
 break
 end
-local e=tonumber(i)
-if e<1 or e>E then
-d(c,"a group repeats between 1 and "..E.." times")
+local c=tonumber(g)
+if c<1 or c>C then
+fail(a,"a group repeats between 1 and "..C.." times")
 end
-a=string.sub(a,1,c-1)..string.rep(h,e)..string.sub(a,g+1)
-if string.len(a)>F then
-d(c,"the repeats expand past "..F.." characters")
+text=string.sub(text,1,a-1)..string.rep(e,c)..string.sub(text,d+1)
+if string.len(text)>D then
+fail(a,"the repeats expand past "..D.." characters")
 end
 end
-if string.find(a,"[%[%]]")then
-d(string.find(a,"[%[%]]"),"a bracket is not closed or has no count")
+if string.find(text,"[%[%]]")then
+fail(string.find(text,"[%[%]]"),"a bracket is not closed or has no count")
 end
-return a
+return text
 end
 
-local function aD(a)
-local c=Y
-if a==b.WAVE then
-c=Z
+local function aB(voice)
+local a=W
+if voice==b.WAVE then
+a=X
 end
 return{
-voice=a,
+voice=voice,
 time=0,
-tempo=V,
-length=W,
+tempo=T,
+length=U,
 dots=0,
-octave=X,
-level=c,
+octave=V,
+level=a,
 envelopePeriod=0,
 envelopeUp=false,
-duties={_},
+duties={Y},
 waveIndex=0,
 sweepPeriod=0,
 sweepNegate=false,
 sweepShift=0,
-gate=q,
-arpeggioSpeed=aa,
+gate=o,
+arpeggioSpeed=Z,
 vibrato=nil,
 portamento=0,
 sounding=false,
@@ -187,90 +187,90 @@ events={},
 }
 end
 
-local function aE(a)
-if a.voice~=b.PULSE1 then
+local function aC(state)
+if state.voice~=b.PULSE1 then
 return nil
 end
-local c=a.sweepPeriod*ar+a.sweepShift
-if a.sweepNegate then
-c=c+aq
+local a=state.sweepPeriod*ap+state.sweepShift
+if state.sweepNegate then
+a=a+ao
 end
-return c
+return a
 end
 
-local function w(a,c,e)
-local d={
+local function u(state,periods,codes)
+local a={
 note=true,
-tempo=a.tempo,
-level=a.level,
-envelopeUp=a.envelopeUp,
-envelopePeriod=a.envelopePeriod,
-duties=a.duties,
-sweep=aE(a),
-arpeggioSpeed=a.arpeggioSpeed,
-vibrato=a.vibrato,
-portamento=a.portamento,
-codes=e,
+tempo=state.tempo,
+level=state.level,
+envelopeUp=state.envelopeUp,
+envelopePeriod=state.envelopePeriod,
+duties=state.duties,
+sweep=aC(state),
+arpeggioSpeed=state.arpeggioSpeed,
+vibrato=state.vibrato,
+portamento=state.portamento,
+codes=codes,
 }
-if c then
-d.period=c[1]
-if#c>1 then
-d.periods=c
+if periods then
+a.period=periods[1]
+if#periods>1 then
+a.periods=periods
 end
 end
-if a.voice==b.WAVE then
-d.wave=B.WAVE_NAMES[a.waveIndex+1]
+if state.voice==b.WAVE then
+a.wave=z.WAVE_NAMES[state.waveIndex+1]
 end
-return d
-end
-
-local function M(a,c)
-c.t=o(a.time)
-local d=a.events
-d[#d+1]=c
+return a
 end
 
-local function x(a)
-if not a.sounding then
+local function K(state,event)
+event.t=m(state.time)
+local a=state.events
+a[#a+1]=event
+end
+
+local function v(state)
+if not state.sounding then
 return
 end
-M(a,{off=true,tempo=a.tempo})
-a.sounding=false
+K(state,{off=true,tempo=state.tempo})
+state.sounding=false
 end
 
-local function y(a,e,c)
-M(a,e)
-a.sounding=true
-if a.gate<q then
-local d=c*a.gate/q
-a.time=a.time+d
-x(a)
-a.time=a.time+c-d
+local function w(state,note,duration)
+K(state,note)
+state.sounding=true
+if state.gate<o then
+local a=duration*state.gate/o
+state.time=state.time+a
+v(state)
+state.time=state.time+duration-a
 return
 end
-a.time=a.time+c
+state.time=state.time+duration
 end
 
-local function aF(aG,aH,h,j)
-local function d(a,c)
-error("SpiffBoy: tune "..aG..", voice "..aH..", character "..tostring(a)..": "..c)
+local function aD(label,key,voice,text)
+local function d(position,message)
+error("SpiffBoy: tune "..label..", voice "..key..", character "..tostring(position)..": "..message)
 end
-j=aC(j,d)
-local c=aD(h)
-local aI=string.len(j)
+text=aA(text,d)
+local c=aB(voice)
+local aE=string.len(text)
 local a=1
 
-local function i()
-return string.sub(j,a,a)
+local function h()
+return string.sub(text,a,a)
 end
 
-local function N()
-local e=string.match(j,"^[ \t\r\n]*",a)
+local function L()
+local e=string.match(text,"^[ \t\r\n]*",a)
 a=a+string.len(e)
 end
 
-local function O()
-local e=string.match(j,"^%d+",a)
+local function M()
+local e=string.match(text,"^%d+",a)
 if not e then
 return nil
 end
@@ -278,129 +278,129 @@ a=a+string.len(e)
 return tonumber(e)
 end
 
-local function z()
-local e=string.match(j,"^%.*",a)
+local function x()
+local e=string.match(text,"^%.*",a)
 a=a+string.len(e)
 return string.len(e)
 end
 
-local function g(p,r,A)
-local e=O()
-if not e or e<p or e>r then
-d(a,A.." takes a number from "..p.." to "..r)
+local function g(low,high,what)
+local e=M()
+if not e or e<low or e>high then
+d(a,what.." takes a number from "..low.." to "..high)
 end
 return e
 end
 
-local function P()
-local e=O()
-local p
+local function N()
+local e=M()
+local n
 if e then
-if e<k or e>l then
-d(a,"a length goes from "..k.." to "..l)
+if e<i or e>j then
+d(a,"a length goes from "..i.." to "..j)
 end
-p=z()
+n=x()
 else
 e=c.length
-p=z()
-if p==0 then
-p=c.dots
+n=x()
+if n==0 then
+n=c.dots
 end
 end
-return v(c.tempo,e,p)
+return t(c.tempo,e,n)
 end
 
-local function A()
-local e=P()
-while i()=="^"do
+local function y()
+local e=N()
+while h()=="^"do
 a=a+1
-e=e+P()
+e=e+N()
 end
 return e
 end
 
-local function Q(R)
-local S=i()
-local r=J[S]
-if not r then
+local function O(octave)
+local P=h()
+local p=H[P]
+if not p then
 return nil
 end
 a=a+1
-local e=R*t+r
-local p=i()
-if p=="+"or p=="#"then
+local e=octave*r+p
+local n=h()
+if n=="+"or n=="#"then
 e=e+1
 a=a+1
-elseif p=="-"then
+elseif n=="-"then
 e=e-1
 a=a+1
 end
 return e
 end
 
-local function R(p)
-local e=aB(aA(p),az[h])
+local function P(index)
+local e=az(ay(index),ax[voice])
 if not e then
 d(a,"the note lies outside the range of the voice")
 end
 return e
 end
 
-local function aJ()
-local p={}
+local function aF()
+local n={}
 local e=c.octave
 while true do
-N()
-local r=i()
-if r=="}"then
+L()
+local p=h()
+if p=="}"then
 a=a+1
 break
-elseif r==""then
+elseif p==""then
 d(a,"a chord is not closed")
-elseif r=="<"then
+elseif p=="<"then
 a=a+1
 e=e-1
-elseif r==">"then
+elseif p==">"then
 a=a+1
 e=e+1
 else
-local S=Q(e)
-if not S then
+local Q=O(e)
+if not Q then
 d(a,"a chord holds notes only")
 end
-if e<m or e>n then
-d(a,"the octave of a chord note lies outside "..m.." to "..n)
+if e<k or e>l then
+d(a,"the octave of a chord note lies outside "..k.." to "..l)
 end
-p[#p+1]=R(S)
-if#p>G then
-d(a,"a chord holds at most "..G.." notes")
+n[#n+1]=P(Q)
+if#n>E then
+d(a,"a chord holds at most "..E.." notes")
 end
 end
 end
-if#p==0 then
+if#n==0 then
 d(a,"a chord holds at least one note")
 end
-return p
+return n
 end
 
-local function aK()
-if i()~="{"then
+local function aG()
+if h()~="{"then
 return{g(0,SpiffBoy.BYTE_MAX,"n")}
 end
 a=a+1
 local e={}
 while true do
-N()
-local p=i()
-if p=="}"then
+L()
+local n=h()
+if n=="}"then
 a=a+1
 break
-elseif p==""then
+elseif n==""then
 d(a,"a noise sequence is not closed")
 end
 e[#e+1]=g(0,SpiffBoy.BYTE_MAX,"a noise sequence")
-if#e>H then
-d(a,"a noise sequence holds at most "..H.." values")
+if#e>F then
+d(a,"a noise sequence holds at most "..F.." values")
 end
 end
 if#e==0 then
@@ -409,295 +409,295 @@ end
 return e
 end
 
-local function aL()
-local e=string.match(j,"^%d+",a)
+local function aH()
+local e=string.match(text,"^%d+",a)
 if not e then
-d(a,"@ takes one duty from 0 to "..s.." or a sequence of them")
+d(a,"@ takes one duty from 0 to "..q.." or a sequence of them")
 end
 a=a+string.len(e)
-if string.len(e)>D then
-d(a,"a duty sequence holds at most "..D.." steps")
+if string.len(e)>B then
+d(a,"a duty sequence holds at most "..B.." steps")
 end
-local r={}
-for p=1,string.len(e)do
-local S=tonumber(string.sub(e,p,p))
-if S>s then
-d(a,"a duty goes from 0 to "..s)
+local p={}
+for n=1,string.len(e)do
+local Q=tonumber(string.sub(e,n,n))
+if Q>q then
+d(a,"a duty goes from 0 to "..q)
 end
-r[p]=S
+p[n]=Q
 end
-return r
+return p
 end
 
-while a<=aI do
-local e=i()
+while a<=aE do
+local e=h()
 if e==" "or e=="\n"or e=="\r"or e=="\t"or e=="|"then
 a=a+1
-elseif J[e]then
-if h==b.NOISE then
+elseif H[e]then
+if voice==b.NOISE then
 d(a,"the noise voice plays register values written with n, not notes")
 end
-local p=Q(c.octave)
-local r=R(p)
-local S=A()
-y(c,w(c,{r},nil),S)
+local n=O(c.octave)
+local p=P(n)
+local Q=y()
+w(c,u(c,{p},nil),Q)
 elseif e=="{"then
-if h==b.NOISE then
+if voice==b.NOISE then
 d(a,"the noise voice plays no chord")
 end
 a=a+1
-local p=aJ()
-local r=A()
-y(c,w(c,p,nil),r)
+local n=aF()
+local p=y()
+w(c,u(c,n,nil),p)
 elseif e=="n"then
 a=a+1
-if h~=b.NOISE then
+if voice~=b.NOISE then
 d(a,"n plays a noise register value on the noise voice only")
 end
-local p=aK()
-local r=v(c.tempo,c.length,c.dots)
-y(c,w(c,nil,p),r)
+local n=aG()
+local p=t(c.tempo,c.length,c.dots)
+w(c,u(c,nil,n),p)
 elseif e=="r"then
 a=a+1
-local p=A()
-x(c)
-c.time=c.time+p
+local n=y()
+v(c)
+c.time=c.time+n
 elseif e=="^"then
 d(a,"a tie follows a note")
 elseif e=="o"then
 a=a+1
-c.octave=g(m,n,"o")
+c.octave=g(k,l,"o")
 elseif e=="<"then
 a=a+1
-if c.octave<=m then
-d(a,"the octave cannot go below "..m)
+if c.octave<=k then
+d(a,"the octave cannot go below "..k)
 end
 c.octave=c.octave-1
 elseif e==">"then
 a=a+1
-if c.octave>=n then
-d(a,"the octave cannot go above "..n)
+if c.octave>=l then
+d(a,"the octave cannot go above "..l)
 end
 c.octave=c.octave+1
 elseif e=="l"then
 a=a+1
-c.length=g(k,l,"l")
-c.dots=z()
+c.length=g(i,j,"l")
+c.dots=x()
 elseif e=="t"then
 a=a+1
-c.tempo=g(ab,ac,"t")
+c.tempo=g(_,aa,"t")
 elseif e=="v"then
 a=a+1
-if h==b.WAVE then
-c.level=g(0,ad,"v on the wave voice")
+if voice==b.WAVE then
+c.level=g(0,ab,"v on the wave voice")
 else
-c.level=g(0,C,"v")
+c.level=g(0,A,"v")
 end
 elseif e=="y"or e=="u"then
 a=a+1
-if h==b.WAVE then
+if voice==b.WAVE then
 d(a,"the wave voice has no envelope")
 end
-c.envelopePeriod=g(0,ae,e)
+c.envelopePeriod=g(0,ac,e)
 c.envelopeUp=e=="u"
 elseif e=="@"then
 a=a+1
-if h==b.WAVE then
-c.waveIndex=g(0,#B.WAVE_NAMES-1,"@ on the wave voice")
-elseif h==b.NOISE then
+if voice==b.WAVE then
+c.waveIndex=g(0,#z.WAVE_NAMES-1,"@ on the wave voice")
+elseif voice==b.NOISE then
 d(a,"the noise voice takes its register value from n")
 else
-c.duties=aL()
+c.duties=aH()
 end
 elseif e=="s"then
 a=a+1
-if h~=b.PULSE1 then
+if voice~=b.PULSE1 then
 d(a,"only the first pulse voice sweeps")
 end
-c.sweepPeriod=g(0,af,"s")
+c.sweepPeriod=g(0,ad,"s")
 c.sweepNegate=false
 c.sweepShift=0
-if i()==","then
+if h()==","then
 a=a+1
-if i()=="-"then
+if h()=="-"then
 a=a+1
 c.sweepNegate=true
 end
-c.sweepShift=g(0,ag,"the sweep shift")
+c.sweepShift=g(0,ae,"the sweep shift")
 end
 elseif e=="q"then
 a=a+1
-c.gate=g(1,q,"q")
+c.gate=g(1,o,"q")
 elseif e=="x"then
 a=a+1
-c.arpeggioSpeed=g(1,ah,"x")
+c.arpeggioSpeed=g(1,af,"x")
 elseif e=="~"then
 a=a+1
-if h==b.NOISE then
+if voice==b.NOISE then
 d(a,"the noise voice has no vibrato")
 end
-local p=g(0,ai,"~")
-if p==0 then
+local n=g(0,ag,"~")
+if n==0 then
 c.vibrato=nil
 else
-if i()~=","then
+if h()~=","then
 d(a,"a vibrato takes a depth, a speed and an optional delay")
 end
 a=a+1
-local S=g(aj,ak,"the vibrato speed")
-local r=0
-if i()==","then
+local Q=g(ah,ai,"the vibrato speed")
+local p=0
+if h()==","then
 a=a+1
-r=g(0,al,"the vibrato delay")
+p=g(0,aj,"the vibrato delay")
 end
-c.vibrato={depth=p,speed=S,delay=r}
+c.vibrato={depth=n,speed=Q,delay=p}
 end
 elseif e=="p"then
 a=a+1
-if h==b.NOISE then
+if voice==b.NOISE then
 d(a,"the noise voice has no portamento")
 end
-c.portamento=g(0,am,"p")
+c.portamento=g(0,ak,"p")
 elseif e=="L"then
 a=a+1
-c.loopStart=o(c.time)
+c.loopStart=m(c.time)
 else
 d(a,"unknown command "..e)
 end
 end
-x(c)
+v(c)
 return c
 end
 
-local function z(c)
+local function x(event)
 local a={}
-for d,e in pairs(c)do
-a[d]=e
+for c,d in pairs(event)do
+a[c]=d
 end
 return a
 end
 
-local function A(p,r,g,c,N,O)
-local d="SpiffBoy: tune "..p..", voice "..r..": "
-if not L[g]then
-error(d.."only a pulse voice echoes")
+local function y(label,key,voice,definition,states,loop)
+local c="SpiffBoy: tune "..label..", voice "..key..": "
+if not J[voice]then
+error(c.."only a pulse voice echoes")
 end
-local P=f.VOICE_KEYS[c.echo]
-local e=N[c.echo]
-if not L[P]or not e then
-error(d.."an echo names a pulse voice written in the same tune")
+local n=f.VOICE_KEYS[definition.echo]
+local d=states[definition.echo]
+if not J[n]or not d then
+error(c.."an echo names a pulse voice written in the same tune")
 end
-if not SpiffBoy.isInteger(c.delay)or c.delay<k or c.delay>l then
-error(d.."an echo delay is a note length from "..k.." to "..l)
+if not SpiffBoy.isInteger(definition.delay)or definition.delay<i or definition.delay>j then
+error(c.."an echo delay is a note length from "..i.." to "..j)
 end
-if not SpiffBoy.isInteger(c.drop)or c.drop<0 or c.drop>I then
-error(d.."an echo drop goes from 0 to "..I)
+if not SpiffBoy.isInteger(definition.drop)or definition.drop<0 or definition.drop>G then
+error(c.."an echo drop goes from 0 to "..G)
 end
-local j=o(e.time)
-local h={}
-local i=j
-for Q=1,#e.events do
-local a=z(e.events[Q])
-local R=v(a.tempo,c.delay,0)
-a.t=o(a.t+R)
+local h=m(d.time)
+local e={}
+local g=h
+for p=1,#d.events do
+local a=x(d.events[p])
+local L=t(a.tempo,definition.delay,0)
+a.t=m(a.t+L)
 if a.note then
-a.level=math.max(0,a.level-c.drop)
+a.level=math.max(0,a.level-definition.drop)
 a.sweep=nil
-if g==b.PULSE1 then
+if voice==b.PULSE1 then
 a.sweep=0
 end
 end
-if not O or a.t<j then
-h[#h+1]=a
-i=math.max(i,a.t)
+if not loop or a.t<h then
+e[#e+1]=a
+g=math.max(g,a.t)
 end
 end
-return{voice=g,events=h,time=i,loopStart=nil}
+return{voice=voice,events=e,time=g,loopStart=nil}
 end
 
-local function N(c,g)
-if type(g)~="table"then
-error("SpiffBoy: tune "..c.." needs a table")
+local function L(label,definition)
+if type(definition)~="table"then
+error("SpiffBoy: tune "..label.." needs a table")
 end
-local e={}
-local j={}
-for a,h in pairs(f.VOICE_KEYS)do
-local d=g[a]
-if type(d)=="string"then
-e[a]=aF(c,a,h,d)
-elseif type(d)=="table"then
-j[a]=d
-elseif d~=nil then
-error("SpiffBoy: tune "..c..", voice "..a.." needs a string or an echo table")
-end
-end
-local p=g.loop==true
-for a,d in pairs(j)do
-e[a]=A(c,a,f.VOICE_KEYS[a],d,e,p)
-end
-local a={loop=p,length=0,loopStart=0,tracks={}}
-local h=nil
-local r=false
-for i,d in pairs(e)do
-r=true
-a.tracks[d.voice]={events=d.events,n=#d.events,loopIndex=1}
-a.length=math.max(a.length,o(d.time))
-if d.loopStart then
-if h and d.loopStart~=a.loopStart then
-error("SpiffBoy: tune "..c.." places its loop point at different times on "..h.." and "..i)
-end
-a.loopStart=d.loopStart
-h=i
+local d={}
+local h={}
+for a,e in pairs(f.VOICE_KEYS)do
+local c=definition[a]
+if type(c)=="string"then
+d[a]=aD(label,a,e,c)
+elseif type(c)=="table"then
+h[a]=c
+elseif c~=nil then
+error("SpiffBoy: tune "..label..", voice "..a.." needs a string or an echo table")
 end
 end
-if not r then
-error("SpiffBoy: tune "..c.." has no voice")
+local n=definition.loop==true
+for a,c in pairs(h)do
+d[a]=y(label,a,f.VOICE_KEYS[a],c,d,n)
+end
+local a={loop=n,length=0,loopStart=0,tracks={}}
+local e=nil
+local p=false
+for g,c in pairs(d)do
+p=true
+a.tracks[c.voice]={events=c.events,n=#c.events,loopIndex=1}
+a.length=math.max(a.length,m(c.time))
+if c.loopStart then
+if e and c.loopStart~=a.loopStart then
+error("SpiffBoy: tune "..label.." places its loop point at different times on "..e.." and "..g)
+end
+a.loopStart=c.loopStart
+e=g
+end
+end
+if not p then
+error("SpiffBoy: tune "..label.." has no voice")
 end
 if a.length<=0 then
-error("SpiffBoy: tune "..c.." lasts no time")
+error("SpiffBoy: tune "..label.." lasts no time")
 end
 if a.loop and a.loopStart>=a.length then
-error("SpiffBoy: tune "..c.." loops from its end")
+error("SpiffBoy: tune "..label.." loops from its end")
 end
-for O,i in pairs(a.tracks)do
-local d=1
-while d<=i.n and i.events[d].t<a.loopStart do
-d=d+1
+for M,g in pairs(a.tracks)do
+local c=1
+while c<=g.n and g.events[c].t<a.loopStart do
+c=c+1
 end
-i.loopIndex=d
+g.loopIndex=c
 end
 return a
 end
 
-function f.register(a,e)
-if type(a)~="string"or type(e)~="table"then
+function f.register(id,definitions)
+if type(id)~="string"or type(definitions)~="table"then
 error("SpiffBoy: tunes are registered with a string id and a table of definitions")
 end
-local g=SpiffBoy.Cartridges.byId(a)
-if not g then
-error("SpiffBoy: tunes are registered under the id of a registered cartridge, and no cartridge has the id "..a)
+local d=SpiffBoy.Cartridges.byId(id)
+if not d then
+error("SpiffBoy: tunes are registered under the id of a registered cartridge, and no cartridge has the id "..id)
 end
-if u[a]then
-error("SpiffBoy: tunes are already registered under the id "..a.." of the cartridge of the mod "..g.mod)
+if s[id]then
+error("SpiffBoy: tunes are already registered under the id "..id.." of the cartridge of the mod "..d.mod)
 end
-local d={id=a,tunes={}}
-for c,h in pairs(e)do
-if type(c)~="string"or string.len(c)>SpiffBoy.TUNE_NAME_MAX then
-error("SpiffBoy: tune names of "..a.." are strings of at most "..SpiffBoy.TUNE_NAME_MAX.." characters")
+local c={id=id,tunes={}}
+for a,e in pairs(definitions)do
+if type(a)~="string"or string.len(a)>SpiffBoy.TUNE_NAME_MAX then
+error("SpiffBoy: tune names of "..id.." are strings of at most "..SpiffBoy.TUNE_NAME_MAX.." characters")
 end
-d.tunes[c]=N(a.."."..c,h)
+c.tunes[a]=L(id.."."..a,e)
 end
-u[a]=d
-return d
-end
-
-function f.set(a)
-return u[a]
+s[id]=c
+return c
 end
 
-function f.find(a,c)
-if not a or type(c)~="string"then
+function f.set(id)
+return s[id]
+end
+
+function f.find(set,name)
+if not set or type(name)~="string"then
 return nil
 end
-return a.tunes[c]
+return set.tunes[name]
 end

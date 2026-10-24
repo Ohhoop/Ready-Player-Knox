@@ -21,11 +21,11 @@ for b=1,#a.FRAMES,a.SHEET_FRAMES do
 a.SHEETS[#a.SHEETS+1]={first=b,count=math.min(a.SHEET_FRAMES,#a.FRAMES-b+1)}
 end
 
-function a.cellOf(e,f)
-local d=a.FRAME_INDEX[e]
+function a.cellOf(frame,facing)
+local d=a.FRAME_INDEX[frame]
 local b=math.floor((d-1)/a.SHEET_FRAMES)+1
 local c=d-a.SHEETS[b].first
-if f<0 then
+if facing<0 then
 c=c+a.SHEETS[b].count
 end
 return b,c
@@ -120,14 +120,14 @@ qcb={label={2,1,4},pattern={{2},{4}}},
 dp={label={6,2,3},pattern={{6},{2},{3,6}}},
 }
 
-function a.ladder(d)
+function a.ladder(index)
 local b={}
-for c,e in ipairs(a.LIST)do
-if c~=d and c~=a.BOSS then
+for c,d in ipairs(a.LIST)do
+if c~=index and c~=a.BOSS then
 b[#b+1]=c
 end
 end
-if d~=a.BOSS then
+if index~=a.BOSS then
 b[#b+1]=a.BOSS
 end
 return b

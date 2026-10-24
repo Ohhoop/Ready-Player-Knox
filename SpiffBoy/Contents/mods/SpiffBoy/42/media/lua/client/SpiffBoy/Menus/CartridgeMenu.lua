@@ -9,102 +9,102 @@ require"SpiffBoy/Handheld/PlayHandheldAction"
 SpiffBoy.CartridgeMenu=SpiffBoy.CartridgeMenu or{}
 local a=SpiffBoy.CartridgeMenu
 
-function a.disable(b,d)
-b.notAvailable=true
-local c=ISInventoryPaneContextMenu.addToolTip()
-c.description=d
-b.toolTip=c
+function a.disable(option,text)
+option.notAvailable=true
+local b=ISInventoryPaneContextMenu.addToolTip()
+b.description=text
+option.toolTip=b
 end
 
-function a.subMenu(b,d)
-local c=ISContextMenu:getNew(b)
-c:setAlwaysOnTop(b.javaObject:isAlwaysOnTop())
-b:addSubMenu(d,c)
-return c
+function a.subMenu(context,option)
+local b=ISContextMenu:getNew(context)
+b:setAlwaysOnTop(context.javaObject:isAlwaysOnTop())
+context:addSubMenu(option,b)
+return b
 end
 
-function a.addConsoleChoice(j,e,f,c,b,g,h)
-if b:size()==1 then
-return e(f,c,g,b:get(0),h)
+function a.addConsoleChoice(context,add,label,playerObj,consoles,onSelect,item)
+if consoles:size()==1 then
+return add(label,playerObj,onSelect,consoles:get(0),item)
 end
-local d=e(f,c,nil)
-if b:size()==0 then
-return d
+local b=add(label,playerObj,nil)
+if consoles:size()==0 then
+return b
 end
-local k=a.subMenu(j,d)
-for l=0,b:size()-1 do
-local i=b:get(l)
-k:addOption(i:getDisplayName(),c,g,i,h)
+local d=a.subMenu(context,b)
+for e=0,consoles:size()-1 do
+local c=consoles:get(e)
+d:addOption(c:getDisplayName(),playerObj,onSelect,c,item)
 end
-return d
+return b
 end
 
-local function h(b)
+local function e(message)
 if SpiffBoy.isDevBuild()then
-SpiffBoy.log("cartridge menu: "..b)
+SpiffBoy.log("cartridge menu: "..message)
 end
 end
 
-function a.queue(c,f,e)
-local b=SpiffBoyHandheldWindow.shownOn(f)
-local g=b and b.poseAction
-local i={}
-for d=1,#e do
-local j=e[d]
-i[d]=(j.timedAction or j.action).Type
+function a.queue(playerObj,console,steps)
+local b=SpiffBoyHandheldWindow.shownOn(console)
+local d=b and b.poseAction
+local f={}
+for c=1,#steps do
+local g=steps[c]
+f[c]=(g.timedAction or g.action).Type
 end
-h("queue "..table.concat(i,", ")..", window shown "..tostring(b~=nil)..", pose running "..tostring(g~=nil and g.action~=nil)..", queue length before "..tostring(#ISTimedActionQueue.getTimedActionQueue(c).queue))
-ISInventoryPaneContextMenu.transferIfNeeded(c,f)
-for j=1,#e do
-local d=e[j]
-if d.timedAction then
-ISTimedActionQueue.add(d.timedAction)
+e("queue "..table.concat(f,", ")..", window shown "..tostring(b~=nil)..", pose running "..tostring(d~=nil and d.action~=nil)..", queue length before "..tostring(#ISTimedActionQueue.getTimedActionQueue(playerObj).queue))
+ISInventoryPaneContextMenu.transferIfNeeded(playerObj,console)
+for g=1,#steps do
+local c=steps[g]
+if c.timedAction then
+ISTimedActionQueue.add(c.timedAction)
 else
-if d.item then
-ISInventoryPaneContextMenu.transferIfNeeded(c,d.item)
+if c.item then
+ISInventoryPaneContextMenu.transferIfNeeded(playerObj,c.item)
 end
-ISTimedActionQueue.add(d.action:new(c,f,d.item))
+ISTimedActionQueue.add(c.action:new(playerObj,console,c.item))
 end
 end
 if b then
-b.poseAction=SpiffBoyPlayHandheldAction:new(c,b)
+b.poseAction=SpiffBoyPlayHandheldAction:new(playerObj,b)
 ISTimedActionQueue.add(b.poseAction)
-SpiffBoyPlayHandheldAction.finishFor(g)
+SpiffBoyPlayHandheldAction.finishFor(d)
 end
-h("queue length after "..tostring(#ISTimedActionQueue.getTimedActionQueue(c).queue))
+e("queue length after "..tostring(#ISTimedActionQueue.getTimedActionQueue(playerObj).queue))
 end
 
-function a.insert(d,c,e)
+function a.insert(playerObj,console,cartridge)
 local b={}
-if SpiffBoy.Handheld.getCartridge(c)then
+if SpiffBoy.Handheld.getCartridge(console)then
 b[#b+1]={action=SpiffBoyRemoveCartridgeAction}
 end
-b[#b+1]={action=SpiffBoyInsertCartridgeAction,item=e}
-a.queue(d,c,b)
+b[#b+1]={action=SpiffBoyInsertCartridgeAction,item=cartridge}
+a.queue(playerObj,console,b)
 end
 
-function a.remove(b,c)
-a.queue(b,c,{{action=SpiffBoyRemoveCartridgeAction}})
+function a.remove(playerObj,console)
+a.queue(playerObj,console,{{action=SpiffBoyRemoveCartridgeAction}})
 end
 
-function a.addOptions(i,b,c,e,j)
-local k=SpiffBoy.Handheld.getCartridge(c)
-if k then
-e(getText("UI_SpiffBoy_RemoveCartridge"),b,a.remove,c)
-if not j then
+function a.addOptions(context,playerObj,console,add,allowSwap)
+local f=SpiffBoy.Handheld.getCartridge(console)
+if f then
+add(getText("UI_SpiffBoy_RemoveCartridge"),playerObj,a.remove,console)
+if not allowSwap then
 return
 end
 end
-local d=b:getInventory():getAllEvalRecurse(SpiffBoy.Cartridges.isCartridge,ArrayList.new())
-local f=e(getText("UI_SpiffBoy_InsertCartridge"),b,nil)
-if d:size()==0 then
-a.disable(f,getText("UI_SpiffBoy_NoCartridgeInInventory"))
+local b=playerObj:getInventory():getAllEvalRecurse(SpiffBoy.Cartridges.isCartridge,ArrayList.new())
+local c=add(getText("UI_SpiffBoy_InsertCartridge"),playerObj,nil)
+if b:size()==0 then
+a.disable(c,getText("UI_SpiffBoy_NoCartridgeInInventory"))
 return
 end
-local l=a.subMenu(i,f)
-for m=0,d:size()-1 do
-local g=d:get(m)
-local n=SpiffBoy.Cartridges.get(g:getFullType())
-l:addOption(n.title,b,a.insert,c,g)
+local g=a.subMenu(context,c)
+for h=0,b:size()-1 do
+local d=b:get(h)
+local i=SpiffBoy.Cartridges.get(d:getFullType())
+g:addOption(i.title,playerObj,a.insert,console,d)
 end
 end

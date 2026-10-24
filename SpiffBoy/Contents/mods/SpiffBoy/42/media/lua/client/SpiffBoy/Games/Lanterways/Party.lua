@@ -3,103 +3,103 @@ require"SpiffBoy/Games/Lanterways/Data/Characters"
 require"SpiffBoy/Games/Lanterways/Data/Items"
 require"SpiffBoy/Games/Lanterways/Data/Skills"
 
-local c=SpiffBoy.Lanterways
-local f=c.Characters
-local d=c.Items
+local b=SpiffBoy.Lanterways
+local e=b.Characters
+local d=b.Items
 
 local a={}
-c.Party=a
+b.Party=a
 
 a.SLOTS={"weapon","armor","charm"}
 a.RESERVE_SHARE=0.75
 a.GOLD_CAP=999999
 a.STATS={"hp","sp","atk","def","mag","res","spd"}
 
-function a.newMember(e,i)
-local g=f.BY_ID[e]
-local b={
-id=e,
-level=i,
+function a.newMember(id,level)
+local f=e.BY_ID[id]
+local c={
+id=id,
+level=level,
 xp=0,
-equip={weapon=g.start.weapon,armor=g.start.armor,charm=nil},
+equip={weapon=f.start.weapon,armor=f.start.armor,charm=nil},
 }
-local h=a.stats(b)
-b.hp=h.hp
-b.sp=h.sp
-return b
+local g=a.stats(c)
+c.hp=g.hp
+c.sp=g.sp
+return c
 end
 
-function a.stats(g)
-local j=f.BY_ID[g.id]
-local b={}
-for h,e in ipairs(a.STATS)do
-b[e]=f.statAt(j,e,g.level)
+function a.stats(member)
+local i=e.BY_ID[member.id]
+local c={}
+for g,f in ipairs(a.STATS)do
+c[f]=e.statAt(i,f,member.level)
 end
-for l,k in ipairs(a.SLOTS)do
-local i=g.equip[k]
-local h=i and d.get(i)
-if h then
-for m,e in ipairs(a.STATS)do
-if h[e]then
-b[e]=b[e]+h[e]
-end
-end
+for k,j in ipairs(a.SLOTS)do
+local h=member.equip[j]
+local g=h and d.get(h)
+if g then
+for l,f in ipairs(a.STATS)do
+if g[f]then
+c[f]=c[f]+g[f]
 end
 end
-return b
 end
-
-function a.guardOf(b)
-local e=b.equip.charm and d.get(b.equip.charm)
-return e and e.guard
+end
+return c
 end
 
-function a.worn(e,g)
-local b=e.equip[g]
-return b and d.get(b)
+function a.guardOf(member)
+local c=member.equip.charm and d.get(member.equip.charm)
+return c and c.guard
 end
 
-function a.wardsOf(g)
-local e={}
-for i,h in ipairs({"armor","charm"})do
-local b=a.worn(g,h)
-if b and b.ward then
-e[b.ward]=true
-end
-end
-return e
+function a.worn(member,slot)
+local c=member.equip[slot]
+return c and d.get(c)
 end
 
-function a.skills(e,b)
-return f.skillsAt(f.BY_ID[b.id],b.level,e.flags)
+function a.wardsOf(member)
+local f={}
+for h,g in ipairs({"armor","charm"})do
+local c=a.worn(member,g)
+if c and c.ward then
+f[c.ward]=true
+end
+end
+return f
 end
 
-function a.clamp(b)
-local e=a.stats(b)
-b.hp=SpiffBoy.clamp(b.hp,0,e.hp)
-b.sp=SpiffBoy.clamp(b.sp,0,e.sp)
+function a.skills(state,member)
+return e.skillsAt(e.BY_ID[member.id],member.level,state.flags)
 end
 
-function a.gainXp(b,i)
-local e=0
-b.xp=b.xp+i
-while b.level<c.LEVEL_CAP and b.xp>=f.toNext(b.level)do
-local g=a.stats(b)
-b.xp=b.xp-f.toNext(b.level)
-b.level=b.level+1
-local h=a.stats(b)
-b.hp=b.hp+(h.hp-g.hp)
-b.sp=b.sp+(h.sp-g.sp)
-e=e+1
+function a.clamp(member)
+local c=a.stats(member)
+member.hp=SpiffBoy.clamp(member.hp,0,c.hp)
+member.sp=SpiffBoy.clamp(member.sp,0,c.sp)
 end
-if b.level>=c.LEVEL_CAP then
-b.xp=0
+
+function a.gainXp(member,amount)
+local c=0
+member.xp=member.xp+amount
+while member.level<b.LEVEL_CAP and member.xp>=e.toNext(member.level)do
+local f=a.stats(member)
+member.xp=member.xp-e.toNext(member.level)
+member.level=member.level+1
+local g=a.stats(member)
+member.hp=member.hp+(g.hp-f.hp)
+member.sp=member.sp+(g.sp-f.sp)
+c=c+1
 end
-return e
+if member.level>=b.LEVEL_CAP then
+member.xp=0
+end
+return c
 end
 
 function a.newState()
-local b={
+local c={
 step=0,
 flags={},
 gold=30,
@@ -119,271 +119,271 @@ bonds={},
 ng=0,
 carry={},
 }
-return b
+return c
 end
 
-function a.newStateFrom(e)
-local b=a.newState()
-b.ng=e.ng+1
-b.gold=e.gold
-b.items=e.items
-b.seen=e.seen
-b.known=e.known
-b.bonds=e.bonds
-for g,h in pairs(e.members)do
-b.carry[g]=h
+function a.newStateFrom(finished)
+local c=a.newState()
+c.ng=finished.ng+1
+c.gold=finished.gold
+c.items=finished.items
+c.seen=finished.seen
+c.known=finished.known
+c.bonds=finished.bonds
+for f,g in pairs(finished.members)do
+c.carry[f]=g
 end
-for g,h in pairs(e.carry)do
-if not b.carry[g]then
-b.carry[g]=h
+for f,g in pairs(finished.carry)do
+if not c.carry[f]then
+c.carry[f]=g
 end
 end
-local g=b.carry.pell
-b.carry.pell=nil
-b.members.pell=g
-a.restoreAll(b)
-return b
-end
-
-function a.enemyBonus(b)
-return b.ng*8
+local f=c.carry.pell
+c.carry.pell=nil
+c.members.pell=f
+a.restoreAll(c)
+return c
 end
 
-function a.averageLevel(g)
-local b=0
-local e=a.active(g)
-for i,h in ipairs(e)do
-b=b+h.level
-end
-return math.floor(b/#e+0.5)
+function a.enemyBonus(state)
+return state.ng*8
 end
 
-function a.join(b,g)
-if b.members[g]then
-return b.members[g]
+function a.averageLevel(state)
+local c=0
+local f=a.active(state)
+for h,g in ipairs(f)do
+c=c+g.level
 end
-local h=a.averageLevel(b)
-local e=b.carry[g]
-if e then
-b.carry[g]=nil
-if e.level<h then
-e.level=h
-e.xp=0
+return math.floor(c/#f+0.5)
 end
-a.clamp(e)
+
+function a.join(state,id)
+if state.members[id]then
+return state.members[id]
+end
+local f=a.averageLevel(state)
+local c=state.carry[id]
+if c then
+state.carry[id]=nil
+if c.level<f then
+c.level=f
+c.xp=0
+end
+a.clamp(c)
 else
-e=a.newMember(g,h)
+c=a.newMember(id,f)
 end
-b.members[g]=e
-b.order[#b.order+1]=g
-return e
+state.members[id]=c
+state.order[#state.order+1]=id
+return c
 end
 
-function a.leave(b,e)
-local g=b.members[e]
-if not g then
+function a.leave(state,id)
+local c=state.members[id]
+if not c then
 return
 end
-b.carry[e]=g
-b.members[e]=nil
-local h=c.indexOf(b.order,e)
-if h then
-table.remove(b.order,h)
+state.carry[id]=c
+state.members[id]=nil
+local f=b.indexOf(state.order,id)
+if f then
+table.remove(state.order,f)
 end
 end
 
-function a.active(b)
-local e={}
-for g=1,math.min(c.PARTY_SIZE,#b.order)do
-e[#e+1]=b.members[b.order[g]]
+function a.active(state)
+local c={}
+for f=1,math.min(b.PARTY_SIZE,#state.order)do
+c[#c+1]=state.members[state.order[f]]
 end
-return e
-end
-
-function a.reserve(b)
-local e={}
-for g=c.PARTY_SIZE+1,#b.order do
-e[#e+1]=b.members[b.order[g]]
-end
-return e
+return c
 end
 
-function a.restoreAll(e)
-for i,h in ipairs(e.order)do
-local b=e.members[h]
-local g=a.stats(b)
-b.hp=g.hp
-b.sp=g.sp
+function a.reserve(state)
+local c={}
+for f=b.PARTY_SIZE+1,#state.order do
+c[#c+1]=state.members[state.order[f]]
+end
+return c
+end
+
+function a.restoreAll(state)
+for h,g in ipairs(state.order)do
+local c=state.members[g]
+local f=a.stats(c)
+c.hp=f.hp
+c.sp=f.sp
 end
 end
 
-function a.count(b,e)
-return b.items[e]or 0
+function a.count(state,itemId)
+return state.items[itemId]or 0
 end
 
-function a.addItem(e,g,h)
-local b=(e.items[g]or 0)+h
-if b>d.MAX_STACK then
-b=d.MAX_STACK
+function a.addItem(state,itemId,amount)
+local c=(state.items[itemId]or 0)+amount
+if c>d.MAX_STACK then
+c=d.MAX_STACK
 end
-if b<=0 then
-e.items[g]=nil
+if c<=0 then
+state.items[itemId]=nil
 else
-e.items[g]=b
+state.items[itemId]=c
 end
 end
 
-function a.takeItem(b,e,g)
-local h=b.items[e]or 0
-if h<g then
+function a.takeItem(state,itemId,amount)
+local c=state.items[itemId]or 0
+if c<amount then
 return false
 end
-a.addItem(b,e,-g)
+a.addItem(state,itemId,-amount)
 return true
 end
 
-function a.bagList(h,g)
-local b={}
-for i,e in ipairs(d.DISPLAY)do
-if(h.items[e]or 0)>0 and(not g or g(d.get(e)))then
-b[#b+1]=e
+function a.bagList(state,test)
+local c={}
+for g,f in ipairs(d.DISPLAY)do
+if(state.items[f]or 0)>0 and(not test or test(d.get(f)))then
+c[#c+1]=f
 end
 end
-return b
-end
-
-function a.addGold(b,e)
-b.gold=SpiffBoy.clamp(b.gold+e,0,a.GOLD_CAP)
+return c
 end
 
-function a.equip(i,b,e)
-local g=d.get(e)
-local j=f.BY_ID[b.id]
-if not g or not d.fits(j,g)or not a.takeItem(i,e,1)then
+function a.addGold(state,amount)
+state.gold=SpiffBoy.clamp(state.gold+amount,0,a.GOLD_CAP)
+end
+
+function a.equip(state,member,itemId)
+local c=d.get(itemId)
+local g=e.BY_ID[member.id]
+if not c or not d.fits(g,c)or not a.takeItem(state,itemId,1)then
 return false
 end
-local h=g.kind
-if b.equip[h]then
-a.addItem(i,b.equip[h],1)
+local f=c.kind
+if member.equip[f]then
+a.addItem(state,member.equip[f],1)
 end
-b.equip[h]=e
-a.clamp(b)
+member.equip[f]=itemId
+a.clamp(member)
 return true
 end
 
-function a.unequipCharm(e,b)
-if b.equip.charm then
-a.addItem(e,b.equip.charm,1)
-b.equip.charm=nil
-a.clamp(b)
+function a.unequipCharm(state,member)
+if member.equip.charm then
+a.addItem(state,member.equip.charm,1)
+member.equip.charm=nil
+a.clamp(member)
 end
 end
 
-function a.statsWith(b,e)
-local h=d.get(e)
-local g={id=b.id,level=b.level,equip={weapon=b.equip.weapon,armor=b.equip.armor,charm=b.equip.charm}}
-g.equip[h.kind]=e
-return a.stats(g)
+function a.statsWith(member,itemId)
+local f=d.get(itemId)
+local c={id=member.id,level=member.level,equip={weapon=member.equip.weapon,armor=member.equip.armor,charm=member.equip.charm}}
+c.equip[f.kind]=itemId
+return a.stats(c)
 end
 
-function a.setFlag(b,e,g)
-if g then
-b.flags[e]=true
+function a.setFlag(state,name,value)
+if value then
+state.flags[name]=true
 else
-b.flags[e]=nil
+state.flags[name]=nil
 end
 end
 
-function a.hasFlag(b,e)
-return b.flags[e]==true
+function a.hasFlag(state,name)
+return state.flags[name]==true
 end
 
-function a.meets(e,b)
-if not b then
+function a.meets(state,condition)
+if not condition then
 return true
 end
-if b.min and e.step<b.min then
+if condition.min and state.step<condition.min then
 return false
 end
-if b.max and e.step>b.max then
+if condition.max and state.step>condition.max then
 return false
 end
-if b.flag and not e.flags[b.flag]then
+if condition.flag and not state.flags[condition.flag]then
 return false
 end
-if b.notFlag and e.flags[b.notFlag]then
+if condition.notFlag and state.flags[condition.notFlag]then
 return false
 end
-for h,g in ipairs(b.flags or{})do
-if not e.flags[g]then
+for f,c in ipairs(condition.flags or{})do
+if not state.flags[c]then
 return false
 end
 end
-if b.member and not e.members[b.member]then
+if condition.member and not state.members[condition.member]then
 return false
 end
-if b.notMember and e.members[b.notMember]then
+if condition.notMember and state.members[condition.notMember]then
 return false
 end
-if b.item and(e.items[b.item]or 0)<=0 then
+if condition.item and(state.items[condition.item]or 0)<=0 then
 return false
 end
-if b.active and not a.isActive(e,b.active)then
+if condition.active and not a.isActive(state,condition.active)then
 return false
 end
-if b.notActive and a.isActive(e,b.notActive)then
+if condition.notActive and a.isActive(state,condition.notActive)then
 return false
 end
 return true
 end
 
-function a.isActive(e,g)
-local b=c.indexOf(e.order,g)
-return b~=nil and b<=c.PARTY_SIZE
+function a.isActive(state,id)
+local c=b.indexOf(state.order,id)
+return c~=nil and c<=b.PARTY_SIZE
 end
 
-function a.bond(b,e)
-return b.bonds[e]or 0
+function a.bond(state,duoId)
+return state.bonds[duoId]or 0
 end
 
-function a.strengthenBonds(b)
-local g={}
-for j,e in ipairs(c.Skills.DUOS)do
-local h=c.Skills.get(e).duo
-if a.isActive(b,h[1])and a.isActive(b,h[2])then
-local i=a.duoReady(b,e)
-b.bonds[e]=math.min(c.Skills.BOND_CAP,a.bond(b,e)+1)
-if not i and a.duoReady(b,e)then
-g[#g+1]=e
+function a.strengthenBonds(state)
+local f={}
+for i,c in ipairs(b.Skills.DUOS)do
+local g=b.Skills.get(c).duo
+if a.isActive(state,g[1])and a.isActive(state,g[2])then
+local h=a.duoReady(state,c)
+state.bonds[c]=math.min(b.Skills.BOND_CAP,a.bond(state,c)+1)
+if not h and a.duoReady(state,c)then
+f[#f+1]=c
 end
 end
 end
-return g
+return f
 end
 
-function a.glowKnown(b)
-for g,e in ipairs(c.Characters.LIST)do
-if a.hasFlag(b,"b_"..e.id)then
-return true
-end
-end
-for g,e in ipairs(c.Skills.DUOS)do
-if a.duoReady(b,e)then
+function a.glowKnown(state)
+for f,c in ipairs(b.Characters.LIST)do
+if a.hasFlag(state,"b_"..c.id)then
 return true
 end
 end
+for f,c in ipairs(b.Skills.DUOS)do
+if a.duoReady(state,c)then
+return true
+end
+end
 return false
 end
 
-function a.duoReady(b,e)
-return a.bond(b,e)>=c.Skills.BOND_NEEDED
+function a.duoReady(state,duoId)
+return a.bond(state,duoId)>=b.Skills.BOND_NEEDED
 end
 
-function a.markSeen(b,e)
-b.seen[e]=true
+function a.markSeen(state,enemyId)
+state.seen[enemyId]=true
 end
 
-function a.markKnown(b,e)
-b.seen[e]=true
-b.known[e]=true
+function a.markKnown(state,enemyId)
+state.seen[enemyId]=true
+state.known[enemyId]=true
 end

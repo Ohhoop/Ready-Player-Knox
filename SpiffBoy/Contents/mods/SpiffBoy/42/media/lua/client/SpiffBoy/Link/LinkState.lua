@@ -5,14 +5,14 @@ local a=SpiffBoy.LinkState
 
 local b={}
 
-function a.set(c,d,e,f,g)
-b[c]={peerName=d,seat=e,peerId=f,peerNum=g}
+function a.set(playerNum,peerName,seat,peerId,peerNum)
+b[playerNum]={peerName=peerName,seat=seat,peerId=peerId,peerNum=peerNum}
 end
 
-function a.clear(c)
-b[c]=nil
+function a.clear(playerNum)
+b[playerNum]=nil
 end
 
-function a.of(c)
-return b[c]
+function a.of(playerNum)
+return b[playerNum]
 end

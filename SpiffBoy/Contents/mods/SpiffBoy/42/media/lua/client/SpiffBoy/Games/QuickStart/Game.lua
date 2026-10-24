@@ -67,18 +67,18 @@ bump=b.Music.BUMP,splash=b.Music.SPLASH,lap=b.Music.LAP,riot=b.Music.RIOT,can=b.
 drop=b.Music.THROW,stall=b.Music.SPIN,
 }
 
-local function x(d)
-if not d then
+local function x(input)
+if not input then
 return 0
 end
-local m,p=d.held,d.pressed
-local e=0
-for t,l in ipairs(w)do
-if m[l[1]]or p[l[1]]then
-e=e+l[2]
+local l,m=input.held,input.pressed
+local d=0
+for p,e in ipairs(w)do
+if l[e[1]]or m[e[1]]then
+d=d+e[2]
 end
 end
-return e
+return d
 end
 
 function a:init()
@@ -91,8 +91,8 @@ self:applyMusic()
 self:openTitle()
 end
 
-function a:art(d)
-return self.context.art(d)
+function a:art(name)
+return self.context.art(name)
 end
 
 function a:store()
@@ -103,10 +103,10 @@ function a:applyMusic()
 self.sequencer:setMix(self.data.options.music and 1 or 0,1)
 end
 
-function a:music(d)
-if self.playing~=d or not self.sequencer:isPlaying()then
-self.sequencer:play(d)
-self.playing=d
+function a:music(name)
+if self.playing~=name or not self.sequencer:isPlaying()then
+self.sequencer:play(name)
+self.playing=name
 end
 end
 
@@ -115,8 +115,8 @@ self.sequencer:stop()
 self.playing=nil
 end
 
-function a:effect(d)
-self.sequencer:effect(d)
+function a:effect(name)
+self.sequencer:effect(name)
 end
 
 function a:modeOf()
@@ -134,21 +134,21 @@ end
 return i.CC[self.setup.cc]
 end
 
-function a:tick(d,p)
+function a:tick(inputs,tick)
 self.clock=self.clock+1
-local e=self.screen
+local d=self.screen
 self:pollLink()
-if self.screen~=e and self.screen~=a.SCREEN_RACE then
+if self.screen~=d and self.screen~=a.SCREEN_RACE then
 return
 end
-local l=d[1]
-local m=self["tick_"..self.screen]
-m(self,l)
+local e=inputs[1]
+local l=self["tick_"..self.screen]
+l(self,e)
 end
 
-function a:draw(d)
-local e=self["draw_"..self.screen]
-e(self,d)
+function a:draw(screen)
+local d=self["draw_"..self.screen]
+d(self,screen)
 end
 
 function a:linkedScreen()
@@ -274,33 +274,33 @@ end
 return d[self.setup.course]
 end
 
-function a:createRace(t,l)
+function a:createRace(seed,delay)
 local d=self:modeOf()
 if d==c.MODE_GP and not self.gp then
 self.gp=g.new(self.setup.course,self:gridOf())
 end
-local m=self:trackOf()
-local u=self.gp and g.grid(self.gp)or self:gridOf()
-local p={mode=d,track=m,cc=self:ccOf(),grid=u,seed=t}
+local l=self:trackOf()
+local p=self.gp and g.grid(self.gp)or self:gridOf()
+local m={mode=d,track=l,cc=self:ccOf(),grid=p,seed=seed}
 if d==c.MODE_TT then
-local e=q.ghost(self.data,m)
+local e=q.ghost(self.data,l)
 if e then
-p.ghost={driver=e.driver,reader=o.reader(e.parts)}
+m.ghost={driver=e.driver,reader=o.reader(e.parts)}
 end
 self.recorder=o.recorder()
 else
 self.recorder=nil
 end
-self.world=c.new(p)
+self.world=c.new(m)
 self.view=n.new(self.world.seats[self:mySeat()])
 self.screen=a.SCREEN_RACE
 self.paused=false
 self.fastMusic=false
 self.resultHeard=false
-self.delay=l
+self.delay=delay
 self.frame=0
 self.prefillTick=0
-self.sentTick=l or 0
+self.sentTick=delay or 0
 self:music(f.INTRO)
 end
 
@@ -318,25 +318,25 @@ end
 return d
 end
 
-function a:stepWorld(e)
+function a:stepWorld(seatBits)
 local d=self.world
-local l=d.phase
-c.step(d,e)
-if self.recorder and(l=="race"or l=="countdown")then
-o.record(self.recorder,e[1]or 0)
+local e=d.phase
+c.step(d,seatBits)
+if self.recorder and(e=="race"or e=="countdown")then
+o.record(self.recorder,seatBits[1]or 0)
 end
 n.react(self.view,d,d.events)
 self:hearWorld(d.events)
 end
 
-function a:tickLinkedRace(y)
+function a:tickLinkedRace(bits)
 local d=self.port
 local e=self:prefill()
 self.frame=self.frame+1
-local z=self.frame+self.delay
-while self.sentTick<z and e<h.sendsPerTick and self.prefillTick>=self.delay do
+local y=self.frame+self.delay
+while self.sentTick<y and e<h.sendsPerTick and self.prefillTick>=self.delay do
 self.sentTick=self.sentTick+1
-d:sendInput(self.sentTick,y)
+d:sendInput(self.sentTick,bits)
 e=e+1
 end
 local m=0
@@ -360,20 +360,20 @@ end
 end
 end
 
-function a:tick_race(d)
+function a:tick_race(input)
 if self.paused then
-self:tickPause(d)
+self:tickPause(input)
 return
 end
-if d and d.pressed.start and not self.twoPlayer then
+if input and input.pressed.start and not self.twoPlayer then
 self:openPause()
 return
 end
-local e=x(d)
+local d=x(input)
 if self.twoPlayer then
-self:tickLinkedRace(e)
+self:tickLinkedRace(d)
 else
-self:stepWorld({e})
+self:stepWorld({d})
 end
 self:raceMusic()
 if self.world.phase=="done"then
@@ -411,9 +411,9 @@ end
 self:music(self.fastMusic and(l..f.FAST)or l)
 end
 
-function a:hearWorld(l)
+function a:hearWorld(events)
 local e=self.view.place
-for m,d in ipairs(l)do
+for l,d in ipairs(events)do
 if r[d.kind]then
 self:effect(r[d.kind])
 elseif d.kart==e and s[d.kind]then
@@ -426,10 +426,10 @@ self:effect(f.ROULETTE)
 end
 end
 
-function a:draw_race(d)
-n.draw(self.view,d,self.context.art,self.world)
+function a:draw_race(screen)
+n.draw(self.view,screen,self.context.art,self.world)
 if self.paused then
-self:drawPause(d)
+self:drawPause(screen)
 end
 end
 

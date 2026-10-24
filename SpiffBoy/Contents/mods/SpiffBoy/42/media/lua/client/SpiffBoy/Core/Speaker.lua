@@ -10,14 +10,14 @@ local e=1
 local c=0
 local j=5000
 
-function b.new(d)
+function b.new(remote)
 local a=setmetatable({},b)
-a.remote=d
+a.remote=remote
 a.clips={}
 a.missing={}
 a.channels={}
-for f=1,SpiffBoyChip.VOICES do
-a.channels[f]={emitter=FMODSoundEmitter.new(),ref=c,sound=nil,pitch=nil,gain=nil}
+for d=1,SpiffBoyChip.VOICES do
+a.channels[d]={emitter=FMODSoundEmitter.new(),ref=c,sound=nil,pitch=nil,gain=nil}
 end
 a.volume=e
 a.distanceGain=e
@@ -26,46 +26,46 @@ a.traceStartMs=0
 return a
 end
 
-function b:setVolume(a)
-self.volume=SpiffBoy.clamp(a,0,e)
+function b:setVolume(value)
+self.volume=SpiffBoy.clamp(value,0,e)
 end
 
-function b:setDistanceGain(a)
-self.distanceGain=SpiffBoy.clamp(a,0,e)
+function b:setDistanceGain(value)
+self.distanceGain=SpiffBoy.clamp(value,0,e)
 end
 
-function b:clipFor(d)
-local a=self.clips[d]
+function b:clipFor(name)
+local a=self.clips[name]
 if not a then
-a=GameSounds.getSound(d):getRandomClip()
-self.clips[d]=a
+a=GameSounds.getSound(name):getRandomClip()
+self.clips[name]=a
 end
 return a
 end
 
-function b:start(a,d)
-local f=a.emitter:playClip(self:clipFor(d),nil)
-if f==c then
-if not self.missing[d]then
-self.missing[d]=true
-SpiffBoy.log("the loop "..d.." did not start")
+function b:start(channel,sound)
+local a=channel.emitter:playClip(self:clipFor(sound),nil)
+if a==c then
+if not self.missing[sound]then
+self.missing[sound]=true
+SpiffBoy.log("the loop "..sound.." did not start")
 end
 return c
 end
-a.emitter:set3D(f,false)
-a.pitch=nil
-a.gain=nil
-return f
+channel.emitter:set3D(a,false)
+channel.pitch=nil
+channel.gain=nil
+return a
 end
 
-function b:traceEndedLoop(d,f)
+function b:traceEndedLoop(voice,sound)
 if not self.remote or not SpiffBoy.isDevBuild()then
 return
 end
 local a=getTimestampMs()
 if self.endedLoops==0 then
 self.traceStartMs=a
-SpiffBoy.log("remote speaker: voice "..tostring(d).." loop "..tostring(f).." stopped by itself")
+SpiffBoy.log("remote speaker: voice "..tostring(voice).." loop "..tostring(sound).." stopped by itself")
 end
 self.endedLoops=self.endedLoops+1
 if a-self.traceStartMs>=j then
@@ -74,21 +74,21 @@ self.endedLoops=0
 end
 end
 
-local function h(a,d,f)
-if a.pitch~=d then
-a.emitter:setPitch(a.ref,d)
-a.pitch=d
+local function h(channel,pitch,gain)
+if channel.pitch~=pitch then
+channel.emitter:setPitch(channel.ref,pitch)
+channel.pitch=pitch
 end
-if a.gain~=f then
-a.emitter:setVolume(a.ref,f)
-a.gain=f
+if channel.gain~=gain then
+channel.emitter:setVolume(channel.ref,gain)
+channel.gain=gain
 end
 end
 
-function b:play(k)
-local l=i*self.volume*self.distanceGain*getSoundManager():getSoundVolume()
+function b:play(chip)
+local k=i*self.volume*self.distanceGain*getSoundManager():getSoundVolume()
 for f=1,SpiffBoyChip.VOICES do
-local d=k.voices[f]
+local d=chip.voices[f]
 local a=self.channels[f]
 local g=a.emitter
 if a.ref~=c and not g:isPlaying(a.ref)then
@@ -105,7 +105,7 @@ a.sound=d.sound
 a.ref=self:start(a,d.sound)
 end
 if a.ref~=c then
-h(a,d.pitch,d.gain*l)
+h(a,d.pitch,d.gain*k)
 end
 elseif a.ref~=c then
 h(a,a.pitch,0)

@@ -8,207 +8,207 @@ require"SpiffBoy/Handheld/Handheld"
 require"SpiffBoy/Link/Links"
 
 SpiffBoy.LinkRelay=SpiffBoy.LinkRelay or{}
-local j=SpiffBoy.LinkRelay
+local h=SpiffBoy.LinkRelay
 local a=SpiffBoy.Handheld
 
-local r=SpiffBoy.COMMAND_MODULE
-local s=1000
-local t=1000
-local u=40
-local k=1
-local n=2
+local p=SpiffBoy.COMMAND_MODULE
+local q=1000
+local r=1000
+local s=40
+local i=1
+local l=2
 
 local b={}
-local o={}
-local p=0
+local m={}
+local n=0
 
-local function e(c,d)
-d.me=c:getOnlineID()
-sendServerCommand(c,r,SpiffBoy.COMMAND_LINK,d)
+local function d(player,args)
+args.me=player:getOnlineID()
+sendServerCommand(player,p,SpiffBoy.COMMAND_LINK,args)
 end
 
-local function d(c,f,g)
-e(c,{k=SpiffBoy.LINK_REFUSED,r=f,n=g})
+local function c(player,reason,name)
+d(player,{k=SpiffBoy.LINK_REFUSED,r=reason,n=name})
 end
 
-local function h(c)
-local f=b[c]
-if not f then
+local function f(id)
+local e=b[id]
+if not e then
 return
 end
-b[c]=nil
-b[f.peer]=nil
-for l,i in ipairs({c,f.peer})do
-local g=getPlayerByOnlineID(i)
+b[id]=nil
+b[e.peer]=nil
+for k,j in ipairs({id,e.peer})do
+local g=getPlayerByOnlineID(j)
 if g then
-e(g,{k=SpiffBoy.LINK_DISCONNECTED})
+d(g,{k=SpiffBoy.LINK_DISCONNECTED})
 end
 end
 end
 
-local function v(c,g)
-if not SpiffBoy.isInteger(g.p)then
+local function t(owner,args)
+if not SpiffBoy.isInteger(args.p)then
 return
 end
-local f=getPlayerByOnlineID(g.p)
-if not f or f==c then
+local e=getPlayerByOnlineID(args.p)
+if not e or e==owner then
 return
 end
-local i=c:getOnlineID()
-if b[i]then
-d(c,"CableTaken")
+local g=owner:getOnlineID()
+if b[g]then
+c(owner,"CableTaken")
 return
 end
-if not a.consoleWithCable(c)then
-d(c,"NoCable")
+if not a.consoleWithCable(owner)then
+c(owner,"NoCable")
 return
 end
-if not a.withinCableReach(c,f)then
-d(c,"CableTooFar")
+if not a.withinCableReach(owner,e)then
+c(owner,"CableTooFar")
 return
 end
-if b[g.p]or not a.consoleWithFreePort(f)then
-d(c,"NoLinkableConsole")
+if b[args.p]or not a.consoleWithFreePort(e)then
+c(owner,"NoLinkableConsole")
 return
 end
-e(f,{k=SpiffBoy.LINK_OFFER,p=i,n=a.characterName(c)})
+d(e,{k=SpiffBoy.LINK_OFFER,p=g,n=a.characterName(owner)})
 end
 
-local function w(g,c)
-if not SpiffBoy.isInteger(c.p)then
+local function u(peer,args)
+if not SpiffBoy.isInteger(args.p)then
 return
 end
-local f=getPlayerByOnlineID(c.p)
-if f then
-d(f,"CableDeclined",a.characterName(g))
-end
-end
-
-function j.connect(c,l,f,q)
-local g=getPlayerByOnlineID(f)
-if not g then
-return
-end
-local i=c:getOnlineID()
-if b[i]or a.hasCable(l)then
-d(c,"PortBusy")
-return
-end
-if b[f]then
-d(c,"CableTaken")
-return
-end
-local m=a.consoleWithCable(g)
-if not m then
-d(c,"NoCable")
-return
-end
-if not a.withinCableReach(c,g)then
-d(c,"CableTooFar")
-return
-end
-b[f]={peer=i,console=m:getID(),seat=k}
-b[i]={peer=f,console=l:getID(),seat=n}
-e(g,{k=SpiffBoy.LINK_CONNECTED,p=i,n=a.characterName(c),s=k})
-e(c,{k=SpiffBoy.LINK_CONNECTED,p=f,n=a.characterName(g),s=n,c=l:getID()})
-end
-
-function j.disconnect(g,i)
-local c=g:getOnlineID()
-local f=b[c]
-if f and f.console==i:getID()then
-h(c)
+local e=getPlayerByOnlineID(args.p)
+if e then
+c(e,"CableDeclined",a.characterName(peer))
 end
 end
 
-local function x(i)
-local f=i:getOnlineID()
+function h.connect(guest,console,ownerId,ownerNum)
+local e=getPlayerByOnlineID(ownerId)
+if not e then
+return
+end
+local g=guest:getOnlineID()
+if b[g]or a.hasCable(console)then
+c(guest,"PortBusy")
+return
+end
+if b[ownerId]then
+c(guest,"CableTaken")
+return
+end
+local j=a.consoleWithCable(e)
+if not j then
+c(guest,"NoCable")
+return
+end
+if not a.withinCableReach(guest,e)then
+c(guest,"CableTooFar")
+return
+end
+b[ownerId]={peer=g,console=j:getID(),seat=i}
+b[g]={peer=ownerId,console=console:getID(),seat=l}
+d(e,{k=SpiffBoy.LINK_CONNECTED,p=g,n=a.characterName(guest),s=i})
+d(guest,{k=SpiffBoy.LINK_CONNECTED,p=ownerId,n=a.characterName(e),s=l,c=console:getID()})
+end
+
+function h.disconnect(character,console)
+local e=character:getOnlineID()
+local g=b[e]
+if g and g.console==console:getID()then
+f(e)
+end
+end
+
+local function v(player)
+local g=player:getOnlineID()
+local j=getTimestampMs()
+local e=m[g]
+if not e or j-e.startMs>=r then
+e={startMs=j,count=0}
+m[g]=e
+end
+e.count=e.count+1
+return e.count<=s
+end
+
+local function w(player,args)
+if type(args)~="table"or not v(player)then
+return
+end
+local e=args.k
+if e==SpiffBoy.LINK_OFFER then
+t(player,args)
+return
+end
+if e==SpiffBoy.LINK_DECLINE then
+u(player,args)
+return
+end
+local j=player:getOnlineID()
+if e==SpiffBoy.LINK_DISCONNECT then
+f(j)
+return
+end
+local o=b[j]
+if not o then
+return
+end
+local k=getPlayerByOnlineID(o.peer)
+if not k then
+f(j)
+return
+end
+if e==SpiffBoy.LINK_DATA then
+local g=SpiffBoy.cleanLinkMessages(args.e)
+if g and SpiffBoy.isInteger(args.s)then
+d(k,{k=SpiffBoy.LINK_DATA,s=args.s,e=SpiffBoy.wireList(g)})
+end
+return
+end
+if e==SpiffBoy.LINK_STATE then
+local g=args.c
+if(g==nil or(type(g)=="string"and string.len(g)<=SpiffBoy.CHIP_MAX_STRING))and type(args.o)=="boolean"then
+d(k,{k=SpiffBoy.LINK_STATE,c=g,o=args.o})
+end
+end
+end
+
+local function k(id,link)
+local e=getPlayerByOnlineID(id)
+local g=getPlayerByOnlineID(link.peer)
+if not e or not g or not a.withinCableReach(e,g)then
+return false
+end
+local j=e:getInventory():getItemWithIDRecursiv(link.console)
+if not j then
+return false
+end
+return link.seat~=i or a.hasCable(j)
+end
+
+local function o()
 local g=getTimestampMs()
-local c=o[f]
-if not c or g-c.startMs>=t then
-c={startMs=g,count=0}
-o[f]=c
-end
-c.count=c.count+1
-return c.count<=u
-end
-
-local function y(g,c)
-if type(c)~="table"or not x(g)then
+if g<n then
 return
 end
-local f=c.k
-if f==SpiffBoy.LINK_OFFER then
-v(g,c)
-return
+n=g+q
+local e=nil
+for j,x in pairs(b)do
+if not k(j,x)then
+e=e or{}
+e[#e+1]=j
 end
-if f==SpiffBoy.LINK_DECLINE then
-w(g,c)
-return
 end
-local l=g:getOnlineID()
-if f==SpiffBoy.LINK_DISCONNECT then
-h(l)
-return
-end
-local q=b[l]
-if not q then
-return
-end
-local m=getPlayerByOnlineID(q.peer)
-if not m then
-h(l)
-return
-end
-if f==SpiffBoy.LINK_DATA then
-local i=SpiffBoy.cleanLinkMessages(c.e)
-if i and SpiffBoy.isInteger(c.s)then
-e(m,{k=SpiffBoy.LINK_DATA,s=c.s,e=SpiffBoy.wireList(i)})
-end
-return
-end
-if f==SpiffBoy.LINK_STATE then
-local i=c.c
-if(i==nil or(type(i)=="string"and string.len(i)<=SpiffBoy.CHIP_MAX_STRING))and type(c.o)=="boolean"then
-e(m,{k=SpiffBoy.LINK_STATE,c=i,o=c.o})
+if e then
+for j=1,#e do
+f(e[j])
 end
 end
 end
 
-local function l(m,c)
-local f=getPlayerByOnlineID(m)
-local g=getPlayerByOnlineID(c.peer)
-if not f or not g or not a.withinCableReach(f,g)then
-return false
-end
-local i=f:getInventory():getItemWithIDRecursiv(c.console)
-if not i then
-return false
-end
-return c.seat~=k or a.hasCable(i)
-end
+SpiffBoy.Links.install(h)
+SpiffBoy.Commands.fromClient(SpiffBoy.COMMAND_LINK,w)
 
-local function i()
-local f=getTimestampMs()
-if f<p then
-return
-end
-p=f+s
-local c=nil
-for g,m in pairs(b)do
-if not l(g,m)then
-c=c or{}
-c[#c+1]=g
-end
-end
-if c then
-for g=1,#c do
-h(c[g])
-end
-end
-end
-
-SpiffBoy.Links.install(j)
-SpiffBoy.Commands.fromClient(SpiffBoy.COMMAND_LINK,y)
-
-Events.OnTick.Add(i)
+Events.OnTick.Add(o)

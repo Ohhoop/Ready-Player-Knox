@@ -1,9 +1,9 @@
 require"SpiffBoy/Games/QuickStart/Base"
 
-local d=SpiffBoy.QuickStart
+local c=SpiffBoy.QuickStart
 
 local a={}
-d.Roster=a
+c.Roster=a
 
 a.CLASSES={
 light={top=98,accel=130,turn=105,weight=1,offroad=112},
@@ -30,14 +30,14 @@ a.CC={
 {id="mirror",top=470,ai=100,mirrored=true},
 }
 
-function a.statsOf(b)
-local c=a.LIST[b]
-if not c then
-error("QuickStart: no driver "..tostring(b))
+function a.statsOf(index)
+local b=a.LIST[index]
+if not b then
+error("QuickStart: no driver "..tostring(index))
 end
-return a.CLASSES[c.class]
+return a.CLASSES[b.class]
 end
 
-function a.artOf(b)
-return"kart_"..a.LIST[b].id
+function a.artOf(index)
+return"kart_"..a.LIST[index].id
 end

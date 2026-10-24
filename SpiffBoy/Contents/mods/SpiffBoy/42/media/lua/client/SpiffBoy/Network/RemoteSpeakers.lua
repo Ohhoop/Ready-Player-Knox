@@ -28,28 +28,28 @@ local d={}
 local e=0
 local f=nil
 
-local function c(a)
+local function c(message)
 if SpiffBoy.isDevBuild()then
-SpiffBoy.log("remote speaker: "..a)
+SpiffBoy.log("remote speaker: "..message)
 end
 end
 
-local function q(g)
+local function q(source)
 local a=nil
-for l=0,getNumActivePlayers()-1 do
-local b=getSpecificPlayer(l)
+for k=0,getNumActivePlayers()-1 do
+local b=getSpecificPlayer(k)
 if b then
-local k=math.sqrt((g:getX()-b:getX())^2+(g:getY()-b:getY())^2)
-if a==nil or k<a then
-a=k
+local g=math.sqrt((source:getX()-b:getX())^2+(source:getY()-b:getY())^2)
+if a==nil or g<a then
+a=g
 end
 end
 end
 return a
 end
 
-local function r(g)
-local a=getPlayerByOnlineID(g)
+local function r(id)
+local a=getPlayerByOnlineID(id)
 if not a then
 return nil
 end
@@ -60,207 +60,207 @@ end
 return math.floor(b*10+0.5)/10
 end
 
-local function D(a)
-if a==nil or a>=p then
+local function D(distance)
+if distance==nil or distance>=p then
 return 0
 end
-if a<=j then
+if distance<=j then
 return 1
 end
-return 1-(a-j)/(p-j)
+return 1-(distance-j)/(p-j)
 end
 
-local function k(a)
-return SpiffBoy.Cartridges.get(a.c)
+local function k(event)
+return SpiffBoy.Cartridges.get(event.c)
 end
 
-local function s(a,b)
-return a.sequencer~=nil and o.find(a.sequencer.set,b)~=nil
+local function s(mirror,name)
+return mirror.sequencer~=nil and o.find(mirror.sequencer.set,name)~=nil
 end
 
-local function t(a,b,g)
-a.definition=b
-a.frozen=false
-a.chip:boot()
-a.sequencer=SpiffBoySequencer.new(a.chip,o.set(b.id))
-a.speaker:setVolume(g)
+local function t(mirror,definition,volume)
+mirror.definition=definition
+mirror.frozen=false
+mirror.chip:boot()
+mirror.sequencer=SpiffBoySequencer.new(mirror.chip,o.set(definition.id))
+mirror.speaker:setVolume(volume)
 end
 
-local function E(a)
-a.frozen=false
-a.chip:halt()
-a.sequencer=nil
-a.definition=nil
+local function E(mirror)
+mirror.frozen=false
+mirror.chip:halt()
+mirror.sequencer=nil
+mirror.definition=nil
 end
 
-local function F(g,a)
-local b=g.sequencer
-if a.n==nil then
-if b:isPlaying()then
-b:stop()
+local function F(mirror,event)
+local a=mirror.sequencer
+if event.n==nil then
+if a:isPlaying()then
+a:stop()
 end
 return
 end
-if not s(g,a.n)then
+if not s(mirror,event.n)then
 return
 end
-local l,m=b:state()
-local u=l~=a.n or math.abs(m-a.p)>y
-c("beat of "..tostring(g.id)..": console "..tostring(a.n).." at "..tostring(a.p)..", mirror "..tostring(l).." at "..tostring(m)..", resync "..tostring(u))
-if u then
-b:resume(a.n,a.p)
+local b,g=a:state()
+local l=b~=event.n or math.abs(g-event.p)>y
+c("beat of "..tostring(mirror.id)..": console "..tostring(event.n).." at "..tostring(event.p)..", mirror "..tostring(b).." at "..tostring(g)..", resync "..tostring(l))
+if l then
+a:resume(event.n,event.p)
 end
 end
 
-local function u(g)
-return function(a,b)
-if s(a,b.n)then
-g(a.sequencer,b.n)
+local function u(method)
+return function(mirror,event)
+if s(mirror,event.n)then
+method(mirror.sequencer,event.n)
 end
 end
 end
 
 local G={
-[SpiffBoy.CHIP_EVENT_ON]=function(g,a)
-local b=k(a)
-if b then
-t(g,b,a.v)
+[SpiffBoy.CHIP_EVENT_ON]=function(mirror,event)
+local a=k(event)
+if a then
+t(mirror,a,event.v)
 end
 end,
-[SpiffBoy.CHIP_EVENT_OFF]=function(a,b)
-c("off received from "..tostring(a.id))
-E(a)
+[SpiffBoy.CHIP_EVENT_OFF]=function(mirror,event)
+c("off received from "..tostring(mirror.id))
+E(mirror)
 end,
-[SpiffBoy.CHIP_EVENT_VOLUME]=function(a,b)
-a.speaker:setVolume(b.v)
+[SpiffBoy.CHIP_EVENT_VOLUME]=function(mirror,event)
+mirror.speaker:setVolume(event.v)
 end,
 [SpiffBoy.CHIP_EVENT_PLAY]=u(SpiffBoySequencer.play),
-[SpiffBoy.CHIP_EVENT_STOP]=function(a,b)
-c("music stop received from "..tostring(a.id))
-if a.sequencer then
-a.sequencer:stop()
+[SpiffBoy.CHIP_EVENT_STOP]=function(mirror,event)
+c("music stop received from "..tostring(mirror.id))
+if mirror.sequencer then
+mirror.sequencer:stop()
 end
 end,
 [SpiffBoy.CHIP_EVENT_EFFECT]=u(SpiffBoySequencer.effect),
-[SpiffBoy.CHIP_EVENT_WRITE]=function(b,a)
-if b.sequencer and n.isRegister(a.r)then
-b.chip:apply(a.r,a.v)
+[SpiffBoy.CHIP_EVENT_WRITE]=function(mirror,event)
+if mirror.sequencer and n.isRegister(event.r)then
+mirror.chip:apply(event.r,event.v)
 end
 end,
-[SpiffBoy.CHIP_EVENT_WAVE]=function(a,b)
-if a.sequencer and w.WAVE[b.n]then
-a.chip:applyWave(b.n)
+[SpiffBoy.CHIP_EVENT_WAVE]=function(mirror,event)
+if mirror.sequencer and w.WAVE[event.n]then
+mirror.chip:applyWave(event.n)
 end
 end,
-[SpiffBoy.CHIP_EVENT_MIX]=function(a,b)
-if a.sequencer then
-a.sequencer:setMix(b.m,b.f)
+[SpiffBoy.CHIP_EVENT_MIX]=function(mirror,event)
+if mirror.sequencer then
+mirror.sequencer:setMix(event.m,event.f)
 end
 end,
-[SpiffBoy.CHIP_EVENT_FREEZE]=function(a,b)
-c("freeze received from "..tostring(a.id))
-if a.sequencer then
-a.frozen=true
+[SpiffBoy.CHIP_EVENT_FREEZE]=function(mirror,event)
+c("freeze received from "..tostring(mirror.id))
+if mirror.sequencer then
+mirror.frozen=true
 end
 end,
-[SpiffBoy.CHIP_EVENT_BEAT]=function(b,a)
-local g=k(a)
-if not g then
+[SpiffBoy.CHIP_EVENT_BEAT]=function(mirror,event)
+local a=k(event)
+if not a then
 return
 end
-if not b.sequencer then
-t(b,g,a.v)
+if not mirror.sequencer then
+t(mirror,a,event.v)
 else
-b.speaker:setVolume(a.v)
+mirror.speaker:setVolume(event.v)
 end
-b.sequencer:setMix(a.m,a.f)
-b.frozen=a.z
-F(b,a)
+mirror.sequencer:setMix(event.m,event.f)
+mirror.frozen=event.z
+F(mirror,event)
 end,
 }
 
-local function H(b,a)
-if a.k~=SpiffBoy.CHIP_EVENT_ON and a.k~=SpiffBoy.CHIP_EVENT_BEAT then
+local function H(id,event)
+if event.k~=SpiffBoy.CHIP_EVENT_ON and event.k~=SpiffBoy.CHIP_EVENT_BEAT then
 return nil
 end
-if not k(a)then
+if not k(event)then
 return nil
 end
-local g={
-id=b,
+local a={
+id=id,
 chip=n.new(),
 speaker=SpiffBoySpeaker.new(true),
 sequencer=nil,
 definition=nil,
 queue={},
-tick=a.t-i,
+tick=event.t-i,
 clock=SpiffBoyClock.new(),
 frozen=false,
 lastSeenMs=0,
 resyncs=0,
 resyncTraceMs=0,
 }
-d[b]=g
+d[id]=a
 e=e+1
-c("opened for "..tostring(b)..", cartridge "..tostring(a.c)..", distance "..tostring(r(b)))
-return g
+c("opened for "..tostring(id)..", cartridge "..tostring(event.c)..", distance "..tostring(r(id)))
+return a
 end
 
-local function I(a,b)
-a.queue[#a.queue+1]=b
-if b.t-a.tick>x or b.t<a.tick then
-a.resyncs=a.resyncs+1
-local g=getTimestampMs()
-if g-a.resyncTraceMs>=C then
-c("clock of "..tostring(a.id).." moved from "..tostring(a.tick).." to "..tostring(b.t-i)..", "..tostring(a.resyncs).." moves since the last line")
-a.resyncTraceMs=g
-a.resyncs=0
+local function I(mirror,event)
+mirror.queue[#mirror.queue+1]=event
+if event.t-mirror.tick>x or event.t<mirror.tick then
+mirror.resyncs=mirror.resyncs+1
+local a=getTimestampMs()
+if a-mirror.resyncTraceMs>=C then
+c("clock of "..tostring(mirror.id).." moved from "..tostring(mirror.tick).." to "..tostring(event.t-i)..", "..tostring(mirror.resyncs).." moves since the last line")
+mirror.resyncTraceMs=a
+mirror.resyncs=0
 end
-a.tick=b.t-i
-end
-end
-
-local function J(a)
-local b=a.queue
-while#b>0 and b[1].t<=a.tick do
-local g=table.remove(b,1)
-G[g.k](a,g)
+mirror.tick=event.t-i
 end
 end
 
-local function K(a,g)
-local b=d[a]
-if not b then
+local function J(mirror)
+local a=mirror.queue
+while#a>0 and a[1].t<=mirror.tick do
+local b=table.remove(a,1)
+G[b.k](mirror,b)
+end
+end
+
+local function K(id,reason)
+local a=d[id]
+if not a then
 return
 end
-c("closed for "..tostring(a)..": "..g..", distance "..tostring(r(a)))
-b.speaker:destroy()
-d[a]=nil
+c("closed for "..tostring(id)..": "..reason..", distance "..tostring(r(id)))
+a.speaker:destroy()
+d[id]=nil
 e=e-1
 end
 
-function h.handle(a)
-if type(a)~="table"or not SpiffBoy.isInteger(a.id)then
+function h.handle(args)
+if type(args)~="table"or not SpiffBoy.isInteger(args.id)then
 return
 end
-local l=SpiffBoy.listCount(a.e)
-if l>B then
+local g=SpiffBoy.listCount(args.e)
+if g>B then
 return
 end
-local b=d[a.id]
-for m=1,l do
-local g=SpiffBoy.cleanChipEvent(SpiffBoy.listItem(a.e,m))
-if g then
-if not b then
-b=H(a.id,g)
-end
+local a=d[args.id]
+for l=1,g do
+local b=SpiffBoy.cleanChipEvent(SpiffBoy.listItem(args.e,l))
 if b then
-I(b,g)
+if not a then
+a=H(args.id,b)
+end
+if a then
+I(a,b)
 end
 end
 end
-if b then
-b.lastSeenMs=getTimestampMs()
+if a then
+a.lastSeenMs=getTimestampMs()
 end
 end
 

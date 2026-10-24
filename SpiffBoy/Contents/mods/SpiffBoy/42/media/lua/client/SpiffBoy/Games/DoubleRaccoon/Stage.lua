@@ -150,16 +150,16 @@ boss={at=1580,kind="evil"},
 
 a.LIST={a.FOREST,a.SUBURBS,a.DOWNTOWN,a.HEART}
 
-function a.wavesFor(g,d)
+function a.wavesFor(zone,difficulty)
 local c={}
-for h,e in ipairs(g.waves)do
+for f,d in ipairs(zone.waves)do
 local b={}
-for f=1,#e do
-b[f]=e[f]
+for e=1,#d do
+b[e]=d[e]
 end
-if d.extra<0 and#b>1 then
+if difficulty.extra<0 and#b>1 then
 table.remove(b)
-elseif d.extra>0 then
+elseif difficulty.extra>0 then
 b[#b+1]="shambler"
 end
 c[#c+1]=b
@@ -167,10 +167,10 @@ end
 return c
 end
 
-function a.new(c,d)
+function a.new(definition,difficulty)
 local b=setmetatable({},a)
-b.definition=c
-b.difficulty=d
+b.definition=definition
+b.difficulty=difficulty
 b.zoneIndex=1
 b.locked=false
 b.waves=nil
@@ -195,9 +195,9 @@ function a:currentZone()
 return self.definition.zones[self.zoneIndex]
 end
 
-function a:reach(c)
+function a:reach(camera)
 local b=self:currentZone()
-if self.locked or not b or c<b.at then
+if self.locked or not b or camera<b.at then
 return false
 end
 self.locked=true
@@ -207,11 +207,11 @@ self.waveTimer=0
 return true
 end
 
-function a:nextWave(b)
+function a:nextWave(alive)
 if not self.locked or self.waveIndex>=#self.waves then
 return nil
 end
-if self.waveIndex>0 and b>1 then
+if self.waveIndex>0 and alive>1 then
 self.waveTimer=0
 return nil
 end
@@ -224,8 +224,8 @@ self.waveIndex=self.waveIndex+1
 return self.waves[self.waveIndex]
 end
 
-function a:release(b)
-if not self.locked or self.waveIndex<#self.waves or b>0 then
+function a:release(alive)
+if not self.locked or self.waveIndex<#self.waves or alive>0 then
 return false
 end
 self.locked=false
@@ -233,6 +233,6 @@ self.zoneIndex=self.zoneIndex+1
 return true
 end
 
-function a:atBoss(b)
-return not self.locked and self.zoneIndex>#self.definition.zones and b>=self.definition.boss.at
+function a:atBoss(camera)
+return not self.locked and self.zoneIndex>#self.definition.zones and camera>=self.definition.boss.at
 end

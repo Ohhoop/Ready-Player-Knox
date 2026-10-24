@@ -31,64 +31,64 @@ SpiffBoy.LINK_BATCH_MAX=24
 SpiffBoy.LINK_REFUSALS={CableTooFar=true,CableTaken=true,NoCable=true,PortBusy=true,NoLinkableConsole=true,CableDeclined=true}
 
 SpiffBoy.Commands=SpiffBoy.Commands or{}
-local b=SpiffBoy.Commands
+local a=SpiffBoy.Commands
 
+local e={}
 local f={}
-local g={}
 
-function SpiffBoy.isInteger(a)
-return type(a)=="number"and a==math.floor(a)
+function SpiffBoy.isInteger(value)
+return type(value)=="number"and value==math.floor(value)
 end
 
-function SpiffBoy.isFinite(a)
-return type(a)=="number"and a==a and math.abs(a)<math.huge
+function SpiffBoy.isFinite(value)
+return type(value)=="number"and value==value and math.abs(value)<math.huge
 end
 
-function SpiffBoy.listItem(a,c)
-return a[c]
+function SpiffBoy.listItem(list,index)
+return list[index]
 end
 
-function SpiffBoy.listCount(a)
-if type(a)~="table"or not SpiffBoy.isInteger(a.n)or a.n<0 then
+function SpiffBoy.listCount(list)
+if type(list)~="table"or not SpiffBoy.isInteger(list.n)or list.n<0 then
 return 0
 end
-return a.n
+return list.n
 end
 
-function SpiffBoy.wireList(a)
-local c={n=#a}
-for d=1,#a do
-c[d]=a[d]
+function SpiffBoy.wireList(items)
+local b={n=#items}
+for c=1,#items do
+b[c]=items[c]
 end
-return c
-end
-
-local function h(a,c)
-return type(a)=="string"and string.len(a)<=c
+return b
 end
 
-local k={
-cartridge=function(a)
-return h(a,SpiffBoy.CHIP_MAX_STRING)
+local function g(value,maxLength)
+return type(value)=="string"and string.len(value)<=maxLength
+end
+
+local j={
+cartridge=function(value)
+return g(value,SpiffBoy.CHIP_MAX_STRING)
 end,
-name=function(a)
-return h(a,SpiffBoy.TUNE_NAME_MAX)
+name=function(value)
+return g(value,SpiffBoy.TUNE_NAME_MAX)
 end,
-unit=function(a)
-return SpiffBoy.isFinite(a)and a>=0 and a<=1
+unit=function(value)
+return SpiffBoy.isFinite(value)and value>=0 and value<=1
 end,
-byte=function(a)
-return SpiffBoy.isInteger(a)and a>=0 and a<=SpiffBoy.BYTE_MAX
+byte=function(value)
+return SpiffBoy.isInteger(value)and value>=0 and value<=SpiffBoy.BYTE_MAX
 end,
-count=function(a)
-return SpiffBoy.isInteger(a)and a>=0
+count=function(value)
+return SpiffBoy.isInteger(value)and value>=0
 end,
-flag=function(a)
-return type(a)=="boolean"
+flag=function(value)
+return type(value)=="boolean"
 end,
 }
 
-local l={
+local k={
 [SpiffBoy.CHIP_EVENT_ON]={{"c","cartridge"},{"v","unit"}},
 [SpiffBoy.CHIP_EVENT_OFF]={},
 [SpiffBoy.CHIP_EVENT_VOLUME]={{"v","unit"}},
@@ -102,89 +102,89 @@ local l={
 [SpiffBoy.CHIP_EVENT_FREEZE]={},
 }
 
-function SpiffBoy.cleanChipEvent(a)
-if type(a)~="table"or not SpiffBoy.isInteger(a.t)then
+function SpiffBoy.cleanChipEvent(event)
+if type(event)~="table"or not SpiffBoy.isInteger(event.t)then
 return nil
 end
-local c=l[a.k]
-if not c then
+local b=k[event.k]
+if not b then
 return nil
 end
-local i={t=a.t,k=a.k}
-for m=1,#c do
-local d=c[m]
-local j,n,o=d[1],d[2],d[3]
-local e=a[j]
-if e==nil then
-if not o then
+local h={t=event.t,k=event.k}
+for l=1,#b do
+local c=b[l]
+local i,m,n=c[1],c[2],c[3]
+local d=event[i]
+if d==nil then
+if not n then
 return nil
 end
 else
-if not k[n](e)then
+if not j[m](d)then
 return nil
 end
-i[j]=e
+h[i]=d
 end
 end
-return i
+return h
 end
 
-function SpiffBoy.isLinkMessage(a)
-if type(a)~="string"then
+function SpiffBoy.isLinkMessage(value)
+if type(value)~="string"then
 return false
 end
-local c=string.len(a)
-if c<1 or c>SpiffBoy.LINK_MESSAGE_MAX then
+local b=string.len(value)
+if b<1 or b>SpiffBoy.LINK_MESSAGE_MAX then
 return false
 end
-for d=1,c do
-if string.byte(a,d)>SpiffBoy.BYTE_MAX then
+for c=1,b do
+if string.byte(value,c)>SpiffBoy.BYTE_MAX then
 return false
 end
 end
 return true
 end
 
-function SpiffBoy.cleanLinkMessages(c)
-local a=SpiffBoy.listCount(c)
-if a<1 or a>SpiffBoy.LINK_BATCH_MAX then
+function SpiffBoy.cleanLinkMessages(list)
+local b=SpiffBoy.listCount(list)
+if b<1 or b>SpiffBoy.LINK_BATCH_MAX then
 return nil
 end
-local d={}
-for e=1,a do
-local i=SpiffBoy.listItem(c,e)
-if not SpiffBoy.isLinkMessage(i)then
+local c={}
+for d=1,b do
+local h=SpiffBoy.listItem(list,d)
+if not SpiffBoy.isLinkMessage(h)then
 return nil
 end
-d[e]=i
+c[d]=h
 end
-return d
-end
-
-function b.fromClient(a,c)
-f[a]=c
+return c
 end
 
-function b.fromServer(a,c)
-g[a]=c
+function a.fromClient(command,handler)
+e[command]=handler
 end
 
-function b.onClientCommand(d,e,a,i)
-if d~=SpiffBoy.COMMAND_MODULE or not a then
+function a.fromServer(command,handler)
+f[command]=handler
+end
+
+function a.onClientCommand(module,command,player,args)
+if module~=SpiffBoy.COMMAND_MODULE or not player then
 return
 end
-local c=f[e]
-if c then
-c(a,i)
+local b=e[command]
+if b then
+b(player,args)
 end
 end
 
-function b.onServerCommand(c,d,e)
-if c~=SpiffBoy.COMMAND_MODULE then
+function a.onServerCommand(module,command,args)
+if module~=SpiffBoy.COMMAND_MODULE then
 return
 end
-local a=g[d]
-if a then
-a(e)
+local b=f[command]
+if b then
+b(args)
 end
 end

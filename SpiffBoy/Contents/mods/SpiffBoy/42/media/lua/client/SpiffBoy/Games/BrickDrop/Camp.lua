@@ -18,91 +18,91 @@ a.PROJECTS={
 
 local g=180
 local d={1,2,3,4}
-local H={2}
-local I=0
-local J=1
+local F={2}
+local G=0
+local H=1
 local h=2
 local l=24
 local m=22
-local K=0
-local au=1
-local L=2
-local M=3
+local I=0
+local ar=1
+local J=2
+local K=3
 local n=4
-local N=5
-local O=6
-local P=0
-local Q=1
-local R=2
+local L=5
+local M=6
+local N=0
+local O=1
+local P=2
 local f=24
 local o=16
-local S=22
-local T=0
+local Q=22
+local R=0
 local p=2
-local U=4
-local V=5
+local S=4
+local T=5
 local i=18
 local q=22
-local W=2
-local X=4
+local U=2
+local V=4
 local r=150
 local s=18
-local Y=22
-local Z=1.5
-local _=3
+local W=22
+local X=1.5
+local Y=3
 local t=0.8
 local j=8
 local u=0.5
-local aa=1.2
-local ab=24
-local ac=12
-local ad=4
-local ae=60
-local af=72
-local ag=8
-local ah=20
-local ai=30
+local Z=1.2
+local _=24
+local aa=12
+local ab=4
+local ac=60
+local ad=72
+local ae=8
+local af=20
+local ag=30
 local v=0.5
-local aj=12
-local ak=14
-local al=56
+local ah=12
+local ai=14
+local aj=56
 local w=700
-local x=1300
-local am=16
-local y=14
-local z=12
-local an=90
-local ao=120
-local ap=20
-local A={-20,-44,-68}
-local aq=96
-local B=2
-local C=12
-local D=36
-local ar=90
+local y=1300
+local ak=16
+local z=14
+local A=12
+local al=90
+local am=120
+local an=20
+local B={-20,-44,-68}
+local ao=96
+local C=2
+local D=12
+local E=36
+local ap=90
 
-function a.new(E,F,e,G)
+function a.new(sequencer,random,art,layout)
 local b=setmetatable({},a)
-b.sequencer=E
-b.random=F
-b.layout=G
-b.mechanic=e("mechanic")
-b.spear=e("spear")
-b.courier=e("courier")
-b.zombie=e("zombie")
-b.bench=e("bench")
+b.sequencer=sequencer
+b.random=random
+b.layout=layout
+b.mechanic=art("mechanic")
+b.spear=art("spear")
+b.courier=art("courier")
+b.zombie=art("zombie")
+b.bench=art("bench")
 b.projectArt={}
-for k=1,#a.PROJECTS do
-b.projectArt[k]=e(a.PROJECTS[k].art)
+for e=1,#a.PROJECTS do
+b.projectArt[e]=art(a.PROJECTS[e].art)
 end
 b:reset(1)
 return b
 end
 
-function a:reset(e)
+function a:reset(totalParts)
 self.needs={}
 for b=1,#a.PROJECTS do
-self.needs[b]=math.max(1,math.floor(e*a.PROJECTS[b].share+0.5))
+self.needs[b]=math.max(1,math.floor(totalParts*a.PROJECTS[b].share+0.5))
 end
 self.built=0
 self.parts=0
@@ -112,11 +112,11 @@ self.cheer=0
 self.doneBlink=0
 self.camera=0
 self.cameraTarget=0
-self.cameraSpeed=Z
+self.cameraSpeed=X
 self.worker={x=a.PROJECTS[1].worker,target=a.PROJECTS[1].worker,face=a.PROJECTS[1].face,timer=0,state="work"}
 self.fighter={state="guard",timer=0}
 self.stray=nil
-self.strayTimer=self.random:int(w,x)
+self.strayTimer=self.random:int(w,y)
 self.horde=nil
 self.barricadeBroken=false
 end
@@ -129,27 +129,27 @@ function a:current()
 return a.PROJECTS[self.built+1]
 end
 
-function a:deliver(b)
+function a:deliver(parts)
 if self.built>=#a.PROJECTS or self.horde then
 return
 end
-self.pending=self.pending+b
+self.pending=self.pending+parts
 end
 
-function a:layParts(k)
+function a:layParts(load)
 local e=false
-self.parts=self.parts+k
+self.parts=self.parts+load
 while self.built<#a.PROJECTS and self.parts>=self.needs[self.built+1]do
 self.parts=self.parts-self.needs[self.built+1]
 self.built=self.built+1
 e=true
 end
-self.cheer=ae
+self.cheer=ac
 if not e then
 self.sequencer:effect(c.BUILD)
 return
 end
-self.doneBlink=af
+self.doneBlink=ad
 self.sequencer:effect(c.BUILT)
 local b=self:current()
 if b then
@@ -210,7 +210,7 @@ b.phase="drop"
 b.timer=0
 end
 elseif b.phase=="drop"then
-if b.timer>=ab then
+if b.timer>=_ then
 self:layParts(b.load)
 b.phase="out"
 end
@@ -224,9 +224,9 @@ end
 
 function a:strayStop()
 if self.built>=1 and not self.barricadeBroken then
-return a.PROJECTS[1].x-y
+return a.PROJECTS[1].x-z
 end
-return f-am
+return f-ak
 end
 
 function a:tickStray()
@@ -249,16 +249,16 @@ self.fighter.state="thrust"
 self.fighter.timer=0
 self.sequencer:effect(c.STAB)
 end
-elseif b.timer>=an then
+elseif b.timer>=al then
 self.stray=nil
-self.strayTimer=self.random:int(w,x)
+self.strayTimer=self.random:int(w,y)
 end
 end
 
 function a:tickFighter()
 local b=self.fighter
 b.timer=b.timer+1
-if b.state=="thrust"and b.timer>=z then
+if b.state=="thrust"and b.timer>=A then
 b.state="guard"
 end
 end
@@ -268,61 +268,61 @@ self.stray=nil
 self.courierState=nil
 self.pending=0
 self.cameraTarget=0
-self.cameraSpeed=_
+self.cameraSpeed=Y
 self.worker={x=a.PROJECTS[1].worker,target=a.PROJECTS[1].worker,face=-1,timer=0,state="watch"}
 self.fleeing={x=r+s-o+8,timer=0,state="idle"}
 self.fighter={state="guard",timer=0}
 self.horde={zombies={},timer=0,bangs=0,holding=false,rest=0}
-for b=1,#A do
-self.horde.zombies[b]={x=A[b],timer=0,state="walk",prey=nil}
+for b=1,#B do
+self.horde.zombies[b]={x=B[b],timer=0,state="walk",prey=nil}
 end
 self.horde.zombies[1].prey="fighter"
 self.horde.zombies[2].prey="worker"
 self.sequencer:effect(c.GROWL)
 end
 
-function a:hordeStop(b)
+function a:hordeStop(zombie)
 if self.built>=1 and not self.barricadeBroken then
-return a.PROJECTS[1].x-y
+return a.PROJECTS[1].x-z
 end
-if b.prey=="fighter"then
-return f-C
+if zombie.prey=="fighter"then
+return f-D
 end
-if b.prey=="worker"then
-return self.worker.x-C
+if zombie.prey=="worker"then
+return self.worker.x-D
 end
-return aq
+return ao
 end
 
-function a:tickHordeZombie(b,k)
-b.timer=b.timer+1
-if b.state=="eat"then
-if b.timer%al==0 then
+function a:tickHordeZombie(zombie,index)
+zombie.timer=zombie.timer+1
+if zombie.state=="eat"then
+if zombie.timer%aj==0 then
 self.sequencer:effect(c.CHOMP)
 end
 return
 end
-local e=self:hordeStop(b)-(k-1)*2
-if b.x<e then
-b.x=math.min(e,b.x+v)
+local b=self:hordeStop(zombie)-(index-1)*2
+if zombie.x<b then
+zombie.x=math.min(b,zombie.x+v)
 return
 end
 if self.built>=1 and not self.barricadeBroken then
 self.horde.holding=true
 return
 end
-if b.prey=="fighter"and self.fighter.state~="dead"then
+if zombie.prey=="fighter"and self.fighter.state~="dead"then
 self.fighter.state="dead"
-b.state="eat"
-b.timer=0
-b.x=f+B
+zombie.state="eat"
+zombie.timer=0
+zombie.x=f+C
 self.sequencer:effect(c.CHOMP)
-elseif b.prey=="worker"then
-self:catchWorker(b)
+elseif zombie.prey=="worker"then
+self:catchWorker(zombie)
 end
 end
 
-function a:catchWorker(e)
+function a:catchWorker(zombie)
 local b=self.worker
 if b.state=="watch"then
 b.state="fright"
@@ -331,11 +331,11 @@ self.fleeing.state="fright"
 self.fleeing.timer=0
 return
 end
-if b.state=="fright"and b.timer>=D then
+if b.state=="fright"and b.timer>=E then
 b.state="dead"
-e.state="eat"
-e.timer=0
-e.x=b.x+B
+zombie.state="eat"
+zombie.timer=0
+zombie.x=b.x+C
 self.sequencer:effect(c.CHOMP)
 end
 end
@@ -348,10 +348,10 @@ self:tickHordeZombie(b.zombies[e],e)
 end
 if b.holding and not self.barricadeBroken then
 b.bangs=b.bangs+1
-if b.bangs%ap==0 then
+if b.bangs%an==0 then
 self.sequencer:effect(c.BANG)
 end
-if b.bangs>=ao then
+if b.bangs>=am then
 self.barricadeBroken=true
 b.holding=false
 end
@@ -359,14 +359,14 @@ end
 local k=self.fighter
 if k.state~="dead"then
 local e=b.zombies[1].x>=self:strayStop()-1
-k.state=(e and math.floor(b.timer/z)%2==0)and"thrust"or"guard"
+k.state=(e and math.floor(b.timer/A)%2==0)and"thrust"or"guard"
 end
 local e=self.fleeing
 e.timer=e.timer+1
-if e.state=="fright"and e.timer>=D/2 then
+if e.state=="fright"and e.timer>=E/2 then
 e.state="run"
 elseif e.state=="run"then
-e.x=e.x+aa
+e.x=e.x+Z
 end
 if self.worker.state=="dead"then
 b.rest=b.rest+1
@@ -374,7 +374,7 @@ end
 end
 
 function a:overrunDone()
-return self.horde~=nil and self.horde.rest>=ar and self.fleeing.x>=self.camera+g
+return self.horde~=nil and self.horde.rest>=ap and self.fleeing.x>=self.camera+g
 end
 
 function a:tick()
@@ -395,85 +395,85 @@ self:tickCourier()
 self:tickStray()
 end
 
-function a:shows(E,b,k)
-local e=self.layout.cover
-if b+k<=0 or b>=E.width then
+function a:shows(screen,x,width)
+local b=self.layout.cover
+if x+width<=0 or x>=screen.width then
 return false
 end
-return b<e.x or b+k>e.x+e.width
+return x<b.x or x+width>b.x+b.width
 end
 
-function a:drawFigure(e,F,G,b,k,as,at)
-local E=math.floor(as-self.camera)
-if self:shows(e,E,b)then
-e:layers(F,G*b,b,k,E,self.layout.ground-k,at)
+function a:drawFigure(screen,texture,frame,width,height,worldX,shades)
+local b=math.floor(worldX-self.camera)
+if self:shows(screen,b,width)then
+screen:layers(texture,frame*width,width,height,b,self.layout.ground-height,shades)
 end
 end
 
-function a:drawRisen(k,E,e)
-if e<=0 then
+function a:drawRisen(screen,index,rows)
+if rows<=0 then
 return
 end
-local b=a.PROJECTS[E]
-local as=self.projectArt[E]
-local F=math.floor(b.x-self.camera)
-if not self:shows(k,F,b.width)then
+local b=a.PROJECTS[index]
+local x=self.projectArt[index]
+local e=math.floor(b.x-self.camera)
+if not self:shows(screen,e,b.width)then
 return
 end
-local at=self.layout.ground-b.height
-for G=1,#d do
-k:sheet(as,0,(G-1)*b.height+b.height-e,b.width,e,F,at+b.height-e,1,G)
+local aq=self.layout.ground-b.height
+for k=1,#d do
+screen:sheet(x,0,(k-1)*b.height+b.height-rows,b.width,rows,e,aq+b.height-rows,1,k)
 end
 end
 
-function a:builtFrame(b,e)
-if b==1 and self.barricadeBroken then
+function a:builtFrame(index,clock)
+if index==1 and self.barricadeBroken then
 return h
 end
-if b==3 and math.floor(e/ah)%2==0 then
+if index==3 and math.floor(clock/af)%2==0 then
 return h
 end
-if b==4 and math.floor(e/ai)%2==0 then
+if index==4 and math.floor(clock/ag)%2==0 then
 return h
 end
-return I
+return G
 end
 
-function a:drawProjects(k,E)
+function a:drawProjects(screen,clock)
 for b=1,#a.PROJECTS do
 local e=a.PROJECTS[b]
 if b<=self.built then
-local F=b==self.built and self.doneBlink>0
-if not F or math.floor(E/ag)%2==0 then
-self:drawFigure(k,self.projectArt[b],self:builtFrame(b,E),e.width,e.height,e.x,d)
+local k=b==self.built and self.doneBlink>0
+if not k or math.floor(clock/ae)%2==0 then
+self:drawFigure(screen,self.projectArt[b],self:builtFrame(b,clock),e.width,e.height,e.x,d)
 end
 elseif b==self.built+1 and not self.horde then
-self:drawFigure(k,self.projectArt[b],J,e.width,e.height,e.x,H)
-self:drawRisen(k,b,math.floor(e.height*self.parts/self.needs[b]))
+self:drawFigure(screen,self.projectArt[b],H,e.width,e.height,e.x,F)
+self:drawRisen(screen,b,math.floor(e.height*self.parts/self.needs[b]))
 end
 end
 end
 
-function a:workerFrame(k)
+function a:workerFrame(clock)
 local e=self.worker
 if e.state=="dead"then
-return N
+return L
 end
 local b
 if e.state=="fright"then
-b=L
+b=J
 elseif e.state=="watch"then
 b=n
 elseif e.state=="walk"then
-b=M+math.floor(e.timer/j)%2
+b=K+math.floor(e.timer/j)%2
 elseif self.built>=#a.PROJECTS then
 b=n
 else
-local E=self.cheer>0 and ad or ac
-b=K+math.floor(k/E)%2
+local k=self.cheer>0 and ab or aa
+b=I+math.floor(clock/k)%2
 end
 if e.face<0 then
-b=b+O
+b=b+M
 end
 return b
 end
@@ -481,45 +481,45 @@ end
 function a:fighterFrame()
 local b=self.fighter.state
 if b=="dead"then
-return R
-end
-if b=="thrust"then
-return Q
-end
 return P
 end
-
-local function E(b)
-if b.state=="eat"then
-return W+math.floor(b.timer/ak)%2
+if b=="thrust"then
+return O
 end
-if b.state=="fallen"then
-return X
-end
-return math.floor(b.timer/aj)%2
+return N
 end
 
-function a:drawHorde(k,F)
+local function x(zombie)
+if zombie.state=="eat"then
+return U+math.floor(zombie.timer/ai)%2
+end
+if zombie.state=="fallen"then
+return V
+end
+return math.floor(zombie.timer/ah)%2
+end
+
+function a:drawHorde(screen,feeding)
 if not self.horde then
 return
 end
 local b=self.horde.zombies
 for e=1,#b do
-if(b[e].state=="eat")==F then
-self:drawFigure(k,self.zombie,E(b[e]),i,q,b[e].x,d)
+if(b[e].state=="eat")==feeding then
+self:drawFigure(screen,self.zombie,x(b[e]),i,q,b[e].x,d)
 end
 end
 end
 
-function a:drawCourier(F)
+function a:drawCourier(screen)
 local b,k
 if self.horde then
 local e=self.fleeing
 k=e.x
 if e.state=="idle"then
-b=U
+b=S
 elseif e.state=="fright"then
-b=V
+b=T
 else
 b=p+math.floor(e.timer/j)%2
 end
@@ -531,28 +531,28 @@ end
 k=e.x
 b=math.floor(e.timer/j)%2
 if e.phase=="drop"then
-b=T
+b=R
 elseif e.phase=="out"then
 b=p+b
 end
 end
-self:drawFigure(F,self.courier,b,o,S,k,d)
+self:drawFigure(screen,self.courier,b,o,Q,k,d)
 end
 
-function a:draw(b,k)
-local e=self.layout
-for G=1,#e.windows do
-local F=e.windows[G]
-b:rect(F.x,e.ground,F.width,1,e.groundColour.r,e.groundColour.g,e.groundColour.b,1)
+function a:draw(screen,clock)
+local b=self.layout
+for k=1,#b.windows do
+local e=b.windows[k]
+screen:rect(e.x,b.ground,e.width,1,b.groundColour.r,b.groundColour.g,b.groundColour.b,1)
 end
-self:drawFigure(b,self.bench,0,s,Y,r,d)
-self:drawProjects(b,k)
-self:drawHorde(b,true)
-self:drawFigure(b,self.spear,self:fighterFrame(),l,m,f,d)
-self:drawFigure(b,self.mechanic,self:workerFrame(k),l,m,self.worker.x,d)
+self:drawFigure(screen,self.bench,0,s,W,r,d)
+self:drawProjects(screen,clock)
+self:drawHorde(screen,true)
+self:drawFigure(screen,self.spear,self:fighterFrame(),l,m,f,d)
+self:drawFigure(screen,self.mechanic,self:workerFrame(clock),l,m,self.worker.x,d)
 if self.stray then
-self:drawFigure(b,self.zombie,E(self.stray),i,q,self.stray.x,d)
+self:drawFigure(screen,self.zombie,x(self.stray),i,q,self.stray.x,d)
 end
-self:drawHorde(b,false)
-self:drawCourier(b)
+self:drawHorde(screen,false)
+self:drawCourier(screen)
 end

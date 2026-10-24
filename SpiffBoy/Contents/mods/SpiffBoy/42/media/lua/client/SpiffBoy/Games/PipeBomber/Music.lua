@@ -66,54 +66,54 @@ F="{fa>c}",Fm="{fa->c}",["F#"]="{f+a+>c+}",G="{gb>d}",Gm="{gb->d}",Ab="{a->ce-}"
 A="{a>c+e}",Am="{a>ce}",Bb="{b->df}",B="{b>d+f+}",Bm="{b>df+}",
 }
 
-local function f(g,h)
-return g..table.concat(h," | ")
+local function f(header,bars)
+return header..table.concat(bars," | ")
 end
 
-local function g(h)
-return h.." >"..h.."< "..h.." "..h.." >"..h.."< "..h.." "..h.." >"..h.."<"
+local function g(root)
+return root.." >"..root.."< "..root.." "..root.." >"..root.."< "..root.." "..root.." >"..root.."<"
 end
 
-local function q(h)
-return"l4 "..h.." >"..h.."< "..h.." >"..h.."< l8"
+local function q(root)
+return"l4 "..root.." >"..root.."< "..root.." >"..root.."< l8"
 end
 
-local function l(m,p)
+local function l(roots,style)
 local h={}
-for r,s in ipairs(m)do
-h[r]=p(s)
+for m,p in ipairs(roots)do
+h[m]=style(p)
 end
 return h
 end
 
-local function r(m)
+local function r(names)
 local h={}
-for p,s in ipairs(m)do
-h[p]=k[s]
+for m,p in ipairs(names)do
+h[m]=k[p]
 end
 return h
 end
 
-local function s(p,t)
+local function s(pattern,count)
 local h={}
-for m=1,t do
+for m=1,count do
 if m%8==0 then
 h[m]=i
 else
-h[m]=p
+h[m]=pattern
 end
 end
 return h
 end
 
-local function h(t,u,p,v,w,x,y)
-local m="t"..t
+local function h(tempo,duty,melody,chords,roots,bass,pattern)
+local m="t"..tempo
 return{
 loop=true,
-pulse1=f(m.." @"..u.." v11 y0 q7 l8 ",p),
-pulse2=f(m.." @2 v6 y0 q8 x1 l1 o3 ",r(v)),
-wave=f(m.." @5 v3 l8 o2 ",l(w,x)),
-noise=f(m.." l8 ",s(y,#p)),
+pulse1=f(m.." @"..duty.." v11 y0 q7 l8 ",melody),
+pulse2=f(m.." @2 v6 y0 q8 x1 l1 o3 ",r(chords)),
+wave=f(m.." @5 v3 l8 o2 ",l(roots,bass)),
+noise=f(m.." l8 ",s(pattern,#melody)),
 }
 end
 

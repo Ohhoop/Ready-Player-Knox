@@ -4,27 +4,27 @@ SpiffBoyRandom.__index=SpiffBoyRandom
 SpiffBoyRandom.MODULUS=2147483647
 
 local a=SpiffBoyRandom.MODULUS
-local d=16807
+local c=16807
 
-function SpiffBoyRandom.new(c)
+function SpiffBoyRandom.new(seed)
 local b=setmetatable({},SpiffBoyRandom)
-b:reseed(c)
+b:reseed(seed)
 return b
 end
 
-function SpiffBoyRandom:reseed(b)
-if type(b)~="number"then
-error("SpiffBoy: a seed is a number, not "..tostring(b))
+function SpiffBoyRandom:reseed(seed)
+if type(seed)~="number"then
+error("SpiffBoy: a seed is a number, not "..tostring(seed))
 end
-local c=math.floor(math.abs(b))%a
-if c==0 then
-c=1
+local b=math.floor(math.abs(seed))%a
+if b==0 then
+b=1
 end
-self.state=c
+self.state=b
 end
 
 function SpiffBoyRandom:next()
-self.state=(d*self.state)%a
+self.state=(c*self.state)%a
 return self.state
 end
 
@@ -32,14 +32,14 @@ function SpiffBoyRandom:float()
 return(self:next()-1)/(a-1)
 end
 
-function SpiffBoyRandom:int(b,c)
-return b+math.floor(self:float()*(c-b+1))
+function SpiffBoyRandom:int(low,high)
+return low+math.floor(self:float()*(high-low+1))
 end
 
-function SpiffBoyRandom:range(b,c)
-return b+self:float()*(c-b)
+function SpiffBoyRandom:range(low,high)
+return low+self:float()*(high-low)
 end
 
-function SpiffBoyRandom:chance(b)
-return self:float()<b
+function SpiffBoyRandom:chance(probability)
+return self:float()<probability
 end

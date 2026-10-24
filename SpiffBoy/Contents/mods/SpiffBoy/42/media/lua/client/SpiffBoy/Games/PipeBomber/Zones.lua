@@ -33,39 +33,39 @@ a.PERMANENT={"range","count","speed"}
 a.TEMPORARY={"detonator","kick","pass","vest"}
 a.SPECIAL={"aerosol","molotov"}
 
-function a.zombieCount(b,c,d)
-return math.max(2,a.BASE_ZOMBIES+math.floor(b/2)+c-1+d.extra)
+function a.zombieCount(zoneIndex,level,difficulty)
+return math.max(2,a.BASE_ZOMBIES+math.floor(zoneIndex/2)+level-1+difficulty.extra)
 end
 
-function a.zombieKinds(b,e)
-local c={}
-for d=1,e do
-c[d]=b.kinds[(d-1)%#b.kinds+1]
+function a.zombieKinds(zone,count)
+local b={}
+for c=1,count do
+b[c]=zone.kinds[(c-1)%#zone.kinds+1]
 end
-return c
+return b
 end
 
-function a.levelBonuses(d,b)
-local c={
-a.PERMANENT[b:int(1,#a.PERMANENT)],
-a.PERMANENT[b:int(1,#a.PERMANENT)],
-a.TEMPORARY[b:int(1,#a.TEMPORARY)],
+function a.levelBonuses(level,random)
+local b={
+a.PERMANENT[random:int(1,#a.PERMANENT)],
+a.PERMANENT[random:int(1,#a.PERMANENT)],
+a.TEMPORARY[random:int(1,#a.TEMPORARY)],
 }
-if d>=2 then
-c[#c+1]=a.SPECIAL[b:int(1,#a.SPECIAL)]
+if level>=2 then
+b[#b+1]=a.SPECIAL[random:int(1,#a.SPECIAL)]
 end
-return c
+return b
 end
 
-function a.zoneOfPassword(c)
+function a.zoneOfPassword(code)
 for b=2,#a.LIST do
-if a.LIST[b].password==c then
+if a.LIST[b].password==code then
 return b
 end
 end
 return nil
 end
 
-function a.layoutSeed(b,c)
-return 7919*b+104729*c+1
+function a.layoutSeed(zoneIndex,level)
+return 7919*zoneIndex+104729*level+1
 end

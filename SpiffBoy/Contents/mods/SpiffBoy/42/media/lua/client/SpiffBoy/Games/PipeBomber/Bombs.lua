@@ -1,7 +1,7 @@
 require"SpiffBoy/Core/Core"
 require"SpiffBoy/Games/PipeBomber/Zones"
 
-local c=SpiffBoy.PipeBomber.Zones.TILE
+local b=SpiffBoy.PipeBomber.Zones.TILE
 
 local a={}
 a.__index=a
@@ -23,216 +23,216 @@ a.ARMS={
 {dx=0,dy=1,name="down"},
 }
 
-function a.new(d)
-local b=setmetatable({},a)
-b.grid=d
-b.list={}
-b.blasts={}
-b.fires={}
-b.danger={}
-b.serial=0
-return b
+function a.new(grid)
+local c=setmetatable({},a)
+c.grid=grid
+c.list={}
+c.blasts={}
+c.fires={}
+c.danger={}
+c.serial=0
+return c
 end
 
-function a:at(d,e)
-for f,b in ipairs(self.list)do
-if b.column==d and b.row==e then
-return b
+function a:at(column,row)
+for d,c in ipairs(self.list)do
+if c.column==column and c.row==row then
+return c
 end
 end
 return nil
 end
 
-function a:countOf(d)
-local b=0
-for f,e in ipairs(self.list)do
-if e.owner==d then
-b=b+1
+function a:countOf(owner)
+local c=0
+for e,d in ipairs(self.list)do
+if d.owner==owner then
+c=c+1
 end
 end
-return b
+return c
 end
 
-function a:place(b,d,f,g,h,i)
+function a:place(column,row,kind,owner,range,fuse)
 self.serial=self.serial+1
-local e={
-column=b,row=d,x=(b-1)*c,y=(d-1)*c,
-kind=f,owner=g,range=h,timer=i,serial=self.serial,
+local c={
+column=column,row=row,x=(column-1)*b,y=(row-1)*b,
+kind=kind,owner=owner,range=range,timer=fuse,serial=self.serial,
 }
-self.list[#self.list+1]=e
-return e
+self.list[#self.list+1]=c
+return c
 end
 
-function a:kick(b,d,e)
-b.slideX=d
-b.slideY=e
+function a:kick(bomb,dx,dy)
+bomb.slideX=dx
+bomb.slideY=dy
 end
 
-function a:detonate(e)
-local b=nil
-for f,d in ipairs(self.list)do
-if d.owner==e and not d.timer and(not b or d.serial<b.serial)then
-b=d
+function a:detonate(owner)
+local c=nil
+for e,d in ipairs(self.list)do
+if d.owner==owner and not d.timer and(not c or d.serial<c.serial)then
+c=d
 end
 end
-if not b then
+if not c then
 return false
 end
-b.timer=0
+c.timer=0
 return true
 end
 
-function a:lightAll(d)
-for e,b in ipairs(self.list)do
-if b.owner==d and not b.timer then
-b.timer=a.FUSE
+function a:lightAll(owner)
+for d,c in ipairs(self.list)do
+if c.owner==owner and not c.timer then
+c.timer=a.FUSE
 end
 end
 end
 
-function a:slideOpen(f,b,d,g)
-if self.grid:isSolid(b,d)or self.grid:itemAt(b,d)or g:occupied(b,d)then
+function a:slideOpen(bomb,column,row,world)
+if self.grid:isSolid(column,row)or self.grid:itemAt(column,row)or world:occupied(column,row)then
 return false
 end
-local e=self:at(b,d)
-return e==nil or e==f
+local c=self:at(column,row)
+return c==nil or c==bomb
 end
 
-function a:slide(b,h)
-local e=(b.column-1)*c
-local f=(b.row-1)*c
-if b.x==e and b.y==f then
-local d,g=b.column+b.slideX,b.row+b.slideY
-if not self:slideOpen(b,d,g,h)then
-b.slideX=nil
-b.slideY=nil
+function a:slide(bomb,world)
+local d=(bomb.column-1)*b
+local e=(bomb.row-1)*b
+if bomb.x==d and bomb.y==e then
+local c,f=bomb.column+bomb.slideX,bomb.row+bomb.slideY
+if not self:slideOpen(bomb,c,f,world)then
+bomb.slideX=nil
+bomb.slideY=nil
 return
 end
-b.column=d
-b.row=g
-e=(d-1)*c
-f=(g-1)*c
+bomb.column=c
+bomb.row=f
+d=(c-1)*b
+e=(f-1)*b
 end
-local d=a.SLIDE_SPEED
-b.x=b.x+SpiffBoy.clamp(e-b.x,-d,d)
-b.y=b.y+SpiffBoy.clamp(f-b.y,-d,d)
-end
-
-local function o(b)
-if b.kind=="aerosol"then
-return b.range+a.AEROSOL_EXTRA
-end
-return b.range
+local c=a.SLIDE_SPEED
+bomb.x=bomb.x+SpiffBoy.clamp(d-bomb.x,-c,c)
+bomb.y=bomb.y+SpiffBoy.clamp(e-bomb.y,-c,c)
 end
 
-function a:explode(b,h)
-for d=#self.list,1,-1 do
-if self.list[d]==b then
-table.remove(self.list,d)
+local function m(bomb)
+if bomb.kind=="aerosol"then
+return bomb.range+a.AEROSOL_EXTRA
 end
-end
-local d=self.grid
-local i=math.floor(b.x/c+0.5)+1
-local j=math.floor(b.y/c+0.5)+1
-local g={column=i,row=j,timer=a.BLAST_TICKS,owner=b.owner,arms={},cells={d:index(i,j)}}
-local p=o(b)
-for q,k in ipairs(a.ARMS)do
-local m=0
-for l=1,p do
-local e,f=i+k.dx*l,j+k.dy*l
-if d:isHard(e,f)then
-break
-end
-if d:isCrate(e,f)then
-if d:breakCrate(e,f)then
-h:crateBroken(b.owner)
-end
-break
-end
-m=l
-g.cells[#g.cells+1]=d:index(e,f)
-if d:takeItem(e,f)then
-h:itemBurnt()
-break
-end
-local n=self:at(e,f)
-if n then
-n.timer=0
-break
-end
-end
-g.arms[k.name]=m
-end
-self.blasts[#self.blasts+1]=g
-if b.kind=="molotov"then
-self.fires[#self.fires+1]={cells=g.cells,timer=a.BLAST_TICKS+a.FIRE_TICKS,owner=b.owner}
-end
-h:bombExploded(b)
+return bomb.range
 end
 
-function a:update(e)
-for d,b in ipairs(self.list)do
-if b.slideX then
-self:slide(b,e)
-end
-if b.timer and b.timer>0 then
-b.timer=b.timer-1
+function a:explode(bomb,world)
+for c=#self.list,1,-1 do
+if self.list[c]==bomb then
+table.remove(self.list,c)
 end
 end
-local b=true
-while b do
-b=false
-for f,d in ipairs(self.list)do
+local c=self.grid
+local g=math.floor(bomb.x/b+0.5)+1
+local h=math.floor(bomb.y/b+0.5)+1
+local f={column=g,row=h,timer=a.BLAST_TICKS,owner=bomb.owner,arms={},cells={c:index(g,h)}}
+local n=m(bomb)
+for o,i in ipairs(a.ARMS)do
+local k=0
+for j=1,n do
+local d,e=g+i.dx*j,h+i.dy*j
+if c:isHard(d,e)then
+break
+end
+if c:isCrate(d,e)then
+if c:breakCrate(d,e)then
+world:crateBroken(bomb.owner)
+end
+break
+end
+k=j
+f.cells[#f.cells+1]=c:index(d,e)
+if c:takeItem(d,e)then
+world:itemBurnt()
+break
+end
+local l=self:at(d,e)
+if l then
+l.timer=0
+break
+end
+end
+f.arms[i.name]=k
+end
+self.blasts[#self.blasts+1]=f
+if bomb.kind=="molotov"then
+self.fires[#self.fires+1]={cells=f.cells,timer=a.BLAST_TICKS+a.FIRE_TICKS,owner=bomb.owner}
+end
+world:bombExploded(bomb)
+end
+
+function a:update(world)
+for d,c in ipairs(self.list)do
+if c.slideX then
+self:slide(c,world)
+end
+if c.timer and c.timer>0 then
+c.timer=c.timer-1
+end
+end
+local c=true
+while c do
+c=false
+for e,d in ipairs(self.list)do
 if d.timer and d.timer<=0 then
-self:explode(d,e)
-b=true
+self:explode(d,world)
+c=true
 break
 end
 end
 end
-for f=#self.blasts,1,-1 do
-local d=self.blasts[f]
+for e=#self.blasts,1,-1 do
+local d=self.blasts[e]
 d.timer=d.timer-1
 if d.timer<=0 then
-table.remove(self.blasts,f)
+table.remove(self.blasts,e)
 end
 end
-for f=#self.fires,1,-1 do
-local d=self.fires[f]
+for e=#self.fires,1,-1 do
+local d=self.fires[e]
 d.timer=d.timer-1
 if d.timer<=0 then
-table.remove(self.fires,f)
+table.remove(self.fires,e)
 end
 end
 self:listDanger()
 end
 
-local function d(b,g)
-for h,e in ipairs(g)do
-for i,f in ipairs(e.cells)do
-if b[f]~=a.PLAYER then
-b[f]=e.owner
+local function d(danger,flames)
+for f,c in ipairs(flames)do
+for g,e in ipairs(c.cells)do
+if danger[e]~=a.PLAYER then
+danger[e]=c.owner
 end
 end
 end
 end
 
 function a:listDanger()
-local b={}
-d(b,self.blasts)
-d(b,self.fires)
-self.danger=b
+local c={}
+d(c,self.blasts)
+d(c,self.fires)
+self.danger=c
 end
 
-function a:dangerAt(b,e)
-return self.danger[self.grid:index(b,e)]
+function a:dangerAt(column,row)
+return self.danger[self.grid:index(column,row)]
 end
 
-function a.strength(b)
-local e=a.BLAST_TICKS/3
-if b.timer>e*2 then
+function a.strength(blast)
+local c=a.BLAST_TICKS/3
+if blast.timer>c*2 then
 return 2
-elseif b.timer>e then
+elseif blast.timer>c then
 return 1
 end
 return 3

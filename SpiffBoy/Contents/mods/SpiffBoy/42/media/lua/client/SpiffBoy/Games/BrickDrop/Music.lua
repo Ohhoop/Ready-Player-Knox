@@ -197,8 +197,8 @@ local w="o2 f+8 g8 a4 g4 | o3 c4 <b4 a4 | o2 g8 f+8 a8 g8 f+8 e8 | o2 a2.^2.^4"
 .." | o2 d8 e8 f+8 e8 f+8 g8 | o2 a8 b8 >c+8 <b8 a+8 >c+8 | o2 d4 g4 e4 | o2 f+2.^2.^4"
 .." | o2 g+4 a+4 | o2 b4 e4 f+4 | o1 b2."
 
-local function j(f,g,h)
-return f.."["..g.."]2 ["..h.."]2"
+local function j(header,first,second)
+return header.."["..first.."]2 ["..second.."]2"
 end
 
 local g={
@@ -281,18 +281,18 @@ for f=0,a.MIX_STEPS do
 g[a.STEP..f]={pulse2="t240 @2 v10 y1 l16 o5 "..k[f+1]}
 end
 
-function a.barName(h,m,n)
+function a.barName(track,fast,bar)
 local f="n"
-if m then
+if fast then
 f="f"
 end
-return"music"..h..f.."_"..n
+return"music"..track..f.."_"..bar
 end
 
-local function m(n,x,y)
+local function m(track,tempo,bar)
 local f={}
-for z,h in pairs(n.voices)do
-f[z]="t"..tostring(x).." "..h.header..h.bars[y]
+for n,h in pairs(track.voices)do
+f[n]="t"..tostring(tempo).." "..h.header..h.bars[bar]
 end
 return f
 end

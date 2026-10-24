@@ -7,25 +7,25 @@ require"SpiffBoy/Menus/CartridgeMenu"
 SpiffBoy.HeadphonesMenu=SpiffBoy.HeadphonesMenu or{}
 local a=SpiffBoy.HeadphonesMenu
 
-local function h(b)
-local c=SpiffBoy.Handheld
-return c.isConsole(b)and c.getHeadphones(b)==nil
+local function g(item)
+local b=SpiffBoy.Handheld
+return b.isConsole(item)and b.getHeadphones(item)==nil
 end
 
-function a.plug(b,c,d)
-SpiffBoy.CartridgeMenu.queue(b,c,{{action=SpiffBoyPlugHeadphonesAction,item=d}})
+function a.plug(playerObj,console,headphones)
+SpiffBoy.CartridgeMenu.queue(playerObj,console,{{action=SpiffBoyPlugHeadphonesAction,item=headphones}})
 end
 
-function a.unplug(b,c)
-SpiffBoy.CartridgeMenu.queue(b,c,{{action=SpiffBoyUnplugHeadphonesAction}})
+function a.unplug(playerObj,console)
+SpiffBoy.CartridgeMenu.queue(playerObj,console,{{action=SpiffBoyUnplugHeadphonesAction}})
 end
 
-local function i(g)
-local c=g:getInventory():getAllEvalRecurse(SpiffBoy.Handheld.isHeadphones,ArrayList.new())
+local function h(playerObj)
+local c=playerObj:getInventory():getAllEvalRecurse(SpiffBoy.Handheld.isHeadphones,ArrayList.new())
 local b={}
 local d={}
-for j=0,c:size()-1 do
-local e=c:get(j)
+for i=0,c:size()-1 do
+local e=c:get(i)
 local f=e:getFullType()
 if not d[f]then
 d[f]=true
@@ -35,35 +35,35 @@ end
 return b
 end
 
-function a.addOptions(j,b,c,e)
-local f=SpiffBoy.Handheld.getHeadphones(c)
-if f then
-local d=e(getText("UI_SpiffBoy_UnplugHeadphones"),b,a.unplug,c)
-d.iconTexture=getScriptManager():FindItem(f):getNormalTexture()
+function a.addOptions(context,playerObj,console,add)
+local c=SpiffBoy.Handheld.getHeadphones(console)
+if c then
+local b=add(getText("UI_SpiffBoy_UnplugHeadphones"),playerObj,a.unplug,console)
+b.iconTexture=getScriptManager():FindItem(c):getNormalTexture()
 return
 end
-local d=i(b)
-if#d==0 then
+local b=h(playerObj)
+if#b==0 then
 return
 end
-if#d==1 then
-local g=d[1]
-e(getText("UI_SpiffBoy_PlugItem",getItemNameFromFullType(g:getFullType())),b,a.plug,c,g)
+if#b==1 then
+local d=b[1]
+add(getText("UI_SpiffBoy_PlugItem",getItemNameFromFullType(d:getFullType())),playerObj,a.plug,console,d)
 return
 end
-local k=e(getText("UI_SpiffBoy_PlugHeadphones"),b,nil)
-local l=SpiffBoy.CartridgeMenu.subMenu(j,k)
-for m,g in ipairs(d)do
-l:addOption(getItemNameFromFullType(g:getFullType()),b,a.plug,c,g)
+local e=add(getText("UI_SpiffBoy_PlugHeadphones"),playerObj,nil)
+local f=SpiffBoy.CartridgeMenu.subMenu(context,e)
+for i,d in ipairs(b)do
+f:addOption(getItemNameFromFullType(d:getFullType()),playerObj,a.plug,console,d)
 end
 end
 
-function a.addPlugInConsoleOption(d,b,e,f)
-local g=getItemNameFromFullType(SpiffBoy.CONSOLE_ITEM)
-local c=b:getInventory():getAllEvalRecurse(h,ArrayList.new())
-if c:size()==0 then
+function a.addPlugInConsoleOption(context,playerObj,headphones,add)
+local c=getItemNameFromFullType(SpiffBoy.CONSOLE_ITEM)
+local b=playerObj:getInventory():getAllEvalRecurse(g,ArrayList.new())
+if b:size()==0 then
 return
 end
-local j=getText("UI_SpiffBoy_PlugInConsole",g)
-SpiffBoy.CartridgeMenu.addConsoleChoice(d,f,j,b,c,a.plug,e)
+local d=getText("UI_SpiffBoy_PlugInConsole",c)
+SpiffBoy.CartridgeMenu.addConsoleChoice(context,add,d,playerObj,b,a.plug,headphones)
 end

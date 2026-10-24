@@ -2,19 +2,19 @@ require"SpiffBoy/Games/QuickStart/Game"
 
 local b=SpiffBoyQuickStartGame
 local a=SpiffBoy.QuickStart
-local k=a.Atlas
-local p=a.Roster
+local j=a.Atlas
+local o=a.Roster
 local u=a.Race
-local h=a.GrandPrix
-local j=a.Records
+local g=a.GrandPrix
+local i=a.Records
 local v=a.Ghost
 local f=a.Music
 local e=a.Hud
 
-local t=math.floor
+local s=math.floor
 local d=a.WIDTH
-local m=a.HEIGHT
-local n=b.pressed
+local l=a.HEIGHT
+local m=b.pressed
 
 b.BOARD={
 x=14,y=4,rowY=9,rowH=12,slideTicks=6,
@@ -31,50 +31,50 @@ self.boardClock=0
 self:music(f.RESULTS)
 end
 
-function b:drawBoard(g,w)
-self:fill(g,a.MID,0,0,d,m)
-self:image(g,"letter_board",c.x,c.y)
-local o=k.faces
-local q=self.context.art
-for r,i in ipairs(w)do
-if self.boardClock>=r*c.slideTicks then
-local l=c.y+c.rowY-4+(r-1)*c.rowH
-if i.seat then
-self:fill(g,a.DARK,c.x+5,l,142,11)
+function b:drawBoard(screen,lines)
+self:fill(screen,a.MID,0,0,d,l)
+self:image(screen,"letter_board",c.x,c.y)
+local n=j.faces
+local p=self.context.art
+for q,h in ipairs(lines)do
+if self.boardClock>=q*c.slideTicks then
+local k=c.y+c.rowY-4+(q-1)*c.rowH
+if h.seat then
+self:fill(screen,a.DARK,c.x+5,k,142,11)
 end
-local s=i.seat and a.PAPER or a.INK
-e.text(g,q,tostring(r),c.x+9,l+3,s)
-local x=p.LIST[i.driver]
-g:layers(self:art("faces"),(x.portrait-1)*o.frame,o.frame,o.h,c.x+20,l,o.shades)
-if i.extra then
-e.text(g,q,i.extra,c.x+36,l+3,s)
+local r=h.seat and a.PAPER or a.INK
+e.text(screen,p,tostring(q),c.x+9,k+3,r)
+local t=o.LIST[h.driver]
+screen:layers(self:art("faces"),(t.portrait-1)*n.frame,n.frame,n.h,c.x+20,k,n.shades)
+if h.extra then
+e.text(screen,p,h.extra,c.x+36,k+3,r)
 end
-e.text(g,q,i.value,c.x+140-e.width(i.value),l+3,s)
+e.text(screen,p,h.value,c.x+140-e.width(h.value),k+3,r)
 end
 end
 end
 
 function b:resultLines()
-local g=self.world
+local h=self.world
 local q={}
-local r=not g.battle and u.finishTimes(g)or nil
-for s,o in ipairs(g.order)do
-local l=g.karts[o]
-local i={driver=l.driver,seat=l.seat}
-if g.battle then
-i.value=l.out and"-"or("x"..l.cans)
+local r=not h.battle and u.finishTimes(h)or nil
+for t,p in ipairs(h.order)do
+local n=h.karts[p]
+local k={driver=n.driver,seat=n.seat}
+if h.battle then
+k.value=n.out and"-"or("x"..n.cans)
 elseif self.gp then
-i.value="+"..tostring(h.POINTS[s]or 0)
-i.extra=e.time(r[o])
+k.value="+"..tostring(g.POINTS[t]or 0)
+k.extra=e.time(r[p])
 else
-i.value=e.time(r[o])
+k.value=e.time(r[p])
 end
-q[s]=i
+q[t]=k
 end
 return q
 end
 
-function b:tick_results(g)
+function b:tick_results(input)
 self.boardClock=self.boardClock+1
 if self.boardClock<8*c.slideTicks then
 return
@@ -82,7 +82,7 @@ end
 if self.twoPlayer and not self.port:leads()then
 return
 end
-if n(g,"a")then
+if m(input,"a")then
 self:effect(f.CONFIRM)
 if self.gp then
 if self.twoPlayer then
@@ -100,8 +100,8 @@ end
 end
 end
 
-function b:draw_results(g)
-self:drawBoard(g,self:resultLines())
+function b:draw_results(screen)
+self:drawBoard(screen,self:resultLines())
 end
 
 function b:openStandings()
@@ -109,7 +109,7 @@ self.screen=b.SCREEN_STANDINGS
 self.boardClock=0
 end
 
-function b:tick_standings(g)
+function b:tick_standings(input)
 self.boardClock=self.boardClock+1
 if self.boardClock<8*c.slideTicks then
 return
@@ -117,14 +117,14 @@ end
 if self.twoPlayer and not self.port:leads()then
 return
 end
-if n(g,"a")then
+if m(input,"a")then
 self:effect(f.CONFIRM)
 self:standingsForward()
 end
 end
 
 function b:standingsForward()
-if h.advance(self.gp)then
+if g.advance(self.gp)then
 if self.twoPlayer then
 self:startLinkedRace()
 else
@@ -138,16 +138,16 @@ end
 self:openPodium()
 end
 
-function b:draw_standings(l)
-local i={}
-for o,g in ipairs(self.gp.standings)do
-i[o]={driver=g.driver,seat=g.seat,value=tostring(g.points),extra="+"..tostring(g.gained or 0)}
+function b:draw_standings(screen)
+local k={}
+for n,h in ipairs(self.gp.standings)do
+k[n]={driver=h.driver,seat=h.seat,value=tostring(h.points),extra="+"..tostring(h.gained or 0)}
 end
-self:drawBoard(l,i)
+self:drawBoard(screen,k)
 end
 
-function b:followNext(g)
-if g==c.choice.back then
+function b:followNext(choice)
+if choice==c.choice.back then
 self:openGuest()
 self.gp=nil
 self:music(f.MENU)
@@ -168,20 +168,20 @@ self.screen=b.SCREEN_PODIUM
 self.boardClock=0
 self.unlockKey=nil
 self:music(f.PODIUM)
-local g=h.placeOfPlayers(self.gp)
-if g<=h.PODIUM and self.gp.cup==1 and j.unlock(self.data,"knox")then
+local h=g.placeOfPlayers(self.gp)
+if h<=g.PODIUM and self.gp.cup==1 and i.unlock(self.data,"knox")then
 self.unlockKey="Unlock_Knox"
 end
-if g==1 and p.CC[self.setup.cc].id=="150"then
-j.unlock(self.data,"win150_"..h.CUPS[self.gp.cup].id)
-if j.unlocked(self.data,"win150_spiffo")and j.unlocked(self.data,"win150_knox")and j.unlock(self.data,"mirror")then
+if h==1 and o.CC[self.setup.cc].id=="150"then
+i.unlock(self.data,"win150_"..g.CUPS[self.gp.cup].id)
+if i.unlocked(self.data,"win150_spiffo")and i.unlocked(self.data,"win150_knox")and i.unlock(self.data,"mirror")then
 self.unlockKey="Unlock_Mirror"
 end
 end
 self:store()
 end
 
-function b:tick_podium(g)
+function b:tick_podium(input)
 self.boardClock=self.boardClock+1
 if self.boardClock<60 then
 return
@@ -189,7 +189,7 @@ end
 if self.twoPlayer and not self.port:leads()then
 return
 end
-if n(g,"a")then
+if m(input,"a")then
 self:effect(f.CONFIRM)
 self.gp=nil
 if self.twoPlayer then
@@ -199,52 +199,52 @@ self:openHighway()
 end
 end
 
-function b:draw_podium(g)
-local r=self.world.track
-local q=k[r.style.sky]
-self:fill(g,a.PAPER,0,0,d,m)
-g:layers(self:art(r.style.sky),0,d,q.h,0,60-q.h,q.shades)
-self:fill(g,a.MID,0,60,d,m-60)
-self:image(g,"podium",c.podiumX,c.podiumY)
-for i=1,h.PODIUM do
-local w=self.gp.standings[i]
-local x=p.LIST[w.driver]
-local s="kart_"..x.id
-local l=k[s]
-local o=l.steps[2]
-local y=c.stackX[i]-t(o.w/2)
-local z=(i==1 and self.boardClock%30<15)and 2 or 0
-g:layers(self:art(s),o.x+4*o.w,o.w,l.h,y,c.stackTops[i]-l.h-z,l.shades)
-if i==1 then
-self:image(g,"trophy",c.stackX[1]-8,c.stackTops[1]-l.h-20)
+function b:draw_podium(screen)
+local q=self.world.track
+local p=j[q.style.sky]
+self:fill(screen,a.PAPER,0,0,d,l)
+screen:layers(self:art(q.style.sky),0,d,p.h,0,60-p.h,p.shades)
+self:fill(screen,a.MID,0,60,d,l-60)
+self:image(screen,"podium",c.podiumX,c.podiumY)
+for h=1,g.PODIUM do
+local t=self.gp.standings[h]
+local w=o.LIST[t.driver]
+local r="kart_"..w.id
+local k=j[r]
+local n=k.steps[2]
+local x=c.stackX[h]-s(n.w/2)
+local y=(h==1 and self.boardClock%30<15)and 2 or 0
+screen:layers(self:art(r),n.x+4*n.w,n.w,k.h,x,c.stackTops[h]-k.h-y,k.shades)
+if h==1 then
+self:image(screen,"trophy",c.stackX[1]-8,c.stackTops[1]-k.h-20)
 end
 end
-self:centre(g,self:say("Cup_"..h.CUPS[self.gp.cup].id),d/2,4,a.INK)
+self:centre(screen,self:say("Cup_"..g.CUPS[self.gp.cup].id),d/2,4,a.INK)
 if self.unlockKey and self.boardClock%60<45 then
-self:fill(g,a.INK,0,22,d,18)
-self:centre(g,self:say(self.unlockKey),d/2,23,a.PAPER)
+self:fill(screen,a.INK,0,22,d,18)
+self:centre(screen,self:say(self.unlockKey),d/2,23,a.PAPER)
 end
 end
 
 function b:openTrial()
 self.screen=b.SCREEN_TRIAL
 self.trialIndex=1
-local l=self.world
-local i=l.karts[1]
-local o=l.lapTimes[1]
-local g={}
+local n=self.world
+local k=n.karts[1]
+local p=n.lapTimes[1]
+local h={}
 local q=0
-for r=1,#o do
-g[r]=o[r]-q
-q=o[r]
+for r=1,#p do
+h[r]=p[r]-q
+q=p[r]
 end
-g[#g+1]=i.finishTick-q
-local r=g[1]
-for w,s in ipairs(g)do
-r=math.min(r,s)
+h[#h+1]=k.finishTick-q
+local r=h[1]
+for w,t in ipairs(h)do
+r=math.min(r,t)
 end
-self.trial={time=i.finishTick,laps=g}
-self.trial.record=j.submit(self.data,l.track.id,i.driver,i.finishTick,r,v.parts(self.recorder))
+self.trial={time=k.finishTick,laps=h}
+self.trial.record=i.submit(self.data,n.track.id,k.driver,k.finishTick,r,v.parts(self.recorder))
 self:store()
 if self.trial.record then
 self:silence()
@@ -255,9 +255,9 @@ self:music(f.RESULTS)
 end
 end
 
-function b:tick_trial(g)
-self.trialIndex=self:moveCursor(g,self.trialIndex,3)
-if n(g,"a")then
+function b:tick_trial(input)
+self.trialIndex=self:moveCursor(input,self.trialIndex,3)
+if m(input,"a")then
 self:effect(f.CONFIRM)
 if self.trialIndex==1 then
 self:startSoloRace()
@@ -269,30 +269,30 @@ end
 end
 end
 
-function b:draw_trial(g)
-self:fill(g,a.PAPER,0,0,d,m)
-local i=self.context.art
-local l=e.time(self.trial.time)
-self:centre(g,self:say("Track_"..self.world.track.id),d/2,2,a.INK)
-e.label(g,i,l,t((d-e.width(l))/2),22)
-for o,r in ipairs(self.trial.laps)do
-local s=e.time(r)
-local q=32+o*8
-g:sheet(self:art("flag"),0,0,k.flag.w,k.flag.h,60,q-1,1,a.INK)
-e.text(g,i,tostring(o).."  "..s,70,q,a.INK)
+function b:draw_trial(screen)
+self:fill(screen,a.PAPER,0,0,d,l)
+local h=self.context.art
+local k=e.time(self.trial.time)
+self:centre(screen,self:say("Track_"..self.world.track.id),d/2,2,a.INK)
+e.label(screen,h,k,s((d-e.width(k))/2),22)
+for n,q in ipairs(self.trial.laps)do
+local r=e.time(q)
+local p=32+n*8
+screen:sheet(self:art("flag"),0,0,j.flag.w,j.flag.h,60,p-1,1,a.INK)
+e.text(screen,h,tostring(n).."  "..r,70,p,a.INK)
 end
 if self.trial.record then
-self:fill(g,a.INK,0,64,d,16)
-self:centre(g,self:say("Record"),d/2,64,a.PAPER)
+self:fill(screen,a.INK,0,64,d,16)
+self:centre(screen,self:say("Record"),d/2,64,a.PAPER)
 end
-local s={"Retry","ChangeCourse","Pause_Quit"}
-for o,w in ipairs(s)do
-local q=82+(o-1)*12
-local r=a.INK
-if o==self.trialIndex then
-self:fill(g,a.INK,30,q+2,120,12)
-r=a.PAPER
+local r={"Retry","ChangeCourse","Pause_Quit"}
+for n,t in ipairs(r)do
+local p=82+(n-1)*12
+local q=a.INK
+if n==self.trialIndex then
+self:fill(screen,a.INK,30,p+2,120,12)
+q=a.PAPER
 end
-self:centre(g,self:say(w),d/2,q,r)
+self:centre(screen,self:say(t),d/2,p,q)
 end
 end

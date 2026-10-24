@@ -5,198 +5,198 @@ require"SpiffBoy/Games/StreetBiter/Fighter"
 
 SpiffBoy.StreetBiter=SpiffBoy.StreetBiter or{}
 
-local r=SpiffBoy.StreetBiter.Roster
-local o=SpiffBoy.StreetBiter.Moves
-local s=SpiffBoy.StreetBiter.Fighter
+local p=SpiffBoy.StreetBiter.Roster
+local m=SpiffBoy.StreetBiter.Moves
+local q=SpiffBoy.StreetBiter.Fighter
 
-local e={}
-e.__index=e
-SpiffBoy.StreetBiter.Brain=e
+local d={}
+d.__index=d
+SpiffBoy.StreetBiter.Brain=d
 
-e.LEVELS={
+d.LEVELS={
 {key="e",text="Easy",reaction=26,aggression=0.3,block=0.25,special=0.12,jump=0.1,damage=0.7},
 {key="n",text="Normal",reaction=16,aggression=0.5,block=0.55,special=0.25,jump=0.15,damage=1},
 {key="h",text="Hard",reaction=9,aggression=0.7,block=0.8,special=0.4,jump=0.2,damage=1.3},
 }
 
-local l={reaction=-1.5,aggression=0.03,block=0.04,special=0.03}
-local t=50
-local u=82
-local v=112
-local w=100
-local x=62
-local g={attack=10,approach=20,retreat=14,block=22,wait=12,jump=8,motion=6}
-local p={"kick","highkick","straight","ckick","sweep"}
-local q={"jab","straight","kick","cpunch","ckick","sweep","highkick"}
+local j={reaction=-1.5,aggression=0.03,block=0.04,special=0.03}
+local r=50
+local s=82
+local t=112
+local u=100
+local v=62
+local f={attack=10,approach=20,retreat=14,block=22,wait=12,jump=8,motion=6}
+local n={"kick","highkick","straight","ckick","sweep"}
+local o={"jab","straight","kick","cpunch","ckick","sweep","highkick"}
 
-function e.settings(a,b)
+function d.settings(level,rank)
 return{
-reaction=math.max(4,math.floor(a.reaction+l.reaction*b)),
-aggression=math.min(0.95,a.aggression+l.aggression*b),
-block=math.min(0.95,a.block+l.block*b),
-special=math.min(0.7,a.special+l.special*b),
-jump=a.jump,
+reaction=math.max(4,math.floor(level.reaction+j.reaction*rank)),
+aggression=math.min(0.95,level.aggression+j.aggression*rank),
+block=math.min(0.95,level.block+j.block*rank),
+special=math.min(0.7,level.special+j.special*rank),
+jump=level.jump,
 }
 end
 
-function e.new(b,c)
-local a=setmetatable({},e)
-a.settings=b
-a.random=c
+function d.new(settings,random)
+local a=setmetatable({},d)
+a.settings=settings
+a.random=random
 a.plan=nil
 a.wait=0
 return a
 end
 
-local function b(c,d,h,i,f)
-local a={up=i==true,down=h==true,left=false,right=false,a=f=="a",b=f=="b"}
-if d==1 then
-if c>0 then
-a.right=true
+local function a(facing,toward,down,up,button)
+local b={up=up==true,down=down==true,left=false,right=false,a=button=="a",b=button=="b"}
+if toward==1 then
+if facing>0 then
+b.right=true
 else
-a.left=true
+b.left=true
 end
-elseif d==-1 then
-if c>0 then
-a.left=true
+elseif toward==-1 then
+if facing>0 then
+b.left=true
 else
-a.right=true
+b.right=true
 end
 end
-return a
+return b
 end
 
-local function m(h,i)
-local j=o.NORMALS[i]
-local a=j.input
-local k=string.sub(a,-1)=="A"and"a"or"b"
+local function k(facing,name)
+local h=m.NORMALS[name]
+local b=h.input
+local i=string.sub(b,-1)=="A"and"a"or"b"
 local c=0
-local d=false
-local f=false
-if string.find(a,"6")or string.find(a,"3")then
+local e=false
+local g=false
+if string.find(b,"6")or string.find(b,"3")then
 c=1
 end
-if string.find(a,"2")or string.find(a,"3")then
-d=true
+if string.find(b,"2")or string.find(b,"3")then
+e=true
 end
-if string.find(a,"8")then
-f=true
+if string.find(b,"8")then
+g=true
 end
-return{b(h,c,d,f,k),b(h,c,d,f,nil)}
+return{a(facing,c,e,g,i),a(facing,c,e,g,nil)}
 end
 
-local function n(f,h)
-local i=r.MOTIONS[h.motion].label
+local function l(facing,special)
+local g=p.MOTIONS[special.motion].label
 local c={}
-for j,a in ipairs(i)do
-local d=0
-if a==6 or a==3 then
-d=1
-elseif a==4 or a==1 then
-d=-1
+for h,b in ipairs(g)do
+local e=0
+if b==6 or b==3 then
+e=1
+elseif b==4 or b==1 then
+e=-1
 end
-local k=a<=3
-c[j]=b(f,d,k,false,j==#i and h.button or nil)
+local i=b<=3
+c[h]=a(facing,e,i,false,h==#g and special.button or nil)
 end
-c[#c+1]=b(f,0,false,false,nil)
+c[#c+1]=a(facing,0,false,false,nil)
 return c
 end
 
-local function h(a,c)
-return{ticks=c,actions=a}
+local function g(actions,ticks)
+return{ticks=ticks,actions=actions}
 end
 
-local function f(a)
-return{ticks=#a,script=a}
+local function e(script)
+return{ticks=#script,script=script}
 end
 
-function e:choose(a,i)
-local d=self.settings
-local c=self.random
-local j=(i.x-a.x)*a.facing
-local y=i.state==s.STATE_ATTACK and i.move.far and j<=i.move.far+10
-if y and c:chance(d.block)then
-local k=i.move.guard==o.GUARD_LOW
-return h(b(a.facing,-1,k,false,nil),g.block)
+function d:choose(me,foe)
+local c=self.settings
+local b=self.random
+local h=(foe.x-me.x)*me.facing
+local w=foe.state==q.STATE_ATTACK and foe.move.far and h<=foe.move.far+10
+if w and b:chance(c.block)then
+local i=foe.move.guard==m.GUARD_LOW
+return g(a(me.facing,-1,i,false,nil),f.block)
 end
-if i:airborne()and j<x and c:chance(d.block)then
-for z,k in ipairs(a.definition.specials)do
-if k.move=="flipKick"and c:chance(d.special*2)then
-return f(n(a.facing,k))
-end
-end
-return f(m(a.facing,"cpunch"))
-end
-if j>v then
-if c:chance(d.special)then
-for z,k in ipairs(a.definition.specials)do
-if o.SPECIALS[k.move].projectile then
-return f(n(a.facing,k))
+if foe:airborne()and h<v and b:chance(c.block)then
+for x,i in ipairs(me.definition.specials)do
+if i.move=="flipKick"and b:chance(c.special*2)then
+return e(l(me.facing,i))
 end
 end
+return e(k(me.facing,"cpunch"))
 end
-if c:chance(d.jump)then
-return h(b(a.facing,1,false,true,nil),g.jump)
+if h>t then
+if b:chance(c.special)then
+for x,i in ipairs(me.definition.specials)do
+if m.SPECIALS[i.move].projectile then
+return e(l(me.facing,i))
 end
-return h(b(a.facing,1,false,false,nil),g.approach)
 end
-if j>u then
-if c:chance(d.jump)and j<w then
-return f({b(a.facing,1,false,true,nil),b(a.facing,1,false,false,nil),b(a.facing,1,false,false,nil),b(a.facing,1,false,false,nil),b(a.facing,1,false,false,nil),b(a.facing,1,false,false,nil),b(a.facing,1,false,false,nil),b(a.facing,1,false,false,nil),b(a.facing,1,false,false,nil),b(a.facing,1,false,false,nil),b(a.facing,1,false,false,nil),b(a.facing,1,false,false,nil),b(a.facing,1,false,false,"b")})
 end
-if c:chance(d.special)then
-local k=a.definition.specials[c:int(1,#a.definition.specials)]
-return f(n(a.facing,k))
+if b:chance(c.jump)then
+return g(a(me.facing,1,false,true,nil),f.jump)
 end
-return h(b(a.facing,1,false,false,nil),g.approach)
+return g(a(me.facing,1,false,false,nil),f.approach)
 end
-if j>t then
-if c:chance(d.aggression)then
-return f(m(a.facing,p[c:int(1,#p)]))
+if h>s then
+if b:chance(c.jump)and h<u then
+return e({a(me.facing,1,false,true,nil),a(me.facing,1,false,false,nil),a(me.facing,1,false,false,nil),a(me.facing,1,false,false,nil),a(me.facing,1,false,false,nil),a(me.facing,1,false,false,nil),a(me.facing,1,false,false,nil),a(me.facing,1,false,false,nil),a(me.facing,1,false,false,nil),a(me.facing,1,false,false,nil),a(me.facing,1,false,false,nil),a(me.facing,1,false,false,nil),a(me.facing,1,false,false,"b")})
 end
-if c:chance(0.3)then
-return h(b(a.facing,-1,false,false,nil),g.retreat)
+if b:chance(c.special)then
+local i=me.definition.specials[b:int(1,#me.definition.specials)]
+return e(l(me.facing,i))
 end
-return h(b(a.facing,1,false,false,nil),g.approach)
+return g(a(me.facing,1,false,false,nil),f.approach)
 end
-if c:chance(d.aggression)then
-if c:chance(d.special)then
-local k=a.definition.specials[c:int(1,#a.definition.specials)]
-return f(n(a.facing,k))
+if h>r then
+if b:chance(c.aggression)then
+return e(k(me.facing,n[b:int(1,#n)]))
 end
-local z=a.definition.chain
-if c:chance(0.35)then
-local k={}
-for C,A in ipairs(z)do
-for D,B in ipairs(m(a.facing,A))do
-k[#k+1]=B
+if b:chance(0.3)then
+return g(a(me.facing,-1,false,false,nil),f.retreat)
 end
-k[#k+1]=b(a.facing,0,false,false,nil)
+return g(a(me.facing,1,false,false,nil),f.approach)
 end
-return f(k)
+if b:chance(c.aggression)then
+if b:chance(c.special)then
+local i=me.definition.specials[b:int(1,#me.definition.specials)]
+return e(l(me.facing,i))
 end
-return f(m(a.facing,q[c:int(1,#q)]))
+local x=me.definition.chain
+if b:chance(0.35)then
+local i={}
+for A,y in ipairs(x)do
+for B,z in ipairs(k(me.facing,y))do
+i[#i+1]=z
 end
-if c:chance(0.5)then
-return h(b(a.facing,-1,c:chance(0.5),false,nil),g.retreat)
+i[#i+1]=a(me.facing,0,false,false,nil)
 end
-return h(b(a.facing,0,false,false,nil),g.wait)
+return e(i)
+end
+return e(k(me.facing,o[b:int(1,#o)]))
+end
+if b:chance(0.5)then
+return g(a(me.facing,-1,b:chance(0.5),false,nil),f.retreat)
+end
+return g(a(me.facing,0,false,false,nil),f.wait)
 end
 
-function e:act(c,d)
-local a=self.plan
-if a and a.ticks>0 then
-a.ticks=a.ticks-1
-if a.script then
-return a.script[#a.script-a.ticks]
+function d:act(me,foe)
+local b=self.plan
+if b and b.ticks>0 then
+b.ticks=b.ticks-1
+if b.script then
+return b.script[#b.script-b.ticks]
 end
-return a.actions
+return b.actions
 end
 if self.wait>0 then
 self.wait=self.wait-1
-return b(c.facing,0,false,false,nil)
+return a(me.facing,0,false,false,nil)
 end
 self.wait=self.random:int(math.floor(self.settings.reaction/2),self.settings.reaction)
-self.plan=self:choose(c,d)
-return self:act(c,d)
+self.plan=self:choose(me,foe)
+return self:act(me,foe)
 end

@@ -10,23 +10,23 @@ require"SpiffBoy/Games/QuickStart/Items"
 
 local d=SpiffBoy.QuickStart
 local g=d.Fixed
-local l=d.Atlas
+local j=d.Atlas
 local e=d.Road
-local B=d.Roster
-local v=d.Race
-local x=d.Hud
-local r=d.Items
+local z=d.Roster
+local s=d.Race
+local v=d.Hud
+local o=d.Items
 
-local k={}
-d.View=k
+local i={}
+d.View=i
 
 local c=math.floor
 local b=g.UNIT
-local s=g.FINE
-local m=d.SHADES
-local p=d.WIDTH
+local p=g.FINE
+local k=d.SHADES
+local m=d.WIDTH
 
-k.TUNING={
+i.TUNING={
 hudReserve=60,
 bannerReserve=40,
 cameraLag=3,
@@ -46,251 +46,251 @@ flameLift=0,
 cansLift=9,
 }
 
-local a=k.TUNING
+local a=i.TUNING
 
-function k.new(f)
-return{place=f,angle=nil,effects={},banner=nil,bannerTicks=0,clock=0}
+function i.new(place)
+return{place=place,angle=nil,effects={},banner=nil,bannerTicks=0,clock=0}
 end
 
-local function t(f,h)
-f.banner=d.gameText(h)
-f.bannerTicks=a.bannerTicks
+local function q(view,key)
+view.banner=d.gameText(key)
+view.bannerTicks=a.bannerTicks
 end
 
-local function y(f,h,i,j,n)
-f.effects[#f.effects+1]={name=h,x=i,y=j,lift=n or 0,age=0}
+local function w(view,name,x,y,lift)
+view.effects[#view.effects+1]={name=name,x=x,y=y,lift=lift or 0,age=0}
 end
 
-function k.react(h,j,n)
-for o,f in ipairs(n)do
-if f.kart==h.place then
+function i.react(view,world,events)
+for l,f in ipairs(events)do
+if f.kart==view.place then
 if f.kind=="quickstart"then
-t(h,"QuickStartBanner")
-elseif f.kind=="lap"and f.lap==v.TIMING.laps then
-t(h,"FinalLap")
+q(view,"QuickStartBanner")
+elseif f.kind=="lap"and f.lap==s.TIMING.laps then
+q(view,"FinalLap")
 elseif f.kind=="finish"then
-t(h,"Finish")
-h.placeShown=true
+q(view,"Finish")
+view.placeShown=true
 elseif f.kind=="out"then
-t(h,"Out")
+q(view,"Out")
 end
 end
 if f.kind=="boom"then
-y(h,"boom",c(f.x/b),c(f.y/b),2)
+w(view,"boom",c(f.x/b),c(f.y/b),2)
 elseif f.kind=="splash"or f.kind=="spin"or f.kind=="horde"then
-local i=j.karts[f.kart]
-y(h,f.kind=="splash"and"splash"or"puff",c(i.x/b),c(i.y/b),2)
+local h=world.karts[f.kart]
+w(view,f.kind=="splash"and"splash"or"puff",c(h.x/b),c(h.y/b),2)
 end
 end
 end
 
-local function C(f,h)
-local u=h.track
-if h.phase=="intro"and not h.battle then
-local j=u.waypoints
-local n=#j
-local o=c(h.phaseTick*n/v.TIMING.intro)%n+1
-local i,q=j[o],j[(o+3)%n+1]
-local w=c(g.atan2(q.y-i.y,q.x-i.x)/s)
-return e.cameraBehind(i.x,i.y,w)
+local function A(view,world)
+local t=world.track
+if world.phase=="intro"and not world.battle then
+local h=t.waypoints
+local l=#h
+local n=c(world.phaseTick*l/s.TIMING.intro)%l+1
+local f,r=h[n],h[(n+3)%l+1]
+local u=c(g.atan2(r.y-f.y,r.x-f.x)/p)
+return e.cameraBehind(f.x,f.y,u)
 end
-local i=h.karts[f.place]
-local j=c(i.heading/s)
-if not f.angle or h.phase~="race"and h.phase~="finish"then
-f.angle=j
-elseif i.spin==0 then
-f.angle=g.wrap(f.angle+c(g.delta(f.angle,j)/a.cameraLag))
+local f=world.karts[view.place]
+local h=c(f.heading/p)
+if not view.angle or world.phase~="race"and world.phase~="finish"then
+view.angle=h
+elseif f.spin==0 then
+view.angle=g.wrap(view.angle+c(g.delta(view.angle,h)/a.cameraLag))
 end
-return e.cameraBehind(i.x/b,i.y/b,f.angle)
+return e.cameraBehind(f.x/b,f.y/b,view.angle)
 end
 
-local function z(n,h,A,f,o,D)
-if f.respawn>0 then
+local function x(scene,camera,world,kart,priority,own)
+if kart.respawn>0 then
 return
 end
-local i,j=f.x/b,f.y/b
-local u=c(f.heading/s)
-local w=e.frameOf(h,i,j,u)
-if D and f.drift~=0 then
-w=d.wrapIndex(w+f.drift,8)
+local f,h=kart.x/b,kart.y/b
+local n=c(kart.heading/p)
+local r=e.frameOf(camera,f,h,n)
+if own and kart.drift~=0 then
+r=d.wrapIndex(r+kart.drift,8)
 end
-local q=f.z/b
-if q>0 then
-e.add(n,h,"shadow",i,j,0,1,o)
+local l=kart.z/b
+if l>0 then
+e.add(scene,camera,"shadow",f,h,0,1,priority)
 end
-e.add(n,h,B.artOf(f.driver),i,j,q,w,o)
-if f.boost>0 then
-local E=g.cos(u)*a.flameBack/g.ONE
-local F=g.sin(u)*a.flameBack/g.ONE
-e.add(n,h,"flame",i-E,j-F,q+a.flameLift,f.boost%3+1,o)
+e.add(scene,camera,z.artOf(kart.driver),f,h,l,r,priority)
+if kart.boost>0 then
+local t=g.cos(n)*a.flameBack/g.ONE
+local u=g.sin(n)*a.flameBack/g.ONE
+e.add(scene,camera,"flame",f-t,h-u,l+a.flameLift,kart.boost%3+1,priority)
 end
-if A.battle and not f.out then
-e.add(n,h,"gascans",i,j,q+a.cansLift,f.cans,o)
+if world.battle and not kart.out then
+e.add(scene,camera,"gascans",f,h,l+a.cansLift,kart.cans,priority)
 end
 end
 
-local function D(n,f,i)
-local h=e.newScene()
-local q=n.clock
-e.addDecor(h,i,f.track)
-local u=c(q/6)%8+1
-for o,j in ipairs(f.crates)do
-if j.wait==0 then
-e.add(h,i,"crate",j.x/b,j.y/b,1,u,1)
+local function B(view,world,camera)
+local f=e.newScene()
+local n=view.clock
+e.addDecor(f,camera,world.track)
+local r=c(n/6)%8+1
+for l,h in ipairs(world.crates)do
+if h.wait==0 then
+e.add(f,camera,"crate",h.x/b,h.y/b,1,r,1)
 end
 end
-for o,j in ipairs(f.money)do
-if j.wait==0 then
-e.add(h,i,"money",j.x/b,j.y/b,2,u,1)
+for l,h in ipairs(world.money)do
+if h.wait==0 then
+e.add(f,camera,"money",h.x/b,h.y/b,2,r,1)
 end
 end
-for A,j in ipairs(f.hazards)do
-local o=0
-if j.air>0 then
-local w=r.TUNING.glassAir-j.air
-o=c(4*r.TUNING.glassPeak*w*j.air/(r.TUNING.glassAir*r.TUNING.glassAir))
+for u,h in ipairs(world.hazards)do
+local l=0
+if h.air>0 then
+local t=o.TUNING.glassAir-h.air
+l=c(4*o.TUNING.glassPeak*t*h.air/(o.TUNING.glassAir*o.TUNING.glassAir))
 end
-e.add(h,i,"glass",j.x/b,j.y/b,o,1,2)
+e.add(f,camera,"glass",h.x/b,h.y/b,l,1,2)
 end
-for o,j in ipairs(f.shots)do
-if j.kind=="pipebomb"then
-e.add(h,i,"pipebomb",j.x/b,j.y/b,2,u,2)
+for l,h in ipairs(world.shots)do
+if h.kind=="pipebomb"then
+e.add(f,camera,"pipebomb",h.x/b,h.y/b,2,r,2)
 else
-e.add(h,i,"bullet",j.x/b,j.y/b,3,1,2)
+e.add(f,camera,"bullet",h.x/b,h.y/b,3,1,2)
 end
 end
-local o=f.helicopter
-if o then
-e.add(h,i,"helicopter",o.x/b,o.y/b,26,u,2)
-if o.horde>0 then
-local j=f.karts[o.target]
-local w=c((o.horde-d.Items.TUNING.hordeTicks/2)/4)
-e.add(h,i,"horde",j.x/b+w,j.y/b,0,c(q/8)%4+1,2)
+local l=world.helicopter
+if l then
+e.add(f,camera,"helicopter",l.x/b,l.y/b,26,r,2)
+if l.horde>0 then
+local h=world.karts[l.target]
+local t=c((l.horde-d.Items.TUNING.hordeTicks/2)/4)
+e.add(f,camera,"horde",h.x/b+t,h.y/b,0,c(n/8)%4+1,2)
 end
 end
-if f.ghost and q%2==0 then
-z(h,i,f,f.ghost.kart,2,false)
+if world.ghost and n%2==0 then
+x(f,camera,world,world.ghost.kart,2,false)
 end
-for A,w in ipairs(f.karts)do
-local j=A==n.place
-if not(j and w.invincible>0 and q%4<2)then
-z(h,i,f,w,j and 4 or 3,j)
-end
-end
-for w=#n.effects,1,-1 do
-local j=n.effects[w]
-j.age=j.age+1
-local A=l[j.name].steps[1].frames
-local E=math.min(A,c(j.age*A/a.effectTicks)+1)
-e.add(h,i,j.name,j.x,j.y,j.lift,E,2)
-if j.age>=a.effectTicks then
-table.remove(n.effects,w)
+for u,t in ipairs(world.karts)do
+local h=u==view.place
+if not(h and t.invincible>0 and n%4<2)then
+x(f,camera,world,t,h and 4 or 3,h)
 end
 end
-local j=f.karts[n.place]
-if j.drift~=0 and j.z==0 then
-local w=c(j.heading/s)
-local A=j.x/b-g.cos(w)*5/g.ONE
-local E=j.y/b-g.sin(w)*5/g.ONE
-local F=j.driftCharge>=d.Kart.TUNING.driftLevels[1]and"spark"or"puff"
-e.add(h,i,F,A,E,0,c(q/3)%2+1,4)
-end
-return h
-end
-
-local function A(j,n,o)
-local f=l.light_wide
-local i=1
-for h,q in ipairs(v.TIMING.lights)do
-if o.phaseTick>=q then
-i=h+1
+for t=#view.effects,1,-1 do
+local h=view.effects[t]
+h.age=h.age+1
+local u=j[h.name].steps[1].frames
+local y=math.min(u,c(h.age*u/a.effectTicks)+1)
+e.add(f,camera,h.name,h.x,h.y,h.lift,y,2)
+if h.age>=a.effectTicks then
+table.remove(view.effects,t)
 end
 end
-local h=x.LAYOUT
-local q=h.slotX+c(h.slotSize/2)-c(f.frame/2)
-j:layers(n("light_wide"),(i-1)*f.frame,f.frame,f.h,q,h.slotY+h.slotSize,f.shades)
+local h=world.karts[view.place]
+if h.drift~=0 and h.z==0 then
+local t=c(h.heading/p)
+local u=h.x/b-g.cos(t)*5/g.ONE
+local y=h.y/b-g.sin(t)*5/g.ONE
+local C=h.driftCharge>=d.Kart.TUNING.driftLevels[1]and"spark"or"puff"
+e.add(f,camera,C,u,y,0,c(n/3)%2+1,4)
+end
+return f
 end
 
-local function E(h,i,j)
-local f=l.rain
-local n=(j.clock*a.rainSpeed)%(f.h/2)
-h:sheet(i("rain"),0,n,f.w,f.h/2,0,e.HORIZON-20,1,a.rainShade)
+local function C(screen,art,world)
+local f=j.light_wide
+local l=1
+for h,n in ipairs(s.TIMING.lights)do
+if world.phaseTick>=n then
+l=h+1
+end
+end
+local h=v.LAYOUT
+local n=h.slotX+c(h.slotSize/2)-c(f.frame/2)
+screen:layers(art("light_wide"),(l-1)*f.frame,f.frame,f.h,n,h.slotY+h.slotSize,f.shades)
 end
 
-local function w(f,h)
-return c(a.bannerWave*math.sin(2*math.pi*h/a.bannerWaveLength-f.clock*a.bannerWaveSpeed)+0.5)
+local function D(screen,art,view)
+local f=j.rain
+local h=(view.clock*a.rainSpeed)%(f.h/2)
+screen:sheet(art("rain"),0,h,f.w,f.h/2,0,e.HORIZON-20,1,a.rainShade)
 end
 
-local function F(i,h)
-local G=i:textWidth(h.banner)
-local f=G+2*a.bannerPad
-local H=i:lineHeight()+2
-local j=c((p-f)/2)
-local n=a.bannerTicks-h.bannerTicks
-local o=j
-if n<a.bannerSlide then
-local q=n/a.bannerSlide
-o=c(-f+(j+f)*(1-(1-q)*(1-q)))
-elseif n>a.bannerTicks-a.bannerSlide then
-local q=(n-(a.bannerTicks-a.bannerSlide))/a.bannerSlide
-o=c(j+(p-j)*q*q)
-end
-local q=m[d.INK]
-for u=0,f-1,a.bannerStrip do
-i:rect(o+u,a.bannerY+w(h,u),math.min(a.bannerStrip,f-u),H,q.r,q.g,q.b,1)
-end
-local u=m[d.PAPER]
-i:text(h.banner,o+a.bannerPad,a.bannerY+1+w(h,c(f/2)),u.r,u.g,u.b,1)
+local function y(view,across)
+return c(a.bannerWave*math.sin(2*math.pi*across/a.bannerWaveLength-view.clock*a.bannerWaveSpeed)+0.5)
 end
 
-local function G(h,H,I)
-local i=l.placedigits.glyphs[tostring(I.rank)]
-if not i then
+local function E(screen,view)
+local u=screen:textWidth(view.banner)
+local f=u+2*a.bannerPad
+local F=screen:lineHeight()+2
+local h=c((m-f)/2)
+local l=a.bannerTicks-view.bannerTicks
+local n=h
+if l<a.bannerSlide then
+local r=l/a.bannerSlide
+n=c(-f+(h+f)*(1-(1-r)*(1-r)))
+elseif l>a.bannerTicks-a.bannerSlide then
+local r=(l-(a.bannerTicks-a.bannerSlide))/a.bannerSlide
+n=c(h+(m-h)*r*r)
+end
+local r=k[d.INK]
+for t=0,f-1,a.bannerStrip do
+screen:rect(n+t,a.bannerY+y(view,t),math.min(a.bannerStrip,f-t),F,r.r,r.g,r.b,1)
+end
+local t=k[d.PAPER]
+screen:text(view.banner,n+a.bannerPad,a.bannerY+1+y(view,c(f/2)),t.r,t.g,t.b,1)
+end
+
+local function F(screen,art,kart)
+local h=j.placedigits.glyphs[tostring(kart.rank)]
+if not h then
 return
 end
-local f,j=i[2],l.placedigits.h
-local n,o=c((p-f)/2),40
-local q=m[d.INK]
-h:rect(n-4,o-4,f+8,j+8,q.r,q.g,q.b,1)
-local u=m[d.PAPER]
-h:rect(n-3,o-3,f+6,j+6,u.r,u.g,u.b,1)
-h:sheet(H("placedigits"),i[1],0,f,j,n,o,1,d.INK)
+local f,l=h[2],j.placedigits.h
+local n,r=c((m-f)/2),40
+local t=k[d.INK]
+screen:rect(n-4,r-4,f+8,l+8,t.r,t.g,t.b,1)
+local u=k[d.PAPER]
+screen:rect(n-3,r-3,f+6,l+6,u.r,u.g,u.b,1)
+screen:sheet(art("placedigits"),h[1],0,f,l,n,r,1,d.INK)
 end
 
-function k.drawBare(f,h,j,i,o)
-f.clock=f.clock+1
-local n=C(f,i)
-e.draw(h,i.track,n,j,l)
-local q=D(f,i,n)
-e.drawScene(h,q,j,SpiffBoyScreen.MAX_CALLS-h.calls-o)
-if i.karts[f.place].slow>0 then
-E(h,j,f)
+function i.drawBare(view,screen,art,world,reserve)
+view.clock=view.clock+1
+local f=A(view,world)
+e.draw(screen,world.track,f,art,j)
+local h=B(view,world,f)
+e.drawScene(screen,h,art,SpiffBoyScreen.MAX_CALLS-screen.calls-reserve)
+if world.karts[view.place].slow>0 then
+D(screen,art,view)
 end
 end
 
-function k.draw(f,i,j,h)
-local u=h.karts[f.place]
-local n=a.hudReserve
-if f.bannerTicks>0 or h.phase=="intro"then
-n=n+a.bannerReserve
+function i.draw(view,screen,art,world)
+local n=world.karts[view.place]
+local f=a.hudReserve
+if view.bannerTicks>0 or world.phase=="intro"then
+f=f+a.bannerReserve
 end
-k.drawBare(f,i,j,h,n)
-if h.phase=="countdown"then
-A(i,j,h)
+i.drawBare(view,screen,art,world,f)
+if world.phase=="countdown"then
+C(screen,art,world)
 end
-if h.phase=="intro"then
-local H=d.gameText("Track_"..h.track.id)
-local o=m[d.INK]
-i:rect(0,92,p,18,o.r,o.g,o.b,1)
-local q=m[d.PAPER]
-i:textCentre(H,p/2,93,q.r,q.g,q.b,1)
+if world.phase=="intro"then
+local r=d.gameText("Track_"..world.track.id)
+local h=k[d.INK]
+screen:rect(0,92,m,18,h.r,h.g,h.b,1)
+local l=k[d.PAPER]
+screen:textCentre(r,m/2,93,l.r,l.g,l.b,1)
 return
 end
-x.draw(i,j,h,u,f.clock)
-if f.bannerTicks>0 then
-f.bannerTicks=f.bannerTicks-1
-F(i,f)
-elseif f.placeShown and not h.battle then
-G(i,j,u)
+v.draw(screen,art,world,n,view.clock)
+if view.bannerTicks>0 then
+view.bannerTicks=view.bannerTicks-1
+E(screen,view)
+elseif view.placeShown and not world.battle then
+F(screen,art,n)
 end
 end

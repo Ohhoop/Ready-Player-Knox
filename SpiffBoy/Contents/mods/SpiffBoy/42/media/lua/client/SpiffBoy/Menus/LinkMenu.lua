@@ -13,82 +13,82 @@ require"SpiffBoy/Menus/CartridgeMenu"
 SpiffBoy.LinkMenu=SpiffBoy.LinkMenu or{}
 local a=SpiffBoy.LinkMenu
 local b=SpiffBoy.Handheld
-local h=SpiffBoy.LinkState
+local f=SpiffBoy.LinkState
 
-local l=350
-local m=150
-local n="YES"
-local o="media/ui/SpiffBoy/Menus/link_cable.png"
+local k=350
+local l=150
+local m="YES"
+local n="media/ui/SpiffBoy/Menus/link_cable.png"
 
-local function c(d)
-d.iconTexture=SpiffBoy.Textures.get(SpiffBoy.MOD_ID,o,false)
+local function c(option)
+option.iconTexture=SpiffBoy.Textures.get(SpiffBoy.MOD_ID,n,false)
 end
 
-local function p(d)
-return b.isConsole(d)and not b.hasCable(d)
+local function o(item)
+return b.isConsole(item)and not b.hasCable(item)
 end
 
-function a.plug(d,e,f)
-SpiffBoy.CartridgeMenu.queue(d,e,{{action=SpiffBoyPlugCableAction,item=f}})
+function a.plug(playerObj,console,cable)
+SpiffBoy.CartridgeMenu.queue(playerObj,console,{{action=SpiffBoyPlugCableAction,item=cable}})
 end
 
-function a.unplug(d,e)
-SpiffBoy.CartridgeMenu.queue(d,e,{{action=SpiffBoyUnplugCableAction}})
+function a.unplug(playerObj,console)
+SpiffBoy.CartridgeMenu.queue(playerObj,console,{{action=SpiffBoyUnplugCableAction}})
 end
 
-function a.connect(e,f,g)
-local d=SpiffBoyHandheldWindow.shownOn(f)
-local i=d and d.poseAction
-ISInventoryPaneContextMenu.transferIfNeeded(e,f)
-ISTimedActionQueue.add(SpiffBoyConnectCableAction:new(e,f,g:getOnlineID(),g:getPlayerNum()))
+function a.connect(playerObj,console,owner)
+local d=SpiffBoyHandheldWindow.shownOn(console)
+local e=d and d.poseAction
+ISInventoryPaneContextMenu.transferIfNeeded(playerObj,console)
+ISTimedActionQueue.add(SpiffBoyConnectCableAction:new(playerObj,console,owner:getOnlineID(),owner:getPlayerNum()))
 if d then
-d.poseAction=SpiffBoyPlayHandheldAction:new(e,d)
+d.poseAction=SpiffBoyPlayHandheldAction:new(playerObj,d)
 ISTimedActionQueue.add(d.poseAction)
-SpiffBoyPlayHandheldAction.finishFor(i)
+SpiffBoyPlayHandheldAction.finishFor(e)
 end
 end
 
-function a.disconnect(d,e)
-SpiffBoy.CartridgeMenu.queue(d,e,{{action=SpiffBoyDisconnectCableAction}})
+function a.disconnect(playerObj,console)
+SpiffBoy.CartridgeMenu.queue(playerObj,console,{{action=SpiffBoyDisconnectCableAction}})
 end
 
-function a.offer(d,e)
+function a.offer(playerObj,peer)
 if isClient()then
-SpiffBoy.NetworkLink.offer(d,e:getOnlineID())
+SpiffBoy.NetworkLink.offer(playerObj,peer:getOnlineID())
 return
 end
-SpiffBoy.LocalLink.offer(d,e)
+SpiffBoy.LocalLink.offer(playerObj,peer)
 end
 
-function a.accept(d,e)
-local f=b.consoleWithFreePort(d)
-if not f then
-a.decline(d,e)
+function a.accept(playerObj,owner)
+local d=b.consoleWithFreePort(playerObj)
+if not d then
+a.decline(playerObj,owner)
 return
 end
-a.connect(d,f,e)
+a.connect(playerObj,d,owner)
 end
 
-function a.decline(d,e)
+function a.decline(playerObj,owner)
 if isClient()then
-SpiffBoy.NetworkLink.decline(d,e:getOnlineID())
+SpiffBoy.NetworkLink.decline(playerObj,owner:getOnlineID())
 return
 end
-SpiffBoy.LocalLink.decline(d,e:getPlayerNum())
+SpiffBoy.LocalLink.decline(playerObj,owner:getPlayerNum())
 end
 
-local function q(d,e)
-if e.internal==n then
-a.accept(d.player,d.owner)
+local function p(offer,button)
+if button.internal==m then
+a.accept(offer.player,offer.owner)
 else
-a.decline(d.player,d.owner)
+a.decline(offer.player,offer.owner)
 end
 end
 
-function a.ask(f,g)
-local e=f:getPlayerNum()
-local i={player=f,owner=g}
-local d=ISModalDialog:new(0,0,l,m,getText("UI_SpiffBoy_OfferCable",b.characterName(g)),true,i,q,e)
+function a.ask(playerObj,owner)
+local e=playerObj:getPlayerNum()
+local g={player=playerObj,owner=owner}
+local d=ISModalDialog:new(0,0,k,l,getText("UI_SpiffBoy_OfferCable",b.characterName(owner)),true,g,p,e)
 d:initialise()
 d:addToUIManager()
 d.moveWithMouse=true
@@ -98,117 +98,117 @@ setJoypadFocus(e,d)
 end
 end
 
-local function i(d)
-return b.consoleWithFreePort(d)~=nil and h.of(d:getPlayerNum())==nil
+local function h(peer)
+return b.consoleWithFreePort(peer)~=nil and f.of(peer:getPlayerNum())==nil
 end
 
-local function r(g,j)
+local function q(square,playerObj)
 local e={}
-local f=g:getMovingObjects()
-for k=0,f:size()-1 do
-local d=f:get(k)
-if instanceof(d,"IsoPlayer")and d~=j and not d:isDead()then
+local g=square:getMovingObjects()
+for i=0,g:size()-1 do
+local d=g:get(i)
+if instanceof(d,"IsoPlayer")and d~=playerObj and not d:isDead()then
 e[#e+1]=d
 end
 end
 return e
 end
 
-local function s(g,t,u,v)
-if v then
+local function r(playerNum,context,worldobjects,test)
+if test then
 return
 end
-local d=getSpecificPlayer(g)
-local j=u[1]
-if not d or not j then
+local d=getSpecificPlayer(playerNum)
+local i=worldobjects[1]
+if not d or not i then
 return
 end
-local k=j:getSquare()
-if not k or h.of(g)or not b.consoleWithCable(d)then
+local j=i:getSquare()
+if not j or f.of(playerNum)or not b.consoleWithCable(d)then
 return
 end
-for w,e in ipairs(r(k,d))do
-local f=t:addOption(getText("UI_SpiffBoy_ConnectCable",b.characterName(e)),d,a.offer,e)
-c(f)
+for s,e in ipairs(q(j,d))do
+local g=context:addOption(getText("UI_SpiffBoy_ConnectCable",b.characterName(e)),d,a.offer,e)
+c(g)
 if not b.withinCableReach(d,e)then
-SpiffBoy.CartridgeMenu.disable(f,getText("UI_SpiffBoy_CableTooFar"))
-elseif e:isLocalPlayer()and not i(e)then
-SpiffBoy.CartridgeMenu.disable(f,getText("UI_SpiffBoy_NoLinkableConsole"))
+SpiffBoy.CartridgeMenu.disable(g,getText("UI_SpiffBoy_CableTooFar"))
+elseif e:isLocalPlayer()and not h(e)then
+SpiffBoy.CartridgeMenu.disable(g,getText("UI_SpiffBoy_NoLinkableConsole"))
 end
 end
 end
 
-local function t(g)
+local function i(playerObj)
 local d={}
 if isClient()then
 local e=getOnlinePlayers()
-for f=0,e:size()-1 do
-d[#d+1]=e:get(f)
+for g=0,e:size()-1 do
+d[#d+1]=e:get(g)
 end
 else
 for e=0,getNumActivePlayers()-1 do
 d[#d+1]=getSpecificPlayer(e)
 end
 end
-local f={}
+local g={}
 for j,e in ipairs(d)do
-if e and e~=g and not e:isDead()and b.withinCableReach(g,e)then
-f[#f+1]=e
+if e and e~=playerObj and not e:isDead()and b.withinCableReach(playerObj,e)then
+g[#g+1]=e
 end
 end
-return f
+return g
 end
 
-function a.plugAndOffer(d,e,g,f)
-if b.hasCable(e)then
-a.offer(d,f)
+function a.plugAndOffer(playerObj,console,cable,peer)
+if b.hasCable(console)then
+a.offer(playerObj,peer)
 return
 end
-SpiffBoy.CartridgeMenu.queue(d,e,{
-{action=SpiffBoyPlugCableAction,item=g},
-{timedAction=SpiffBoyOfferCableAction:new(d,e,f)},
+SpiffBoy.CartridgeMenu.queue(playerObj,console,{
+{action=SpiffBoyPlugCableAction,item=cable},
+{timedAction=SpiffBoyOfferCableAction:new(playerObj,console,peer)},
 })
 end
 
-local function u(e,g,j,k)
-for v,d in ipairs(t(e))do
-local f=k(getText("UI_SpiffBoy_ConnectCable",b.characterName(d)),e,a.plugAndOffer,g,j,d)
-c(f)
-if d:isLocalPlayer()and not i(d)then
-SpiffBoy.CartridgeMenu.disable(f,getText("UI_SpiffBoy_NoLinkableConsole"))
+local function j(playerObj,console,cable,add)
+for g,d in ipairs(i(playerObj))do
+local e=add(getText("UI_SpiffBoy_ConnectCable",b.characterName(d)),playerObj,a.plugAndOffer,console,cable,d)
+c(e)
+if d:isLocalPlayer()and not h(d)then
+SpiffBoy.CartridgeMenu.disable(e,getText("UI_SpiffBoy_NoLinkableConsole"))
 end
 end
 end
 
-function a.addOptions(v,d,e,g)
-local j=h.of(d:getPlayerNum())
-if j then
-c(g(getText("UI_SpiffBoy_DisconnectCable",j.peerName),d,a.disconnect,e))
+function a.addOptions(context,playerObj,console,add)
+local e=f.of(playerObj:getPlayerNum())
+if e then
+c(add(getText("UI_SpiffBoy_DisconnectCable",e.peerName),playerObj,a.disconnect,console))
 return
 end
-local k=b.hasCable(e)
-local f=nil
-if k then
-c(g(getText("UI_SpiffBoy_UnplugCable"),d,a.unplug,e))
+local g=b.hasCable(console)
+local d=nil
+if g then
+c(add(getText("UI_SpiffBoy_UnplugCable"),playerObj,a.unplug,console))
 else
-f=d:getInventory():getFirstTypeRecurse(SpiffBoy.CABLE_ITEM)
-if f then
-c(g(getText("UI_SpiffBoy_PlugCable"),d,a.plug,e,f))
+d=playerObj:getInventory():getFirstTypeRecurse(SpiffBoy.CABLE_ITEM)
+if d then
+c(add(getText("UI_SpiffBoy_PlugCable"),playerObj,a.plug,console,d))
 end
 end
-if k or f then
-u(d,e,f,g)
+if g or d then
+j(playerObj,console,d,add)
 end
 end
 
-function a.addPlugInConsoleOption(f,d,g,j)
-local k=getItemNameFromFullType(SpiffBoy.CONSOLE_ITEM)
-local e=d:getInventory():getAllEvalRecurse(p,ArrayList.new())
-if e:size()==0 then
+function a.addPlugInConsoleOption(context,playerObj,cable,add)
+local e=getItemNameFromFullType(SpiffBoy.CONSOLE_ITEM)
+local d=playerObj:getInventory():getAllEvalRecurse(o,ArrayList.new())
+if d:size()==0 then
 return
 end
-local v=getText("UI_SpiffBoy_PlugInConsole",k)
-c(SpiffBoy.CartridgeMenu.addConsoleChoice(f,j,v,d,e,a.plug,g))
+local g=getText("UI_SpiffBoy_PlugInConsole",e)
+c(SpiffBoy.CartridgeMenu.addConsoleChoice(context,add,g,playerObj,d,a.plug,cable))
 end
 
-Events.OnFillWorldObjectContextMenu.Add(s)
+Events.OnFillWorldObjectContextMenu.Add(r)

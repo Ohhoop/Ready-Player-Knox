@@ -5,8 +5,8 @@ require"SpiffBoy/Core/PixelFont"
 SpiffBoyScreen={}
 SpiffBoyScreen.__index=SpiffBoyScreen
 
-local c=SpiffBoy.PixelFont
-local l=math.floor
+local d=SpiffBoy.PixelFont
+local n=math.floor
 
 local z=10
 local A=48
@@ -14,86 +14,86 @@ local A=48
 SpiffBoyScreen.MAX_CALLS=300
 local B={"clear","rect","sprite","tinted","sheet","layers","rotated","number","text","textCentre","textRight","textWidth","wrapText","lineHeight"}
 
-local function e(a)
-return a~=nil and a:isReady()
+local function f(texture)
+return texture~=nil and texture:isReady()
 end
 
-local function a(d,b)
-if d.wholePixels then
-return l(b)
+local function c(screen,value)
+if screen.wholePixels then
+return n(value)
 end
-return b
+return value
 end
 
-local function d(b)
-if b.calls>=SpiffBoyScreen.MAX_CALLS then
+local function e(screen)
+if screen.calls>=SpiffBoyScreen.MAX_CALLS then
 error("SpiffBoy: a frame went past "..SpiffBoyScreen.MAX_CALLS.." draw calls")
 end
-b.calls=b.calls+1
+screen.calls=screen.calls+1
 end
 
-function SpiffBoyScreen.new(f,g,h)
-local b=setmetatable({},SpiffBoyScreen)
-b.owner=f
-b.width=g
-b.height=h
-b.x=0
-b.y=0
-b.scale=1
-b.calls=0
-b.palette=nil
-b.wholePixels=false
-return b
+function SpiffBoyScreen.new(owner,width,height)
+local a=setmetatable({},SpiffBoyScreen)
+a.owner=owner
+a.width=width
+a.height=height
+a.x=0
+a.y=0
+a.scale=1
+a.calls=0
+a.palette=nil
+a.wholePixels=false
+return a
 end
 
-function SpiffBoyScreen:setWholePixels(b)
-self.wholePixels=b
+function SpiffBoyScreen:setWholePixels(enabled)
+self.wholePixels=enabled
 end
 
-function SpiffBoyScreen:setPalette(b)
-self.palette=b
+function SpiffBoyScreen:setPalette(shades)
+self.palette=shades
 end
 
-function SpiffBoyScreen:paint(f,g,h,q)
+function SpiffBoyScreen:paint(r,g,b,a)
 local i=self.palette
 if not i then
-return f,g,h,q or 1
+return r,g,b,a or 1
 end
 local j,k=i[1],nil
-for r=1,#i do
-local b=i[r]
-if b.r==f and b.g==g and b.b==h then
-return f,g,h,1
+for q=1,#i do
+local h=i[q]
+if h.r==r and h.g==g and h.b==b then
+return r,g,b,1
 end
-local m,n,o=b.r-f,b.g-g,b.b-h
-local p=m*m+n*n+o*o
+local l,m,o=h.r-r,h.g-g,h.b-b
+local p=l*l+m*m+o*o
 if not k or p<k then
-j,k=b,p
+j,k=h,p
 end
 end
 return j.r,j.g,j.b,1
 end
 
-function SpiffBoyScreen:tint(f,h)
+function SpiffBoyScreen:tint(shadeIndex,a)
 local g=self.palette
 if not g then
-return 1,1,1,h or 1
+return 1,1,1,a or 1
 end
-local b=g[f or 1]
+local b=g[shadeIndex or 1]
 if not b then
-error("SpiffBoy: the palette of the screen has no shade "..tostring(f))
+error("SpiffBoy: the palette of the screen has no shade "..tostring(shadeIndex))
 end
 return b.r,b.g,b.b,1
 end
 
-function SpiffBoyScreen:setPlacement(b,f,g)
-self.x=b
-self.y=f
-self.scale=g
+function SpiffBoyScreen:setPlacement(x,y,scale)
+self.x=x
+self.y=y
+self.scale=scale
 end
 
-function SpiffBoyScreen:toLocal(b,f)
-return(b-self.x)/self.scale,(f-self.y)/self.scale
+function SpiffBoyScreen:toLocal(x,y)
+return(x-self.x)/self.scale,(y-self.y)/self.scale
 end
 
 function SpiffBoyScreen:beginFrame()
@@ -105,208 +105,208 @@ function SpiffBoyScreen:endFrame()
 self.owner:clearStencilRect()
 end
 
-function SpiffBoyScreen:clear(b,f,g)
-b,f,g=self:paint(b,f,g,1)
-d(self)
-self.owner:drawRect(self.x,self.y,self.width*self.scale,self.height*self.scale,1,b,f,g)
+function SpiffBoyScreen:clear(r,g,b)
+r,g,b=self:paint(r,g,b,1)
+e(self)
+self.owner:drawRect(self.x,self.y,self.width*self.scale,self.height*self.scale,1,r,g,b)
 end
 
-function SpiffBoyScreen:rect(f,g,h,i,j,k,m,n)
-local b=self.scale
-f,g,h,i=a(self,f),a(self,g),a(self,h),a(self,i)
-j,k,m,n=self:paint(j,k,m,n)
-d(self)
-self.owner:drawRect(self.x+f*b,self.y+g*b,h*b,i*b,n,j,k,m)
+function SpiffBoyScreen:rect(x,y,w,h,r,g,b,a)
+local i=self.scale
+x,y,w,h=c(self,x),c(self,y),c(self,w),c(self,h)
+r,g,b,a=self:paint(r,g,b,a)
+e(self)
+self.owner:drawRect(self.x+x*i,self.y+y*i,w*i,h*i,a,r,g,b)
 end
 
-function SpiffBoyScreen:sprite(b,g,h,i,j,k,p)
-if not e(b)then
-return
-end
-local f=self.scale
-g,h=a(self,g),a(self,h)
-i,j=a(self,i or b:getWidth()),a(self,j or b:getHeight())
-local m,n,o
-m,n,o,k=self:tint(p,k)
-d(self)
-self.owner:drawTextureScaled(b,self.x+g*f,self.y+h*f,i*f,j*f,k,m,n,o)
-end
-
-function SpiffBoyScreen:tinted(b,g,h,i,j,k,m,n,o)
-if not e(b)then
-return
-end
-local f=self.scale
-g,h=a(self,g),a(self,h)
-i,j=a(self,i or b:getWidth()),a(self,j or b:getHeight())
-k,m,n,o=self:paint(k,m,n,o)
-d(self)
-self.owner:drawTextureScaled(b,self.x+g*f,self.y+h*f,i*f,j*f,o,k,m,n)
-end
-
-function SpiffBoyScreen:sheet(i,p,q,j,k,f,g,h,r)
-if not e(i)then
+function SpiffBoyScreen:sprite(texture,x,y,w,h,a,shadeIndex)
+if not f(texture)then
 return
 end
 local b=self.scale
-f,g=a(self,f),a(self,g)
-local m,n,o
-m,n,o,h=self:tint(r,h)
-d(self)
-self.owner:drawSubTexture(i,p,q,j,k,self.x+f*b,self.y+g*b,j*b,k*b,h,m,n,o)
+x,y=c(self,x),c(self,y)
+w,h=c(self,w or texture:getWidth()),c(self,h or texture:getHeight())
+local g,i,j
+g,i,j,a=self:tint(shadeIndex,a)
+e(self)
+self.owner:drawTextureScaled(texture,self.x+x*b,self.y+y*b,w*b,h*b,a,g,i,j)
 end
 
-function SpiffBoyScreen:tintedSheet(m,p,q,n,o,f,g,h,i,j,k)
-if not e(m)then
+function SpiffBoyScreen:tinted(texture,x,y,w,h,r,g,b,a)
+if not f(texture)then
+return
+end
+local i=self.scale
+x,y=c(self,x),c(self,y)
+w,h=c(self,w or texture:getWidth()),c(self,h or texture:getHeight())
+r,g,b,a=self:paint(r,g,b,a)
+e(self)
+self.owner:drawTextureScaled(texture,self.x+x*i,self.y+y*i,w*i,h*i,a,r,g,b)
+end
+
+function SpiffBoyScreen:sheet(texture,sx,sy,sw,sh,x,y,a,shadeIndex)
+if not f(texture)then
 return
 end
 local b=self.scale
-f,g=a(self,f),a(self,g)
-h,i,j,k=self:paint(h,i,j,k)
-d(self)
-self.owner:drawSubTexture(m,p,q,n,o,self.x+f*b,self.y+g*b,n*b,o*b,k,h,i,j)
+x,y=c(self,x),c(self,y)
+local g,h,i
+g,h,i,a=self:tint(shadeIndex,a)
+e(self)
+self.owner:drawSubTexture(texture,sx,sy,sw,sh,self.x+x*b,self.y+y*b,sw*b,sh*b,a,g,h,i)
 end
 
-local function p(b,h,i,j,f,k,m,n,o,g)
-local q,r,s,t=b:tint(g,1)
-d(b)
-b.owner:drawSubTexture(h,i,(g-1)*f,j,f,k,m,n,o,t,q,r,s)
+function SpiffBoyScreen:tintedSheet(texture,sx,sy,sw,sh,x,y,r,g,b,a)
+if not f(texture)then
+return
+end
+local h=self.scale
+x,y=c(self,x),c(self,y)
+r,g,b,a=self:paint(r,g,b,a)
+e(self)
+self.owner:drawSubTexture(texture,sx,sy,sw,sh,self.x+x*h,self.y+y*h,sw*h,sh*h,a,r,g,b)
 end
 
-function SpiffBoyScreen:layers(f,j,g,h,q,r,i)
-if not e(f)then
+local function o(screen,texture,sx,sw,sh,left,top,width,height,shadeIndex)
+local a,b,g,h=screen:tint(shadeIndex,1)
+e(screen)
+screen.owner:drawSubTexture(texture,sx,(shadeIndex-1)*sh,sw,sh,left,top,width,height,h,a,b,g)
+end
+
+function SpiffBoyScreen:layers(texture,sx,sw,sh,x,y,shadeIndexes)
+if not f(texture)then
+return
+end
+local a=self.scale
+local b,g=self.x+c(self,x)*a,self.y+c(self,y)*a
+local h,i=sw*a,sh*a
+if shadeIndexes then
+for j=1,#shadeIndexes do
+o(self,texture,sx,sw,sh,b,g,h,i,shadeIndexes[j])
+end
+return
+end
+local j=self.palette and#self.palette or 1
+for k=1,j do
+o(self,texture,sx,sw,sh,b,g,h,i,k)
+end
+end
+
+function SpiffBoyScreen:rotated(texture,cx,cy,degrees,w,h,a,shadeIndex)
+if not f(texture)then
 return
 end
 local b=self.scale
-local k,m=self.x+a(self,q)*b,self.y+a(self,r)*b
-local n,o=g*b,h*b
+local p=math.rad(degrees)
+local q,r=math.cos(p),math.sin(p)
+local s,t=w/2,h/2
+cx,cy=c(self,cx),c(self,cy)
+local g,i=self.x+cx*b,self.y+cy*b
+local j,k=s*q*b,s*r*b
+local l,m=-t*r*b,t*q*b
+local u,v,x
+u,v,x,a=self:tint(shadeIndex,a)
+e(self)
+self.owner:drawTextureAllPoint(texture,
+g-j-l,i-k-m,
+g+j-l,i+k-m,
+g+j+l,i+k+m,
+g-j+l,i-k+m,
+u,v,x,a)
+end
+
+function SpiffBoyScreen:number(value,x,y,digits,align,minDigits,shadeIndex)
+if not digits then
+return
+end
+local g=tostring(n(value))
+local a=string.len(g)
+local h=(minDigits or 0)-a
+if h>0 then
+g=string.rep("0",h)..g
+a=a+h
+end
+local b=digits:getWidth()/z
+local k=digits:getHeight()
+local i=x
+if align=="right"then
+i=x-a*b
+elseif align=="centre"then
+i=x-a*b/2
+end
+for j=1,a do
+local l=string.byte(g,j)-A
+self:sheet(digits,l*b,0,b,k,i+(j-1)*b,y,1,shadeIndex)
+end
+end
+
+function SpiffBoyScreen:text(str,x,y,r,g,b,a)
+r,g,b,a=self:paint(r or 1,g or 1,b or 1,a)
+local j=self.scale
+local q=self.owner
+local l=d.shape(str)
+local s,t=d.origin(c(self,x),c(self,y))
+local m,p=d.CELL_WIDTH,d.CELL_HEIGHT
+local u,v=m*j,p*j
+local k,i=nil,nil
+for w=1,#l do
+local h=l[w]
+if h.page then
+if h.page~=k then
+k=h.page
+i=d.pageTexture(k)
+if not f(i)then
+i=nil
+end
+end
 if i then
-for s=1,#i do
-p(self,f,j,g,h,k,m,n,o,i[s])
-end
-return
-end
-local s=self.palette and#self.palette or 1
-for t=1,s do
-p(self,f,j,g,h,k,m,n,o,t)
-end
-end
-
-function SpiffBoyScreen:rotated(q,m,n,C,D,E,o,F)
-if not e(q)then
-return
-end
-local b=self.scale
-local r=math.rad(C)
-local s,t=math.cos(r),math.sin(r)
-local u,v=D/2,E/2
-m,n=a(self,m),a(self,n)
-local f,g=self.x+m*b,self.y+n*b
-local h,i=u*s*b,u*t*b
-local j,k=-v*t*b,v*s*b
-local w,x,y
-w,x,y,o=self:tint(F,o)
-d(self)
-self.owner:drawTextureAllPoint(q,
-f-h-j,g-i-k,
-f+h-j,g+i-k,
-f+h+j,g+i+k,
-f-h+j,g-i+k,
-w,x,y,o)
-end
-
-function SpiffBoyScreen:number(o,i,q,g,m,r,s)
-if not g then
-return
-end
-local h=tostring(l(o))
-local b=string.len(h)
-local j=(r or 0)-b
-if j>0 then
-h=string.rep("0",j)..h
-b=b+j
-end
-local f=g:getWidth()/z
-local t=g:getHeight()
-local k=i
-if m=="right"then
-k=i-b*f
-elseif m=="centre"then
-k=i-b*f/2
-end
-for n=1,b do
-local u=string.byte(h,n)-A
-self:sheet(g,u*f,0,f,t,k+(n-1)*f,q,1,s)
-end
-end
-
-function SpiffBoyScreen:text(r,s,t,h,i,j,k)
-h,i,j,k=self:paint(h or 1,i or 1,j or 1,k)
-local g=self.scale
-local u=self.owner
-local n=c.shape(r)
-local v,w=c.origin(a(self,s),a(self,t))
-local o,q=c.CELL_WIDTH,c.CELL_HEIGHT
-local x,y=o*g,q*g
-local m,f=nil,nil
-for C=1,#n do
-local b=n[C]
-if b.page then
-if b.page~=m then
-m=b.page
-f=c.pageTexture(m)
-if not e(f)then
-f=nil
-end
-end
-if f then
-d(self)
-u:drawSubTexture(f,b.cellX,b.cellY,o,q,self.x+(v+b.x)*g,self.y+(w-b.y)*g,x,y,k,h,i,j)
+e(self)
+q:drawSubTexture(i,h.cellX,h.cellY,m,p,self.x+(s+h.x)*j,self.y+(t-h.y)*j,u,v,a,r,g,b)
 end
 end
 end
 end
 
-function SpiffBoyScreen:textCentre(b,f,g,h,i,j,k)
-self:text(b,f-l(c.measure(b)/2),g,h,i,j,k)
+function SpiffBoyScreen:textCentre(str,x,y,r,g,b,a)
+self:text(str,x-n(d.measure(str)/2),y,r,g,b,a)
 end
 
-function SpiffBoyScreen:textRight(b,f,g,h,i,j,k)
-self:text(b,f-c.measure(b),g,h,i,j,k)
+function SpiffBoyScreen:textRight(str,x,y,r,g,b,a)
+self:text(str,x-d.measure(str),y,r,g,b,a)
 end
 
-function SpiffBoyScreen:textWidth(b)
-return c.measure(b)
+function SpiffBoyScreen:textWidth(str)
+return d.measure(str)
 end
 
-function SpiffBoyScreen:wrapText(b,f)
-return c.wrap(b,f)
+function SpiffBoyScreen:wrapText(str,maxWidth)
+return d.wrap(str,maxWidth)
 end
 
 function SpiffBoyScreen:lineHeight()
-return c.LINE_HEIGHT
+return d.LINE_HEIGHT
 end
 
 SpiffBoyRuntime={}
 SpiffBoyRuntime.__index=SpiffBoyRuntime
 
-local function i(b)
-local f=setmetatable({width=b.width,height=b.height},{
-__index=function(g,f)
-if f=="calls"then
-return b.calls
+local function h(screen)
+local a=setmetatable({width=screen.width,height=screen.height},{
+__index=function(_,key)
+if key=="calls"then
+return screen.calls
 end
 return nil
 end,
 })
-for j,g in ipairs(B)do
-local h=SpiffBoyScreen[g]
-f[g]=function(k,...)
-return h(b,...)
+for i,b in ipairs(B)do
+local g=SpiffBoyScreen[b]
+a[b]=function(_,...)
+return g(screen,...)
 end
 end
 return setmetatable({},{
-__index=f,
+__index=a,
 __newindex=function()
 error("a game cannot change the screen of the console")
 end,
@@ -314,91 +314,91 @@ __metatable=false,
 })
 end
 
-function SpiffBoyRuntime.new(f)
-local b=setmetatable({},SpiffBoyRuntime)
-b.screen=f
-b.view=i(f)
-b.game=nil
-b.devices={}
-b.clock=SpiffBoyClock.new()
-b.tick=0
-b.ticksThisFrame=0
-b.frameMs=0
-b.crash=nil
-b.onCrash=nil
-return b
+function SpiffBoyRuntime.new(screen)
+local a=setmetatable({},SpiffBoyRuntime)
+a.screen=screen
+a.view=h(screen)
+a.game=nil
+a.devices={}
+a.clock=SpiffBoyClock.new()
+a.tick=0
+a.ticksThisFrame=0
+a.frameMs=0
+a.crash=nil
+a.onCrash=nil
+return a
 end
 
-function SpiffBoyRuntime:setGame(b)
-self.game=b
+function SpiffBoyRuntime:setGame(game)
+self.game=game
 self.crash=nil
 self.clock:reset()
 self.tick=0
 self.ticksThisFrame=0
 end
 
-function SpiffBoyRuntime:setDevices(b)
-self.devices=b
+function SpiffBoyRuntime:setDevices(devices)
+self.devices=devices
 end
 
-function SpiffBoyRuntime:fail(b,f,g)
-self.crash={stage=b,message=tostring(g)}
-SpiffBoy.log("the game "..tostring(f).." crashed in "..b..": "..self.crash.message)
+function SpiffBoyRuntime:fail(stage,gameType,message)
+self.crash={stage=stage,message=tostring(message)}
+SpiffBoy.log("the game "..tostring(gameType).." crashed in "..stage..": "..self.crash.message)
 if self.onCrash then
 self.onCrash(self.crash)
 end
 end
 
-function SpiffBoyRuntime:start(b,g)
+function SpiffBoyRuntime:start(gameClass,context)
 self:setGame(nil)
-local h,f=pcall(b.new,b,self,g)
-if h then
-self:setGame(f)
+local b,a=pcall(gameClass.new,gameClass,self,context)
+if b then
+self:setGame(a)
 return true
 end
-self:fail("init",b.Type,f)
+self:fail("init",gameClass.Type,a)
 return false
 end
 
-function SpiffBoyRuntime:guard(b,f,...)
-local g,h=pcall(f,self.game,...)
-if g then
+function SpiffBoyRuntime:guard(stage,method,...)
+local a,b=pcall(method,self.game,...)
+if a then
 return true
 end
-self:fail(b,self.game.Type,h)
+self:fail(stage,self.game.Type,b)
 return false
 end
 
-function SpiffBoyRuntime:advance(b,j,k)
-local f=UIManager.getMillisSinceLastRender()
-self.frameMs=f
+function SpiffBoyRuntime:advance(inputs,paused,rate)
+local a=UIManager.getMillisSinceLastRender()
+self.frameMs=a
 self.ticksThisFrame=0
-if not self.game or j or self.crash then
+if not self.game or paused or self.crash then
 return
 end
-local m=self.clock:advance(f,k)
-local g=self.devices
-for o=1,m do
+local i=self.clock:advance(a,rate)
+local b=self.devices
+for k=1,i do
 self.tick=self.tick+1
-local h=b[1]
-if h then
-h:latch()
+local g=inputs[1]
+if g then
+g:latch()
 end
-if not self:guard("tick",self.game.tick,b,self.tick)then
+if not self:guard("tick",self.game.tick,inputs,self.tick)then
 return
 end
-for n=1,#g do
-g[n]:step()
+for j=1,#b do
+b[j]:step()
 end
 self.ticksThisFrame=self.ticksThisFrame+1
 end
 end
 
 function SpiffBoyRuntime:draw()
-local b=self.screen
-b:beginFrame()
+local a=self.screen
+a:beginFrame()
 if self.game and not self.crash then
 self:guard("draw",self.game.draw,self.view)
 end
-b:endFrame()
+a:endFrame()
 end

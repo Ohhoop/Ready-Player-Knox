@@ -5,8 +5,8 @@ local b=SpiffBoy.Lanterways
 local a={}
 b.Window=a
 
-local g={1}
-local p={1,2,3}
+local d={1}
+local i={1,2,3}
 
 a.UI_HEIGHT=16
 a.CELLS={
@@ -22,108 +22,108 @@ heartSmall={314,7},lampSmall={321,7},slash={328,4},
 }
 a.ELEMENT_ICONS={flame="elemFlame",sound="elemSound",murk="elemMurk"}
 
-function a.gearIcon(c)
-if c.element then
-return a.ELEMENT_ICONS[c.element]
-elseif c.ward then
-return a.ELEMENT_ICONS[c.ward]
-elseif c.guard then
-return"status"..string.upper(string.sub(c.guard,1,1))..string.sub(c.guard,2)
+function a.gearIcon(item)
+if item.element then
+return a.ELEMENT_ICONS[item.element]
+elseif item.ward then
+return a.ELEMENT_ICONS[item.ward]
+elseif item.guard then
+return"status"..string.upper(string.sub(item.guard,1,1))..string.sub(item.guard,2)
 end
 return nil
 end
 a.LINE=16
 
-function a.text(c,d,e,f,h)
-local i,j,k=b.shade(h or b.INK)
-c:text(d,e,f,i,j,k,1)
+function a.text(screen,label,x,y,shade)
+local c,e,f=b.shade(shade or b.INK)
+screen:text(label,x,y,c,e,f,1)
 end
 
-function a.textCentre(c,d,e,f,h)
-local i,j,k=b.shade(h or b.INK)
-c:textCentre(d,e,f,i,j,k,1)
+function a.textCentre(screen,label,x,y,shade)
+local c,e,f=b.shade(shade or b.INK)
+screen:textCentre(label,x,y,c,e,f,1)
 end
 
-function a.textRight(c,d,e,f,h)
-local i,j,k=b.shade(h or b.INK)
-c:textRight(d,e,f,i,j,k,1)
+function a.textRight(screen,label,x,y,shade)
+local c,e,f=b.shade(shade or b.INK)
+screen:textRight(label,x,y,c,e,f,1)
 end
 
-function a.fill(c,d,e,f,h,i)
-local j,k,l=b.shade(i)
-c:rect(d,e,f,h,j,k,l,1)
+function a.fill(screen,x,y,w,h,shade)
+local c,e,f=b.shade(shade)
+screen:rect(x,y,w,h,c,e,f,1)
 end
 
-function a.icon(d,e,f,h,i,j)
-local c=a.CELLS[f]
-d:layers(e,c[1],c[2],a.UI_HEIGHT,h,i,j)
+function a.icon(screen,ui,name,x,y,shades)
+local c=a.CELLS[name]
+screen:layers(ui,c[1],c[2],a.UI_HEIGHT,x,y,shades)
 end
 
-function a.frame(c,i,d,e,f,h)
-a.fill(c,d,e,f,h,b.INK)
-a.fill(c,d+1,e+1,f-2,h-2,b.PAPER)
-a.fill(c,d+2,e+h-3,f-4,1,b.MID)
-a.fill(c,d+2,e+2,1,h-5,b.MID)
-if i then
-a.icon(c,i,"corner",d-2,e-3,g)
-a.icon(c,i,"corner",d+f-5,e-3,g)
+function a.frame(screen,ui,x,y,w,h)
+a.fill(screen,x,y,w,h,b.INK)
+a.fill(screen,x+1,y+1,w-2,h-2,b.PAPER)
+a.fill(screen,x+2,y+h-3,w-4,1,b.MID)
+a.fill(screen,x+2,y+2,1,h-5,b.MID)
+if ui then
+a.icon(screen,ui,"corner",x-2,y-3,d)
+a.icon(screen,ui,"corner",x+w-5,y-3,d)
 end
 end
 
-function a.cursor(c,d,e,f,h)
-if math.floor(h/8)%2==0 then
-a.icon(c,d,"flame1",e,f,p)
+function a.cursor(screen,ui,x,y,clock)
+if math.floor(clock/8)%2==0 then
+a.icon(screen,ui,"flame1",x,y,i)
 else
-a.icon(c,d,"flame2",e,f,p)
+a.icon(screen,ui,"flame2",x,y,i)
 end
 end
 
-function a.scroll(d,c,e,f)
-if d<c then
-c=d
-elseif d>c+e-1 then
-c=d-e+1
+function a.scroll(selected,top,visible,count)
+if selected<top then
+top=selected
+elseif selected>top+visible-1 then
+top=selected-visible+1
 end
-return SpiffBoy.clamp(c,1,math.max(1,f-e+1))
-end
-
-function a.list(c,k,q,e,l,f,m,r,h,s,t)
-local u=#q
-for n=0,m-1 do
-local d=q[h+n]
-if d then
-local i=l+n*a.LINE
-local j=b.INK
-if d.disabled then
-j=b.MID
-end
-if h+n==r and t then
-a.fill(c,e+8,i+1,f-10,a.LINE-2,b.MID)
-if d.disabled then
-j=b.DARK
-end
-a.cursor(c,k,e,i+4,s)
-end
-local o=f-12
-if d.right then
-o=o-c:textWidth(d.right)-4
-a.textRight(c,d.right,e+f-2,i,j)
-end
-a.text(c,a.fit(c,d.label,o),e+10,i,j)
-end
-end
-if h>1 then
-a.icon(c,k,"arrowUp",e+f-8,l-6,g)
-end
-if h+m-1<u then
-a.icon(c,k,"arrowDown",e+f-8,l+m*a.LINE-2,g)
-end
+return SpiffBoy.clamp(top,1,math.max(1,count-visible+1))
 end
 
-function a.fit(d,c,e)
-if d:textWidth(c)<=e then
-return c
+function a.list(screen,ui,rows,x,y,w,visible,selected,top,clock,focused)
+local j=#rows
+for g=0,visible-1 do
+local c=rows[top+g]
+if c then
+local e=y+g*a.LINE
+local f=b.INK
+if c.disabled then
+f=b.MID
 end
-local f=d:wrapText(c,e-8)
-return(f[1]or"").."."
+if top+g==selected and focused then
+a.fill(screen,x+8,e+1,w-10,a.LINE-2,b.MID)
+if c.disabled then
+f=b.DARK
+end
+a.cursor(screen,ui,x,e+4,clock)
+end
+local h=w-12
+if c.right then
+h=h-screen:textWidth(c.right)-4
+a.textRight(screen,c.right,x+w-2,e,f)
+end
+a.text(screen,a.fit(screen,c.label,h),x+10,e,f)
+end
+end
+if top>1 then
+a.icon(screen,ui,"arrowUp",x+w-8,y-6,d)
+end
+if top+visible-1<j then
+a.icon(screen,ui,"arrowDown",x+w-8,y+visible*a.LINE-2,d)
+end
+end
+
+function a.fit(screen,label,width)
+if screen:textWidth(label)<=width then
+return label
+end
+local c=screen:wrapText(label,width-8)
+return(c[1]or"").."."
 end

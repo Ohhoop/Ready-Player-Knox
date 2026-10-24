@@ -31,29 +31,29 @@ local h="v8 y2 n64"
 local g="v3 y1 n80"
 local b="r r "..g.." r r r "..g.." r"
 local e=f.." r "..g.." r "..h.." r "..g.." r"
-local k=f.." r "..h.." r "..h.." "..h.." v9 y2 n64 n64"
+local j=f.." r "..h.." r "..h.." "..h.." v9 y2 n64 n64"
 
-local function c(d,i)
-return d..table.concat(i," | ")
+local function c(header,bars)
+return header..table.concat(bars," | ")
 end
 
-local function d(i)
-return i.." "..i.." r "..i.." >"..i.."< r "..i.." r"
+local function d(root)
+return root.." "..root.." r "..root.." >"..root.."< r "..root.." r"
 end
 
-local function i(j)
-return j.." "..j.." r "..j
+local function i(root)
+return root.." "..root.." r "..root
 end
 
-local function l(m,n)
-local j={}
-for o=1,n do
-j[o]=m
+local function l(pattern,count)
+local k={}
+for m=1,count do
+k[m]=pattern
 end
-return j
+return k
 end
 
-local j={
+local k={
 loop=true,
 pulse1=c("t150 @2 v11 y0 q7 l8 ",{
 "o4 a4 o5 c o4 a e4 a4","o4 g4 b g d4 g4","o4 f4 a o5 c o4 b a g e","o4 e2 r4 e g+",
@@ -73,7 +73,7 @@ d("d"),d("a"),d("e"),d("a"),
 }),
 noise=c("t150 l8 ",{
 b,b,b,b,b,b,b,b,
-e,e,e,e,e,e,e,k,
+e,e,e,e,e,e,e,j,
 }),
 }
 
@@ -110,7 +110,7 @@ wave=c("t132 @12 v3 l4 o2 ",{
 }),
 noise=c("t132 l4 ",l("r "..g.." r "..g,8)),
 },
-[a.TRACKS[1]]=j,
+[a.TRACKS[1]]=k,
 [a.TRACKS[2]]=m,
 [a.START]={
 pulse1="t160 @2 v11 y0 q7 l16 o4 c e g o5 c8 r8 o4 g8 o5 c4",
@@ -131,7 +131,7 @@ pulse2=c("t132 @1 v7 y0 q7 l8 ",{
 "o3 g o4 c e g4 e g o5 c","o5 e4 c o4 g b2","o5 c o4 b a f a4 b o5 c","o4 g2. r4",
 }),
 wave=c("t132 @12 v3 l4 o2 ",{"c g c g","c g g >d<","f >c< g >d<","c2. r4"}),
-noise=c("t132 l8 ",{e,e,k,f.." r r r r r r r"}),
+noise=c("t132 l8 ",{e,e,j,f.." r r r r r r r"}),
 },
 [a.OVER]={
 pulse1="t100 @2 v11 y0 q7 l8 o4 e g f d e c o3 b4 | o3 a2. r4",

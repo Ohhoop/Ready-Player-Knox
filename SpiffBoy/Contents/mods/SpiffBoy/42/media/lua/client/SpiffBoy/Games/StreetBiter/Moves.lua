@@ -47,31 +47,31 @@ spit={cells={4,5},spin=8,half=4,tall=3},
 wave={cells={8},spin=1,half=8,tall=6},
 }
 
-function a.length(b)
-return b.startup+b.active+b.recovery
+function a.length(move)
+return move.startup+move.active+move.recovery
 end
 
-function a.isActive(b,c)
-return c>b.startup and c<=b.startup+b.active
+function a.isActive(move,tick)
+return tick>move.startup and tick<=move.startup+move.active
 end
 
-function a.normalFor(b,c,e)
-if e then
+function a.normalFor(direction,button,airborne)
+if airborne then
 return"jkick"
 end
-local d=b==6 or b==3 or b==9
-local f=b==1 or b==2 or b==3
-if f then
-if c=="b"then
-if b==3 then
+local b=direction==6 or direction==3 or direction==9
+local c=direction==1 or direction==2 or direction==3
+if c then
+if button=="b"then
+if direction==3 then
 return"sweep"
 end
 return"ckick"
 end
 return"cpunch"
 end
-if c=="a"then
-return d and"straight"or"jab"
+if button=="a"then
+return b and"straight"or"jab"
 end
-return d and"highkick"or"kick"
+return b and"highkick"or"kick"
 end

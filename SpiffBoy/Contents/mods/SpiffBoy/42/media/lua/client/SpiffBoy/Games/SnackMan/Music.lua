@@ -29,14 +29,14 @@ local h="v9 y1 n{48 80 113}"
 local c="v3 y1 n80"
 local i=h.." "..c.." r "..c.." r "..c.." r "..c
 
-local function b(e,f)
-return e..table.concat(f," | ")
+local function b(header,bars)
+return header..table.concat(bars," | ")
 end
 
-local function e(g,j)
+local function e(bar,count)
 local f={}
-for k=1,j do
-f[k]=g
+for g=1,count do
+f[g]=bar
 end
 return f
 end

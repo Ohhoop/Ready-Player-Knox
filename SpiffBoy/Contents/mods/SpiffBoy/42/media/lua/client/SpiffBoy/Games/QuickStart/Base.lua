@@ -18,10 +18,10 @@ a.PAPER=4
 a.TILE=2
 a.Maps=a.Maps or{}
 
-function a.mod(c,b)
-return(c%b+b)%b
+function a.mod(value,divisor)
+return(value%divisor+divisor)%divisor
 end
 
-function a.wrapIndex(b,c)
-return a.mod(b-1,c)+1
+function a.wrapIndex(index,count)
+return a.mod(index-1,count)+1
 end

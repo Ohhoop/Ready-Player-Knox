@@ -1,52 +1,52 @@
 require"SpiffBoy/Core/Core"
 
 SpiffBoy.DevOverlay=SpiffBoy.DevOverlay or{}
-local l=SpiffBoy.DevOverlay
+local k=SpiffBoy.DevOverlay
 
-local i=8
-local m=14
+local h=8
+local l=14
 
-local function b(c,d)
-local a=10^d
-return tostring(math.floor(c*a)/a)
+local function a(value,decimals)
+local b=10^decimals
+return tostring(math.floor(value*b)/b)
 end
 
-function l.draw(a)
+function k.draw(window)
 if not SpiffBoy.isDevBuild()then
 return
 end
-local d=a.runtime
-local j=a.shell
-local f=a.screen.calls
-if j then
-f=f+j.calls
+local c=window.runtime
+local i=window.shell
+local e=window.screen.calls
+if i then
+e=e+i.calls
 end
-local c={
-"frame "..b(d.frameMs,1).." ms  ticks "..tostring(d.ticksThisFrame).."  tick "..tostring(d.tick),
-"calls "..tostring(f).."  scale "..tostring(a.screen.scale),
-"mode "..tostring(d.game and d.game.mode),
+local b={
+"frame "..a(c.frameMs,1).." ms  ticks "..tostring(c.ticksThisFrame).."  tick "..tostring(c.tick),
+"calls "..tostring(e).."  scale "..tostring(window.screen.scale),
+"mode "..tostring(c.game and c.game.mode),
 }
-if a.veil~=nil then
-local g=a.playerObj:getCurrentSquare()
-local e="light "..b(a.light,3).."  veil "..b(a.veil,3)
-if g then
-e=e.."  darkMulti "..b(g:getDarkMulti(a.playerNum),3)
+if window.veil~=nil then
+local f=window.playerObj:getCurrentSquare()
+local d="light "..a(window.light,3).."  veil "..a(window.veil,3)
+if f then
+d=d.."  darkMulti "..a(f:getDarkMulti(window.playerNum),3)
 end
-e=e.."  daylight "..b(getClimateManager():getDayLightStrength(),3)
-c[#c+1]=e
+d=d.."  daylight "..a(getClimateManager():getDayLightStrength(),3)
+b[#b+1]=d
 end
-local g=a.chip
-if g then
-for h=1,#g.voices do
-local e=g.voices[h]
-local k="voice "..tostring(h).." off"
-if e.on then
-k="voice "..tostring(h).." "..tostring(e.sound).."  pitch "..b(e.pitch,3).."  gain "..b(e.gain,2)
+local f=window.chip
+if f then
+for g=1,#f.voices do
+local d=f.voices[g]
+local j="voice "..tostring(g).." off"
+if d.on then
+j="voice "..tostring(g).." "..tostring(d.sound).."  pitch "..a(d.pitch,3).."  gain "..a(d.gain,2)
 end
-c[#c+1]=k
+b[#b+1]=j
 end
 end
-for e=1,#c do
-a:drawText(c[e],i-a:getX(),i-a:getY()+(e-1)*m,0.4,1,0.4,1,UIFont.Small)
+for d=1,#b do
+window:drawText(b[d],h-window:getX(),h-window:getY()+(d-1)*l,0.4,1,0.4,1,UIFont.Small)
 end
 end

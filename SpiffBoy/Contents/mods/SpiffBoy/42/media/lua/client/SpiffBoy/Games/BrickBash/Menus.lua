@@ -4,89 +4,89 @@ require"SpiffBoy/Games/BrickBash/Records"
 require"SpiffBoy/Games/BrickBash/Music"
 
 local a=SpiffBoyBrickBashGame
-local L=SpiffBoy.BrickBash
-local o=L.Records
-local c=L.Music
+local K=SpiffBoy.BrickBash
+local o=K.Records
+local c=K.Music
 
 local m=SpiffBoy.Cartridges.SHADES[4]
 local d=SpiffBoy.Cartridges.SHADES[1]
 local k=SpiffBoy.Cartridges.SCREEN_WIDTH
-local T=SpiffBoy.Cartridges.SCREEN_HEIGHT
+local S=SpiffBoy.Cartridges.SCREEN_HEIGHT
 local f=a.gameText
 local q=a.MODES
-local M={1,2,3,4}
+local L={1,2,3,4}
 
-local x={"Play","HighScores","Options"}
+local w={"Play","HighScores","Options"}
 local E={"MusicA","MusicB","MusicOff"}
-local N=#E
-local O={"On","MusicOff"}
-local y={{key="music",text="Music",values=E},{key="effects",text="Effects",values=O},{action="clear",text="ClearScores"}}
-local u={width=120,height=65,y=3,shades={1,2,3,4}}
-local P={menuY=70,menuStep=15}
+local M=#E
+local N={"On","MusicOff"}
+local z={{key="music",text="Music",values=E},{key="effects",text="Effects",values=N},{action="clear",text="ClearScores"}}
+local t={width=120,height=65,y=3,shades={1,2,3,4}}
+local O={menuY=70,menuStep=15}
 local e={cellW=12,cellH=6,kinds={0,1,2},shades={{2},{3},{2}},columns=15,rows=20}
-local z={left=12,right=168,top=6,bottom=114}
+local A={left=12,right=168,top=6,bottom=114}
 local l={gap=6,size=5,top=6,bounce=3,period=24,shades={1,3,4}}
 local b={signs={{left=4,top=22,right=88,bottom=56},{left=92,top=22,right=176,bottom=56}},nameY=3,bestY=18,batterX=68,batterY=70,batterWidth=44,batterHeight=48,aim={1,0},swingPose=2,ballX=92,ballY=86,ballSize=5,ballShades={1,2,3,4},flight=30,arc=30,flash=24,blink=4,swing=6}
 local n={rank=-26,initials=-22,score=42,left=-44,right=46,arrow=52}
-local U={titleY=8,firstY=30,step=22,labelX=24,valueRight=152,arrowRight=160,arrowGap=2}
+local T={titleY=8,firstY=30,step=22,labelX=24,valueRight=152,arrowRight=160,arrowGap=2}
 local r={y=30,width=140,choicesY=80,gap=32}
 local g={titleY=8,arrowX=20,listY=28,bottom=112}
 local h={titleY=10,scoreY=30,promptY=52,lettersY=80,spacing=20,cursorWidth=12,cursorHeight=2,width=150}
 local F={ticks=15,count=4}
-local V=30
-local Q="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
-local W=62
-local A={delay=24,start=8,min=2,speedup=30}
-local X=string.char(0x25B4)
-local Y=string.char(0x25BE)
+local U=30
+local P="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
+local V=62
+local B={delay=24,start=8,min=2,speedup=30}
+local W=string.char(0x25B4)
+local X=string.char(0x25BE)
 
-local function s(j,i)
-return(j-1+i)%i+1
+local function s(value,count)
+return(value-1+count)%count+1
 end
 
-local function v(i)
-if i.up then
+local function u(pressed)
+if pressed.up then
 return-1
-elseif i.down then
+elseif pressed.down then
 return 1
 end
 return 0
 end
 
-local function G(i)
-if i.left then
+local function G(pressed)
+if pressed.left then
 return-1
-elseif i.right then
+elseif pressed.right then
 return 1
 end
 return 0
 end
 
-local function B(i,j,p,t)
-i:text(j,p,t,d.r,d.g,d.b,1)
+local function C(screen,label,x,y)
+screen:text(label,x,y,d.r,d.g,d.b,1)
 end
 
-local function i(j,p,t,w)
-j:textCentre(p,t,w,d.r,d.g,d.b,1)
+local function i(screen,label,x,y)
+screen:textCentre(label,x,y,d.r,d.g,d.b,1)
 end
 
-local function C(j,p,t,w)
-j:textRight(p,t,w,d.r,d.g,d.b,1)
+local function D(screen,label,x,y)
+screen:textRight(label,x,y,d.r,d.g,d.b,1)
 end
 
-local function H(p,t,w,D)
-local j=type(p)=="table"and p[t]
-if SpiffBoy.isInteger(j)and j>=1 and j<=w then
+local function H(saved,key,count,first)
+local j=type(saved)=="table"and saved[key]
+if SpiffBoy.isInteger(j)and j>=1 and j<=count then
 return j
 end
-return D
+return first
 end
 
 function a:readChoices()
 self.setup={mode=H(self.save.setup,"mode",#q,1)}
 self.options={
 music=H(self.save.options,"music",#E,1),
-effects=H(self.save.options,"effects",#O,1),
+effects=H(self.save.options,"effects",#N,1),
 }
 self.setupDirty=false
 self.optionsDirty=false
@@ -99,7 +99,7 @@ self.sequencer:setMix(1,j)
 end
 
 function a:chosenTrack()
-if self.options.music==N then
+if self.options.music==M then
 return nil
 end
 return c.TRACKS[self.options.music]
@@ -111,45 +111,45 @@ self.menuIndex=1
 self.sequencer:stop()
 end
 
-function a:tickMenu(j)
-if self.options.music~=N then
+function a:tickMenu(input)
+if self.options.music~=M then
 self:keepMusic(c.TITLE)
 end
 if self.mode==a.MODE_SETUP then
 self:tickSwing()
 end
-if not j then
+if not input then
 return
 end
-local p=self.mode
-if p==a.MODE_TITLE then
-self:tickTitle(j)
-elseif p==a.MODE_SETUP then
-self:tickSetup(j)
-elseif p==a.MODE_OPTIONS then
-self:tickOptions(j)
-elseif p==a.MODE_CONFIRM then
-self:tickConfirm(j)
-elseif p==a.MODE_SCORES then
-self:tickScores(j)
-elseif p==a.MODE_INITIALS then
-self:tickInitials(j)
+local j=self.mode
+if j==a.MODE_TITLE then
+self:tickTitle(input)
+elseif j==a.MODE_SETUP then
+self:tickSetup(input)
+elseif j==a.MODE_OPTIONS then
+self:tickOptions(input)
+elseif j==a.MODE_CONFIRM then
+self:tickConfirm(input)
+elseif j==a.MODE_SCORES then
+self:tickScores(input)
+elseif j==a.MODE_INITIALS then
+self:tickInitials(input)
 end
 end
 
-function a:tickTitle(w)
-local j=w.pressed
-local p=v(j)
+function a:tickTitle(input)
+local j=input.pressed
+local p=u(j)
 if p~=0 then
-self.menuIndex=s(self.menuIndex+p,#x)
+self.menuIndex=s(self.menuIndex+p,#w)
 self:effect(c.TICK)
 end
 if j.a or j.start then
 self:effect(c.CONFIRM)
-local t=x[self.menuIndex]
-if t=="Play"then
+local v=w[self.menuIndex]
+if v=="Play"then
 self:openSetup()
-elseif t=="Options"then
+elseif v=="Options"then
 self.mode=a.MODE_OPTIONS
 self.optionIndex=1
 else
@@ -184,11 +184,11 @@ self:startRun()
 end
 end
 
-function a:tickSetup(t)
+function a:tickSetup(input)
 if self.swingTimer>0 then
 return
 end
-local j=t.pressed
+local j=input.pressed
 local p=G(j)
 if p~=0 then
 self.setup.mode=s(self.setup.mode+p,#q)
@@ -215,27 +215,27 @@ end
 self.mode=a.MODE_TITLE
 end
 
-function a:turnOption(j,p)
-self.options[j.key]=s(self.options[j.key]+p,#j.values)
+function a:turnOption(option,turn)
+self.options[option.key]=s(self.options[option.key]+turn,#option.values)
 self.optionsDirty=true
 self:applyMix()
-if j.key=="music"then
+if option.key=="music"then
 self.sequencer:stop()
 end
 self:effect(c.TICK)
 end
 
-function a:tickOptions(D)
-local j=D.pressed
-local t=v(j)
-if t~=0 then
-self.optionIndex=s(self.optionIndex+t,#y)
+function a:tickOptions(input)
+local j=input.pressed
+local v=u(j)
+if v~=0 then
+self.optionIndex=s(self.optionIndex+v,#z)
 self:effect(c.TICK)
 end
-local p=y[self.optionIndex]
-local w=G(j)
-if w~=0 and p.key then
-self:turnOption(p,w)
+local p=z[self.optionIndex]
+local x=G(j)
+if x~=0 and p.key then
+self:turnOption(p,x)
 end
 if j.b or j.start then
 self:effect(c.CONFIRM)
@@ -251,8 +251,8 @@ end
 end
 end
 
-function a:tickConfirm(p)
-local j=p.pressed
+function a:tickConfirm(input)
+local j=input.pressed
 if j.left or j.right or j.up or j.down then
 self.confirmYes=not self.confirmYes
 self:effect(c.TICK)
@@ -271,33 +271,33 @@ self.mode=a.MODE_OPTIONS
 end
 end
 
-function a:pageRecords(j)
-return self.records[q[j].key]
+function a:pageRecords(page)
+return self.records[q[page].key]
 end
 
 function a:scoresVisible()
 return math.floor((g.bottom-g.listY)/self.screen:lineHeight())
 end
 
-function a:showScores(j,p)
+function a:showScores(page,rank)
 self.mode=a.MODE_SCORES
-self.scoresPage=j
-self.scoresTop=SpiffBoy.clamp(p,1,#self:pageRecords(j)-self:scoresVisible()+1)
+self.scoresPage=page
+self.scoresTop=SpiffBoy.clamp(rank,1,#self:pageRecords(page)-self:scoresVisible()+1)
 end
 
-function a:tickScores(D)
-local j=D.pressed
-local p=v(j)
-local t=G(j)
+function a:tickScores(input)
+local j=input.pressed
+local p=u(j)
+local v=G(j)
 if p~=0 then
-local w=SpiffBoy.clamp(self.scoresTop+p,1,#self:pageRecords(self.scoresPage)-self:scoresVisible()+1)
-if w~=self.scoresTop then
-self.scoresTop=w
+local x=SpiffBoy.clamp(self.scoresTop+p,1,#self:pageRecords(self.scoresPage)-self:scoresVisible()+1)
+if x~=self.scoresTop then
+self.scoresTop=x
 self:effect(c.TICK)
 end
-elseif t~=0 then
+elseif v~=0 then
 self.flashRankIndex=nil
-self:showScores(s(self.scoresPage+t,#q),1)
+self:showScores(s(self.scoresPage+v,#q),1)
 self:effect(c.TICK)
 elseif j.a or j.b or j.start then
 self:effect(c.CONFIRM)
@@ -317,34 +317,34 @@ end
 self:openSetup()
 end
 
-function a:turnLetter(j)
-self.letters[self.cursor]=s(self.letters[self.cursor]-j,W)
+function a:turnLetter(step)
+self.letters[self.cursor]=s(self.letters[self.cursor]-step,V)
 self:effect(c.TICK)
 end
 
-function a:repeatLetter(j,p)
-if j~=0 then
-self:turnLetter(j)
-self.letterHoldStep=j
+function a:repeatLetter(pressedStep,heldStep)
+if pressedStep~=0 then
+self:turnLetter(pressedStep)
+self.letterHoldStep=pressedStep
 self.letterHoldTicks=0
-self.letterRepeatTimer=A.delay
+self.letterRepeatTimer=B.delay
 return
 end
-if p==0 or p~=self.letterHoldStep then
+if heldStep==0 or heldStep~=self.letterHoldStep then
 self.letterHoldStep=0
 return
 end
 self.letterHoldTicks=self.letterHoldTicks+1
 self.letterRepeatTimer=self.letterRepeatTimer-1
 if self.letterRepeatTimer<=0 then
-self:turnLetter(p)
-self.letterRepeatTimer=math.max(A.min,A.start-math.floor(self.letterHoldTicks/A.speedup))
+self:turnLetter(heldStep)
+self.letterRepeatTimer=math.max(B.min,B.start-math.floor(self.letterHoldTicks/B.speedup))
 end
 end
 
-function a:tickInitials(t)
-local j=t.pressed
-self:repeatLetter(v(j),v(t.held))
+function a:tickInitials(input)
+local j=input.pressed
+self:repeatLetter(u(j),u(input.held))
 if j.left and self.cursor>1 then
 self.cursor=self.cursor-1
 elseif j.right and self.cursor<o.INITIALS_LENGTH then
@@ -356,208 +356,208 @@ if self.cursor<o.INITIALS_LENGTH then
 self.cursor=self.cursor+1
 else
 local p=""
-for w=1,o.INITIALS_LENGTH do
-p=p..string.sub(Q,self.letters[w],self.letters[w])
+for v=1,o.INITIALS_LENGTH do
+p=p..string.sub(P,self.letters[v],self.letters[v])
 end
-local w=o.insert(self.records[self.modeKey],p,self.score)
+local v=o.insert(self.records[self.modeKey],p,self.score)
 self:persistRecords()
-self:showScores(self.setup.mode,w)
-self.flashRankIndex=w
+self:showScores(self.setup.mode,v)
+self.flashRankIndex=v
 self.flashUntil=self.clock+F.ticks*F.count*2
 end
 end
 end
 
-function a:drawMenu(j)
-local p=self.mode
-if p==a.MODE_TITLE then
-self:drawTitle(j)
-elseif p==a.MODE_SETUP then
-self:drawSetup(j)
-elseif p==a.MODE_OPTIONS then
-self:drawOptions(j)
-elseif p==a.MODE_CONFIRM then
-self:drawConfirm(j)
-elseif p==a.MODE_SCORES then
-self:drawScores(j)
+function a:drawMenu(screen)
+local j=self.mode
+if j==a.MODE_TITLE then
+self:drawTitle(screen)
+elseif j==a.MODE_SETUP then
+self:drawSetup(screen)
+elseif j==a.MODE_OPTIONS then
+self:drawOptions(screen)
+elseif j==a.MODE_CONFIRM then
+self:drawConfirm(screen)
+elseif j==a.MODE_SCORES then
+self:drawScores(screen)
 else
-self:drawInitials(j)
+self:drawInitials(screen)
 end
 end
 
-function a:drawPointer(p,t,w)
-local D=self.clock%l.period
+function a:drawPointer(screen,right,y)
+local p=self.clock%l.period
 local j=l.period/2
-local I=math.floor(l.bounce*(1-math.abs(D-j)/j))
-p:layers(self.art.ball,0,l.size,l.size,t-l.gap-l.size,w+l.top-I,l.shades)
+local v=math.floor(l.bounce*(1-math.abs(p-j)/j))
+screen:layers(self.art.ball,0,l.size,l.size,right-l.gap-l.size,y+l.top-v,l.shades)
 end
 
-function a:drawWall(w)
-w:clear(m.r,m.g,m.b)
-local J=self.art.bricks
+function a:drawWall(screen)
+screen:clear(m.r,m.g,m.b)
+local I=self.art.bricks
 for j=0,e.rows-1 do
 local p=j*e.cellH
-local K=p>=z.top and p<z.bottom
-local R=j%2==1 and e.cellW/2 or 0
-for D=0,e.columns do
-local t=D*e.cellW-R
-if not K or t<z.left or t+e.cellW>z.right then
-local I=(D+j)%#e.kinds+1
-w:layers(J,e.kinds[I]*e.cellW,e.cellW,e.cellH,t,p,e.shades[I])
+local J=p>=A.top and p<A.bottom
+local Q=j%2==1 and e.cellW/2 or 0
+for x=0,e.columns do
+local v=x*e.cellW-Q
+if not J or v<A.left or v+e.cellW>A.right then
+local y=(x+j)%#e.kinds+1
+screen:layers(I,e.kinds[y]*e.cellW,e.cellW,e.cellH,v,p,e.shades[y])
 end
 end
 end
 end
 
-function a:drawTitle(j)
-j:clear(m.r,m.g,m.b)
-j:layers(self.art.logo,0,u.width,u.height,math.floor((k-u.width)/2),u.y,u.shades)
-local t=k/2
-for p=1,#x do
-local w=f(x[p])
-local D=P.menuY+(p-1)*P.menuStep
-i(j,w,t,D)
-if p==self.menuIndex then
-self:drawPointer(j,t-math.floor(j:textWidth(w)/2),D)
+function a:drawTitle(screen)
+screen:clear(m.r,m.g,m.b)
+screen:layers(self.art.logo,0,t.width,t.height,math.floor((k-t.width)/2),t.y,t.shades)
+local p=k/2
+for j=1,#w do
+local v=f(w[j])
+local x=O.menuY+(j-1)*O.menuStep
+i(screen,v,p,x)
+if j==self.menuIndex then
+self:drawPointer(screen,p-math.floor(screen:textWidth(v)/2),x)
 end
 end
 end
 
-function a:drawRecordRows(p,R,I,S,Z)
-local t=k/2
-local J=p:lineHeight()
-for w=I,S do
-local K=R[w]
-local D=Z+(w-I)*J
+function a:drawRecordRows(screen,list,first,last,top)
+local p=k/2
+local y=screen:lineHeight()
+for v=first,last do
+local I=list[v]
+local x=top+(v-first)*y
 local j=d
-local _=self.mode==a.MODE_SCORES and w==self.flashRankIndex and self.flashUntil and self.clock<self.flashUntil
-if _ and math.floor((self.flashUntil-self.clock-1)/F.ticks)%2==1 then
-p:rect(t+n.left,D,n.right-n.left,J,d.r,d.g,d.b,1)
+local J=self.mode==a.MODE_SCORES and v==self.flashRankIndex and self.flashUntil and self.clock<self.flashUntil
+if J and math.floor((self.flashUntil-self.clock-1)/F.ticks)%2==1 then
+screen:rect(p+n.left,x,n.right-n.left,y,d.r,d.g,d.b,1)
 j=m
 end
-p:textRight(tostring(w)..".",t+n.rank,D,j.r,j.g,j.b,1)
-p:text(K.initials,t+n.initials,D,j.r,j.g,j.b,1)
-p:textRight(tostring(K.score),t+n.score,D,j.r,j.g,j.b,1)
+screen:textRight(tostring(v)..".",p+n.rank,x,j.r,j.g,j.b,1)
+screen:text(I.initials,p+n.initials,x,j.r,j.g,j.b,1)
+screen:textRight(tostring(I.score),p+n.score,x,j.r,j.g,j.b,1)
 end
 end
 
-local function Z(j,t,w,D,I,p)
-C(j,t,w,p)
-C(j,"<",w-j:textWidth(t)-I,p)
-C(j,">",D,p)
+local function Y(screen,value,valueRight,arrowRight,gap,y)
+D(screen,value,valueRight,y)
+D(screen,"<",valueRight-screen:textWidth(value)-gap,y)
+D(screen,">",arrowRight,y)
 end
 
-function a:drawSetup(t)
-local D=self.art
-t:layers(D.ballpark,0,k,T,0,0,M)
-local w=b.swing+b.flight+b.flash-self.swingTimer
-local I=self.swingTimer>0
-local _=I and w>=b.swing+b.flight
-for J,j in ipairs(b.signs)do
-local R=math.floor((j.left+j.right)/2)
+function a:drawSetup(screen)
+local x=self.art
+screen:layers(x.ballpark,0,k,S,0,0,L)
+local v=b.swing+b.flight+b.flash-self.swingTimer
+local y=self.swingTimer>0
+local Z=y and v>=b.swing+b.flight
+for I,j in ipairs(b.signs)do
+local Q=math.floor((j.left+j.right)/2)
 local p=d
-local K=J==self.setup.mode
-if K and _ then
-K=math.floor(w/b.blink)%2==0
+local J=I==self.setup.mode
+if J and Z then
+J=math.floor(v/b.blink)%2==0
 end
-if K then
-t:rect(j.left+2,j.top+2,j.right-j.left-3,j.bottom-j.top-3,d.r,d.g,d.b,1)
+if J then
+screen:rect(j.left+2,j.top+2,j.right-j.left-3,j.bottom-j.top-3,d.r,d.g,d.b,1)
 p=m
 end
-local S=self:pageRecords(J)
-local aa=#S>0 and S[1].score or 0
-t:textCentre(f(q[J].text),R,j.top+b.nameY,p.r,p.g,p.b,1)
-t:textCentre(tostring(aa),R,j.top+b.bestY,p.r,p.g,p.b,1)
+local R=self:pageRecords(I)
+local _=#R>0 and R[1].score or 0
+screen:textCentre(f(q[I].text),Q,j.top+b.nameY,p.r,p.g,p.b,1)
+screen:textCentre(tostring(_),Q,j.top+b.bestY,p.r,p.g,p.b,1)
 end
-local J=b.aim[self.setup.mode]
-if I then
-J=b.swingPose
+local I=b.aim[self.setup.mode]
+if y then
+I=b.swingPose
 end
-t:layers(D.batter,J*b.batterWidth,b.batterWidth,b.batterHeight,b.batterX,b.batterY,M)
-if I and w>=b.swing and w<b.swing+b.flight then
+screen:layers(x.batter,I*b.batterWidth,b.batterWidth,b.batterHeight,b.batterX,b.batterY,L)
+if y and v>=b.swing and v<b.swing+b.flight then
 local j=b.signs[self.setup.mode]
-local p=(w-b.swing)/b.flight
-local K=(j.left+j.right)/2
-local R=(j.top+j.bottom)/2
-local S=b.ballX+(K-b.ballX)*p
-local aa=b.ballY+(R-b.ballY)*p-b.arc*math.sin(p*math.pi)
-t:layers(D.ball,0,b.ballSize,b.ballSize,math.floor(S),math.floor(aa),b.ballShades)
+local p=(v-b.swing)/b.flight
+local J=(j.left+j.right)/2
+local Q=(j.top+j.bottom)/2
+local R=b.ballX+(J-b.ballX)*p
+local _=b.ballY+(Q-b.ballY)*p-b.arc*math.sin(p*math.pi)
+screen:layers(x.ball,0,b.ballSize,b.ballSize,math.floor(R),math.floor(_),b.ballShades)
 end
 end
 
-function a:drawOptions(p)
-self:drawWall(p)
-local j=U
-i(p,f("Options"),k/2,j.titleY)
-for w=1,#y do
-local t=y[w]
-local D=j.firstY+(w-1)*j.step
-B(p,f(t.text),j.labelX,D)
-if t.key then
-Z(p,f(t.values[self.options[t.key]]),j.valueRight,j.arrowRight,j.arrowGap,D)
+function a:drawOptions(screen)
+self:drawWall(screen)
+local j=T
+i(screen,f("Options"),k/2,j.titleY)
+for v=1,#z do
+local p=z[v]
+local x=j.firstY+(v-1)*j.step
+C(screen,f(p.text),j.labelX,x)
+if p.key then
+Y(screen,f(p.values[self.options[p.key]]),j.valueRight,j.arrowRight,j.arrowGap,x)
 end
-if w==self.optionIndex then
-self:drawPointer(p,j.labelX,D)
-end
-end
-end
-
-function a:drawConfirm(j)
-self:drawWall(j)
-local t=k/2
-local w=j:wrapText(f("EraseScores"),r.width)
-for p=1,#w do
-i(j,w[p],t,r.y+(p-1)*j:lineHeight())
-end
-local I={{text="No",x=t-r.gap,chosen=not self.confirmYes},{text="Yes",x=t+r.gap,chosen=self.confirmYes}}
-for J,p in ipairs(I)do
-local D=f(p.text)
-i(j,D,p.x,r.choicesY)
-if p.chosen then
-self:drawPointer(j,p.x-math.floor(j:textWidth(D)/2),r.choicesY)
+if v==self.optionIndex then
+self:drawPointer(screen,j.labelX,x)
 end
 end
 end
 
-function a:drawScores(j)
-self:drawWall(j)
+function a:drawConfirm(screen)
+self:drawWall(screen)
 local p=k/2
-local w=j:lineHeight()
-local D=self.scoresPage
-i(j,f(q[D].text),p,g.titleY)
-B(j,"<",g.arrowX,g.titleY)
-C(j,">",k-g.arrowX,g.titleY)
-local t=self:pageRecords(D)
-if#t==0 then
-i(j,f("NoScores"),p,g.listY+w)
+local v=screen:wrapText(f("EraseScores"),r.width)
+for j=1,#v do
+i(screen,v[j],p,r.y+(j-1)*screen:lineHeight())
+end
+local y={{text="No",x=p-r.gap,chosen=not self.confirmYes},{text="Yes",x=p+r.gap,chosen=self.confirmYes}}
+for I,j in ipairs(y)do
+local x=f(j.text)
+i(screen,x,j.x,r.choicesY)
+if j.chosen then
+self:drawPointer(screen,j.x-math.floor(screen:textWidth(x)/2),r.choicesY)
+end
+end
+end
+
+function a:drawScores(screen)
+self:drawWall(screen)
+local j=k/2
+local v=screen:lineHeight()
+local x=self.scoresPage
+i(screen,f(q[x].text),j,g.titleY)
+C(screen,"<",g.arrowX,g.titleY)
+D(screen,">",k-g.arrowX,g.titleY)
+local p=self:pageRecords(x)
+if#p==0 then
+i(screen,f("NoScores"),j,g.listY+v)
 return
 end
-local I=self:scoresVisible()
-local J=math.min(#t,self.scoresTop+I-1)
-self:drawRecordRows(j,t,self.scoresTop,J,g.listY)
+local y=self:scoresVisible()
+local I=math.min(#p,self.scoresTop+y-1)
+self:drawRecordRows(screen,p,self.scoresTop,I,g.listY)
 if self.scoresTop>1 then
-B(j,X,p+n.arrow,g.listY)
+C(screen,W,j+n.arrow,g.listY)
 end
-if J<#t then
-B(j,Y,p+n.arrow,g.listY+(I-1)*w)
+if I<#p then
+C(screen,X,j+n.arrow,g.listY+(y-1)*v)
 end
 end
 
-function a:drawInitials(j)
-self:drawWall(j)
-local p=k/2
-local w=j:lineHeight()
-i(j,f("NewHighScore"),p,h.titleY)
-i(j,tostring(self.score),p,h.scoreY)
-local D=j:wrapText(f("EnterInitials"),h.width)
-for t=1,#D do
-i(j,D[t],p,h.promptY+(t-1)*w)
+function a:drawInitials(screen)
+self:drawWall(screen)
+local j=k/2
+local v=screen:lineHeight()
+i(screen,f("NewHighScore"),j,h.titleY)
+i(screen,tostring(self.score),j,h.scoreY)
+local x=screen:wrapText(f("EnterInitials"),h.width)
+for p=1,#x do
+i(screen,x[p],j,h.promptY+(p-1)*v)
 end
-for t=1,o.INITIALS_LENGTH do
-local I=p+(t-2)*h.spacing
-i(j,string.sub(Q,self.letters[t],self.letters[t]),I,h.lettersY)
-if t==self.cursor and math.floor(self.clock/V)%2==0 then
-j:rect(I-h.cursorWidth/2,h.lettersY+w+1,h.cursorWidth,h.cursorHeight,d.r,d.g,d.b,1)
+for p=1,o.INITIALS_LENGTH do
+local y=j+(p-2)*h.spacing
+i(screen,string.sub(P,self.letters[p],self.letters[p]),y,h.lettersY)
+if p==self.cursor and math.floor(self.clock/U)%2==0 then
+screen:rect(y-h.cursorWidth/2,h.lettersY+v+1,h.cursorWidth,h.cursorHeight,d.r,d.g,d.b,1)
 end
 end
 end

@@ -321,38 +321,38 @@ local j={
 {village="mothgrove",x=4,y=15,text="Knock_mothgrove"},
 }
 
-local function f(b,d,g)
-for k,a in ipairs(c[b].objects)do
-if a.kind=="house"and a.x==d and a.y==g then
+local function f(village,x,y)
+for b,a in ipairs(c[village].objects)do
+if a.kind=="house"and a.x==x and a.y==y then
 return a
 end
 end
-error("Lanterways: no house at "..d..","..g.." in "..b)
+error("Lanterways: no house at "..x..","..y.." in "..village)
 end
 
-local function k(b,l)
-local d={}
-for g,a in ipairs(l.folk)do
-d[g]={
-id=b.id..g,sprite=a.sprite,name=a.name,x=b.npc.x,y=b.npc.y,
+local function k(layout,home)
+local b={}
+for d,a in ipairs(home.folk)do
+b[d]={
+id=layout.id..d,sprite=a.sprite,name=a.name,x=layout.npc.x,y=layout.npc.y,
 dir="down",show=a.show,talk=a.talk,
 }
 end
-return d
+return b
 end
 
-local function l(g,m)
+local function l(layout,home)
 local a={}
-for n,b in pairs(g.looks)do
-local d=m.looks[n]
+for g,b in pairs(layout.looks)do
+local d=home.looks[g]
 a[#a+1]={x=b.x,y=b.y,text=d.text,script=d.script}
 end
 return a
 end
 
-local function m(a)
-if a.page then
-return{{x=a.page.x,y=a.page.y,page=a.page.id}}
+local function m(layout)
+if layout.page then
+return{{x=layout.page.x,y=layout.page.y,page=layout.page.id}}
 end
 return{}
 end

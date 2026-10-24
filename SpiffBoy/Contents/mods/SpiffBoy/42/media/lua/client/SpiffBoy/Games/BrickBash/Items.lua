@@ -30,13 +30,13 @@ b.falling={}
 return b
 end
 
-local function m(n)
+local function m(random)
 local b=0
 for g,e in ipairs(f)do
 b=b+e.weight
 end
-local e=n:int(1,b)
-for o,g in ipairs(f)do
+local e=random:int(1,b)
+for n,g in ipairs(f)do
 e=e-g.weight
 if e<=0 then
 return g.kind
@@ -44,21 +44,21 @@ end
 end
 end
 
-function a:maybeDrop(b,e,g)
-if#self.falling>0 or b:int(1,j)~=1 then
+function a:maybeDrop(random,x,y)
+if#self.falling>0 or random:int(1,j)~=1 then
 return
 end
-self.falling[1]={kind=m(b),x=e-c.width/2,y=g-c.height/2}
+self.falling[1]={kind=m(random),x=x-c.width/2,y=y-c.height/2}
 end
 
-function a:update(n)
+function a:update(paddle)
 local g=nil
 for e=#self.falling,1,-1 do
 local b=self.falling[e]
 b.y=b.y+k
-local o,p=n:edges()
-local q=b.y+c.height>=d.TOP and b.y<=d.TOP+d.HEIGHT and b.x+c.width>o and b.x<p
-if q then
+local n,o=paddle:edges()
+local p=b.y+c.height>=d.TOP and b.y<=d.TOP+d.HEIGHT and b.x+c.width>n and b.x<o
+if p then
 g=b.kind
 table.remove(self.falling,e)
 elseif b.y>=h.BOTTOM then
@@ -72,8 +72,8 @@ function a:clear()
 self.falling={}
 end
 
-function a:draw(e,g)
-for n,b in ipairs(self.falling)do
-e:layers(g,i[b.kind]*c.width,c.width,c.height,math.floor(b.x),math.floor(b.y),l)
+function a:draw(screen,texture)
+for e,b in ipairs(self.falling)do
+screen:layers(texture,i[b.kind]*c.width,c.width,c.height,math.floor(b.x),math.floor(b.y),l)
 end
 end

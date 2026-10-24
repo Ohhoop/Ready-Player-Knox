@@ -2,71 +2,71 @@ require"SpiffBoy/Games/QuickStart/Base"
 
 local e=SpiffBoy.QuickStart
 
-local a={}
-e.GrandPrix=a
+local c={}
+e.GrandPrix=c
 
-a.CUPS={
+c.CUPS={
 {id="spiffo",tracks={"Muldraugh","Riverside","MarchRidge","EchoCreek"}},
 {id="knox",tracks={"WestPoint","Rosewood","Louisville","KnoxBase"}},
 }
-a.ARENAS={"GasStation","SpiffosLot"}
-a.POINTS={10,8,6,4,3,2,1,0}
-a.PODIUM=3
+c.ARENAS={"GasStation","SpiffosLot"}
+c.POINTS={10,8,6,4,3,2,1,0}
+c.PODIUM=3
 
-function a.new(f,g)
-local b={}
-for d,c in ipairs(g)do
-b[d]={driver=c.driver,seat=c.seat,points=0,last=0}
+function c.new(cupIndex,drivers)
+local d={}
+for b,a in ipairs(drivers)do
+d[b]={driver=a.driver,seat=a.seat,points=0,last=0}
 end
-table.sort(b,function(c,d)
-if(c.seat~=nil)~=(d.seat~=nil)then
-return c.seat==nil
+table.sort(d,function(a,b)
+if(a.seat~=nil)~=(b.seat~=nil)then
+return a.seat==nil
 end
-return c.driver<d.driver
+return a.driver<b.driver
 end)
-return{cup=f,race=1,standings=b}
+return{cup=cupIndex,race=1,standings=d}
 end
 
-function a.track(b)
-return a.CUPS[b.cup].tracks[b.race]
+function c.track(gp)
+return c.CUPS[gp.cup].tracks[gp.race]
 end
 
-function a.grid(d)
-local b={}
-for f,c in ipairs(d.standings)do
-b[f]={driver=c.driver,seat=c.seat}
+function c.grid(gp)
+local a={}
+for d,b in ipairs(gp.standings)do
+a[d]={driver=b.driver,seat=b.seat}
 end
-return b
+return a
 end
 
-function a.score(d,f)
-for g,c in ipairs(f.karts)do
-local b=d.standings[g]
-b.gained=a.POINTS[c.rank]or 0
-b.points=b.points+b.gained
-b.last=c.rank
+function c.score(gp,world)
+for d,b in ipairs(world.karts)do
+local a=gp.standings[d]
+a.gained=c.POINTS[b.rank]or 0
+a.points=a.points+a.gained
+a.last=b.rank
 end
-table.sort(d.standings,function(b,c)
-if b.points~=c.points then
-return b.points>c.points
+table.sort(gp.standings,function(a,b)
+if a.points~=b.points then
+return a.points>b.points
 end
-return b.last<c.last
+return a.last<b.last
 end)
 end
 
-function a.advance(b)
-if b.race>=#a.CUPS[b.cup].tracks then
+function c.advance(gp)
+if gp.race>=#c.CUPS[gp.cup].tracks then
 return false
 end
-b.race=b.race+1
+gp.race=gp.race+1
 return true
 end
 
-function a.placeOfPlayers(b)
-for c,d in ipairs(b.standings)do
-if d.seat then
-return c
+function c.placeOfPlayers(gp)
+for a,b in ipairs(gp.standings)do
+if b.seat then
+return a
 end
 end
-return#b.standings
+return#gp.standings
 end

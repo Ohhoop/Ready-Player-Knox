@@ -3,7 +3,7 @@ require"SpiffBoy/Games/DoubleRaccoon/Combat"
 
 SpiffBoy.DoubleRaccoon=SpiffBoy.DoubleRaccoon or{}
 
-local d=SpiffBoy.DoubleRaccoon.Combat
+local c=SpiffBoy.DoubleRaccoon.Combat
 
 local a={}
 a.__index=a
@@ -11,32 +11,32 @@ SpiffBoy.DoubleRaccoon.Fighter=a
 
 a.MAX_HP=24
 
-local f=1.25
-local g=0.75
-local l=10
-local q=20
-local h=9
-local r=7
-local s=30
-local t={"walk1","walk2","walk3","walk4"}
-local u={"idle1","idle2"}
-local v=16
-local w=30
-local m=60
-local x=10
-local y=60
-local n=80
-local o=8
-local z=120
+local e=1.25
+local f=0.75
+local j=10
+local o=20
+local g=9
+local p=7
+local q=30
+local r={"walk1","walk2","walk3","walk4"}
+local s={"idle1","idle2"}
+local t=16
+local u=30
+local k=60
+local v=10
+local w=60
+local l=80
+local m=8
+local y=120
 local A=3
 local B=30
 local C=12
 local D=3
 local E=14
 local F=7
-local e={ticks=12,hit=4,near=2,far=20,damage=3}
-local i={ticks=18,hit=9,raise=8}
-local j={
+local d={ticks=12,hit=4,near=2,far=20,damage=3}
+local h={ticks=18,hit=9,raise=8}
+local i={
 {frame="jab",ticks=11,hit=4,near=2,far=24,damage=2,knock=false,effect="punch"},
 {frame="cross",ticks=11,hit=4,near=2,far=24,damage=2,knock=false,effect="punch"},
 {frame="kick",ticks=15,hit=6,near=2,far=28,damage=4,knock=true,effect="kick"},
@@ -48,10 +48,10 @@ axe={damage=7,far=32,durability=8,knock=true,effect="chop"},
 }
 a.FOOD={chips=8,tin=16}
 
-function a.new(c,k)
+function a.new(x,z)
 local b=setmetatable({},a)
-b.x=c
-b.z=k
+b.x=x
+b.z=z
 b.height=0
 b.facing=1
 b.hp=a.MAX_HP
@@ -76,7 +76,7 @@ function a:isDead()
 return self.state=="dead"
 end
 
-function a:update(k,b)
+function a:update(input,world)
 self.clock=self.clock+1
 if self.guard>0 then
 self.guard=self.guard-1
@@ -84,62 +84,62 @@ end
 if self.comboWindow>0 then
 self.comboWindow=self.comboWindow-1
 end
-local c=self.state
-if c=="stand"or c=="walk"then
-self:control(k,b)
-elseif c=="attack"then
-self:tickAttack(k,b)
-elseif c=="swing"then
-self:tickSwing(b)
-elseif c=="elbow"then
-self:tickElbow(b)
-elseif c=="hold"then
-self:tickHold(k,b)
-elseif c=="throw"then
-self:tickThrow(b)
-elseif c=="pickup"then
-self:tickPickup(b)
+local b=self.state
+if b=="stand"or b=="walk"then
+self:control(input,world)
+elseif b=="attack"then
+self:tickAttack(input,world)
+elseif b=="swing"then
+self:tickSwing(world)
+elseif b=="elbow"then
+self:tickElbow(world)
+elseif b=="hold"then
+self:tickHold(input,world)
+elseif b=="throw"then
+self:tickThrow(world)
+elseif b=="pickup"then
+self:tickPickup(world)
 else
-self:tickStunned(b)
+self:tickStunned(world)
 end
-self.x=SpiffBoy.clamp(self.x,b.left+l,b.right-l)
+self.x=SpiffBoy.clamp(self.x,world.left+j,world.right-j)
 end
 
-function a:control(b,k)
-if not b then
+function a:control(input,world)
+if not input then
 self.state="stand"
 return
 end
-if b.pressed.a then
-self:startAttack(k)
+if input.pressed.a then
+self:startAttack(world)
 return
 end
-if b.pressed.b then
-self:startAction(k)
+if input.pressed.b then
+self:startAction(world)
 return
 end
-local c,p=b:axes()
-if c~=0 then
-self.facing=c
+local b,n=input:axes()
+if b~=0 then
+self.facing=b
 end
-if c~=0 or p~=0 then
+if b~=0 or n~=0 then
 self.state="walk"
-self.x=self.x+c*f
-self.z=d.clampDepth(self.z+p*g)
+self.x=self.x+b*e
+self.z=c.clampDepth(self.z+n*f)
 else
 self.state="stand"
 end
 end
 
-function a:startAttack(b)
+function a:startAttack(world)
 self.timer=0
 if self.weapon then
 self.state="swing"
-b:effect("whoosh")
+world:effect("whoosh")
 return
 end
 if self.comboWindow>0 then
-self.combo=self.combo%#j+1
+self.combo=self.combo%#i+1
 else
 self.combo=1
 end
@@ -147,118 +147,118 @@ self.state="attack"
 self.queued=false
 end
 
-function a:startAction(b)
+function a:startAction(world)
 self.timer=0
-if b:itemAt(self)then
+if world:itemAt(self)then
 self.state="pickup"
 return
 end
-local c=b.horde:grabTarget(self)
-if c then
-self.held=c
-c:grab(self)
+local b=world.horde:grabTarget(self)
+if b then
+self.held=b
+b:grab(self)
 self.state="hold"
-b:effect("grab")
+world:effect("grab")
 return
 end
 self.state="elbow"
-b:effect("whoosh")
+world:effect("whoosh")
 end
 
-function a:tickAttack(k,c)
-local b=j[self.combo]
+function a:tickAttack(input,world)
+local b=i[self.combo]
 self.timer=self.timer+1
 if self.timer==b.hit then
-local p=c.horde:strike(self,b.near,b.far,h,b.damage,b.knock,c)
-c:effect(p>0 and b.effect or"whoosh")
+local n=world.horde:strike(self,b.near,b.far,g,b.damage,b.knock,world)
+world:effect(n>0 and b.effect or"whoosh")
 end
-if k and k.pressed.a and self.timer>=b.hit then
+if input and input.pressed.a and self.timer>=b.hit then
 self.queued=true
 end
 if self.timer>=b.ticks then
 self.state="stand"
-self.comboWindow=q
+self.comboWindow=o
 if self.queued then
-self:startAttack(c)
+self:startAttack(world)
 end
 end
 end
 
-function a:tickSwing(b)
-local c=a.WEAPONS[self.weapon]
+function a:tickSwing(world)
+local b=a.WEAPONS[self.weapon]
 self.timer=self.timer+1
-if self.timer==i.hit then
-local k=b.horde:strike(self,2,c.far,h,c.damage,c.knock,b)
-if k>0 then
-b:effect(c.effect)
-self.durability=self.durability-k
+if self.timer==h.hit then
+local n=world.horde:strike(self,2,b.far,g,b.damage,b.knock,world)
+if n>0 then
+world:effect(b.effect)
+self.durability=self.durability-n
 if self.durability<=0 then
 self.weapon=nil
-b:effect("break")
+world:effect("break")
 end
 end
 end
-if self.timer>=i.ticks then
+if self.timer>=h.ticks then
 self.state="stand"
 end
 end
 
-function a:tickElbow(b)
+function a:tickElbow(world)
 self.timer=self.timer+1
-if self.timer==e.hit then
+if self.timer==d.hit then
 self.facing=-self.facing
-local c=b.horde:strike(self,e.near,e.far,h,e.damage,false,b)
+local b=world.horde:strike(self,d.near,d.far,g,d.damage,false,world)
 self.facing=-self.facing
-if c>0 then
-b:effect("punch")
+if b>0 then
+world:effect("punch")
 end
 end
-if self.timer>=e.ticks then
+if self.timer>=d.ticks then
 self.state="stand"
 end
 end
 
-function a:tickHold(b,c)
+function a:tickHold(input,world)
 self.timer=self.timer+1
 if not self.held or self.held.state~="held"then
 self.held=nil
 self.state="stand"
 return
 end
-if(b and b.pressed.a)or self.timer>=B then
+if(input and input.pressed.a)or self.timer>=B then
 self.state="throw"
 self.timer=0
 end
 end
 
-function a:tickThrow(b)
+function a:tickThrow(world)
 self.timer=self.timer+1
 if self.timer==D and self.held then
-b.horde:throw(self.held,self.facing,b)
+world.horde:throw(self.held,self.facing,world)
 self.held=nil
-b:effect("throw")
+world:effect("throw")
 end
 if self.timer>=C then
 self.state="stand"
 end
 end
 
-function a:tickPickup(b)
+function a:tickPickup(world)
 self.timer=self.timer+1
 if self.timer==F then
-local c=b:takeItem(self)
-if c then
-local k=a.FOOD[c.kind]
-if k then
-self.hp=math.min(a.MAX_HP,self.hp+k)
-b:effect("eat")
+local b=world:takeItem(self)
+if b then
+local n=a.FOOD[b.kind]
+if n then
+self.hp=math.min(a.MAX_HP,self.hp+n)
+world:effect("eat")
 else
 if self.weapon then
-b:dropWeapon(self.weapon,self.durability,self.x,self.z)
+world:dropWeapon(self.weapon,self.durability,self.x,self.z)
 end
-self.weapon=c.kind
-self.durability=c.durability
-b:effect("pickup")
+self.weapon=b.kind
+self.durability=b.durability
+world:effect("pickup")
 end
 end
 end
@@ -267,7 +267,7 @@ self.state="stand"
 end
 end
 
-function a:tickStunned(b)
+function a:tickStunned(world)
 self.timer=self.timer-1
 if self.timer>0 then
 return
@@ -276,12 +276,12 @@ if self.state=="hurt"then
 self.state="stand"
 elseif self.state=="down"then
 self.state="rise"
-self.timer=x
+self.timer=v
 elseif self.state=="rise"then
 self.state="stand"
-self.guard=y
+self.guard=w
 elseif self.state=="dead"then
-b:lifeLost()
+world:lifeLost()
 end
 end
 
@@ -292,36 +292,36 @@ self.held=nil
 end
 end
 
-function a:loseGrip(b)
+function a:loseGrip(world)
 self:releaseHeld()
 if self.weapon then
-b:dropWeapon(self.weapon,self.durability,self.x,self.z)
+world:dropWeapon(self.weapon,self.durability,self.x,self.z)
 self.weapon=nil
 end
 end
 
-function a:hurt(c,k,p,b)
+function a:hurt(damage,heavy,fromX,world)
 if not self:vulnerable()then
 return false
 end
-self.hp=math.max(0,self.hp-c)
-self.x=self.x+d.sign(self.x-p)*A
+self.hp=math.max(0,self.hp-damage)
+self.x=self.x+c.sign(self.x-fromX)*A
 if self.hp==0 then
-self:loseGrip(b)
+self:loseGrip(world)
 self.state="dead"
-self.timer=n
-b:effect("down")
-elseif k then
-self:loseGrip(b)
+self.timer=l
+world:effect("down")
+elseif heavy then
+self:loseGrip(world)
 self.state="down"
-self.timer=m
-b:effect("down")
+self.timer=k
+world:effect("down")
 else
 self:releaseHeld()
 self.state="hurt"
-self.timer=v
-self.guard=w
-b:effect("hurt")
+self.timer=t
+self.guard=u
+world:effect("hurt")
 end
 return true
 end
@@ -330,44 +330,44 @@ function a:respawn()
 self.hp=a.MAX_HP
 self.state="stand"
 self.timer=0
-self.guard=z
+self.guard=y
 end
 
-function a:walkTo(b,c)
+function a:walkTo(x,z)
 self.clock=self.clock+1
 self.guard=0
 self.held=nil
-if math.abs(self.x-b)<f and math.abs(self.z-c)<g then
+if math.abs(self.x-x)<e and math.abs(self.z-z)<f then
 self.state="stand"
 self.facing=1
 return
 end
-if math.abs(self.x-b)>=f then
-self.facing=d.sign(b-self.x)
+if math.abs(self.x-x)>=e then
+self.facing=c.sign(x-self.x)
 end
 self.state="walk"
-self.x=d.approach(self.x,b,f)
-self.z=d.approach(self.z,c,g)
+self.x=c.approach(self.x,x,e)
+self.z=c.approach(self.z,z,f)
 end
 
 function a:frame()
 local b=self.state
 if b=="walk"then
-return t[math.floor(self.clock/r)%4+1]
+return r[math.floor(self.clock/p)%4+1]
 elseif b=="attack"then
-return j[self.combo].frame
+return i[self.combo].frame
 elseif b=="swing"then
-return self.timer<i.raise and"swing1"or"swing2"
+return self.timer<h.raise and"swing1"or"swing2"
 elseif b=="elbow"or b=="hold"or b=="throw"or b=="pickup"or b=="hurt"then
 return b
 elseif b=="down"then
-return self.timer>m-o and"fall"or"down"
+return self.timer>k-m and"fall"or"down"
 elseif b=="dead"then
-return self.timer>n-o and"fall"or"down"
+return self.timer>l-m and"fall"or"down"
 elseif b=="rise"then
 return"pickup"
 end
-return u[math.floor(self.clock/s)%2+1]
+return s[math.floor(self.clock/q)%2+1]
 end
 
 function a:blinking()

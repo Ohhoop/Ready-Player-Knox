@@ -3,281 +3,281 @@ require"SpiffBoy/Framework/Cartridges"
 require"SpiffBoy/Core/SaveData"
 
 SpiffBoy.Handheld=SpiffBoy.Handheld or{}
-local a=SpiffBoy.Handheld
+local c=SpiffBoy.Handheld
 
-a.BATTERY_PER_MINUTE=0.01
-a.ACTION_TIME=60
-a.CABLE_REACH=2
-a.CARTRIDGE_INSIDE_WEIGHT=0.03
-a.CABLE_INSIDE_WEIGHT=0.03
-a.HEADPHONES_INSIDE_SHARE=0.7
-a.HEADPHONES={
+c.BATTERY_PER_MINUTE=0.01
+c.ACTION_TIME=60
+c.CABLE_REACH=2
+c.CARTRIDGE_INSIDE_WEIGHT=0.03
+c.CABLE_INSIDE_WEIGHT=0.03
+c.HEADPHONES_INSIDE_SHARE=0.7
+c.HEADPHONES={
 ["Base.Headphones"]={worn="SpiffBoy.HeadphonesWorn",kind="headphones"},
 ["Base.Earbuds"]={worn="SpiffBoy.EarbudsWorn",kind="earbuds"},
 }
 
-local d=SpiffBoy.MOD_DATA_KEY
-local k=0.0001
+local e=SpiffBoy.MOD_DATA_KEY
+local j=0.0001
 
-function a.data(c)
-local b=c:getModData()
-if b[d]==nil then
-b[d]={}
+function c.data(item)
+local a=item:getModData()
+if a[e]==nil then
+a[e]={}
 end
-return b[d]
-end
-
-local function c(f,g,h)
-local b=f:getModData()[d]
-local e=b and b[g]
-if type(e)~=h then
-return nil
-end
-return e
+return a[e]
 end
 
-function a.isConsole(b)
-return b~=nil and b:getFullType()==SpiffBoy.CONSOLE_ITEM
-end
-
-function a.isBattery(b)
-return b~=nil and b:getFullType()==SpiffBoy.BATTERY_ITEM
-end
-
-function a.getCartridge(e)
-local b=c(e,"cartridge","table")
-if not b or type(b.type)~="string"then
+local function d(console,field,kind)
+local a=console:getModData()[e]
+local b=a and a[field]
+if type(b)~=kind then
 return nil
 end
 return b
 end
 
-function a.setCartridge(b,e)
-a.data(b).cartridge=e
-a.refreshWeight(b)
+function c.isConsole(item)
+return item~=nil and item:getFullType()==SpiffBoy.CONSOLE_ITEM
 end
 
-function a.getBattery(b)
-return c(b,"battery","number")
+function c.isBattery(item)
+return item~=nil and item:getFullType()==SpiffBoy.BATTERY_ITEM
 end
 
-function a.setBattery(b,e)
-a.data(b).battery=e
-end
-
-function a.isHeadphones(b)
-return b~=nil and a.HEADPHONES[b:getFullType()]~=nil
-end
-
-function a.getHeadphones(e)
-local b=c(e,"headphones","string")
-if not b or not a.HEADPHONES[b]then
+function c.getCartridge(console)
+local a=d(console,"cartridge","table")
+if not a or type(a.type)~="string"then
 return nil
 end
-return b
+return a
 end
 
-function a.getHeadphonesName(b)
-return c(b,"headphonesName","string")
+function c.setCartridge(console,record)
+c.data(console).cartridge=record
+c.refreshWeight(console)
 end
 
-function a.setHeadphones(b,e,g)
-local f=a.data(b)
-f.headphones=e
-f.headphonesName=e and g or nil
-a.refreshWeight(b)
+function c.getBattery(console)
+return d(console,"battery","number")
 end
 
-function a.isCable(b)
-return b~=nil and b:getFullType()==SpiffBoy.CABLE_ITEM
+function c.setBattery(console,value)
+c.data(console).battery=value
 end
 
-function a.hasCable(b)
-return c(b,"cable","boolean")==true
+function c.isHeadphones(item)
+return item~=nil and c.HEADPHONES[item:getFullType()]~=nil
 end
 
-function a.setCable(b,f)
-local e=a.data(b)
-if f then
-e.cable=true
+function c.getHeadphones(console)
+local a=d(console,"headphones","string")
+if not a or not c.HEADPHONES[a]then
+return nil
+end
+return a
+end
+
+function c.getHeadphonesName(console)
+return d(console,"headphonesName","string")
+end
+
+function c.setHeadphones(console,itemType,customName)
+local a=c.data(console)
+a.headphones=itemType
+a.headphonesName=itemType and customName or nil
+c.refreshWeight(console)
+end
+
+function c.isCable(item)
+return item~=nil and item:getFullType()==SpiffBoy.CABLE_ITEM
+end
+
+function c.hasCable(console)
+return d(console,"cable","boolean")==true
+end
+
+function c.setCable(console,plugged)
+local a=c.data(console)
+if plugged then
+a.cable=true
 else
-e.cable=nil
+a.cable=nil
 end
-a.refreshWeight(b)
-end
-
-local function g(b)
-return getScriptManager():FindItem(b):getActualWeight()
+c.refreshWeight(console)
 end
 
-function a.weightOf(e)
-local b=g(SpiffBoy.CONSOLE_ITEM)
-if a.getCartridge(e)then
-b=b+a.CARTRIDGE_INSIDE_WEIGHT
-end
-if a.hasCable(e)then
-b=b+a.CABLE_INSIDE_WEIGHT
-end
-local f=a.getHeadphones(e)
-if f then
-b=b+g(f)*a.HEADPHONES_INSIDE_SHARE
-end
-return b
+local function g(fullType)
+return getScriptManager():FindItem(fullType):getActualWeight()
 end
 
-function a.refreshWeight(b)
-local e=a.weightOf(b)
-if b:isCustomWeight()and math.abs(b:getActualWeight()-e)<k then
+function c.weightOf(console)
+local a=g(SpiffBoy.CONSOLE_ITEM)
+if c.getCartridge(console)then
+a=a+c.CARTRIDGE_INSIDE_WEIGHT
+end
+if c.hasCable(console)then
+a=a+c.CABLE_INSIDE_WEIGHT
+end
+local b=c.getHeadphones(console)
+if b then
+a=a+g(b)*c.HEADPHONES_INSIDE_SHARE
+end
+return a
+end
+
+function c.refreshWeight(console)
+local a=c.weightOf(console)
+if console:isCustomWeight()and math.abs(console:getActualWeight()-a)<j then
 return
 end
-b:setActualWeight(e)
-b:setCustomWeight(true)
+console:setActualWeight(a)
+console:setCustomWeight(true)
 end
 
-function a.newItem(b)
-local e=instanceItem(b)
-if not e then
-SpiffBoy.log("cannot recreate "..tostring(b))
+function c.newItem(itemType)
+local a=instanceItem(itemType)
+if not a then
+SpiffBoy.log("cannot recreate "..tostring(itemType))
 end
-return e
+return a
 end
 
-function a.cartridgeItem(b)
-if not getScriptManager():FindItem(b.type)then
-SpiffBoy.log("cannot recreate the cartridge "..b.type..": no loaded mod defines that item")
+function c.cartridgeItem(record)
+if not getScriptManager():FindItem(record.type)then
+SpiffBoy.log("cannot recreate the cartridge "..record.type..": no loaded mod defines that item")
 return nil
 end
-local e=a.newItem(b.type)
-if e then
-a.setCartridgeSave(e,a.recordSave(b))
+local a=c.newItem(record.type)
+if a then
+c.setCartridgeSave(a,c.recordSave(record))
 end
-return e
+return a
 end
 
-function a.batteryItem(e)
-local b=a.newItem(SpiffBoy.BATTERY_ITEM)
+function c.batteryItem(charge)
+local a=c.newItem(SpiffBoy.BATTERY_ITEM)
+if a then
+a:setUsedDelta(SpiffBoy.clamp(charge,0,1))
+end
+return a
+end
+
+function c.headphonesItem(itemType,customName)
+local a=c.newItem(itemType)
+if a and customName then
+a:setName(customName)
+a:setCustomName(true)
+end
+return a
+end
+
+local function f(parts,item)
+if item then
+parts[#parts+1]=item
+end
+end
+
+function c.partsInside(console)
+local a={}
+local b=c.getCartridge(console)
 if b then
-b:setUsedDelta(SpiffBoy.clamp(e,0,1))
+f(a,c.cartridgeItem(b))
 end
+local h=c.getBattery(console)
+if h~=nil then
+f(a,c.batteryItem(h))
+end
+local i=c.getHeadphones(console)
+if i then
+f(a,c.headphonesItem(i,c.getHeadphonesName(console)))
+end
+if c.hasCable(console)then
+f(a,c.newItem(SpiffBoy.CABLE_ITEM))
+end
+return a
+end
+
+function c.consoleWithCable(character)
+local a=character:getInventory():getAllTypeRecurse(SpiffBoy.CONSOLE_ITEM)
+for h=0,a:size()-1 do
+local b=a:get(h)
+if c.hasCable(b)then
 return b
-end
-
-function a.headphonesItem(f,e)
-local b=a.newItem(f)
-if b and e then
-b:setName(e)
-b:setCustomName(true)
-end
-return b
-end
-
-local function f(b,e)
-if e then
-b[#b+1]=e
-end
-end
-
-function a.partsInside(b)
-local e={}
-local h=a.getCartridge(b)
-if h then
-f(e,a.cartridgeItem(h))
-end
-local i=a.getBattery(b)
-if i~=nil then
-f(e,a.batteryItem(i))
-end
-local j=a.getHeadphones(b)
-if j then
-f(e,a.headphonesItem(j,a.getHeadphonesName(b)))
-end
-if a.hasCable(b)then
-f(e,a.newItem(SpiffBoy.CABLE_ITEM))
-end
-return e
-end
-
-function a.consoleWithCable(h)
-local b=h:getInventory():getAllTypeRecurse(SpiffBoy.CONSOLE_ITEM)
-for i=0,b:size()-1 do
-local e=b:get(i)
-if a.hasCable(e)then
-return e
 end
 end
 return nil
 end
 
-function a.consoleWithFreePort(h)
-local b=h:getInventory():getAllTypeRecurse(SpiffBoy.CONSOLE_ITEM)
-for i=0,b:size()-1 do
-local e=b:get(i)
-if not a.hasCable(e)then
-return e
+function c.consoleWithFreePort(character)
+local a=character:getInventory():getAllTypeRecurse(SpiffBoy.CONSOLE_ITEM)
+for h=0,a:size()-1 do
+local b=a:get(h)
+if not c.hasCable(b)then
+return b
 end
 end
 return nil
 end
 
-function a.withinCableReach(b,e)
-if math.floor(b:getZ())~=math.floor(e:getZ())then
+function c.withinCableReach(a,b)
+if math.floor(a:getZ())~=math.floor(b:getZ())then
 return false
 end
-local h=math.abs(b:getX()-e:getX())
-local i=math.abs(b:getY()-e:getY())
-return math.max(h,i)<=a.CABLE_REACH
+local h=math.abs(a:getX()-b:getX())
+local i=math.abs(a:getY()-b:getY())
+return math.max(h,i)<=c.CABLE_REACH
 end
 
-function a.characterName(b)
+function c.characterName(character)
 if isClient()or isServer()then
-return b:getUsername()
+return character:getUsername()
 end
-return b:getDescriptor():getForename()
-end
-
-function a.getVolume(b)
-return c(b,"volume","number")
+return character:getDescriptor():getForename()
 end
 
-function a.setVolume(b,e)
-a.data(b).volume=e
+function c.getVolume(console)
+return d(console,"volume","number")
 end
 
-function a.applySaved(b,e,h,i)
-if i~=nil then
-a.setVolume(b,SpiffBoy.clamp(i,0,1))
+function c.setVolume(console,value)
+c.data(console).volume=value
 end
-if e~=nil then
-local j=a.getCartridge(b)
-if j then
-a.setRecordSave(j,e)
+
+function c.applySaved(console,save,battery,volume)
+if volume~=nil then
+c.setVolume(console,SpiffBoy.clamp(volume,0,1))
+end
+if save~=nil then
+local a=c.getCartridge(console)
+if a then
+c.setRecordSave(a,save)
 end
 end
-if h~=nil and a.getBattery(b)~=nil then
-a.setBattery(b,SpiffBoy.clamp(h,0,1))
+if battery~=nil and c.getBattery(console)~=nil then
+c.setBattery(console,SpiffBoy.clamp(battery,0,1))
 end
 end
 
-function a.cartridgeSave(b)
-return SpiffBoy.SaveData.fromStore(b:getModData()[d])
+function c.cartridgeSave(cartridge)
+return SpiffBoy.SaveData.fromStore(cartridge:getModData()[e])
 end
 
-function a.setCartridgeSave(b,e)
-SpiffBoy.SaveData.toStore(a.data(b),e)
+function c.setCartridgeSave(cartridge,save)
+SpiffBoy.SaveData.toStore(c.data(cartridge),save)
 end
 
-function a.recordSave(b)
-return SpiffBoy.SaveData.fromStore(b)
+function c.recordSave(record)
+return SpiffBoy.SaveData.fromStore(record)
 end
 
-function a.setRecordSave(b,e)
-SpiffBoy.SaveData.toStore(b,e)
+function c.setRecordSave(record,save)
+SpiffBoy.SaveData.toStore(record,save)
 end
 
-function a.newRecord(b,e)
-return{type=b,save=e}
+function c.newRecord(itemType,save)
+return{type=itemType,save=save}
 end
 
-function a.recordFromCartridge(b)
-return a.newRecord(b:getFullType(),a.cartridgeSave(b))
+function c.recordFromCartridge(cartridge)
+return c.newRecord(cartridge:getFullType(),c.cartridgeSave(cartridge))
 end

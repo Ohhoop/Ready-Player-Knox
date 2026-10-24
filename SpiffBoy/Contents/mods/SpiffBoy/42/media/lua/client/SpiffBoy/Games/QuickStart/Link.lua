@@ -23,9 +23,9 @@ a.EXTRA_DELAY=3
 a.PINGS=4
 a.TICK_MODULUS=65536
 
-function a.new(c)
+function a.new(port)
 local b=setmetatable({},a)
-b.port=c
+b.port=port
 b.local_={}
 b.remote={}
 b.sums={}
@@ -49,43 +49,43 @@ function a:leads()
 return self:seat()==1
 end
 
-local function f(b)
-b=b%a.TICK_MODULUS
-return string.char(math.floor(b/256),b%256)
+local function f(value)
+value=value%a.TICK_MODULUS
+return string.char(math.floor(value/256),value%256)
 end
 
-local function g(b,c)
-return string.byte(b,c)*256+string.byte(b,c+1)
+local function g(message,position)
+return string.byte(message,position)*256+string.byte(message,position+1)
 end
 
-function a:send(b)
-self.port:send(b)
+function a:send(message)
+self.port:send(message)
 end
 
 function a:hello()
 self:send(a.KIND_HELLO)
 end
 
-function a:ping(b)
-self.pingSent=b
+function a:ping(tick)
+self.pingSent=tick
 self.pings=self.pings+1
-self:send(a.KIND_PING..f(b))
+self:send(a.KIND_PING..f(tick))
 end
 
 function a:needsPing()
 return self.pings<a.PINGS and self.pingSent==nil
 end
 
-function a:sendSetup(b,c,d)
-self:send(a.KIND_SETUP..string.char(b,c,d))
+function a:sendSetup(mode,cc,course)
+self:send(a.KIND_SETUP..string.char(mode,cc,course))
 end
 
-function a:sendChoice(b)
-self:send(a.KIND_CHOICE..string.char(b))
+function a:sendChoice(index)
+self:send(a.KIND_CHOICE..string.char(index))
 end
 
-function a:sendNext(b)
-self:send(a.KIND_NEXT..string.char(b))
+function a:sendNext(choice)
+self:send(a.KIND_NEXT..string.char(choice))
 end
 
 function a:nextMatch()
@@ -93,24 +93,24 @@ self.matchId=(self.matchId+1)%256
 self:reset()
 end
 
-function a:sendStart(d,e)
-local c=d
+function a:sendStart(seed,delay)
+local c=seed
 local b={}
-for h=4,1,-1 do
-b[h]=c%256
+for d=4,1,-1 do
+b[d]=c%256
 c=math.floor(c/256)
 end
-self:send(a.KIND_START..string.char(self.matchId,b[1],b[2],b[3],b[4],e))
+self:send(a.KIND_START..string.char(self.matchId,b[1],b[2],b[3],b[4],delay))
 end
 
-function a:sendInput(b,c)
-self.local_[b]=c
-self:send(a.KIND_INPUT..string.char(self.matchId)..f(b)..string.char(c))
+function a:sendInput(tick,bits)
+self.local_[tick]=bits
+self:send(a.KIND_INPUT..string.char(self.matchId)..f(tick)..string.char(bits))
 end
 
-function a:sendSum(b,c)
-self.sums[b]=c
-self:send(a.KIND_SUM..string.char(self.matchId)..f(b)..f(c))
+function a:sendSum(tick,sum)
+self.sums[tick]=sum
+self:send(a.KIND_SUM..string.char(self.matchId)..f(tick)..f(sum))
 end
 
 function a:reset()
@@ -134,23 +134,23 @@ local b=math.ceil(self.roundTrip/2)
 return SpiffBoy.clamp(b+a.EXTRA_DELAY,a.MIN_DELAY,a.MAX_DELAY)
 end
 
-function a:remoteInput(b)
-return self.remote[b%a.TICK_MODULUS]
+function a:remoteInput(tick)
+return self.remote[tick%a.TICK_MODULUS]
 end
 
-function a:localInput(b)
-return self.local_[b]
+function a:localInput(tick)
+return self.local_[tick]
 end
 
-local function j(self,c,d)
-local b=self.sums[c]
-if b and b~=d then
+local function j(self,tick,sum)
+local b=self.sums[tick]
+if b and b~=sum then
 self.mismatches=self.mismatches+1
-SpiffBoy.log("QuickStart: the two consoles disagree at tick "..c.." ("..b.." against "..d..")")
+SpiffBoy.log("QuickStart: the two consoles disagree at tick "..tick.." ("..b.." against "..sum..")")
 end
 end
 
-function a:poll(k)
+function a:poll(tick)
 local d={}
 while true do
 local b=self.port:receive()
@@ -171,7 +171,7 @@ elseif c==a.KIND_PING and e==3 then
 self:send(a.KIND_PONG..string.sub(b,2,3))
 elseif c==a.KIND_PONG and e==3 then
 if self.pingSent and g(b,2)==self.pingSent%a.TICK_MODULUS then
-self.roundTrip=math.max(self.roundTrip or 0,k-self.pingSent)
+self.roundTrip=math.max(self.roundTrip or 0,tick-self.pingSent)
 self.pingSent=nil
 end
 elseif c==a.KIND_SETUP and e==4 then
@@ -182,8 +182,8 @@ elseif c==a.KIND_NEXT and e==2 then
 d[#d+1]={kind=c,choice=string.byte(b,2)}
 elseif c==a.KIND_START and e==7 then
 local h=0
-for l=3,6 do
-h=h*256+string.byte(b,l)
+for k=3,6 do
+h=h*256+string.byte(b,k)
 end
 self.matchId=string.byte(b,2)
 self:reset()

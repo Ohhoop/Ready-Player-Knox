@@ -9,45 +9,45 @@ local t="0"
 
 local u=ISToolTipInv.render
 
-local function v(f,d)
-local b=f:beginLayout()
+local function v(tooltip,charge)
+local b=tooltip:beginLayout()
 b:setMinLabelWidth(r)
 b:setMinValueWidth(s)
-local e=b:addItem()
-e:setLabel(getText("IGUI_invpanel_Remaining")..": ",a.r,a.g,a.b,1)
+local d=b:addItem()
+d:setLabel(getText("IGUI_invpanel_Remaining")..": ",a.r,a.g,a.b,1)
 local c=ColorInfo.new()
-getCore():getBadHighlitedColor():interp(getCore():getGoodHighlitedColor(),d,c)
-e:setProgress(d,c:getR(),c:getG(),c:getB(),1)
+getCore():getBadHighlitedColor():interp(getCore():getGoodHighlitedColor(),charge,c)
+d:setProgress(charge,c:getR(),c:getG(),c:getB(),1)
 return b
 end
 
-local function w(b)
-local c=SpiffBoy.Handheld
-local d=c.getHeadphones(b)
-if not d then
+local function w(console)
+local b=SpiffBoy.Handheld
+local c=b.getHeadphones(console)
+if not c then
 return nil
 end
-return c.getHeadphonesName(b)or getItemNameFromFullType(d)
+return b.getHeadphonesName(console)or getItemNameFromFullType(c)
 end
 
-local function x(d,e,c,f)
-local b=v(d,e)
-if c then
-local g=b:addItem()
-g:setLabel(getText("UI_SpiffBoy_HeadphonesPlugged",c),a.r,a.g,a.b,1)
+local function x(tooltip,charge,headphones,cable)
+local b=v(tooltip,charge)
+if headphones then
+local c=b:addItem()
+c:setLabel(getText("UI_SpiffBoy_HeadphonesPlugged",headphones),a.r,a.g,a.b,1)
 end
-if f then
-local g=b:addItem()
-g:setLabel(getText("UI_SpiffBoy_CablePlugged"),a.r,a.g,a.b,1)
+if cable then
+local c=b:addItem()
+c:setLabel(getText("UI_SpiffBoy_CablePlugged"),a.r,a.g,a.b,1)
 end
 return b
 end
 
-local function i(b,d,e,f,g,h)
-local c=x(b,d,e,f)
-local j=c:render(g,h,b)
-b:endLayout(c)
-return j
+local function i(tooltip,charge,headphones,cable,left,top)
+local b=x(tooltip,charge,headphones,cable)
+local c=b:render(left,top,tooltip)
+tooltip:endLayout(b)
+return c
 end
 
 function ISToolTipInv:render()

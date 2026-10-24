@@ -37,21 +37,21 @@ local f={
 {name="Outfit_Waiter_Spiffo",weight=0.25},
 }
 
-local function g(c,d,h)
-local a=ProceduralDistributions.list[c]
+local function g(listName,fullType,weight)
+local a=ProceduralDistributions.list[listName]
 if not a or type(a.items)~="table"then
 return false
 end
-table.insert(a.items,d)
-table.insert(a.items,h)
+table.insert(a.items,fullType)
+table.insert(a.items,weight)
 return true
 end
 
-local function h(a)
-if a.loot.lists==nil then
+local function h(definition)
+if definition.loot.lists==nil then
 return b
 end
-return a.loot.lists
+return definition.loot.lists
 end
 
 local function m()
@@ -73,8 +73,8 @@ end
 SpiffBoy.trace("link cable added to "..tostring(a).." loot lists")
 end
 
-local function i(a,c)
-return a.weight*c.loot.weight/SpiffBoy.Cartridges.DEFAULT_LOOT_WEIGHT
+local function i(outfit,definition)
+return outfit.weight*definition.loot.weight/SpiffBoy.Cartridges.DEFAULT_LOOT_WEIGHT
 end
 
 local function n()
@@ -95,10 +95,10 @@ end
 end
 end
 
-local function a(c,j,k)
-for d=1,#c-1,2 do
-if c[d]==j then
-c[d+1]=k
+local function a(entries,fullType,weight)
+for c=1,#entries-1,2 do
+if entries[c]==fullType then
+entries[c+1]=weight
 end
 end
 end

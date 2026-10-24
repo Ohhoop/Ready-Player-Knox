@@ -30,54 +30,54 @@ a.Scripts=a.Scripts or{}
 
 a.text=SpiffBoy.GameTexts.of("Lanterways")
 
-function a.wrap(c,b)
-return(c-1+b)%b+1
+function a.wrap(value,count)
+return(value-1+count)%count+1
 end
 
-function a.shade(c)
-local b=a.SHADES[c]
+function a.shade(index)
+local b=a.SHADES[index]
 return b.r,b.g,b.b
 end
 
-function a.verticalStep(b)
-if b.up then
+function a.verticalStep(pressed)
+if pressed.up then
 return-1
-elseif b.down then
+elseif pressed.down then
 return 1
 end
 return 0
 end
 
-function a.horizontalStep(b)
-if b.left then
+function a.horizontalStep(pressed)
+if pressed.left then
 return-1
-elseif b.right then
+elseif pressed.right then
 return 1
 end
 return 0
 end
 
-function a.filter(b,e)
-local c={}
-for d=1,#b do
-if e(b[d])then
-c[#c+1]=b[d]
+function a.filter(list,test)
+local b={}
+for c=1,#list do
+if test(list[c])then
+b[#b+1]=list[c]
 end
 end
-return c
+return b
 end
 
-function a.indexOf(b,d)
-for c=1,#b do
-if b[c]==d then
-return c
+function a.indexOf(list,value)
+for b=1,#list do
+if list[b]==value then
+return b
 end
 end
 return nil
 end
 
-function a.trace(b)
+function a.trace(message)
 if SpiffBoy.isDevBuild()then
-SpiffBoy.log("Lanterways: "..b)
+SpiffBoy.log("Lanterways: "..message)
 end
 end

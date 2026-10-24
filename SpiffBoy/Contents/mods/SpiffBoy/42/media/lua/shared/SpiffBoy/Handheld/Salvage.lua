@@ -9,13 +9,13 @@ local b=SpiffBoy.Handheld
 
 SpiffBoyRecipes=SpiffBoyRecipes or{}
 
-function SpiffBoyRecipes.canDismantle(c,d)
+function SpiffBoyRecipes.canDismantle(item,character)
 return SpiffBoy.Sandbox.dismantling()
 end
 
-function a.partsOf(c)
-if b.isConsole(c)then
-return b.partsInside(c)
+function a.partsOf(item)
+if b.isConsole(item)then
+return b.partsInside(item)
 end
 return{}
 end

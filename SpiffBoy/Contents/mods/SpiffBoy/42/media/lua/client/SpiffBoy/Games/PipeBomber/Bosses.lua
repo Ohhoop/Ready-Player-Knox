@@ -2,13 +2,13 @@ require"SpiffBoy/Core/Core"
 require"SpiffBoy/Games/PipeBomber/Zones"
 require"SpiffBoy/Games/PipeBomber/Actors"
 
-local h=SpiffBoy.PipeBomber.Zones.TILE
-local c=SpiffBoy.PipeBomber.Actors
+local e=SpiffBoy.PipeBomber.Zones.TILE
+local b=SpiffBoy.PipeBomber.Actors
 
-local b={}
-SpiffBoy.PipeBomber.Bosses=b
+local a={}
+SpiffBoy.PipeBomber.Bosses=a
 
-b.KINDS={
+a.KINDS={
 inmate={hp=3,speed=0.375,charge=1.75,stun=60,points=2000},
 worker={hp=4,speed=0.375,act="crates",every=300,crates=3,points=2500},
 neighbour={hp=4,speed=0.375,act="spawn",every=360,spawn={"shambler"},cap=4,points=3000},
@@ -18,191 +18,191 @@ farmer={hp=6,speed=0.5,throughCrates=true,windup=30,track=6,points=4500},
 soldier={hp=6,speed=0.5,act="grenade",every=240,points=5000},
 mother={hp=10,speed=0.25,act="spawn",every=300,spawn={"shambler","runner","cop","brute"},cap=5,shootEvery=200,shot="bile",points=20000,big=true},
 }
-b.HIT_TICKS=60
-b.DYING_TICKS=120
-b.SHOT_SPEED=2
-b.SHOT_TOUCH=7
-b.TOUCH=10
-b.FRAMES={right=0,left=2,flash=4,fallen=5}
-b.MOTHER_FRAMES={sway=0,flash=2,fallen=3}
-b.MOTHER_SWAY=20
+a.HIT_TICKS=60
+a.DYING_TICKS=120
+a.SHOT_SPEED=2
+a.SHOT_TOUCH=7
+a.TOUCH=10
+a.FRAMES={right=0,left=2,flash=4,fallen=5}
+a.MOTHER_FRAMES={sway=0,flash=2,fallen=3}
+a.MOTHER_SWAY=20
 
-function b.new(d,g,i,j)
-local a=b.KINDS[d]
-local e,f=(g-1)*h,(i-1)*h
+function a.new(kind,column,row,pace)
+local c=a.KINDS[kind]
+local d,f=(column-1)*e,(row-1)*e
 return{
-kind=d,stats=a,x=e,y=f,tx=e,ty=f,speed=a.speed*j,hp=a.hp,
+kind=kind,stats=c,x=d,y=f,tx=d,ty=f,speed=c.speed*pace,hp=c.hp,
 flash=0,facing="left",walkTicks=0,state="walk",timer=0,dir=nil,
-cooldown=a.every,shootCooldown=a.shootEvery,spawnIndex=0,
+cooldown=c.every,shootCooldown=c.shootEvery,spawnIndex=0,
 }
 end
 
-function b.closed(f,a,d,e)
-if f.stats.throughCrates and e.grid:isCrate(a,d)and not e.grid:isHard(a,d)then
-return e.bombs:at(a,d)~=nil
+function a.closed(boss,column,row,world)
+if boss.stats.throughCrates and world.grid:isCrate(column,row)and not world.grid:isHard(column,row)then
+return world.bombs:at(column,row)~=nil
 end
-return e:closedToZombie(a,d)
-end
-
-function b.lineTo(a,d,m)
-local e,f=m:survivorCell()
-if e~=a and f~=d then
-return nil
-end
-if e==a and f==d then
-return nil
-end
-local j=e>a and 1 or(e<a and-1 or 0)
-local k=f>d and 1 or(f<d and-1 or 0)
-local g,i=a+j,d+k
-while g~=e or i~=f do
-if m:closedToZombie(g,i)then
-return nil
-end
-g,i=g+j,i+k
-end
-for n,l in ipairs(c.DIRECTIONS)do
-if l.dx==j and l.dy==k then
-return l
-end
-end
-return nil
+return world:closedToZombie(column,row)
 end
 
-function b.hit(a)
-if a.state=="dying"or a.flash>0 then
+function a.lineTo(column,row,world)
+local c,d=world:survivorCell()
+if c~=column and d~=row then
+return nil
+end
+if c==column and d==row then
+return nil
+end
+local h=c>column and 1 or(c<column and-1 or 0)
+local i=d>row and 1 or(d<row and-1 or 0)
+local f,g=column+h,row+i
+while f~=c or g~=d do
+if world:closedToZombie(f,g)then
+return nil
+end
+f,g=f+h,g+i
+end
+for k,j in ipairs(b.DIRECTIONS)do
+if j.dx==h and j.dy==i then
+return j
+end
+end
+return nil
+end
+
+function a.hit(boss)
+if boss.state=="dying"or boss.flash>0 then
 return false
 end
-a.hp=a.hp-1
-a.flash=b.HIT_TICKS
-if a.hp>0 then
+boss.hp=boss.hp-1
+boss.flash=a.HIT_TICKS
+if boss.hp>0 then
 return false
 end
-a.state="dying"
-a.timer=b.DYING_TICKS
+boss.state="dying"
+boss.timer=a.DYING_TICKS
 return true
 end
 
-local function m(a,d,e)
-e:addShot(a.stats.shot,a.x+h/2,a.y+h/2,d.dx,d.dy)
+local function i(boss,dir,world)
+world:addShot(boss.stats.shot,boss.x+e/2,boss.y+e/2,dir.dx,dir.dy)
 end
 
-local function n(a,f,g,e)
-local d=a.stats
-a.cooldown=a.cooldown-1
-if a.cooldown>0 then
+local function j(boss,column,row,world)
+local c=boss.stats
+boss.cooldown=boss.cooldown-1
+if boss.cooldown>0 then
 return
 end
-a.cooldown=d.every
-if d.act=="crates"then
-e:layCrates(f,g,d.crates)
-elseif d.act=="spawn"then
-a.spawnIndex=a.spawnIndex%#d.spawn+1
-e:callZombie(d.spawn[a.spawnIndex],f,g,d.cap)
+boss.cooldown=c.every
+if c.act=="crates"then
+world:layCrates(column,row,c.crates)
+elseif c.act=="spawn"then
+boss.spawnIndex=boss.spawnIndex%#c.spawn+1
+world:callZombie(c.spawn[boss.spawnIndex],column,row,c.cap)
 else
-e:throwGrenade()
+world:throwGrenade()
 end
 end
 
-local function o(a,f,g,e)
-local d=a.stats
-local i=b.lineTo(f,g,e)
-if d.charge and i then
-a.state="charge"
-c.aim(a,i)
+local function k(boss,column,row,world)
+local d=boss.stats
+local f=a.lineTo(column,row,world)
+if d.charge and f then
+boss.state="charge"
+b.aim(boss,f)
 return
 end
-if d.shot and i and a.shootCooldown<=0 then
-m(a,i,e)
-a.shootCooldown=d.shootEvery
+if d.shot and f and boss.shootCooldown<=0 then
+i(boss,f,world)
+boss.shootCooldown=d.shootEvery
 end
-local j,k=e:survivorCell()
-if d.windup and c.distanceTo(f,g,j,k)==1 then
-a.state="windup"
-a.timer=d.windup
-a.strikeColumn,a.strikeRow=j,k
-c.aim(a,nil)
+local g,h=world:survivorCell()
+if d.windup and b.distanceTo(column,row,g,h)==1 then
+boss.state="windup"
+boss.timer=d.windup
+boss.strikeColumn,boss.strikeRow=g,h
+b.aim(boss,nil)
 return
 end
-local l=c.openDirections(f,g,function(l,p)return b.closed(a,l,p,e)end)
-if#l==0 then
-c.aim(a,nil)
+local c=b.openDirections(column,row,function(c,r)return a.closed(boss,c,r,world)end)
+if#c==0 then
+b.aim(boss,nil)
 return
 end
-if d.track and c.distanceTo(f,g,j,k)<=d.track then
-c.aim(a,c.towards(l,f,g,j,k,e.random))
+if d.track and b.distanceTo(column,row,g,h)<=d.track then
+b.aim(boss,b.towards(c,column,row,g,h,world.random))
 return
 end
-c.aim(a,c.wander(a,l,0.3,e.random))
+b.aim(boss,b.wander(boss,c,0.3,world.random))
 end
 
-local function g(a,d)
-if a.x==a.tx and a.y==a.ty then
-local e,f=c.cellOf(a)
-if d:closedToZombie(e+a.dir.dx,f+a.dir.dy)then
-a.state="stunned"
-a.timer=a.stats.stun
-d:bossThud()
+local function f(boss,world)
+if boss.x==boss.tx and boss.y==boss.ty then
+local c,d=b.cellOf(boss)
+if world:closedToZombie(c+boss.dir.dx,d+boss.dir.dy)then
+boss.state="stunned"
+boss.timer=boss.stats.stun
+world:bossThud()
 return
 end
-c.aim(a,a.dir)
+b.aim(boss,boss.dir)
 end
-c.advance(a,a.stats.charge)
+b.advance(boss,boss.stats.charge)
 end
 
-function b.update(a,d)
-if a.flash>0 then
-a.flash=a.flash-1
+function a.update(boss,world)
+if boss.flash>0 then
+boss.flash=boss.flash-1
 end
-if a.shootCooldown and a.shootCooldown>0 then
-a.shootCooldown=a.shootCooldown-1
+if boss.shootCooldown and boss.shootCooldown>0 then
+boss.shootCooldown=boss.shootCooldown-1
 end
-if a.state=="dying"then
-a.timer=a.timer-1
+if boss.state=="dying"then
+boss.timer=boss.timer-1
 return
 end
-if a.state=="stunned"then
-a.timer=a.timer-1
-if a.timer<=0 then
-a.state="walk"
-end
-return
-end
-if a.state=="windup"then
-a.timer=a.timer-1
-if a.timer<=0 then
-a.state="walk"
-d:strike(a.strikeColumn,a.strikeRow)
+if boss.state=="stunned"then
+boss.timer=boss.timer-1
+if boss.timer<=0 then
+boss.state="walk"
 end
 return
 end
-if a.state=="charge"then
-g(a,d)
+if boss.state=="windup"then
+boss.timer=boss.timer-1
+if boss.timer<=0 then
+boss.state="walk"
+world:strike(boss.strikeColumn,boss.strikeRow)
+end
 return
 end
-local e,f=c.cellOf(a)
-if a.stats.act then
-n(a,e,f,d)
+if boss.state=="charge"then
+f(boss,world)
+return
 end
-if a.x==a.tx and a.y==a.ty then
-o(a,e,f,d)
-if a.state~="walk"then
+local c,d=b.cellOf(boss)
+if boss.stats.act then
+j(boss,c,d,world)
+end
+if boss.x==boss.tx and boss.y==boss.ty then
+k(boss,c,d,world)
+if boss.state~="walk"then
 return
 end
 end
-c.advance(a,a.speed)
+b.advance(boss,boss.speed)
 end
 
-function b.frame(a,f)
-local e=a.stats.big
-local d=e and b.MOTHER_FRAMES or b.FRAMES
-if a.state=="dying"and a.timer<b.DYING_TICKS/2 then
-return d.fallen
-elseif a.flash>0 and math.floor(a.flash/4)%2==0 then
-return d.flash
+function a.frame(boss,clock)
+local d=boss.stats.big
+local c=d and a.MOTHER_FRAMES or a.FRAMES
+if boss.state=="dying"and boss.timer<a.DYING_TICKS/2 then
+return c.fallen
+elseif boss.flash>0 and math.floor(boss.flash/4)%2==0 then
+return c.flash
 end
-if e then
-return d.sway+math.floor(f/b.MOTHER_SWAY)%2
+if d then
+return c.sway+math.floor(clock/a.MOTHER_SWAY)%2
 end
-return d[a.facing]+math.floor(a.walkTicks/c.STEP_TICKS)%2
+return c[boss.facing]+math.floor(boss.walkTicks/b.STEP_TICKS)%2
 end

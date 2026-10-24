@@ -4,7 +4,7 @@ SpiffBoyClock={}
 SpiffBoyClock.__index=SpiffBoyClock
 
 local a=SpiffBoy.TICK_MS
-local d=SpiffBoy.MAX_FRAME_MS
+local c=SpiffBoy.MAX_FRAME_MS
 
 function SpiffBoyClock.new()
 local b=setmetatable({},SpiffBoyClock)
@@ -16,9 +16,9 @@ function SpiffBoyClock:reset()
 self.accumulator=0
 end
 
-function SpiffBoyClock:advance(e,b)
-self.accumulator=math.min(self.accumulator+e*b,d*b)
-local c=math.floor(self.accumulator/a)
-self.accumulator=self.accumulator-c*a
-return c
+function SpiffBoyClock:advance(elapsedMs,rate)
+self.accumulator=math.min(self.accumulator+elapsedMs*rate,c*rate)
+local b=math.floor(self.accumulator/a)
+self.accumulator=self.accumulator-b*a
+return b
 end

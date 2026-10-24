@@ -36,31 +36,31 @@ local p=f.." r "..i.." r "..i.." n64 v9 y2 n64 n64"
 local g="r r "..j.." r r r "..j.." r"
 local h=f.." r "..j.." r "..i.." r "..j.." r"
 
-local function e(c,d)
-return c..table.concat(d," | ")
+local function e(header,bars)
+return header..table.concat(bars," | ")
 end
 
-local function c(d)
-return d.." r "..d.." >"..d.."< r "..d.." >"..d.."< r"
+local function c(root)
+return root.." r "..root.." >"..root.."< r "..root.." >"..root.."< r"
 end
 
-local function l(d)
-return d.." r "..d.." >"..d.."<"
+local function l(root)
+return root.." r "..root.." >"..root.."<"
 end
 
-local function q(d,m,k)
-if m then
-return">"..d..k.."<"
+local function q(fifth,up,length)
+if up then
+return">"..fifth..length.."<"
 end
-return d..k
-end
-
-local function d(k,m,r)
-return k.."4. "..k.." "..q(m,r,"4").." r4"
+return fifth..length
 end
 
-local function k(m,r,s)
-return m.."4 "..q(r,s,"4")
+local function d(root,fifth,up)
+return root.."4. "..root.." "..q(fifth,up,"4").." r4"
+end
+
+local function k(root,fifth,up)
+return root.."4 "..q(fifth,up,"4")
 end
 
 local s={

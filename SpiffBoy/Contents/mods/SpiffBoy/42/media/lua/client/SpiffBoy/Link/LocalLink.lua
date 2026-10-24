@@ -5,174 +5,174 @@ require"SpiffBoy/Link/Links"
 require"SpiffBoy/Link/LinkState"
 
 SpiffBoy.LocalLink=SpiffBoy.LocalLink or{}
-local e=SpiffBoy.LocalLink
+local d=SpiffBoy.LocalLink
 local b=SpiffBoy.Handheld
-local i=SpiffBoy.LinkState
+local g=SpiffBoy.LinkState
 
-local r=1000
-local k=1
-local m=2
+local o=1000
+local i=1
+local j=2
 
 local a={}
-local n=0
+local k=0
 
-local function h(c)
-return SpiffBoyHandheldWindow.forPlayer(c)
-end
-
-local function c(d,f,g)
-HaloTextHelper.addText(d,getText("UI_SpiffBoy_"..f,g),"",HaloTextHelper.getColorRed())
+local function f(playerNum)
+return SpiffBoyHandheldWindow.forPlayer(playerNum)
 end
 
-local function o(d)
-local f=a[d]
-if not f then
-return
-end
-a[d]=nil
-a[f.peer]=nil
-for l,g in ipairs({d,f.peer})do
-i.clear(g)
-local j=h(g)
-if j then
-j.channel:onDisconnected()
-end
-end
+local function c(player,reason,name)
+HaloTextHelper.addText(player,getText("UI_SpiffBoy_"..reason,name),"",HaloTextHelper.getColorRed())
 end
 
-function e.offer(d,f)
-local g,j=d:getPlayerNum(),f:getPlayerNum()
-if a[g]then
-c(d,"CableTaken")
+local function l(playerNum)
+local e=a[playerNum]
+if not e then
 return
 end
-if not b.consoleWithCable(d)then
-c(d,"NoCable")
-return
+a[playerNum]=nil
+a[e.peer]=nil
+for n,h in ipairs({playerNum,e.peer})do
+g.clear(h)
+local m=f(h)
+if m then
+m.channel:onDisconnected()
 end
-if not b.withinCableReach(d,f)then
-c(d,"CableTooFar")
-return
-end
-if a[j]or not b.consoleWithFreePort(f)then
-c(d,"NoLinkableConsole")
-return
-end
-SpiffBoy.LinkMenu.ask(f,d)
-end
-
-function e.decline(f,g)
-local d=getSpecificPlayer(g)
-if d then
-c(d,"CableDeclined",b.characterName(f))
 end
 end
 
-function e.connect(d,l,t,f)
-local j=getSpecificPlayer(f)
-if not j then
+function d.offer(owner,peer)
+local e,h=owner:getPlayerNum(),peer:getPlayerNum()
+if a[e]then
+c(owner,"CableTaken")
 return
 end
-local g=d:getPlayerNum()
-if a[g]or b.hasCable(l)then
-c(d,"PortBusy")
+if not b.consoleWithCable(owner)then
+c(owner,"NoCable")
 return
 end
-if a[f]then
-c(d,"CableTaken")
+if not b.withinCableReach(owner,peer)then
+c(owner,"CableTooFar")
 return
 end
-local p=b.consoleWithCable(j)
-if not p then
-c(d,"NoCable")
+if a[h]or not b.consoleWithFreePort(peer)then
+c(owner,"NoLinkableConsole")
 return
 end
-if not b.withinCableReach(d,j)then
-c(d,"CableTooFar")
-return
+SpiffBoy.LinkMenu.ask(peer,owner)
 end
-a[f]={peer=g,console=p:getID(),seat=k}
-a[g]={peer=f,console=l:getID(),seat=m}
-i.set(f,b.characterName(d),k,nil,g)
-i.set(g,b.characterName(j),m,nil,f)
-for u,s in ipairs({f,g})do
-local q=h(s)
-if q then
-q.channel:onConnected()
-end
-end
-if not h(g)then
-SpiffBoyHandheldWindow.open(d,l)
+
+function d.decline(peer,ownerNum)
+local e=getSpecificPlayer(ownerNum)
+if e then
+c(e,"CableDeclined",b.characterName(peer))
 end
 end
 
-function e.disconnect(g,j)
-local d=g:getPlayerNum()
-local f=a[d]
-if f and f.console==j:getID()then
-o(d)
+function d.connect(guest,console,ownerId,ownerNum)
+local h=getSpecificPlayer(ownerNum)
+if not h then
+return
+end
+local e=guest:getPlayerNum()
+if a[e]or b.hasCable(console)then
+c(guest,"PortBusy")
+return
+end
+if a[ownerNum]then
+c(guest,"CableTaken")
+return
+end
+local m=b.consoleWithCable(h)
+if not m then
+c(guest,"NoCable")
+return
+end
+if not b.withinCableReach(guest,h)then
+c(guest,"CableTooFar")
+return
+end
+a[ownerNum]={peer=e,console=m:getID(),seat=i}
+a[e]={peer=ownerNum,console=console:getID(),seat=j}
+g.set(ownerNum,b.characterName(guest),i,nil,e)
+g.set(e,b.characterName(h),j,nil,ownerNum)
+for q,p in ipairs({ownerNum,e})do
+local n=f(p)
+if n then
+n.channel:onConnected()
+end
+end
+if not f(e)then
+SpiffBoyHandheldWindow.open(guest,console)
 end
 end
 
-function e.sendData(g,j,l)
-local d=a[g:getPlayerNum()]
-local f=d and h(d.peer)
-if f then
-f.channel:onData(j,l)
+function d.disconnect(character,console)
+local e=character:getPlayerNum()
+local h=a[e]
+if h and h.console==console:getID()then
+l(e)
 end
 end
 
-function e.sendState(g,j,l)
-local d=a[g:getPlayerNum()]
-local f=d and h(d.peer)
-if f then
-f.channel:onState(j,l)
+function d.sendData(playerObj,sequence,messages)
+local e=a[playerObj:getPlayerNum()]
+local h=e and f(e.peer)
+if h then
+h.channel:onData(sequence,messages)
 end
 end
 
-local function l(p,f)
-local d=getSpecificPlayer(p)
-local g=getSpecificPlayer(f.peer)
-if not d or not g or d:isDead()or g:isDead()or not b.withinCableReach(d,g)then
+function d.sendState(playerObj,cartridge,on)
+local e=a[playerObj:getPlayerNum()]
+local h=e and f(e.peer)
+if h then
+h.channel:onState(cartridge,on)
+end
+end
+
+local function n(playerNum,link)
+local e=getSpecificPlayer(playerNum)
+local h=getSpecificPlayer(link.peer)
+if not e or not h or e:isDead()or h:isDead()or not b.withinCableReach(e,h)then
 return false
 end
-local j=d:getInventory():getItemWithIDRecursiv(f.console)
-if not j then
+local m=e:getInventory():getItemWithIDRecursiv(link.console)
+if not m then
 return false
 end
-return f.seat~=k or b.hasCable(j)
+return link.seat~=i or b.hasCable(m)
 end
 
-local function j()
-local f=getTimestampMs()
-if f<n then
+local function p()
+local h=getTimestampMs()
+if h<k then
 return
 end
-n=f+r
-local d=nil
-for g,p in pairs(a)do
-if not l(g,p)then
-d=d or{}
-d[#d+1]=g
+k=h+o
+local e=nil
+for m,q in pairs(a)do
+if not n(m,q)then
+e=e or{}
+e[#e+1]=m
 end
 end
-if d then
-for g=1,#d do
-o(d[g])
+if e then
+for m=1,#e do
+l(e[m])
 end
 end
 end
 
-local function d()
-for f in pairs(a)do
-i.clear(f)
+local function e()
+for h in pairs(a)do
+g.clear(h)
 end
 a={}
 end
 
 if not isClient()then
-SpiffBoy.Links.install(e)
+SpiffBoy.Links.install(d)
 end
 
-Events.OnTick.Add(j)
-Events.OnGameStart.Add(d)
+Events.OnTick.Add(p)
+Events.OnGameStart.Add(e)

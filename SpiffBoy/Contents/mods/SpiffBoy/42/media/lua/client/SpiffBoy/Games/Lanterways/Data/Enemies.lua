@@ -1,16 +1,16 @@
 require"SpiffBoy/Games/Lanterways/Base"
 require"SpiffBoy/Games/Lanterways/Data/Characters"
 
-local e=SpiffBoy.Lanterways
+local d=SpiffBoy.Lanterways
 
-local b={}
-e.Enemies=b
+local a={}
+d.Enemies=a
 
-b.SIZES={s={24,24},m={32,32},l={48,44},b={64,56}}
-b.LEVEL_CAP=99
-b.BOSS_GOLD=20
+a.SIZES={s={24,24},m={32,32},l={48,44},b={64,56}}
+a.LEVEL_CAP=99
+a.BOSS_GOLD=20
 
-b.LIST={
+a.LIST={
 mistmite={level=1,size="s",beast=true,acts={{"attack",3}},weak="flame",drop={"misthusk",0.5},rare={"candlestub",0.05}},
 sootcrow={level=2,size="s",beast=true,spd=1.4,def=0.7,acts={{"attack",3},{"peck",2}},weak="sound",drop={"gullfeather",0.4},rare={"clearlens",0.04}},
 fogfin={level=2,size="s",beast=true,hp=1.2,acts={{"attack",3},{"bite",1}},weak="flame",resist="murk",drop={"fogpearl",0.4}},
@@ -64,7 +64,7 @@ rootmother={level=28,size="b",boss=10,acts={{"attack",2},{"crush",2},{"spore",1}
 leviathan={level=30,size="b",boss=12,acts={{"attack",2},{"tidepull",2},{"smother",1},{"stillwave",1}},acts2={{"tidepull",3},{"smother",2},{"bite",1}},weak="sound",resist="murk",parts={{kind="eye",x=55,y=10},{kind="jaw",x=58,y=20}}},
 }
 
-b.ORDER={
+a.ORDER={
 "mistmite","sootcrow","fogfin","wickmoth","rootcrawler","wicklouse","grubswarm","snuffer","gorse",
 "fenhopper","briarhog","driftjelly","gullwraith","tidecrab","shoal","murkmaw",
 "lampwright","sootwraith","vaultrat","cinderimp","vaultwarden",
@@ -75,56 +75,56 @@ b.ORDER={
 "rootmother","leviathan",
 }
 
-local function g(h,a,i)
-local c=SpiffBoy.clamp(a.level+i,1,b.LEVEL_CAP)
-local d=a.boss or 1
-local f=math.floor((4+3*c+0.3*c*c)*(d>1 and b.BOSS_GOLD or 1))
-if a.gold then
-f=a.gold
-elseif a.beast then
-f=0
+local function f(id,entry,bonus)
+local b=SpiffBoy.clamp(entry.level+bonus,1,a.LEVEL_CAP)
+local c=entry.boss or 1
+local e=math.floor((4+3*b+0.3*b*b)*(c>1 and a.BOSS_GOLD or 1))
+if entry.gold then
+e=entry.gold
+elseif entry.beast then
+e=0
 end
 return{
-id=h,
-level=c,
-size=a.size,
-hp=math.floor((12+7*c+0.18*c*c)*(a.hp or 1)*d),
-atk=math.floor((5+2.4*c)*(a.atk or 1)),
-def=math.floor((2+1.5*c)*(a.def or 1)),
-mag=math.floor((2+1.6*c)*(a.mag or 1)),
-res=math.floor((2+1.3*c)*(a.res or 1)),
-spd=math.floor((5+1.2*c)*(a.spd or 1)),
-xp=math.floor(e.Characters.toNext(c)/10*(d>1 and 6 or 1)),
-gold=f,
-acts=a.acts,
-acts2=a.acts2,
-weak=a.weak,
-resist=a.resist,
-drop=a.drop,
-rare=a.rare,
-parts=a.parts,
-boss=d>1,
+id=id,
+level=b,
+size=entry.size,
+hp=math.floor((12+7*b+0.18*b*b)*(entry.hp or 1)*c),
+atk=math.floor((5+2.4*b)*(entry.atk or 1)),
+def=math.floor((2+1.5*b)*(entry.def or 1)),
+mag=math.floor((2+1.6*b)*(entry.mag or 1)),
+res=math.floor((2+1.3*b)*(entry.res or 1)),
+spd=math.floor((5+1.2*b)*(entry.spd or 1)),
+xp=math.floor(d.Characters.toNext(b)/10*(c>1 and 6 or 1)),
+gold=e,
+acts=entry.acts,
+acts2=entry.acts2,
+weak=entry.weak,
+resist=entry.resist,
+drop=entry.drop,
+rare=entry.rare,
+parts=entry.parts,
+boss=c>1,
 }
 end
 
-b.STATS={}
+a.STATS={}
 
-function b.get(c,d)
-local f=b.LIST[c]
-if not f then
+function a.get(id,bonus)
+local c=a.LIST[id]
+if not c then
 return nil
 end
-local a=b.STATS[d]
-if not a then
-a={}
-b.STATS[d]=a
+local b=a.STATS[bonus]
+if not b then
+b={}
+a.STATS[bonus]=b
 end
-if not a[c]then
-a[c]=g(c,f,d)
+if not b[id]then
+b[id]=f(id,c,bonus)
 end
-return a[c]
+return b[id]
 end
 
-function b.indexOf(a)
-return e.indexOf(b.ORDER,a)
+function a.indexOf(id)
+return d.indexOf(a.ORDER,id)
 end

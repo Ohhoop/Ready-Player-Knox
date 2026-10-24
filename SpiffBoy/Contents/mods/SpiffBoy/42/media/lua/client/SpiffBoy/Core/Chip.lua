@@ -40,46 +40,46 @@ a.WAVE_CLOCK=65536
 a.NOISE_CLOCK=524288
 a.MAX_NOISE_SHIFT=13
 
-local C=512
-local t=SpiffBoy.TICK_RATE
-local D=64
-local u=256
-local E=16384
+local B=512
+local s=SpiffBoy.TICK_RATE
+local C=64
+local t=256
+local D=16384
+local E=8
 local F=8
-local G=8
-local H=0x77
-local I=0xF3
-local J=0x80
-local K=e.WAVE_NAMES[1]
-local L=2
-local M={[0]=0,[1]=1,[2]=0.5,[3]=0.25}
-local N={[0]=0.5,1,2,3,4,5,6,7}
-local v=15
-local O=7
-local w=2
-local P=0.5
-local Q=math.log(2)
-local R=8
-local S={[0]=true,[2]=true,[4]=true,[6]=true}
-local T={[2]=true,[6]=true}
-local U=7
+local G=0x77
+local H=0xF3
+local I=0x80
+local J=e.WAVE_NAMES[1]
+local K=2
+local L={[0]=0,[1]=1,[2]=0.5,[3]=0.25}
+local M={[0]=0.5,1,2,3,4,5,6,7}
+local u=15
+local N=7
+local v=2
+local O=0.5
+local P=math.log(2)
+local Q=8
+local R={[0]=true,[2]=true,[4]=true,[6]=true}
+local S={[2]=true,[6]=true}
+local T=7
 
-local function c(b,d,f)
-return math.floor(b/2^d)%2^f
+local function c(value,shift,count)
+return math.floor(value/2^shift)%2^count
 end
 
-local function d(b,f)
-return c(b,f,1)==1
+local function d(value,bit)
+return c(value,bit,1)==1
 end
 
-local function x(b)
-local f=D
-if b==a.WAVE then
-f=u
+local function w(kind)
+local b=C
+if kind==a.WAVE then
+b=t
 end
 return{
-kind=b,
-maxLength=f,
+kind=kind,
+maxLength=b,
 enabled=false,
 dac=false,
 length=0,
@@ -90,7 +90,7 @@ envUp=false,
 envPeriod=0,
 envTimer=0,
 level=0,
-duty=L,
+duty=K,
 sweepPeriod=0,
 sweepNegate=false,
 sweepShift=0,
@@ -98,185 +98,185 @@ sweepTimer=0,
 sweepEnabled=false,
 shadow=0,
 volumeCode=0,
-wave=K,
+wave=J,
 shift=0,
-width=v,
+width=u,
 divisor=0,
 family=nil,
 band=nil,
 }
 end
 
-local function y()
+local function x()
 return{on=false,sound=nil,pitch=1,gain=0}
 end
 
-local function l(b)
-local f=math.floor(b.shadow/2^b.sweepShift)
-if b.sweepNegate then
-return b.shadow-f
+local function l(voice)
+local b=math.floor(voice.shadow/2^voice.sweepShift)
+if voice.sweepNegate then
+return voice.shadow-b
 end
-return b.shadow+f
-end
-
-local function m(b)
-if b==0 then
-return F
-end
-return b
+return voice.shadow+b
 end
 
-local function z(b)
-if b.dac then
-b.enabled=true
+local function m(period)
+if period==0 then
+return E
 end
-if b.length==0 then
-b.length=b.maxLength
+return period
 end
-b.envTimer=m(b.envPeriod)
-b.level=b.envInitial
-if b.kind==a.PULSE1 then
-b.shadow=b.period
-b.sweepTimer=m(b.sweepPeriod)
-b.sweepEnabled=b.sweepPeriod~=0 or b.sweepShift~=0
-if b.sweepShift~=0 and l(b)>a.MAX_PERIOD then
-b.enabled=false
+
+local function y(voice)
+if voice.dac then
+voice.enabled=true
+end
+if voice.length==0 then
+voice.length=voice.maxLength
+end
+voice.envTimer=m(voice.envPeriod)
+voice.level=voice.envInitial
+if voice.kind==a.PULSE1 then
+voice.shadow=voice.period
+voice.sweepTimer=m(voice.sweepPeriod)
+voice.sweepEnabled=voice.sweepPeriod~=0 or voice.sweepShift~=0
+if voice.sweepShift~=0 and l(voice)>a.MAX_PERIOD then
+voice.enabled=false
 end
 end
 end
 
-local function V(b)
-if not b.lengthEnabled or b.length==0 then
+local function U(voice)
+if not voice.lengthEnabled or voice.length==0 then
 return
 end
-b.length=b.length-1
-if b.length==0 then
-b.enabled=false
+voice.length=voice.length-1
+if voice.length==0 then
+voice.enabled=false
 end
 end
 
-local function W(b)
-b.sweepTimer=b.sweepTimer-1
-if b.sweepTimer>0 then
+local function V(voice)
+voice.sweepTimer=voice.sweepTimer-1
+if voice.sweepTimer>0 then
 return
 end
-b.sweepTimer=m(b.sweepPeriod)
-if not b.sweepEnabled or b.sweepPeriod==0 then
+voice.sweepTimer=m(voice.sweepPeriod)
+if not voice.sweepEnabled or voice.sweepPeriod==0 then
 return
 end
-local f=l(b)
-if f>a.MAX_PERIOD then
-b.enabled=false
+local b=l(voice)
+if b>a.MAX_PERIOD then
+voice.enabled=false
 return
 end
-if b.sweepShift==0 then
+if voice.sweepShift==0 then
 return
 end
-b.shadow=f
-b.period=f
-if l(b)>a.MAX_PERIOD then
-b.enabled=false
+voice.shadow=b
+voice.period=b
+if l(voice)>a.MAX_PERIOD then
+voice.enabled=false
 end
 end
 
-local function X(b)
-if b.envPeriod==0 then
+local function W(voice)
+if voice.envPeriod==0 then
 return
 end
-b.envTimer=b.envTimer-1
-if b.envTimer>0 then
+voice.envTimer=voice.envTimer-1
+if voice.envTimer>0 then
 return
 end
-b.envTimer=b.envPeriod
-if b.envUp and b.level<a.MAX_LEVEL then
-b.level=b.level+1
-elseif not b.envUp and b.level>0 then
-b.level=b.level-1
+voice.envTimer=voice.envPeriod
+if voice.envUp and voice.level<a.MAX_LEVEL then
+voice.level=voice.level+1
+elseif not voice.envUp and voice.level>0 then
+voice.level=voice.level-1
 end
 end
 
-local function Y(b,f)
-b.sweepPeriod=c(f,4,3)
-b.sweepNegate=d(f,3)
-b.sweepShift=c(f,0,3)
+local function X(voice,value)
+voice.sweepPeriod=c(value,4,3)
+voice.sweepNegate=d(value,3)
+voice.sweepShift=c(value,0,3)
 end
 
-local function n(b,f)
-if b.kind~=a.NOISE then
-b.duty=c(f,6,2)
+local function n(voice,value)
+if voice.kind~=a.NOISE then
+voice.duty=c(value,6,2)
 end
-b.length=b.maxLength-c(f,0,6)
-end
-
-local function o(b,f)
-b.envInitial=c(f,4,4)
-b.envUp=d(f,3)
-b.envPeriod=c(f,0,3)
-b.dac=c(f,3,5)~=0
-if not b.dac then
-b.enabled=false
-end
+voice.length=voice.maxLength-c(value,0,6)
 end
 
-local function p(b,f)
-b.period=b.period-b.period%256+f
-end
-
-local function q(b,f)
-b.period=b.period%256+c(f,0,3)*256
-b.lengthEnabled=d(f,6)
-if d(f,7)then
-z(b)
+local function o(voice,value)
+voice.envInitial=c(value,4,4)
+voice.envUp=d(value,3)
+voice.envPeriod=c(value,0,3)
+voice.dac=c(value,3,5)~=0
+if not voice.dac then
+voice.enabled=false
 end
 end
 
-local function Z(b,f)
-b.dac=d(f,7)
-if not b.dac then
-b.enabled=false
+local function p(voice,value)
+voice.period=voice.period-voice.period%256+value
+end
+
+local function q(voice,value)
+voice.period=voice.period%256+c(value,0,3)*256
+voice.lengthEnabled=d(value,6)
+if d(value,7)then
+y(voice)
 end
 end
 
-local function _(b,f)
-b.length=u-f
-end
-
-local function aa(b,f)
-b.volumeCode=c(f,5,2)
-end
-
-local function ab(b,f)
-b.shift=c(f,4,4)
-b.width=v
-if d(f,3)then
-b.width=O
-end
-b.divisor=c(f,0,3)
-end
-
-local function ac(b,f)
-b.lengthEnabled=d(f,6)
-if d(f,7)then
-z(b)
+local function Y(voice,value)
+voice.dac=d(value,7)
+if not voice.dac then
+voice.enabled=false
 end
 end
 
-local function ad(f,b)
-f.master=(math.max(c(b,4,3),c(b,0,3))+1)/G
+local function Z(voice,value)
+voice.length=t-value
 end
 
-local function ae(g,f)
+local function _(voice,value)
+voice.volumeCode=c(value,5,2)
+end
+
+local function aa(voice,value)
+voice.shift=c(value,4,4)
+voice.width=u
+if d(value,3)then
+voice.width=N
+end
+voice.divisor=c(value,0,3)
+end
+
+local function ab(voice,value)
+voice.lengthEnabled=d(value,6)
+if d(value,7)then
+y(voice)
+end
+end
+
+local function ac(chip,value)
+chip.master=(math.max(c(value,4,3),c(value,0,3))+1)/F
+end
+
+local function ad(chip,value)
 for b=1,a.VOICES do
-g.pan[b]=d(f,b-1)or d(f,b+3)
+chip.pan[b]=d(value,b-1)or d(value,b+3)
 end
 end
 
-local function af(b,f)
-b:setPower(d(f,7))
+local function ae(chip,value)
+chip:setPower(d(value,7))
 end
 
-local A={
-[a.NR10]={voice=a.PULSE1,write=Y},
+local z={
+[a.NR10]={voice=a.PULSE1,write=X},
 [a.NR11]={voice=a.PULSE1,write=n},
 [a.NR12]={voice=a.PULSE1,write=o},
 [a.NR13]={voice=a.PULSE1,write=p},
@@ -285,22 +285,22 @@ local A={
 [a.NR22]={voice=a.PULSE2,write=o},
 [a.NR23]={voice=a.PULSE2,write=p},
 [a.NR24]={voice=a.PULSE2,write=q},
-[a.NR30]={voice=a.WAVE,write=Z},
-[a.NR31]={voice=a.WAVE,write=_},
-[a.NR32]={voice=a.WAVE,write=aa},
+[a.NR30]={voice=a.WAVE,write=Y},
+[a.NR31]={voice=a.WAVE,write=Z},
+[a.NR32]={voice=a.WAVE,write=_},
 [a.NR33]={voice=a.WAVE,write=p},
 [a.NR34]={voice=a.WAVE,write=q},
 [a.NR41]={voice=a.NOISE,write=n},
 [a.NR42]={voice=a.NOISE,write=o},
-[a.NR43]={voice=a.NOISE,write=ab},
-[a.NR44]={voice=a.NOISE,write=ac},
-[a.NR50]={write=ad},
-[a.NR51]={write=ae},
-[a.NR52]={write=af},
+[a.NR43]={voice=a.NOISE,write=aa},
+[a.NR44]={voice=a.NOISE,write=ab},
+[a.NR50]={write=ac},
+[a.NR51]={write=ad},
+[a.NR52]={write=ae},
 }
 
-function a.isRegister(b)
-return A[b]~=nil
+function a.isRegister(register)
+return z[register]~=nil
 end
 
 function a.new()
@@ -309,8 +309,8 @@ b.state={}
 b.voices={}
 b.pan={}
 for f=1,a.VOICES do
-b.state[f]=x(f)
-b.voices[f]=y()
+b.state[f]=w(f)
+b.voices[f]=x()
 b.pan[f]=false
 end
 b.power=false
@@ -324,151 +324,151 @@ end
 function a:clear()
 for b=1,a.VOICES do
 local f=self.state[b].wave
-self.state[b]=x(b)
+self.state[b]=w(b)
 self.state[b].wave=f
 self.pan[b]=false
-self.voices[b]=y()
+self.voices[b]=x()
 end
 self.master=0
 self.frame=0
 self.frameAccumulator=0
 end
 
-function a:setPower(b)
-if b==self.power then
+function a:setPower(on)
+if on==self.power then
 return
 end
-self.power=b
+self.power=on
 self:clear()
 end
 
 function a:boot()
-self:apply(a.NR52,J)
-self:apply(a.NR50,H)
-self:apply(a.NR51,I)
+self:apply(a.NR52,I)
+self:apply(a.NR50,G)
+self:apply(a.NR51,H)
 end
 
 function a:halt()
 self:apply(a.NR52,0)
 end
 
-function a:write(f,b)
-if not a.isRegister(f)then
-error("SpiffBoy: no sound register "..tostring(f))
+function a:write(register,value)
+if not a.isRegister(register)then
+error("SpiffBoy: no sound register "..tostring(register))
 end
-if not SpiffBoy.isInteger(b)or b<0 or b>SpiffBoy.BYTE_MAX then
-error("SpiffBoy: sound register value out of range: "..tostring(b))
+if not SpiffBoy.isInteger(value)or value<0 or value>SpiffBoy.BYTE_MAX then
+error("SpiffBoy: sound register value out of range: "..tostring(value))
 end
 if self.listener then
-self.listener:onChipWrite(f,b)
+self.listener:onChipWrite(register,value)
 end
-self:apply(f,b)
+self:apply(register,value)
 end
 
-function a:apply(f,g)
-if not self.power and f~=a.NR52 then
+function a:apply(register,value)
+if not self.power and register~=a.NR52 then
 return
 end
-local b=A[f]
+local b=z[register]
 if b.voice then
-b.write(self.state[b.voice],g)
+b.write(self.state[b.voice],value)
 else
-b.write(self,g)
+b.write(self,value)
 end
 end
 
-function a:loadWave(b)
-if not e.WAVE[b]then
-error("SpiffBoy: no wave table named "..tostring(b))
+function a:loadWave(name)
+if not e.WAVE[name]then
+error("SpiffBoy: no wave table named "..tostring(name))
 end
 if self.listener then
-self.listener:onChipWave(b)
+self.listener:onChipWave(name)
 end
-self:applyWave(b)
+self:applyWave(name)
 end
 
-function a:applyWave(b)
-self.state[a.WAVE].wave=b
+function a:applyWave(name)
+self.state[a.WAVE].wave=name
 end
 
 function a:clockFrame()
 local b=self.frame
-self.frame=(b+1)%R
+self.frame=(b+1)%Q
+if R[b]then
+for f=1,a.VOICES do
+U(self.state[f])
+end
+end
 if S[b]then
+V(self.state[a.PULSE1])
+end
+if b==T then
 for f=1,a.VOICES do
-V(self.state[f])
-end
-end
-if T[b]then
-W(self.state[a.PULSE1])
-end
-if b==U then
-for f=1,a.VOICES do
-X(self.state[f])
+W(self.state[f])
 end
 end
 end
 
-function a:render(r)
-local b=self.state[r]
-local i=self.voices[r]
+function a:render(index)
+local b=self.state[index]
+local i=self.voices[index]
 i.on=false
-if not self.power or not b.enabled or not b.dac or not self.pan[r]then
+if not self.power or not b.enabled or not b.dac or not self.pan[index]then
 return
 end
-local f,j,g,k,s
+local f,j,g,k,r
 if b.kind==a.NOISE then
 if b.shift>a.MAX_NOISE_SHIFT then
 return
 end
-f=a.NOISE_CLOCK/N[b.divisor]/2^(b.shift+1)
+f=a.NOISE_CLOCK/M[b.divisor]/2^(b.shift+1)
 j=b.level/a.MAX_LEVEL
 g=e.NOISE[b.width]
 k=e.NOISE_BASE
-s=e.NOISE_BANDS
+r=e.NOISE_BANDS
 else
 local h=a.PULSE_CLOCK
 if b.kind==a.WAVE then
 h=a.WAVE_CLOCK
-j=M[b.volumeCode]
+j=L[b.volumeCode]
 g=e.WAVE[b.wave]
 else
 j=b.level/a.MAX_LEVEL
 g=e.PULSE[b.duty]
 end
 f=h/(a.MAX_PERIOD+1-b.period)
-if f>E then
+if f>D then
 return
 end
 k=e.TONE_BASE
-s=e.TONE_BANDS
+r=e.TONE_BANDS
 end
 if j<=0 then
 return
 end
 local h=nil
 if b.family==g and b.band then
-local B=f/(k*2^b.band)
-if B>=P and B<w then
+local A=f/(k*2^b.band)
+if A>=O and A<v then
 h=b.band
 end
 end
 if not h then
-h=SpiffBoy.clamp(math.floor(math.log(f/k)/Q),0,s-1)
+h=SpiffBoy.clamp(math.floor(math.log(f/k)/P),0,r-1)
 end
 b.family=g
 b.band=h
 i.on=true
 i.sound=g[h+1]
-i.pitch=math.min(w,f/(k*2^h))
+i.pitch=math.min(v,f/(k*2^h))
 i.gain=j*self.master
 end
 
 function a:step()
 if self.power then
-self.frameAccumulator=self.frameAccumulator+C
-while self.frameAccumulator>=t do
-self.frameAccumulator=self.frameAccumulator-t
+self.frameAccumulator=self.frameAccumulator+B
+while self.frameAccumulator>=s do
+self.frameAccumulator=self.frameAccumulator-s
 self:clockFrame()
 end
 end

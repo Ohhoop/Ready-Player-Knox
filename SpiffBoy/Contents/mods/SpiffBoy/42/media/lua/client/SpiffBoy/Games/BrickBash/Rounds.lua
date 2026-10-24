@@ -222,75 +222,75 @@ moving={8},
 
 a.CAMPAIGN_LENGTH=#a.LIST
 
-local g={"L","S","C","R"}
-local h={low=5,high=8}
-local i={low=55,high=95}
-local o=100
-local p=4
-local q=2
-local r=40
-local j=6
-local s=5
-local t=30
-local k={low=3,high=6}
-local l=a.COLUMNS/2
+local f={"L","S","C","R"}
+local g={low=5,high=8}
+local h={low=55,high=95}
+local n=100
+local o=4
+local p=2
+local q=40
+local i=6
+local r=5
+local s=30
+local j={low=3,high=6}
+local k=a.COLUMNS/2
 
-function a.backdropOf(b)
-return math.floor((b-1)/a.ROUNDS_PER_BACKDROP)%a.BACKDROPS+1
+function a.backdropOf(number)
+return math.floor((number-1)/a.ROUNDS_PER_BACKDROP)%a.BACKDROPS+1
 end
 
-local function u(b)
-return b..string.reverse(b)
+local function t(left)
+return left..string.reverse(left)
 end
 
-local function v(d,b)
-local c=l-b
-return string.rep(".",c)..string.rep(d,b*2)..string.rep(".",c)
+local function u(kind,width)
+local b=k-width
+return string.rep(".",b)..string.rep(kind,width*2)..string.rep(".",b)
 end
 
-local function w(e,m,n,c,x)
-local f={}
-for y=1,l do
+local function v(random,kind,density,tough,allowMetal)
+local d={}
+for e=1,k do
 local b="."
-if e:int(1,100)<=n then
-local d=e:int(1,100)
-if d<=c then
+if random:int(1,100)<=density then
+local c=random:int(1,100)
+if c<=tough then
 b="T"
-elseif d<=c+j then
+elseif c<=tough+i then
 b="X"
-elseif x and d<=c+j+s then
+elseif allowMetal and c<=tough+i+r then
 b="M"
 else
-b=m
+b=kind
 end
 end
-f[y]=b
+d[e]=b
 end
-return table.concat(f)
+return table.concat(d)
 end
 
-function a.generate(b,x)
-local y=math.min(r,p+(x-1)*q)
-local d=b:int(h.low,h.high)
+function a.generate(random,number)
+local w=math.min(q,o+(number-1)*p)
+local c=random:int(g.low,g.high)
+local d={}
 local e={}
-local f={}
-for c=1,d do
-local m=g[b:int(1,#g)]
-if c>1 and c<d and b:int(1,100)<=t and#f==0 then
-e[c]=v(m,b:int(k.low,k.high))
-f[1]=c
+for b=1,c do
+local l=f[random:int(1,#f)]
+if b>1 and b<c and random:int(1,100)<=s and#e==0 then
+d[b]=u(l,random:int(j.low,j.high))
+e[1]=b
 else
-local n=c==d
-local z=n and o or b:int(i.low,i.high)
-e[c]=u(w(b,m,z,y,not n))
+local m=b==c
+local x=m and n or random:int(h.low,h.high)
+d[b]=t(v(random,l,x,w,not m))
 end
 end
-return{rows=e,moving=f}
+return{rows=d,moving=e}
 end
 
-function a.definition(c,b,d)
-if c then
-return a.generate(d,b)
+function a.definition(endless,number,random)
+if endless then
+return a.generate(random,number)
 end
-return a.LIST[b]
+return a.LIST[number]
 end

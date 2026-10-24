@@ -47,23 +47,23 @@ local c=self:width()/2
 self.x=SpiffBoy.clamp(self.x,d.LEFT+c,d.RIGHT-c)
 end
 
-function a:update(c)
-local i=self.x
-if c and c.held.left then
+function a:update(input)
+local c=self.x
+if input and input.held.left then
 self.x=self.x-e
-elseif c and c.held.right then
+elseif input and input.held.right then
 self.x=self.x+e
 end
 self:clamp()
-self.vx=self.x-i
+self.vx=self.x-c
 if self.letGo>0 then
 self.letGo=self.letGo-1
 end
 end
 
-function a:setPower(c,i)
-self.wide=c
-self.glued=i
+function a:setPower(wide,glued)
+self.wide=wide
+self.glued=glued
 self:clamp()
 end
 
@@ -74,10 +74,10 @@ self.wide=false
 self.glued=false
 end
 
-function a:draw(c,i,j)
-local k=math.floor(self.x-self:width()/2)
-local l=(self.wide and 1 or 0)+(self.glued and 2 or 0)
-local m=self.letGo>0 and b.open or b.hold
-c:layers(j,m*b.width,b.width,b.height,math.floor(self.x-b.width/2),a.TOP+b.top,g)
-c:layers(i,l*h,self:width(),a.HEIGHT,k,a.TOP,g)
+function a:draw(screen,planks,paws)
+local c=math.floor(self.x-self:width()/2)
+local i=(self.wide and 1 or 0)+(self.glued and 2 or 0)
+local j=self.letGo>0 and b.open or b.hold
+screen:layers(paws,j*b.width,b.width,b.height,math.floor(self.x-b.width/2),a.TOP+b.top,g)
+screen:layers(planks,i*h,self:width(),a.HEIGHT,c,a.TOP,g)
 end

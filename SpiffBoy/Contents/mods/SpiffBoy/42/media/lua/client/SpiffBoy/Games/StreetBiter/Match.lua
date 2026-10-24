@@ -8,79 +8,79 @@ require"SpiffBoy/Framework/GameTexts"
 
 SpiffBoy.StreetBiter=SpiffBoy.StreetBiter or{}
 
-local y=SpiffBoy.GameTexts.of("StreetBiter")
-local L=SpiffBoy.StreetBiter.Roster
+local w=SpiffBoy.GameTexts.of("StreetBiter")
+local J=SpiffBoy.StreetBiter.Roster
 local z=SpiffBoy.StreetBiter.Moves
-local g=SpiffBoy.StreetBiter.Fighter
-local f=SpiffBoy.StreetBiter.Stage
+local h=SpiffBoy.StreetBiter.Fighter
+local g=SpiffBoy.StreetBiter.Stage
 
-local a={}
-a.__index=a
-SpiffBoy.StreetBiter.Match=a
+local c={}
+c.__index=c
+SpiffBoy.StreetBiter.Match=c
 
-local r=SpiffBoy.Cartridges.SHADES[4]
-local c=SpiffBoy.Cartridges.SHADES[1]
-local s=SpiffBoy.Cartridges.SHADES[2]
+local p=SpiffBoy.Cartridges.SHADES[4]
+local e=SpiffBoy.Cartridges.SHADES[1]
+local q=SpiffBoy.Cartridges.SHADES[2]
 local A={1,2,3,4}
-local M={3}
-local k={width=72,height=64,anchor=36}
-local e={width=20,height=12,count=12,spark1=9,spark2=10,guard=11,shadow=12}
-local t=16
-local u=f.ARENA-16
+local K={3}
+local j={width=72,height=64,anchor=36}
+local f={width=20,height=12,count=12,spark1=9,spark2=10,guard=11,shadow=12}
+local r=16
+local s=g.ARENA-16
 local B=110
 local C=250
 local m=150
 local D=26
 local i=2
-local N=5
-local O=99
+local L=5
+local M=99
 local E=100
-local P=40
-local Q=70
+local N=40
+local O=70
 local F=110
-local R=80
-local S=4
+local P=80
+local Q=4
 local G=2
-local T=10
-local b={barY=3,barHeight=6,barWidth=76,leftX=4,rightX=100,nameY=6,timerY=-1,markY=12,markSize=4,markGap=6}
-local U=44
-local l={up=false,down=false,left=false,right=false,a=false,b=false}
+local R=10
+local d={barY=3,barHeight=6,barWidth=76,leftX=4,rightX=100,nameY=6,timerY=-1,markY=12,markSize=4,markGap=6}
+local S=44
+local k={up=false,down=false,left=false,right=false,a=false,b=false}
 
-a.PHASE_INTRO="intro"
-a.PHASE_FIGHT="fight"
-a.PHASE_KO="ko"
-a.PHASE_TIMEOVER="timeover"
-a.PHASE_WIN="win"
-a.PHASE_OVER="over"
+c.PHASE_INTRO="intro"
+c.PHASE_FIGHT="fight"
+c.PHASE_KO="ko"
+c.PHASE_TIMEOVER="timeover"
+c.PHASE_WIN="win"
+c.PHASE_OVER="over"
 
-function a.new(h,j,n,o)
-local d=setmetatable({},a)
-d.definitions={h,j}
-d.fighters={g.new(h,B,1),g.new(j,C,-1)}
-d.brain=n
-d.damageScale={1,o or 1}
-d.wins={0,0}
-d.round=0
-d.projectiles={}
-d.sparks={}
-d.events={}
-d.hitstop=0
-d.camera=0
-d.result=nil
-d.perfect=false
-d:startRound()
-return d
+function c.new(left,right,brain,damageScale)
+local a=setmetatable({},c)
+a.definitions={left,right}
+a.fighters={h.new(left,B,1),h.new(right,C,-1)}
+a.brain=brain
+a.damageScale={1,damageScale or 1}
+a.wins={0,0}
+a.round=0
+a.projectiles={}
+a.sparks={}
+a.events={}
+a.hitstop=0
+a.camera=0
+a.result=nil
+a.perfect=false
+a:startRound()
+return a
 end
 
-function a:startRound()
+function c:startRound()
 self.round=self.round+1
 self.fighters[1]:reset(B,1)
 self.fighters[2]:reset(C,-1)
 self.projectiles={}
 self.sparks={}
-self.seconds=O
+self.seconds=M
 self.secondTicks=0
-self.phase=a.PHASE_INTRO
+self.phase=c.PHASE_INTRO
 self.phaseTimer=E
 self.bannerTimer=0
 self.hitstop=0
@@ -91,212 +91,212 @@ self:moveCamera()
 self:push({kind="round",round=self.round,final=self:isFinalRound()})
 end
 
-function a:isFinalRound()
+function c:isFinalRound()
 return self.wins[1]==i-1 and self.wins[2]==i-1
 end
 
-function a:push(d)
-self.events[#self.events+1]=d
+function c:push(event)
+self.events[#self.events+1]=event
 end
 
-function a:takeEvents()
-local d=self.events
+function c:takeEvents()
+local a=self.events
 self.events={}
-return d
+return a
 end
 
-function a:onMoveStarted(h,d)
-self:push({kind="swing",special=z.SPECIALS[d.name]~=nil,move=d.name})
+function c:onMoveStarted(fighter,move)
+self:push({kind="swing",special=z.SPECIALS[move.name]~=nil,move=move.name})
 end
 
-function a:onJump(d)
+function c:onJump(fighter)
 self:push({kind="jump"})
 end
 
-function a:onLanded(d)
+function c:onLanded(fighter)
 self:push({kind="thud"})
 end
 
-function a:indexOf(d)
-if self.fighters[1]==d then
+function c:indexOf(fighter)
+if self.fighters[1]==fighter then
 return 1
 end
 return 2
 end
 
-function a:spawnProjectile(h,d)
-local j=z.PROJECTILES[d.kind]
+function c:spawnProjectile(fighter,spec)
+local a=z.PROJECTILES[spec.kind]
 self.projectiles[#self.projectiles+1]={
-kind=d.kind,spec=d,data=j,owner=self:indexOf(h),
-x=h.x+20*h.facing,y=d.height,dir=h.facing,travelled=0,clock=0,
+kind=spec.kind,spec=spec,data=a,owner=self:indexOf(fighter),
+x=fighter.x+20*fighter.facing,y=spec.height,dir=fighter.facing,travelled=0,clock=0,
 }
-self:push({kind="projectile",projectile=d.kind})
+self:push({kind="projectile",projectile=spec.kind})
 end
 
-function a:setBounds()
-local d,h=self.fighters[1],self.fighters[2]
-d.minX=math.max(t,h.x-m)
-d.maxX=math.min(u,h.x+m)
-h.minX=math.max(t,d.x-m)
-h.maxX=math.min(u,d.x+m)
+function c:setBounds()
+local a,b=self.fighters[1],self.fighters[2]
+a.minX=math.max(r,b.x-m)
+a.maxX=math.min(s,b.x+m)
+b.minX=math.max(r,a.x-m)
+b.maxX=math.min(s,a.x+m)
 end
 
-local function H(d,j)
-local h=d.state
-if(h==g.STATE_IDLE or h==g.STATE_WALK or h==g.STATE_CROUCH or h==g.STATE_WAIT)and j.x~=d.x then
-if j.x>d.x then
-d.facing=1
+local function H(me,foe)
+local a=me.state
+if(a==h.STATE_IDLE or a==h.STATE_WALK or a==h.STATE_CROUCH or a==h.STATE_WAIT)and foe.x~=me.x then
+if foe.x>me.x then
+me.facing=1
 else
-d.facing=-1
+me.facing=-1
 end
 end
 end
 
-function a:face()
-local d,h=self.fighters[1],self.fighters[2]
-H(d,h)
-H(h,d)
+function c:face()
+local a,b=self.fighters[1],self.fighters[2]
+H(a,b)
+H(b,a)
 end
 
-function a:separate()
-local d,h=self.fighters[1],self.fighters[2]
-if d:airborne()or h:airborne()then
+function c:separate()
+local a,b=self.fighters[1],self.fighters[2]
+if a:airborne()or b:airborne()then
 return
 end
-local n=math.abs(d.x-h.x)
+local n=math.abs(a.x-b.x)
 if n>=D then
 return
 end
-local j=(D-n)/2
-if d.x<=h.x then
-d.x=math.max(d.minX,d.x-j)
-h.x=math.min(h.maxX,h.x+j)
+local l=(D-n)/2
+if a.x<=b.x then
+a.x=math.max(a.minX,a.x-l)
+b.x=math.min(b.maxX,b.x+l)
 else
-d.x=math.min(d.maxX,d.x+j)
-h.x=math.max(h.minX,h.x-j)
+a.x=math.min(a.maxX,a.x+l)
+b.x=math.max(b.minX,b.x-l)
 end
 end
 
-function a:moveCamera()
-local d=math.floor((self.fighters[1].x+self.fighters[2].x)/2)
-self.camera=SpiffBoy.clamp(d-math.floor(f.VIEW/2),0,f.ARENA-f.VIEW)
+function c:moveCamera()
+local a=math.floor((self.fighters[1].x+self.fighters[2].x)/2)
+self.camera=SpiffBoy.clamp(a-math.floor(g.VIEW/2),0,g.ARENA-g.VIEW)
 end
 
-local function n(d,h)
-return d.left<=h.right and d.right>=h.left and d.bottom<=h.top and d.top>=h.bottom
+local function n(a,b)
+return a.left<=b.right and a.right>=b.left and a.bottom<=b.top and a.top>=b.bottom
 end
 
-local function v(d,h)
-local j=math.floor((math.max(d.left,h.left)+math.min(d.right,h.right))/2)
-local o=math.floor((math.max(d.bottom,h.bottom)+math.min(d.top,h.top))/2)
-return j,o
+local function t(a,b)
+local l=math.floor((math.max(a.left,b.left)+math.min(a.right,b.right))/2)
+local o=math.floor((math.max(a.bottom,b.bottom)+math.min(a.top,b.top))/2)
+return l,o
 end
 
-function a:spark(d,h,j)
-self.sparks[#self.sparks+1]={kind=d,x=h,y=j,timer=T}
+function c:spark(kind,x,y)
+self.sparks[#self.sparks+1]={kind=kind,x=x,y=y,timer=R}
 end
 
-function a:land(q,d,j,w,o,p)
-local x=self:indexOf(q)
-local h={
-damage=math.max(1,math.floor(j.damage*self.damageScale[x])),hitstun=j.hitstun,blockstun=j.blockstun,
-chip=j.chip,push=j.push,knockdown=j.knockdown,guard=j.guard,
+function c:land(attacker,defender,hit,fromX,contactX,contactY)
+local b=self:indexOf(attacker)
+local a={
+damage=math.max(1,math.floor(hit.damage*self.damageScale[b])),hitstun=hit.hitstun,blockstun=hit.blockstun,
+chip=hit.chip,push=hit.push,knockdown=hit.knockdown,guard=hit.guard,
 }
-if d:hasArmour()then
-d:absorb(h)
-self:spark("guard",o,p)
+if defender:hasArmour()then
+defender:absorb(a)
+self:spark("guard",contactX,contactY)
 self.hitstop=G
 self:push({kind="block"})
 return
 end
-if d:canBlock(h.guard)then
-d:block(h,w)
-self:spark("guard",o,p)
+if defender:canBlock(a.guard)then
+defender:block(a,fromX)
+self:spark("guard",contactX,contactY)
 self.hitstop=G
 self:push({kind="block"})
 else
-d:takeHit(h,w)
-self:spark("hit",o,p)
-self.hitstop=S
-self:push({kind="hit",damage=h.damage,heavy=h.knockdown==true or h.damage>=10,by=x})
-if d.hp==0 then
+defender:takeHit(a,fromX)
+self:spark("hit",contactX,contactY)
+self.hitstop=Q
+self:push({kind="hit",damage=a.damage,heavy=a.knockdown==true or a.damage>=10,by=b})
+if defender.hp==0 then
 self:push({kind="ko"})
 end
 end
-if d.x<=t or d.x>=u then
-q:pushAway(h.push,d.x)
+if defender.x<=r or defender.x>=s then
+attacker:pushAway(a.push,defender.x)
 end
 end
 
-function a:resolveBlows()
-local d,h=self.fighters[1],self.fighters[2]
-local j,o=d:hitbox(),h:hitbox()
-local p,q=d:hurtbox(),h:hurtbox()
-local w=j~=nil and q~=nil and n(j,q)
-local x=o~=nil and p~=nil and n(o,p)
-if w then
-d.hitDone=true
-d.connected=true
-self:land(d,h,j.move,d.x,v(j,q))
-end
+function c:resolveBlows()
+local a,b=self.fighters[1],self.fighters[2]
+local l,o=a:hitbox(),b:hitbox()
+local u,v=a:hurtbox(),b:hurtbox()
+local x=l~=nil and v~=nil and n(l,v)
+local y=o~=nil and u~=nil and n(o,u)
 if x then
-h.hitDone=true
-h.connected=true
-self:land(h,d,o.move,h.x,v(o,p))
+a.hitDone=true
+a.connected=true
+self:land(a,b,l.move,a.x,t(l,v))
+end
+if y then
+b.hitDone=true
+b.connected=true
+self:land(b,a,o.move,b.x,t(o,u))
 end
 end
 
-local function w(d)
-local h=d.data
-return{left=d.x-h.half,right=d.x+h.half,bottom=d.y,top=d.y+h.tall}
+local function o(projectile)
+local a=projectile.data
+return{left=projectile.x-a.half,right=projectile.x+a.half,bottom=projectile.y,top=projectile.y+a.tall}
 end
 
-function a:moveProjectiles()
-local h=self.projectiles
-for p=#h,1,-1 do
-local d=h[p]
-d.x=d.x+d.dir*d.spec.speed
-d.travelled=d.travelled+d.spec.speed
-d.clock=d.clock+1
-local j=d.x<0 or d.x>f.ARENA or(d.spec.range and d.travelled>d.spec.range)
-if not j then
-local q=self.fighters[3-d.owner]
-local o=q:hurtbox()
-local x=w(d)
-if o and n(x,o)then
-self:land(self.fighters[d.owner],q,d.spec,d.x,v(x,o))
-j=true
+function c:moveProjectiles()
+local b=self.projectiles
+for v=#b,1,-1 do
+local a=b[v]
+a.x=a.x+a.dir*a.spec.speed
+a.travelled=a.travelled+a.spec.speed
+a.clock=a.clock+1
+local l=a.x<0 or a.x>g.ARENA or(a.spec.range and a.travelled>a.spec.range)
+if not l then
+local x=self.fighters[3-a.owner]
+local u=x:hurtbox()
+local y=o(a)
+if u and n(y,u)then
+self:land(self.fighters[a.owner],x,a.spec,a.x,t(y,u))
+l=true
 end
 end
-if j then
-table.remove(h,p)
+if l then
+table.remove(b,v)
 end
 end
-for o=#h,1,-1 do
-for p=o-1,1,-1 do
-local d,j=h[o],h[p]
-if d and j and d.owner~=j.owner and n(w(d),w(j))then
-self:spark("guard",math.floor((d.x+j.x)/2),d.y+4)
+for u=#b,1,-1 do
+for v=u-1,1,-1 do
+local a,l=b[u],b[v]
+if a and l and a.owner~=l.owner and n(o(a),o(l))then
+self:spark("guard",math.floor((a.x+l.x)/2),a.y+4)
 self:push({kind="block"})
-table.remove(h,o)
-table.remove(h,p)
+table.remove(b,u)
+table.remove(b,v)
 break
 end
 end
 end
 end
 
-function a:tickSparks()
-for h=#self.sparks,1,-1 do
-local d=self.sparks[h]
-d.timer=d.timer-1
-if d.timer<=0 then
-table.remove(self.sparks,h)
+function c:tickSparks()
+for b=#self.sparks,1,-1 do
+local a=self.sparks[b]
+a.timer=a.timer-1
+if a.timer<=0 then
+table.remove(self.sparks,b)
 end
 end
 end
 
-function a:runClock()
+function c:runClock()
 self.secondTicks=self.secondTicks+1
 if self.secondTicks>=60 then
 self.secondTicks=0
@@ -304,117 +304,117 @@ self.seconds=math.max(0,self.seconds-1)
 end
 end
 
-local function h(d)
-return d.state==g.STATE_KO
+local function b(fighter)
+return fighter.state==h.STATE_KO
 end
 
-function a:tickFight(p,o)
-local d,j=self.fighters[1],self.fighters[2]
-if self.brain and o==nil then
-o=self.brain:act(j,d)
+function c:tickFight(held1,held2)
+local a,l=self.fighters[1],self.fighters[2]
+if self.brain and held2==nil then
+held2=self.brain:act(l,a)
 end
 if self.hitstop>0 then
 self.hitstop=self.hitstop-1
-d:holdInput(p or l)
-j:holdInput(o or l)
+a:holdInput(held1 or k)
+l:holdInput(held2 or k)
 self:tickSparks()
 return
 end
 self:setBounds()
 self:face()
-d:update(p or l,self)
-j:update(o or l,self)
+a:update(held1 or k,self)
+l:update(held2 or k,self)
 self:separate()
 self:resolveBlows()
 self:moveProjectiles()
 self:tickSparks()
 self:runClock()
-if h(d)or h(j)then
-self.phase=a.PHASE_KO
-self.phaseTimer=Q
-self.doubleKo=h(d)and h(j)
+if b(a)or b(l)then
+self.phase=c.PHASE_KO
+self.phaseTimer=O
+self.doubleKo=b(a)and b(l)
 self.projectiles={}
 elseif self.seconds==0 then
-self.phase=a.PHASE_TIMEOVER
-self.phaseTimer=R
+self.phase=c.PHASE_TIMEOVER
+self.phaseTimer=P
 self.projectiles={}
 end
 end
 
-function a:endRound(d)
-local j,o=self.fighters[1],self.fighters[2]
+function c:endRound(winner)
+local a,l=self.fighters[1],self.fighters[2]
 if self.doubleKo then
 self.wins[1]=self.wins[1]+1
 self.wins[2]=self.wins[2]+1
-elseif d then
-self.wins[d]=self.wins[d]+1
-self.fighters[d]:celebrate()
-self.perfect=self.fighters[d].hp==self.fighters[d].maxHp
+elseif winner then
+self.wins[winner]=self.wins[winner]+1
+self.fighters[winner]:celebrate()
+self.perfect=self.fighters[winner].hp==self.fighters[winner].maxHp
 end
-self.phase=a.PHASE_WIN
+self.phase=c.PHASE_WIN
 self.phaseTimer=F
-self:push({kind="roundEnd",winner=d,perfect=self.perfect,seconds=self.seconds,double=self.doubleKo})
+self:push({kind="roundEnd",winner=winner,perfect=self.perfect,seconds=self.seconds,double=self.doubleKo})
 end
 
-function a:closeOrContinue()
-local d,j=self.wins[1],self.wins[2]
-if d>=i and j>=i then
+function c:closeOrContinue()
+local a,l=self.wins[1],self.wins[2]
+if a>=i and l>=i then
 self.result={winner=nil}
-elseif d>=i then
+elseif a>=i then
 self.result={winner=1}
-elseif j>=i then
+elseif l>=i then
 self.result={winner=2}
-elseif self.round>=N then
+elseif self.round>=L then
 self.result={winner=nil}
 end
 if self.result then
-self.phase=a.PHASE_OVER
+self.phase=c.PHASE_OVER
 self:push({kind="matchEnd",winner=self.result.winner})
 return
 end
 self:startRound()
 end
 
-function a:tick(p,q)
-local d=self.phase
-if d==a.PHASE_FIGHT then
-self:tickFight(p,q)
+function c:tick(held1,held2)
+local a=self.phase
+if a==c.PHASE_FIGHT then
+self:tickFight(held1,held2)
 if self.bannerTimer>0 then
 self.bannerTimer=self.bannerTimer-1
 end
-elseif d~=a.PHASE_OVER then
-for o,j in ipairs(self.fighters)do
-j:update(l,self)
+elseif a~=c.PHASE_OVER then
+for u,l in ipairs(self.fighters)do
+l:update(k,self)
 end
 self:separate()
 self:tickSparks()
 self.phaseTimer=self.phaseTimer-1
 if self.phaseTimer<=0 then
-if d==a.PHASE_INTRO then
-self.phase=a.PHASE_FIGHT
-self.bannerTimer=P
+if a==c.PHASE_INTRO then
+self.phase=c.PHASE_FIGHT
+self.bannerTimer=N
 self.fighters[1]:release()
 self.fighters[2]:release()
 self:push({kind="fight"})
-elseif d==a.PHASE_KO then
-local o,j=self.fighters[1],self.fighters[2]
+elseif a==c.PHASE_KO then
+local u,l=self.fighters[1],self.fighters[2]
 if self.doubleKo then
 self:endRound(nil)
-elseif h(j)then
+elseif b(l)then
 self:endRound(1)
 else
 self:endRound(2)
 end
-elseif d==a.PHASE_TIMEOVER then
-local j,o=self.fighters[1],self.fighters[2]
-if j.hp>o.hp then
+elseif a==c.PHASE_TIMEOVER then
+local l,u=self.fighters[1],self.fighters[2]
+if l.hp>u.hp then
 self:endRound(1)
-elseif o.hp>j.hp then
+elseif u.hp>l.hp then
 self:endRound(2)
 else
 self:endRound(nil)
 end
-elseif d==a.PHASE_WIN then
+elseif a==c.PHASE_WIN then
 self:closeOrContinue()
 end
 end
@@ -422,84 +422,84 @@ end
 self:moveCamera()
 end
 
-function a:isFighting()
-return self.phase==a.PHASE_FIGHT
+function c:isFighting()
+return self.phase==c.PHASE_FIGHT
 end
 
-function a:isOver()
-return self.phase==a.PHASE_OVER
+function c:isOver()
+return self.phase==c.PHASE_OVER
 end
 
-function a:screenX(d)
-return math.floor(d-self.camera)
+function c:screenX(x)
+return math.floor(x-self.camera)
 end
 
-function a:drawFighter(j,o,q)
-local d=self.fighters[q]
-local p=self:screenX(d.x)
-j:layers(o.effects,(e.shadow-1)*e.width,e.width,e.height,p-e.width/2,f.GROUND_Y-e.height/2-1,M)
-local x,I=L.cellOf(d:frame(),d.facing)
-j:layers(o.sheets[d.definition.id][x],I*k.width,k.width,k.height,p-k.anchor,f.GROUND_Y-k.height+1-math.floor(d.y),A)
+function c:drawFighter(screen,art,index)
+local a=self.fighters[index]
+local l=self:screenX(a.x)
+screen:layers(art.effects,(f.shadow-1)*f.width,f.width,f.height,l-f.width/2,g.GROUND_Y-f.height/2-1,K)
+local u,v=J.cellOf(a:frame(),a.facing)
+screen:layers(art.sheets[a.definition.id][u],v*j.width,j.width,j.height,l-j.anchor,g.GROUND_Y-j.height+1-math.floor(a.y),A)
 end
 
-function a:drawEffect(j,o,d,p,q,x)
-if x<0 then
-d=d+e.count
+function c:drawEffect(screen,art,cell,x,y,dir)
+if dir<0 then
+cell=cell+f.count
 end
-j:layers(o.effects,(d-1)*e.width,e.width,e.height,self:screenX(p)-e.width/2,f.GROUND_Y-math.floor(q)-e.height/2,A)
-end
-
-function a:drawEffects(o,p)
-for x,d in ipairs(self.projectiles)do
-local j=d.data
-local q=j.cells[math.floor(d.clock/j.spin)%#j.cells+1]
-self:drawEffect(o,p,q,d.x,d.y+math.floor(j.tall/2),d.dir)
-end
-for q,d in ipairs(self.sparks)do
-local j=e.guard
-if d.kind=="hit"then
-j=math.floor(d.timer/3)%2==0 and e.spark1 or e.spark2
-end
-self:drawEffect(o,p,j,d.x,d.y,1)
-end
+screen:layers(art.effects,(cell-1)*f.width,f.width,f.height,self:screenX(x)-f.width/2,g.GROUND_Y-math.floor(y)-f.height/2,A)
 end
 
-local function I(d,j,o,p,q,J,K)
-d:rect(j,o,p,q,c.r,c.g,c.b,1)
-d:rect(j+1,o+1,p-2,q-2,r.r,r.g,r.b,1)
-local x=math.floor((p-2)*J)
-if K then
-d:rect(j+p-1-x,o+1,x,q-2,c.r,c.g,c.b,1)
+function c:drawEffects(screen,art)
+for v,a in ipairs(self.projectiles)do
+local l=a.data
+local u=l.cells[math.floor(a.clock/l.spin)%#l.cells+1]
+self:drawEffect(screen,art,u,a.x,a.y+math.floor(l.tall/2),a.dir)
+end
+for u,a in ipairs(self.sparks)do
+local l=f.guard
+if a.kind=="hit"then
+l=math.floor(a.timer/3)%2==0 and f.spark1 or f.spark2
+end
+self:drawEffect(screen,art,l,a.x,a.y,1)
+end
+end
+
+local function I(screen,x,y,width,height,share,fromRight)
+screen:rect(x,y,width,height,e.r,e.g,e.b,1)
+screen:rect(x+1,y+1,width-2,height-2,p.r,p.g,p.b,1)
+local a=math.floor((width-2)*share)
+if fromRight then
+screen:rect(x+width-1-a,y+1,a,height-2,e.r,e.g,e.b,1)
 else
-d:rect(j+1,o+1,x,q-2,c.r,c.g,c.b,1)
+screen:rect(x+1,y+1,a,height-2,e.r,e.g,e.b,1)
 end
 end
 
-local function J(d,j,o)
-if o then
-d:rect(j,b.markY,b.markSize,b.markSize,c.r,c.g,c.b,1)
+local function y(screen,x,won)
+if won then
+screen:rect(x,d.markY,d.markSize,d.markSize,e.r,e.g,e.b,1)
 else
-d:rect(j,b.markY,b.markSize,b.markSize,s.r,s.g,s.b,1)
+screen:rect(x,d.markY,d.markSize,d.markSize,q.r,q.g,q.b,1)
 end
 end
 
-function a:drawHud(d)
-local o,p=self.fighters[1],self.fighters[2]
-I(d,b.leftX,b.barY,b.barWidth,b.barHeight,o.hp/o.maxHp,false)
-I(d,b.rightX,b.barY,b.barWidth,b.barHeight,p.hp/p.maxHp,true)
-d:text(o.definition.name,b.leftX,b.nameY,c.r,c.g,c.b,1)
-d:textRight(p.definition.name,b.rightX+b.barWidth,b.nameY,c.r,c.g,c.b,1)
-local q=f.VIEW/2
-d:textCentre(tostring(self.seconds),q,b.timerY,c.r,c.g,c.b,1)
-for j=1,i do
-J(d,q-12-j*b.markGap,self.wins[1]>=j)
-J(d,q+12+(j-1)*b.markGap,self.wins[2]>=j)
+function c:drawHud(screen)
+local l,u=self.fighters[1],self.fighters[2]
+I(screen,d.leftX,d.barY,d.barWidth,d.barHeight,l.hp/l.maxHp,false)
+I(screen,d.rightX,d.barY,d.barWidth,d.barHeight,u.hp/u.maxHp,true)
+screen:text(l.definition.name,d.leftX,d.nameY,e.r,e.g,e.b,1)
+screen:textRight(u.definition.name,d.rightX+d.barWidth,d.nameY,e.r,e.g,e.b,1)
+local v=g.VIEW/2
+screen:textCentre(tostring(self.seconds),v,d.timerY,e.r,e.g,e.b,1)
+for a=1,i do
+y(screen,v-12-a*d.markGap,self.wins[1]>=a)
+y(screen,v+12+(a-1)*d.markGap,self.wins[2]>=a)
 end
 end
 
-function a:banner()
-local d=self.phase
-if d==a.PHASE_INTRO then
+function c:banner()
+local a=self.phase
+if a==c.PHASE_INTRO then
 if self.phaseTimer>E/2 then
 if self:isFinalRound()then
 return"FinalRound"
@@ -507,15 +507,15 @@ end
 return"Round",self.round
 end
 return nil
-elseif d==a.PHASE_FIGHT then
+elseif a==c.PHASE_FIGHT then
 if self.bannerTimer>0 then
 return"Fight"
 end
-elseif d==a.PHASE_KO then
+elseif a==c.PHASE_KO then
 return self.doubleKo and"DoubleKo"or"Ko"
-elseif d==a.PHASE_TIMEOVER then
+elseif a==c.PHASE_TIMEOVER then
 return"TimeOver"
-elseif d==a.PHASE_WIN then
+elseif a==c.PHASE_WIN then
 if self.perfect and self.phaseTimer>F/2 then
 return"Perfect"
 end
@@ -523,26 +523,26 @@ end
 return nil
 end
 
-function a:draw(d,j,V)
-j.stage:draw(d,self.camera)
-local o,p=2,1
-if self.fighters[1].state==g.STATE_ATTACK then
-o,p=2,1
-elseif self.fighters[2].state==g.STATE_ATTACK then
-o,p=1,2
+function c:draw(screen,art,haloCentre)
+art.stage:draw(screen,self.camera)
+local a,l=2,1
+if self.fighters[1].state==h.STATE_ATTACK then
+a,l=2,1
+elseif self.fighters[2].state==h.STATE_ATTACK then
+a,l=1,2
 end
-self:drawFighter(d,j,o)
-self:drawFighter(d,j,p)
-self:drawEffects(d,j)
-self:drawHud(d)
-local q,K=self:banner()
-if q then
-local x
-if K then
-x=y(q,K)
+self:drawFighter(screen,art,a)
+self:drawFighter(screen,art,l)
+self:drawEffects(screen,art)
+self:drawHud(screen)
+local u,x=self:banner()
+if u then
+local v
+if x then
+v=w(u,x)
 else
-x=y(q)
+v=w(u)
 end
-V(d,x,f.VIEW/2,U)
+haloCentre(screen,v,g.VIEW/2,S)
 end
 end

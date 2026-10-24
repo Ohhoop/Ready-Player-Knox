@@ -32,9 +32,9 @@ local u=150
 local o=90
 local v=150
 local w=3
-local x=4
-local y=3
-local z=2000000000
+local z=4
+local A=3
+local B=2000000000
 local p={up=false,down=false,left=false,right=false,a=false,b=false}
 
 a.MODE_TITLE="title"
@@ -52,18 +52,18 @@ a.PAUSE_MENU="menu"
 a.PAUSE_MOVES="moves"
 a.PAUSE_OPTIONS="options"
 
-local A={{-1,0},{1,0},{0,-1},{0,1}}
+local C={{-1,0},{1,0},{0,-1},{0,1}}
 
-local function q(d,f,h,l)
-for B,m in ipairs(A)do
-d:textCentre(f,h+m[1],l+m[2],j.r,j.g,j.b,1)
+local function q(screen,label,x,y)
+for f,d in ipairs(C)do
+screen:textCentre(label,x+d[1],y+d[2],j.r,j.g,j.b,1)
 end
-d:textCentre(f,h,l,k.r,k.g,k.b,1)
+screen:textCentre(label,x,y,k.r,k.g,k.b,1)
 end
 a.haloCentre=q
 
-local function B(h)
-local d,f=h.held,h.pressed
+local function x(input)
+local d,f=input.held,input.pressed
 return{
 up=d.up or f.up,down=d.down or f.down,left=d.left or f.left,
 right=d.right or f.right,a=d.a or f.a,b=d.b or f.b,
@@ -88,25 +88,25 @@ self.paused=false
 self:openTitle()
 end
 
-function a:stageOf(d)
-if not self.stages[d]then
-self.stages[d]=r.new(self.context.art,d)
+function a:stageOf(name)
+if not self.stages[name]then
+self.stages[name]=r.new(self.context.art,name)
 end
-return self.stages[d]
+return self.stages[name]
 end
 
 function a:applyMusic()
 self.sequencer:setMix(self.options.music and 1 or 0,1)
 end
 
-function a:keepMusic(d)
+function a:keepMusic(name)
 if not self.sequencer:isPlaying()then
-self.sequencer:play(d)
+self.sequencer:play(name)
 end
 end
 
-function a:effect(d)
-self.sequencer:effect(d)
+function a:effect(name)
+self.sequencer:effect(name)
 end
 
 function a:level()
@@ -124,10 +124,10 @@ end
 return 1
 end
 
-function a:tick(f,h)
+function a:tick(inputs,tick)
 self.clock=self.clock+1
 self:pollLink()
-local d=f[1]
+local d=inputs[1]
 if self.mode==a.MODE_FIGHT then
 self:tickFight(d)
 else
@@ -139,8 +139,8 @@ function a:pollLink()
 local h=self.port
 local m=h:poll(self.clock)
 local d=self.mode
-local C=d==a.MODE_WAITING or d==a.MODE_SELECT and self.twoPlayer or d==a.MODE_VERSUS and self.twoPlayer or d==a.MODE_FIGHT and self.twoPlayer or d==a.MODE_RESULT and self.twoPlayer
-if C and not h:isConnected()then
+local y=d==a.MODE_WAITING or d==a.MODE_SELECT and self.twoPlayer or d==a.MODE_VERSUS and self.twoPlayer or d==a.MODE_FIGHT and self.twoPlayer or d==a.MODE_RESULT and self.twoPlayer
+if y and not h:isConnected()then
 self:openTitle()
 return
 end
@@ -181,9 +181,9 @@ self.port:forgetMeasure()
 self.port:hello()
 end
 
-function a:openSelect(d)
+function a:openSelect(twoPlayer)
 self.mode=a.MODE_SELECT
-self.twoPlayer=d
+self.twoPlayer=twoPlayer
 self.cursor=self.cursor or 1
 self.myChoice=nil
 self.peerChoice=nil
@@ -192,9 +192,9 @@ self.paused=false
 self.sequencer:stop()
 end
 
-function a:startRun(d)
-self.myChoice=d
-self.ladder=c.ladder(d)
+function a:startRun(index)
+self.myChoice=index
+self.ladder=c.ladder(index)
 self.ladderIndex=1
 self:openVersus()
 end
@@ -226,19 +226,19 @@ self.match=nil
 if self.port:leads()then
 self.port:nextMatch()
 local f=self.port:delay()
-self.port:sendStart(self.random:int(1,z),f)
+self.port:sendStart(self.random:int(1,B),f)
 self:createLinkedMatch(f)
 end
 end
 
-function a:createLinkedMatch(d)
-local f,h=self:pairing()
-self.match=n.new(f,h,nil,1)
-self.delay=d
+function a:createLinkedMatch(delay)
+local d,f=self:pairing()
+self.match=n.new(d,f,nil,1)
+self.delay=delay
 self.simTick=0
 self.frame=0
 self.prefillTick=0
-self.sentTick=d-1
+self.sentTick=delay-1
 end
 
 function a:openFight()
@@ -271,23 +271,23 @@ self.paused=false
 self:effect(b.CONFIRM)
 end
 
-function a:tickFight(d)
+function a:tickFight(input)
 if self.paused then
-self:tickPause(d)
+self:tickPause(input)
 return
 end
-if d and d.pressed.start and not self.twoPlayer then
+if input and input.pressed.start and not self.twoPlayer then
 self:pause()
 return
 end
-local f=p
-if d then
-f=B(d)
+local d=p
+if input then
+d=x(input)
 end
 if self.twoPlayer then
-self:tickLinkedFight(f)
+self:tickLinkedFight(d)
 else
-self.match:tick(f,nil)
+self.match:tick(d,nil)
 end
 self:hearMatch()
 if self.match:isOver()then
@@ -295,18 +295,18 @@ self:endFight()
 end
 end
 
-function a:tickLinkedFight(C)
+function a:tickLinkedFight(held)
 local d=self.port
 local f=self:prefill()
 self.frame=self.frame+1
-local D=self.frame-1+self.delay
-while self.sentTick<D and f<x and self.prefillTick>=self.delay do
+local y=self.frame-1+self.delay
+while self.sentTick<y and f<z and self.prefillTick>=self.delay do
 self.sentTick=self.sentTick+1
-d:sendInput(self.sentTick,C)
+d:sendInput(self.sentTick,held)
 f=f+1
 end
 local h=0
-while h<y and self.simTick<self.frame and not self.match:isOver()do
+while h<A and self.simTick<self.frame and not self.match:isOver()do
 local l=d:localInput(self.simTick)
 local m=d:remoteInput(self.simTick)
 if not l or not m then
@@ -422,15 +422,15 @@ self.sequencer:stop()
 self.sequencer:play(b.OVER)
 end
 
-function a:draw(d)
+function a:draw(screen)
 if self.mode==a.MODE_FIGHT then
-self.match:draw(d,self.matchArt,q)
+self.match:draw(screen,self.matchArt,q)
 if self.paused then
-self:drawPause(d)
+self:drawPause(screen)
 end
 return
 end
-self:drawMenu(d)
+self:drawMenu(screen)
 end
 
 require"SpiffBoy/Games/StreetBiter/Menus"

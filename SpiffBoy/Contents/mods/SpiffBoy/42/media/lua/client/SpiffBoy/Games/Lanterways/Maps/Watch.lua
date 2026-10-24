@@ -17,9 +17,9 @@ b.WATCHLIGHTS={
 {region="spire",door="spireWatchDoor",page="book23",when={min=19}},
 }
 
-local function i(a)
-if a.page then
-return{{x=8,y=12,page=a.page}}
+local function i(watch)
+if watch.page then
+return{{x=8,y=12,page=watch.page}}
 end
 return{}
 end

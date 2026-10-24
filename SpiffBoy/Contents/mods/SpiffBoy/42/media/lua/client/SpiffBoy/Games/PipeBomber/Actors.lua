@@ -1,251 +1,251 @@
 require"SpiffBoy/Core/Core"
 require"SpiffBoy/Games/PipeBomber/Zones"
 
-local c=SpiffBoy.PipeBomber.Zones.TILE
+local e=SpiffBoy.PipeBomber.Zones.TILE
 
-local a={}
-SpiffBoy.PipeBomber.Actors=a
+local d={}
+SpiffBoy.PipeBomber.Actors=d
 
-a.SPEED=0.75
-a.SPEED_STEP=0.25
-a.MAX_SPEED=3
-a.MAX_RANGE=6
-a.MAX_COUNT=6
-a.TOUCH=8
-a.STEP_TICKS=8
-a.SAFE_TICKS=150
-a.DYING={hurt=30,kneel=24,lying=66}
-a.ZOMBIE_DYING={fall=16,remains=30}
-a.FLASH_TICKS=40
-a.SURVIVOR_FRAMES={down=0,up=3,right=6,left=9,hurt=12,kneel=13,lying=14,cheer=15}
-a.ZOMBIE_FRAMES={right=0,left=2,fall=4,remains=5}
-a.WALK_CYCLE={0,1,0,2}
-a.ZOMBIES={
+d.SPEED=0.75
+d.SPEED_STEP=0.25
+d.MAX_SPEED=3
+d.MAX_RANGE=6
+d.MAX_COUNT=6
+d.TOUCH=8
+d.STEP_TICKS=8
+d.SAFE_TICKS=150
+d.DYING={hurt=30,kneel=24,lying=66}
+d.ZOMBIE_DYING={fall=16,remains=30}
+d.FLASH_TICKS=40
+d.SURVIVOR_FRAMES={down=0,up=3,right=6,left=9,hurt=12,kneel=13,lying=14,cheer=15}
+d.ZOMBIE_FRAMES={right=0,left=2,fall=4,remains=5}
+d.WALK_CYCLE={0,1,0,2}
+d.ZOMBIES={
 shambler={speed=0.375,hp=1,turn=0.2,points=100},
 runner={speed=0.875,hp=1,turn=0.5,points=200},
 cop={speed=0.5,hp=1,turn=0.2,points=300,track=6},
 brute={speed=0.25,hp=2,turn=0.15,points=400},
 }
-a.DIRECTIONS={
+d.DIRECTIONS={
 {dx=0,dy=-1,facing="up"},
 {dx=0,dy=1,facing="down"},
 {dx=-1,dy=0,facing="left"},
 {dx=1,dy=0,facing="right"},
 }
 
-function a.cellOf(b)
-return math.floor(b.x/c+0.5)+1,math.floor(b.y/c+0.5)+1
+function d.cellOf(actor)
+return math.floor(actor.x/e+0.5)+1,math.floor(actor.y/e+0.5)+1
 end
 
-local function k(d,b,h,f,i)
-local g=math.floor(b/c+0.5)
-local j=g*c
-local n=h>0 and math.floor(d/c)+1 or math.ceil(d/c)-1
-if b~=j then
-if i(n,g)then
-return d,b,false
+local function g(along,across,sign,speed,closed)
+local b=math.floor(across/e+0.5)
+local c=b*e
+local i=sign>0 and math.floor(along/e)+1 or math.ceil(along/e)-1
+if across~=c then
+if closed(i,b)then
+return along,across,false
 end
-local e=math.min(f,math.abs(j-b))
-if j>b then
-b=b+e
+local a=math.min(speed,math.abs(c-across))
+if c>across then
+across=across+a
 else
-b=b-e
+across=across-a
 end
-f=f-e
-if f<=0 then
-return d,b,true
+speed=speed-a
+if speed<=0 then
+return along,across,true
 end
 end
-local e=d+h*f
-if h>0 then
-local l=math.ceil(d/c)
-local m=math.ceil(e/c)
-if m>l and i(m,g)then
-e=l*c
+local a=along+sign*speed
+if sign>0 then
+local f=math.ceil(along/e)
+local h=math.ceil(a/e)
+if h>f and closed(h,b)then
+a=f*e
 end
 else
-local l=math.floor(d/c)
-local m=math.floor(e/c)
-if m<l and i(m,g)then
-e=l*c
+local f=math.floor(along/e)
+local h=math.floor(a/e)
+if h<f and closed(h,b)then
+a=f*e
 end
 end
-return e,b,e~=d
+return a,across,a~=along
 end
 
-function a.walk(b,e,h,f,g)
-local d
-if e~=0 then
-b.x,b.y,d=k(b.x,b.y,e,f,function(i,j)return g(i+1,j+1)end)
+function d.walk(actor,dx,dy,speed,closed)
+local c
+if dx~=0 then
+actor.x,actor.y,c=g(actor.x,actor.y,dx,speed,function(a,b)return closed(a+1,b+1)end)
 else
-b.y,b.x,d=k(b.y,b.x,h,f,function(i,j)return g(j+1,i+1)end)
+actor.y,actor.x,c=g(actor.y,actor.x,dy,speed,function(a,b)return closed(b+1,a+1)end)
 end
-return d
+return c
 end
 
-function a.newSurvivor(b,d)
+function d.newSurvivor(column,row)
 return{
-x=(b-1)*c,y=(d-1)*c,facing="down",walkTicks=0,moving=false,
-state="alive",timer=0,safe=a.SAFE_TICKS,
+x=(column-1)*e,y=(row-1)*e,facing="down",walkTicks=0,moving=false,
+state="alive",timer=0,safe=d.SAFE_TICKS,
 }
 end
 
-function a.killSurvivor(b)
-b.state="dying"
-b.timer=a.DYING.hurt+a.DYING.kneel+a.DYING.lying
+function d.killSurvivor(survivor)
+survivor.state="dying"
+survivor.timer=d.DYING.hurt+d.DYING.kneel+d.DYING.lying
 end
 
-function a.survivorFrame(b)
-local d=a.SURVIVOR_FRAMES
-if b.state=="dying"then
-local e=b.timer
-if e>a.DYING.kneel+a.DYING.lying then
-return d.hurt
-elseif e>a.DYING.lying then
-return d.kneel
+function d.survivorFrame(survivor)
+local a=d.SURVIVOR_FRAMES
+if survivor.state=="dying"then
+local b=survivor.timer
+if b>d.DYING.kneel+d.DYING.lying then
+return a.hurt
+elseif b>d.DYING.lying then
+return a.kneel
 end
-return d.lying
-elseif b.state=="cheer"then
-return d.cheer
+return a.lying
+elseif survivor.state=="cheer"then
+return a.cheer
 end
-local e=d[b.facing]
-if not b.moving then
-return e
+local b=a[survivor.facing]
+if not survivor.moving then
+return b
 end
-local f=a.WALK_CYCLE
-return e+f[math.floor(b.walkTicks/a.STEP_TICKS)%#f+1]
+local c=d.WALK_CYCLE
+return b+c[math.floor(survivor.walkTicks/d.STEP_TICKS)%#c+1]
 end
 
-function a.newZombie(d,g,h,i)
-local b=a.ZOMBIES[d]
-local e,f=(g-1)*c,(h-1)*c
+function d.newZombie(kind,column,row,pace)
+local a=d.ZOMBIES[kind]
+local b,c=(column-1)*e,(row-1)*e
 return{
-kind=d,stats=b,x=e,y=f,tx=e,ty=f,speed=b.speed*i,
-hp=b.hp,flash=0,facing="right",walkTicks=0,state="walk",timer=0,dir=nil,
+kind=kind,stats=a,x=b,y=c,tx=b,ty=c,speed=a.speed*pace,
+hp=a.hp,flash=0,facing="right",walkTicks=0,state="walk",timer=0,dir=nil,
 }
 end
 
-function a.openDirections(e,f,g)
-local b={}
-for h,d in ipairs(a.DIRECTIONS)do
-if not g(e+d.dx,f+d.dy)then
-b[#b+1]=d
+function d.openDirections(column,row,closed)
+local a={}
+for c,b in ipairs(d.DIRECTIONS)do
+if not closed(column+b.dx,row+b.dy)then
+a[#a+1]=b
 end
 end
-return b
-end
-
-function a.towards(g,h,i,j,l,m)
-local b,d={},nil
-for n,e in ipairs(g)do
-local f=math.abs(h+e.dx-j)+math.abs(i+e.dy-l)
-if not d or f<d then
-b,d={e},f
-elseif f==d then
-b[#b+1]=e
-end
-end
-return b[m:int(1,#b)]
+return a
 end
 
-function a.wander(d,e,h,g)
-if d.dir then
-for f,b in ipairs(e)do
-if b==d.dir and not g:chance(h)then
-return b
+function d.towards(open,column,row,goalColumn,goalRow,random)
+local a,b={},nil
+for h,c in ipairs(open)do
+local f=math.abs(column+c.dx-goalColumn)+math.abs(row+c.dy-goalRow)
+if not b or f<b then
+a,b={c},f
+elseif f==b then
+a[#a+1]=c
 end
 end
-end
-local b={}
-for j,f in ipairs(e)do
-local i=d.dir and f.dx==-d.dir.dx and f.dy==-d.dir.dy
-if not i then
-b[#b+1]=f
-end
-end
-if#b==0 then
-b=e
-end
-return b[g:int(1,#b)]
+return a[random:int(1,#a)]
 end
 
-function a.advance(b,d)
-local e,f=b.tx-b.x,b.ty-b.y
-b.x=b.x+SpiffBoy.clamp(e,-d,d)
-b.y=b.y+SpiffBoy.clamp(f,-d,d)
-if e~=0 or f~=0 then
-b.walkTicks=b.walkTicks+1
+function d.wander(walker,open,turn,random)
+if walker.dir then
+for b,a in ipairs(open)do
+if a==walker.dir and not random:chance(turn)then
+return a
 end
-return b.x==b.tx and b.y==b.ty
+end
+end
+local a={}
+for f,b in ipairs(open)do
+local c=walker.dir and b.dx==-walker.dir.dx and b.dy==-walker.dir.dy
+if not c then
+a[#a+1]=b
+end
+end
+if#a==0 then
+a=open
+end
+return a[random:int(1,#a)]
 end
 
-function a.aim(b,d)
-b.dir=d
-if not d then
+function d.advance(walker,speed)
+local a,b=walker.tx-walker.x,walker.ty-walker.y
+walker.x=walker.x+SpiffBoy.clamp(a,-speed,speed)
+walker.y=walker.y+SpiffBoy.clamp(b,-speed,speed)
+if a~=0 or b~=0 then
+walker.walkTicks=walker.walkTicks+1
+end
+return walker.x==walker.tx and walker.y==walker.ty
+end
+
+function d.aim(walker,dir)
+walker.dir=dir
+if not dir then
 return
 end
-b.tx=b.x+d.dx*c
-b.ty=b.y+d.dy*c
-if d.dx~=0 then
-b.facing=d.facing
+walker.tx=walker.x+dir.dx*e
+walker.ty=walker.y+dir.dy*e
+if dir.dx~=0 then
+walker.facing=dir.facing
 end
 end
 
-function a.updateZombie(b,d)
-if b.flash>0 then
-b.flash=b.flash-1
+function d.updateZombie(zombie,world)
+if zombie.flash>0 then
+zombie.flash=zombie.flash-1
 end
-if b.state=="dying"then
-b.timer=b.timer-1
+if zombie.state=="dying"then
+zombie.timer=zombie.timer-1
 return
 end
-if b.x==b.tx and b.y==b.ty then
-local e,f=a.cellOf(b)
-local g=a.openDirections(e,f,function(g,h)return d:closedToZombie(g,h)end)
-if#g==0 then
-a.aim(b,nil)
+if zombie.x==zombie.tx and zombie.y==zombie.ty then
+local a,b=d.cellOf(zombie)
+local c=d.openDirections(a,b,function(c,r)return world:closedToZombie(c,r)end)
+if#c==0 then
+d.aim(zombie,nil)
 return
 end
-local h,i=d:survivorCell()
-local j=b.stats.track
-if j and a.distanceTo(e,f,h,i)<=j then
-a.aim(b,a.towards(g,e,f,h,i,d.random))
+local f,h=world:survivorCell()
+local i=zombie.stats.track
+if i and d.distanceTo(a,b,f,h)<=i then
+d.aim(zombie,d.towards(c,a,b,f,h,world.random))
 else
-a.aim(b,a.wander(b,g,b.stats.turn,d.random))
+d.aim(zombie,d.wander(zombie,c,zombie.stats.turn,world.random))
 end
 end
-a.advance(b,b.speed)
-end
-
-function a.distanceTo(b,d,e,f)
-return math.abs(b-e)+math.abs(d-f)
+d.advance(zombie,zombie.speed)
 end
 
-function a.hitZombie(b)
-if b.state=="dying"or b.flash>0 then
+function d.distanceTo(c1,r1,c2,r2)
+return math.abs(c1-c2)+math.abs(r1-r2)
+end
+
+function d.hitZombie(zombie)
+if zombie.state=="dying"or zombie.flash>0 then
 return false
 end
-b.hp=b.hp-1
-if b.hp>0 then
-b.flash=a.FLASH_TICKS
+zombie.hp=zombie.hp-1
+if zombie.hp>0 then
+zombie.flash=d.FLASH_TICKS
 return false
 end
-b.state="dying"
-b.timer=a.ZOMBIE_DYING.fall+a.ZOMBIE_DYING.remains
+zombie.state="dying"
+zombie.timer=d.ZOMBIE_DYING.fall+d.ZOMBIE_DYING.remains
 return true
 end
 
-function a.zombieFrame(b)
-local d=a.ZOMBIE_FRAMES
-if b.state=="dying"then
-if b.timer>a.ZOMBIE_DYING.remains then
-return d.fall
+function d.zombieFrame(zombie)
+local a=d.ZOMBIE_FRAMES
+if zombie.state=="dying"then
+if zombie.timer>d.ZOMBIE_DYING.remains then
+return a.fall
 end
-return d.remains
+return a.remains
 end
-return d[b.facing]+math.floor(b.walkTicks/a.STEP_TICKS)%2
+return a[zombie.facing]+math.floor(zombie.walkTicks/d.STEP_TICKS)%2
 end
 
-function a.touch(b,d)
-return math.abs(b.x-d.x)<a.TOUCH and math.abs(b.y-d.y)<a.TOUCH
+function d.touch(a,b)
+return math.abs(a.x-b.x)<d.TOUCH and math.abs(a.y-b.y)<d.TOUCH
 end

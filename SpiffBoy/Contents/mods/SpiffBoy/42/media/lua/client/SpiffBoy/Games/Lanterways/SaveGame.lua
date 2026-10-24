@@ -4,329 +4,329 @@ require"SpiffBoy/Games/Lanterways/Data/Flags"
 require"SpiffBoy/Games/Lanterways/Data/Enemies"
 require"SpiffBoy/Games/Lanterways/Field"
 
-local c=SpiffBoy.Lanterways
-local g=c.Characters
-local f=c.Items
-local i=c.Party
-local n=c.Flags
+local b=SpiffBoy.Lanterways
+local f=b.Characters
+local e=b.Items
+local i=b.Party
+local n=b.Flags
 
-local b={}
-c.SaveGame=b
+local a={}
+b.SaveGame=a
 
-b.SLOTS=3
-b.VERSION=3
-b.MAX_NG=99
-b.CLEARED_STEP=21
-b.CHUNK=120
-b.MAX_TIME=359999
+a.SLOTS=3
+a.VERSION=3
+a.MAX_NG=99
+a.CLEARED_STEP=21
+a.CHUNK=120
+a.MAX_TIME=359999
 
 local o="0123456789abcdef"
 
-local function d(a,e,h)
-return SpiffBoy.isInteger(a)and a>=e and a<=h
+local function c(value,low,high)
+return SpiffBoy.isInteger(value)and value>=low and value<=high
 end
 
-local function j(p,k)
+local function j(set,names)
 local h={}
-local a=1
-while a<=#k do
-local e=0
-for l=0,3 do
-local m=k[a+l]
-if m and p[m]then
-e=e+2^l
+local d=1
+while d<=#names do
+local g=0
+for k=0,3 do
+local l=names[d+k]
+if l and set[l]then
+g=g+2^k
 end
 end
-h[#h+1]=string.sub(o,e+1,e+1)
-a=a+4
+h[#h+1]=string.sub(o,g+1,g+1)
+d=d+4
 end
 return table.concat(h)
 end
 
-local function k(a,p)
-if type(a)~="string"or string.find(a,"[^0-9a-f]")then
+local function k(text,names)
+if type(text)~="string"or string.find(text,"[^0-9a-f]")then
+return nil
+end
+local g={}
+for d=1,string.len(text)do
+local m=string.find(o,string.sub(text,d,d),1,true)-1
+for h=0,3 do
+local l=names[(d-1)*4+h+1]
+if l and math.floor(m/2^h)%2==1 then
+g[l]=true
+end
+end
+end
+return g
+end
+
+local function y(bonds)
+local d={}
+for h,g in ipairs(b.Skills.DUOS)do
+d[#d+1]=bonds[g]or 0
+end
+return table.concat(d,",")
+end
+
+local function z(text)
+if type(text)~="string"then
 return nil
 end
 local h={}
-for e=1,string.len(a)do
-local q=string.find(o,string.sub(a,e,e),1,true)-1
-for l=0,3 do
-local m=p[(e-1)*4+l+1]
-if m and math.floor(q/2^l)%2==1 then
-h[m]=true
+local d=0
+for m in string.gmatch(text,"[^,]+")do
+d=d+1
+local g=tonumber(m)
+local l=b.Skills.DUOS[d]
+if not l or not c(g,0,b.Skills.BOND_CAP)then
+return nil
+end
+if g>0 then
+h[l]=g
 end
 end
+if d~=#b.Skills.DUOS then
+return nil
 end
 return h
 end
 
-local function z(e)
-local a={}
-for l,h in ipairs(c.Skills.DUOS)do
-a[#a+1]=e[h]or 0
-end
-return table.concat(a,",")
+function a.encodeFlags(flags)
+return j(flags,n.NAMES)
 end
 
-local function A(h)
-if type(h)~="string"then
-return nil
-end
-local l={}
-local a=0
-for p in string.gmatch(h,"[^,]+")do
-a=a+1
-local e=tonumber(p)
-local m=c.Skills.DUOS[a]
-if not m or not d(e,0,c.Skills.BOND_CAP)then
-return nil
-end
-if e>0 then
-l[m]=e
-end
-end
-if a~=#c.Skills.DUOS then
-return nil
-end
-return l
+function a.decodeFlags(text)
+return k(text,n.NAMES)
 end
 
-function b.encodeFlags(a)
-return j(a,n.NAMES)
-end
-
-function b.decodeFlags(a)
-return k(a,n.NAMES)
-end
-
-local function l(a)
-if not a then
+local function l(id)
+if not id then
 return 0
 end
-return f.get(a).code
+return e.get(id).code
 end
 
-local function B(a)
-if a==0 then
+local function A(code)
+if code==0 then
 return nil
 end
-return f.CODES[a]or false
+return e.CODES[code]or false
 end
 
-local function p(a)
+local function p(member)
 return table.concat({
-a.level,a.xp,a.hp,a.sp,
-l(a.equip.weapon),l(a.equip.armor),l(a.equip.charm),
+member.level,member.xp,member.hp,member.sp,
+l(member.equip.weapon),l(member.equip.armor),l(member.equip.charm),
 },",")
 end
 
-local function q(m,r)
-if type(r)~="string"then
+local function q(id,text)
+if type(text)~="string"then
 return nil
 end
-local a={}
-for h in string.gmatch(r,"[^,]+")do
-local e=tonumber(h)
-if not e then
+local d={}
+for h in string.gmatch(text,"[^,]+")do
+local g=tonumber(h)
+if not g then
 return nil
 end
-a[#a+1]=e
+d[#d+1]=g
 end
-if#a~=7 then
+if#d~=7 then
 return nil
 end
-local s,t,u,v=a[1],a[2],a[3],a[4]
-if not d(s,1,c.LEVEL_CAP)or not d(t,0,99999999)or not d(u,0,99999)or not d(v,0,99999)then
+local m,r,s,t=d[1],d[2],d[3],d[4]
+if not c(m,1,b.LEVEL_CAP)or not c(r,0,99999999)or not c(s,0,99999)or not c(t,0,99999)then
 return nil
 end
-local C=g.BY_ID[m]
-local e={}
-for w,x in ipairs(i.SLOTS)do
-if not d(a[4+w],0,#f.ORDER)then
+local x=f.BY_ID[id]
+local g={}
+for u,v in ipairs(i.SLOTS)do
+if not c(d[4+u],0,#e.ORDER)then
 return nil
 end
-local h=B(a[4+w])
+local h=A(d[4+u])
 if h==false then
 return nil
 end
 if h then
-local y=f.get(h)
-if y.kind~=x or not f.fits(C,y)then
+local w=e.get(h)
+if w.kind~=v or not e.fits(x,w)then
 return nil
 end
 end
-e[x]=h
+g[v]=h
 end
-if not e.weapon or not e.armor then
+if not g.weapon or not g.armor then
 return nil
 end
-local h={id=m,level=s,xp=t,hp=u,sp=v,equip=e}
+local h={id=id,level=m,xp=r,hp=s,sp=t,equip=g}
 i.clamp(h)
 return h
 end
 
-local function C(s)
-local e={}
-local a=""
-for t,r in ipairs(f.ORDER)do
-local h=s[r]
+local function B(items)
+local g={}
+local d=""
+for s,r in ipairs(e.ORDER)do
+local h=items[r]
 if h and h>0 then
-local m=f.get(r).code..":"..h
-if a~=""and string.len(a)+string.len(m)+1>b.CHUNK then
-e[#e+1]=a
-a=""
+local m=e.get(r).code..":"..h
+if d~=""and string.len(d)+string.len(m)+1>a.CHUNK then
+g[#g+1]=d
+d=""
 end
-if a==""then
-a=m
+if d==""then
+d=m
 else
-a=a..","..m
+d=d..","..m
 end
 end
 end
-if a~=""then
-e[#e+1]=a
+if d~=""then
+g[#g+1]=d
 end
-return e
-end
-
-local function D(a)
-if type(a)~="table"then
-return nil
-end
-local e={}
-for v,h in ipairs(a)do
-if type(h)~="string"then
-return nil
-end
-for s,t in string.gmatch(h,"(%d+):(%d+)")do
-local u,m=tonumber(s),tonumber(t)
-local r=f.CODES[u]
-if not r or not d(m,1,f.MAX_STACK)then
-return nil
-end
-e[r]=m
-end
-end
-return e
+return g
 end
 
-function b.encode(a)
+local function C(chunks)
+if type(chunks)~="table"then
+return nil
+end
+local d={}
+for u,g in ipairs(chunks)do
+if type(g)~="string"then
+return nil
+end
+for r,s in string.gmatch(g,"(%d+):(%d+)")do
+local t,h=tonumber(r),tonumber(s)
+local m=e.CODES[t]
+if not m or not c(h,1,e.MAX_STACK)then
+return nil
+end
+d[m]=h
+end
+end
+return d
+end
+
+function a.encode(state)
+local g={}
+local d=""
+for r,h in ipairs(state.order)do
+local m=f.BY_ID[h]
+g[m.code]=p(state.members[h])
+d=d..m.code
+end
 local h={}
-local e=""
-for s,m in ipairs(a.order)do
-local r=g.BY_ID[m]
-h[r.code]=p(a.members[m])
-e=e..r.code
+for m,r in pairs(state.carry)do
+h[f.BY_ID[m].code]=p(r)
 end
-local m={}
-for r,s in pairs(a.carry)do
-m[g.BY_ID[r].code]=p(s)
-end
-local r={
-v=b.VERSION,
-step=a.step,
-map=a.map,
-x=a.x,
-y=a.y,
-d=a.dir,
-gold=a.gold,
-time=math.min(b.MAX_TIME,math.floor(a.time)),
-flags=b.encodeFlags(a.flags),
-order=e,
-m=h,
-items=C(a.items),
-seen=j(a.seen,c.Enemies.ORDER),
-known=j(a.known,c.Enemies.ORDER),
-bonds=z(a.bonds),
-ng=a.ng,
-c=m,
+local m={
+v=a.VERSION,
+step=state.step,
+map=state.map,
+x=state.x,
+y=state.y,
+d=state.dir,
+gold=state.gold,
+time=math.min(a.MAX_TIME,math.floor(state.time)),
+flags=a.encodeFlags(state.flags),
+order=d,
+m=g,
+items=B(state.items),
+seen=j(state.seen,b.Enemies.ORDER),
+known=j(state.known,b.Enemies.ORDER),
+bonds=y(state.bonds),
+ng=state.ng,
+c=h,
 }
-if a.inn then
-r.inn=a.inn.map..","..a.inn.x..","..a.inn.y
+if state.inn then
+m.inn=state.inn.map..","..state.inn.x..","..state.inn.y
 end
-return r
+return m
 end
 
-function b.decode(a)
-if type(a)~="table"or a.v~=b.VERSION then
+function a.decode(slot)
+if type(slot)~="table"or slot.v~=a.VERSION then
 return nil
 end
-if not d(a.step,0,999)or type(a.map)~="string"or not c.Maps[a.map]then
+if not c(slot.step,0,999)or type(slot.map)~="string"or not b.Maps[slot.map]then
 return nil
 end
-local m=c.Field.prepare(c.Maps[a.map])
-if not d(a.x,0,m.width-1)or not d(a.y,0,m.height-1)or not d(a.d,1,4)then
+local h=b.Field.prepare(b.Maps[slot.map])
+if not c(slot.x,0,h.width-1)or not c(slot.y,0,h.height-1)or not c(slot.d,1,4)then
 return nil
 end
-if not d(a.gold,0,i.GOLD_CAP)or not d(a.time,0,b.MAX_TIME)or not d(a.ng,0,b.MAX_NG)then
+if not c(slot.gold,0,i.GOLD_CAP)or not c(slot.time,0,a.MAX_TIME)or not c(slot.ng,0,a.MAX_NG)then
 return nil
 end
-local r=b.decodeFlags(a.flags)
-local s=D(a.items)
-local t=k(a.seen,c.Enemies.ORDER)
-local u=k(a.known,c.Enemies.ORDER)
-local v=A(a.bonds)
-if not r or not s or not t or not u or not v or type(a.order)~="string"or type(a.m)~="table"or type(a.c)~="table"then
+local m=a.decodeFlags(slot.flags)
+local r=C(slot.items)
+local s=k(slot.seen,b.Enemies.ORDER)
+local t=k(slot.known,b.Enemies.ORDER)
+local u=z(slot.bonds)
+if not m or not r or not s or not t or not u or type(slot.order)~="string"or type(slot.m)~="table"or type(slot.c)~="table"then
 return nil
 end
-local e={
-step=a.step,flags=r,gold=a.gold,items=s,members={},order={},
-glow=0,map=a.map,x=a.x,y=a.y,dir=a.d,time=a.time,
-seen=t,known=u,bonds=v,ng=a.ng,carry={},
+local d={
+step=slot.step,flags=m,gold=slot.gold,items=r,members={},order={},
+glow=0,map=slot.map,x=slot.x,y=slot.y,dir=slot.d,time=slot.time,
+seen=s,known=t,bonds=u,ng=slot.ng,carry={},
 }
-for w,y in pairs(a.c)do
-local h=type(w)=="string"and g.BY_CODE[w]
-if not h then
+for v,x in pairs(slot.c)do
+local g=type(v)=="string"and f.BY_CODE[v]
+if not g then
 return nil
 end
-local x=q(h.id,y)
+local w=q(g.id,x)
+if not w then
+return nil
+end
+d.carry[g.id]=w
+end
+for v=1,string.len(slot.order)do
+local w=string.sub(slot.order,v,v)
+local g=f.BY_CODE[w]
+if not g or d.members[g.id]then
+return nil
+end
+local x=q(g.id,slot.m[w])
 if not x then
 return nil
 end
-e.carry[h.id]=x
+d.members[g.id]=x
+d.order[#d.order+1]=g.id
 end
-for w=1,string.len(a.order)do
-local x=string.sub(a.order,w,w)
-local h=g.BY_CODE[x]
-if not h or e.members[h.id]then
+if d.order[1]~="pell"then
 return nil
 end
-local y=q(h.id,a.m[x])
-if not y then
-return nil
-end
-e.members[h.id]=y
-e.order[#e.order+1]=h.id
-end
-if e.order[1]~="pell"then
-return nil
-end
-for h in pairs(e.carry)do
-if e.members[h]then
+for g in pairs(d.carry)do
+if d.members[g]then
 return nil
 end
 end
-if a.inn~=nil then
-if type(a.inn)~="string"then
+if slot.inn~=nil then
+if type(slot.inn)~="string"then
 return nil
 end
-local h,w,x=string.match(a.inn,"^(%a+),(%d+),(%d+)$")
-if not h or not c.Maps[h]then
+local g,v,w=string.match(slot.inn,"^(%a+),(%d+),(%d+)$")
+if not g or not b.Maps[g]then
 return nil
 end
-e.inn={map=h,x=tonumber(w),y=tonumber(x)}
+d.inn={map=g,x=tonumber(v),y=tonumber(w)}
 end
-return e
+return d
 end
 
-function b.summary(e)
-local a=b.decode(e)
-if not a then
+function a.summary(slot)
+local d=a.decode(slot)
+if not d then
 return nil
 end
-return{level=a.members.pell.level,map=a.map,time=a.time,step=a.step,order=a.order,cleared=b.cleared(a)}
+return{level=d.members.pell.level,map=d.map,time=d.time,step=d.step,order=d.order,cleared=a.cleared(d)}
 end
 
-function b.cleared(a)
-return a.step>=b.CLEARED_STEP
+function a.cleared(state)
+return state.step>=a.CLEARED_STEP
 end

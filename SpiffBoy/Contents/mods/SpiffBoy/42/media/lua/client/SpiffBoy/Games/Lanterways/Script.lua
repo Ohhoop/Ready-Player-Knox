@@ -1,32 +1,32 @@
 require"SpiffBoy/Games/Lanterways/Base"
 require"SpiffBoy/Games/Lanterways/Party"
 
-local d=SpiffBoy.Lanterways
-local f=d.Party
+local b=SpiffBoy.Lanterways
+local d=b.Party
 
-local g={}
-g.__index=g
-d.Script=g
+local e={}
+e.__index=e
+b.Script=e
 
-g.MAX_STEPS_PER_TICK=64
+e.MAX_STEPS_PER_TICK=64
 
-function g.named(a)
-local b=d.Scripts[a]
-if not b then
-error("Lanterways: no scene named "..tostring(a))
+function e.named(name)
+local a=b.Scripts[name]
+if not a then
+error("Lanterways: no scene named "..tostring(name))
 end
-return b
+return a
 end
 
-function g.new(b,e)
-local a=setmetatable({},g)
-a.commands=b
-a.name=e
+function e.new(commands,name)
+local a=setmetatable({},e)
+a.commands=commands
+a.name=name
 a.pc=1
 a.labels={}
-for h,c in ipairs(b)do
+for f,c in ipairs(commands)do
 if c[1]=="label"then
-a.labels[c[2]]=h
+a.labels[c[2]]=f
 end
 end
 a.wait=nil
@@ -34,74 +34,74 @@ a.finished=false
 return a
 end
 
-function g:jump(a)
-local b=self.labels[a]
-if not b then
-error("Lanterways: scene "..tostring(self.name).." has no label "..tostring(a))
+function e:jump(label)
+local a=self.labels[label]
+if not a then
+error("Lanterways: scene "..tostring(self.name).." has no label "..tostring(label))
 end
-self.pc=b
-end
-
-local function m(a)
-local b=a.choiceResult
-a.choiceResult=nil
-return b
+self.pc=a
 end
 
-function g:waitOver(b)
+local function k(game)
+local a=game.choiceResult
+game.choiceResult=nil
+return a
+end
+
+function e:waitOver(game)
 local a=self.wait
 if not a then
 return true
 end
 if a.kind=="dialog"then
-return b.dialog==nil
+return game.dialog==nil
 elseif a.kind=="choice"then
-if b.choice then
+if game.choice then
 return false
 end
-local e=m(b)
+local f=k(game)
 local c=a.labels
-if c and c[e]then
-self:jump(c[e])
+if c and c[f]then
+self:jump(c[f])
 end
 return true
 elseif a.kind=="travel"then
-if b.choice then
+if game.choice then
 return false
 end
-local c=m(b)
-b:finishTravel(c)
+local c=k(game)
+game:finishTravel(c)
 return true
 elseif a.kind=="warp"then
-return b.pendingWarp==nil and b.fade.done
+return game.pendingWarp==nil and game.fade.done
 elseif a.kind=="ticks"then
 a.left=a.left-1
 return a.left<=0
 elseif a.kind=="paths"then
-return not b.field:advancePaths()and not b:anyMoving()
+return not game.field:advancePaths()and not game:anyMoving()
 elseif a.kind=="fade"then
-return b.fade.done
+return game.fade.done
 elseif a.kind=="battle"then
-return b.battleResult~=nil
+return game.battleResult~=nil
 elseif a.kind=="mode"then
-return b.mode==a.mode
+return game.mode==a.mode
 elseif a.kind=="music"then
-return not b.sequencer:isPlaying()
+return not game.sequencer:isPlaying()
 end
 return true
 end
 
-function g:update(a)
-if not self:waitOver(a)then
+function e:update(game)
+if not self:waitOver(game)then
 return false
 end
 if self.wait and self.wait.kind=="battle"then
-local b=a.battleResult
+local a=game.battleResult
 local c=self.wait.lost
-a.battleResult=nil
+game.battleResult=nil
 self.wait=nil
-if b~="win"then
-if b=="lose"and c then
+if a~="win"then
+if a=="lose"and c then
 self:jump(c)
 else
 self.finished=true
@@ -110,15 +110,15 @@ end
 end
 end
 self.wait=nil
-local b=0
+local a=0
 while self.pc<=#self.commands do
-b=b+1
-if b>g.MAX_STEPS_PER_TICK then
+a=a+1
+if a>e.MAX_STEPS_PER_TICK then
 return false
 end
 local c=self.commands[self.pc]
 self.pc=self.pc+1
-self:run(a,c)
+self:run(game,c)
 if self.wait then
 return false
 end
@@ -130,187 +130,187 @@ self.finished=true
 return true
 end
 
-function g:argument(b,a)
-if a=="@innprice"then
-return b.innPrice
+function e:argument(game,value)
+if value=="@innprice"then
+return game.innPrice
 end
-if type(a)=="table"then
-return d.text(a.text)
+if type(value)=="table"then
+return b.text(value.text)
 end
-return a
+return value
 end
 
-function g:run(b,a)
-local c=a[1]
-local e=b.state
-if c=="say"then
-b:openDialog(a[2],a[3],self:argument(b,a[4]))
+function e:run(game,command)
+local a=command[1]
+local c=game.state
+if a=="say"then
+game:openDialog(command[2],command[3],self:argument(game,command[4]))
 self.wait={kind="dialog"}
-elseif c=="choice"then
-b:openChoice(a[2],a[3],self:argument(b,a[5]))
-self.wait={kind="choice",labels=a[4]}
-elseif c=="pay"then
-local h=self:argument(b,a[2])
-if b.state.gold<h then
-self:jump(a[3])
+elseif a=="choice"then
+game:openChoice(command[2],command[3],self:argument(game,command[5]))
+self.wait={kind="choice",labels=command[4]}
+elseif a=="pay"then
+local f=self:argument(game,command[2])
+if game.state.gold<f then
+self:jump(command[3])
 else
-f.addGold(e,-h)
-b:effect("buy")
+d.addGold(c,-f)
+game:effect("buy")
 end
-elseif c=="label"then
+elseif a=="label"then
 return
-elseif c=="goto"then
-self:jump(a[2])
-elseif c=="if"then
-if f.meets(e,a[2])then
-self:jump(a[3])
+elseif a=="goto"then
+self:jump(command[2])
+elseif a=="if"then
+if d.meets(c,command[2])then
+self:jump(command[3])
 end
-elseif c=="end"then
+elseif a=="end"then
 self.finished=true
-elseif c=="step"then
-e.step=a[2]
-b:storyChanged()
-elseif c=="flag"then
-f.setFlag(e,a[2],a[3]~=false)
-b:storyChanged()
-elseif c=="give"then
-f.addItem(e,a[2],a[3]or 1)
-b:notice("Got",d.text("Item_"..a[2]),a[3]or 1)
+elseif a=="step"then
+c.step=command[2]
+game:storyChanged()
+elseif a=="flag"then
+d.setFlag(c,command[2],command[3]~=false)
+game:storyChanged()
+elseif a=="give"then
+d.addItem(c,command[2],command[3]or 1)
+game:notice("Got",b.text("Item_"..command[2]),command[3]or 1)
 self.wait={kind="dialog"}
-elseif c=="take"then
-f.takeItem(e,a[2],a[3]or 1)
-elseif c=="gold"then
-f.addGold(e,a[2])
-if a[2]>0 then
-b:notice("GotGold",a[2])
+elseif a=="take"then
+d.takeItem(c,command[2],command[3]or 1)
+elseif a=="gold"then
+d.addGold(c,command[2])
+if command[2]>0 then
+game:notice("GotGold",command[2])
 self.wait={kind="dialog"}
 end
-elseif c=="join"then
-f.join(e,a[2])
-b.field:refreshParty()
-b:gatherAtLeader()
-b:effect("join")
-b:notice("Joined",d.text("Name_"..a[2]))
+elseif a=="join"then
+d.join(c,command[2])
+game.field:refreshParty()
+game:gatherAtLeader()
+game:effect("join")
+game:notice("Joined",b.text("Name_"..command[2]))
 self.wait={kind="dialog"}
-elseif c=="leave"then
-f.leave(e,a[2])
-b.field:refreshParty()
-elseif c=="heal"then
-f.restoreAll(e)
-elseif c=="battle"then
-b.battleResult=nil
-b:startBattle(a[2],a[3]or{})
-self.wait={kind="battle",lost=a[4]}
-elseif c=="bright"then
-local h=d.Characters.BY_ID[a[2]]
-f.setFlag(e,"b_"..a[2],true)
-b:notice("BrightLearned",d.text("Name_"..a[2]),d.text("Skill_"..h.bright))
+elseif a=="leave"then
+d.leave(c,command[2])
+game.field:refreshParty()
+elseif a=="heal"then
+d.restoreAll(c)
+elseif a=="battle"then
+game.battleResult=nil
+game:startBattle(command[2],command[3]or{})
+self.wait={kind="battle",lost=command[4]}
+elseif a=="bright"then
+local f=b.Characters.BY_ID[command[2]]
+d.setFlag(c,"b_"..command[2],true)
+game:notice("BrightLearned",b.text("Name_"..command[2]),b.text("Skill_"..f.bright))
 self.wait={kind="dialog"}
-elseif c=="learn"then
-f.setFlag(e,a[3],true)
-b:effect("join")
-b:notice("BattleLearned",d.text("Name_"..a[2]),d.text("Skill_"..a[4]))
+elseif a=="learn"then
+d.setFlag(c,command[3],true)
+game:effect("join")
+game:notice("BattleLearned",b.text("Name_"..command[2]),b.text("Skill_"..command[4]))
 self.wait={kind="dialog"}
-elseif c=="trialdone"then
-local h=d.Characters.BY_ID[a[2]]
-f.setFlag(e,"t_"..a[2],true)
-b:effect("bright")
-b:notice("BrightUp",d.text("Name_"..a[2]),d.text("Skill_"..h.bright))
+elseif a=="trialdone"then
+local f=b.Characters.BY_ID[command[2]]
+d.setFlag(c,"t_"..command[2],true)
+game:effect("bright")
+game:notice("BrightUp",b.text("Name_"..command[2]),b.text("Skill_"..f.bright))
 self.wait={kind="dialog"}
 
-elseif c=="music"then
-b:playMusic(a[2])
-elseif c=="stopmusic"then
-b:stopMusic()
-elseif c=="jingle"then
-b:playJingle(a[2])
+elseif a=="music"then
+game:playMusic(command[2])
+elseif a=="stopmusic"then
+game:stopMusic()
+elseif a=="jingle"then
+game:playJingle(command[2])
 self.wait={kind="music"}
-elseif c=="sfx"then
-b:effect(a[2])
-elseif c=="fade"then
-b:startFade(a[2],a[3])
+elseif a=="sfx"then
+game:effect(command[2])
+elseif a=="fade"then
+game:startFade(command[2],command[3])
 self.wait={kind="fade"}
-elseif c=="wait"then
-self.wait={kind="ticks",left=a[2]}
-elseif c=="warp"then
-b:warp(a[2],a[3],a[4],a[5])
+elseif a=="wait"then
+self.wait={kind="ticks",left=command[2]}
+elseif a=="warp"then
+game:warp(command[2],command[3],command[4],command[5])
 self.wait={kind="warp"}
-elseif c=="move"then
-local h=b.field:actor(a[2])
-if h then
-b.field:setPath(h,a[3])
+elseif a=="move"then
+local f=game.field:actor(command[2])
+if f then
+game.field:setPath(f,command[3])
 end
-if a[4]~=false then
+if command[4]~=false then
 self.wait={kind="paths"}
 end
-elseif c=="waitmoves"then
+elseif a=="waitmoves"then
 self.wait={kind="paths"}
-elseif c=="face"then
-local h=b.field:actor(a[2])
-if h then
-h.dir=d.DIRECTION_INDEX[a[3]]
+elseif a=="face"then
+local f=game.field:actor(command[2])
+if f then
+f.dir=b.DIRECTION_INDEX[command[3]]
 end
-elseif c=="spawn"then
-b.field:spawn(a[2],a[3],a[4],a[5],a[6])
-elseif c=="despawn"then
-b.field:despawn(a[2])
-elseif c=="emote"then
-b:emote(a[2],a[3])
+elseif a=="spawn"then
+game.field:spawn(command[2],command[3],command[4],command[5],command[6])
+elseif a=="despawn"then
+game.field:despawn(command[2])
+elseif a=="emote"then
+game:emote(command[2],command[3])
 self.wait={kind="ticks",left=40}
-elseif c=="shake"then
-b.shake=a[2]or 30
-b:effect("rumble")
-elseif c=="title"then
-b:openTitleCard(a[2],a[3])
+elseif a=="shake"then
+game.shake=command[2]or 30
+game:effect("rumble")
+elseif a=="title"then
+game:openTitleCard(command[2],command[3])
 self.wait={kind="dialog"}
-elseif c=="shop"then
-b:openShop(a[2])
+elseif a=="shop"then
+game:openShop(command[2])
 self.wait={kind="mode",mode="field"}
-elseif c=="night"then
-b.shadeShift=a[2]
-elseif c=="travel"then
-b:openTravel()
+elseif a=="night"then
+game.shadeShift=command[2]
+elseif a=="travel"then
+game:openTravel()
 self.wait={kind="travel"}
-elseif c=="visit"then
-f.setFlag(e,"v_"..a[2],true)
-elseif c=="ending"then
-b:startEnding()
+elseif a=="visit"then
+d.setFlag(c,"v_"..command[2],true)
+elseif a=="ending"then
+game:startEnding()
 self.finished=true
-elseif c=="gather"then
-b:gatherAtLeader()
-elseif c=="refresh"then
-b.field:refreshNpcs()
-elseif c=="page"then
-f.setFlag(e,"p_"..a[2],true)
-b:notice("PageFound",d.text("PageTitle_"..a[2]))
+elseif a=="gather"then
+game:gatherAtLeader()
+elseif a=="refresh"then
+game.field:refreshNpcs()
+elseif a=="page"then
+d.setFlag(c,"p_"..command[2],true)
+game:notice("PageFound",b.text("PageTitle_"..command[2]))
 self.wait={kind="dialog"}
-elseif c=="echo"then
-f.setFlag(e,"e_"..a[2],true)
-b:effect("bright")
-elseif c=="walkoff"then
-local h=b.field
-local i=h:actor(a[2])
-local j=h:pathOffScreen(i,d.MurkSea.sites[a[3]])
-if not j then
-error("Lanterways: "..a[2].." has no way off the screen on "..h.id)
+elseif a=="echo"then
+d.setFlag(c,"e_"..command[2],true)
+game:effect("bright")
+elseif a=="walkoff"then
+local f=game.field
+local g=f:actor(command[2])
+local h=f:pathOffScreen(g,b.MurkSea.sites[command[3]])
+if not h then
+error("Lanterways: "..command[2].." has no way off the screen on "..f.id)
 end
-h:setPath(i,j)
+f:setPath(g,h)
 self.wait={kind="paths"}
-elseif c=="walkaway"then
-local h=b.field
-local i=h:actor(a[2])
-local n=d.DIRECTIONS[d.DIRECTION_INDEX[({u="up",d="down",l="left",r="right"})[a[3]]]]
-local j,k,l=i.x,i.y,0
-while not h:offScreen(j,k)do
-j,k,l=j+n.dx,k+n.dy,l+1
+elseif a=="walkaway"then
+local f=game.field
+local g=f:actor(command[2])
+local l=b.DIRECTIONS[b.DIRECTION_INDEX[({u="up",d="down",l="left",r="right"})[command[3]]]]
+local h,i,j=g.x,g.y,0
+while not f:offScreen(h,i)do
+h,i,j=h+l.dx,i+l.dy,j+1
 end
-h:setPath(i,string.rep(a[3],l))
+f:setPath(g,string.rep(command[3],j))
 self.wait={kind="paths"}
-elseif c=="back"then
-local h=b.field.player
-b.field:setPath(h,({"u","d","r","l"})[h.dir])
+elseif a=="back"then
+local f=game.field.player
+game.field:setPath(f,({"u","d","r","l"})[f.dir])
 self.wait={kind="paths"}
 else
-error("Lanterways: unknown scene command "..tostring(c).." in "..tostring(self.name))
+error("Lanterways: unknown scene command "..tostring(a).." in "..tostring(self.name))
 end
 end

@@ -3,18 +3,18 @@ require"SpiffBoy/Games/QuickStart/Fixed"
 require"SpiffBoy/Games/QuickStart/Tracks"
 require"SpiffBoy/Games/QuickStart/Kart"
 
-local o=SpiffBoy.QuickStart
-local e=o.Fixed
-local l=o.Tracks
-local p=o.Kart
+local m=SpiffBoy.QuickStart
+local e=m.Fixed
+local j=m.Tracks
+local n=m.Kart
 
 local a={}
-o.Items=a
+m.Items=a
 
 local c=math.floor
-local g=e.UNIT
-local m=e.FINE
-local k=e.ONE
+local f=e.UNIT
+local k=e.FINE
+local i=e.ONE
 
 a.GLASS=1
 a.PIPEBOMB=2
@@ -69,143 +69,143 @@ a.RACE_ODDS={
 }
 a.BATTLE_ODDS={{a.GLASS,25},{a.PIPEBOMB,30},{a.PISTOL,25},{a.COFFEE,10},{a.RIOT,10}}
 
-local function v(d,f)
-if d==1 then
+local function s(rank,count)
+if rank==1 then
 return a.RACE_ODDS[1]
 end
-if d==f then
+if rank==count then
 return a.RACE_ODDS[5]
 end
-local h=(d-1)/(f-1)
-if h<=0.34 then
+local d=(rank-1)/(count-1)
+if d<=0.34 then
 return a.RACE_ODDS[2]
 end
-if h<=0.67 then
+if d<=0.67 then
 return a.RACE_ODDS[3]
 end
 return a.RACE_ODDS[4]
 end
 
-function a.roll(d,q)
-local h=d.battle and a.BATTLE_ODDS or v(q,#d.karts)
-local i=0
-for j,f in ipairs(h)do
-i=i+f[2]
+function a.roll(world,rank)
+local g=world.battle and a.BATTLE_ODDS or s(rank,#world.karts)
+local h=0
+for l,d in ipairs(g)do
+h=h+d[2]
 end
-local j=d.random:int(1,i)
-local f=h[#h][1]
-for r,n in ipairs(h)do
-j=j-n[2]
-if j<=0 then
-f=n[1]
+local l=world.random:int(1,h)
+local d=g[#g][1]
+for p,o in ipairs(g)do
+l=l-o[2]
+if l<=0 then
+d=o[1]
 break
 end
 end
-if(f==a.HELICOPTER and d.helicopter)or(f==a.THUNDER and d.storm>0)then
-f=a.COFFEE3
+if(d==a.HELICOPTER and world.helicopter)or(d==a.THUNDER and world.storm>0)then
+d=a.COFFEE3
 end
-return f
+return d
 end
 
-function a.hit(d,h,i)
-local f=d.karts[h]
-if not p.spinOut(f,i,d.events,h)then
+function a.hit(world,index,ticks)
+local d=world.karts[index]
+if not n.spinOut(d,ticks,world.events,index)then
 return false
 end
-if d.battle then
-f.cans=f.cans-1
-d.events[#d.events+1]={kind="can",kart=h}
-if f.cans<=0 then
-f.out=true
-f.outTick=d.tick
-d.events[#d.events+1]={kind="out",kart=h}
+if world.battle then
+d.cans=d.cans-1
+world.events[#world.events+1]={kind="can",kart=index}
+if d.cans<=0 then
+d.out=true
+d.outTick=world.tick
+world.events[#world.events+1]={kind="out",kart=index}
 end
 end
 return true
 end
 
-local function w(d,j)
-local f=d.karts[j]
-if d.battle then
-local n,h=nil,nil
-for q,i in ipairs(d.karts)do
-if q~=j and not i.out then
-local r,s=i.x-f.x,i.y-f.y
-local t=r*r+s*s
-if not h or t<h then
-n,h=q,t
+local function t(world,index)
+local d=world.karts[index]
+if world.battle then
+local l,g=nil,nil
+for o,h in ipairs(world.karts)do
+if o~=index and not h.out then
+local p,q=h.x-d.x,h.y-d.y
+local r=p*p+q*q
+if not g or r<g then
+l,g=o,r
 end
 end
 end
-return n
+return l
 end
-for h,i in ipairs(d.karts)do
-if i.rank==f.rank-1 then
-return h
+for g,h in ipairs(world.karts)do
+if h.rank==d.rank-1 then
+return g
 end
 end
 return nil
 end
 
-function a.use(f,h,q,x)
-local d=f.karts[h]
-local j=d.item
-if not j or d.roulette>0 then
+function a.use(world,index,backward,tapped)
+local d=world.karts[index]
+local h=d.item
+if not h or d.roulette>0 then
 return
 end
-local r=c(d.heading/m)
-local s,t=e.cos(r),e.sin(r)
-local i=f.events
-if j==a.GLASS then
-if x and not q then
-local u=b.glassReach*g+math.max(0,d.speed)*b.glassAir
-local n=c(u/b.glassAir)
-f.hazards[#f.hazards+1]={
+local o=c(d.heading/k)
+local p,q=e.cos(o),e.sin(o)
+local g=world.events
+if h==a.GLASS then
+if tapped and not backward then
+local r=b.glassReach*f+math.max(0,d.speed)*b.glassAir
+local l=c(r/b.glassAir)
+world.hazards[#world.hazards+1]={
 kind="glass",x=d.x,y=d.y,life=b.glassLife,
-vx=c(s*n/k),vy=c(t*n/k),air=b.glassAir,
+vx=c(p*l/i),vy=c(q*l/i),air=b.glassAir,
 }
-i[#i+1]={kind="throw",kart=h}
+g[#g+1]={kind="throw",kart=index}
 else
-f.hazards[#f.hazards+1]={kind="glass",x=d.x-c(s*b.glassDrop*g/k),y=d.y-c(t*b.glassDrop*g/k),life=b.glassLife,air=0}
-i[#i+1]={kind="drop",kart=h}
+world.hazards[#world.hazards+1]={kind="glass",x=d.x-c(p*b.glassDrop*f/i),y=d.y-c(q*b.glassDrop*f/i),life=b.glassLife,air=0}
+g[#g+1]={kind="drop",kart=index}
 end
-elseif j==a.PIPEBOMB then
-local n=q and e.wrapFine(d.heading+e.FINE_TURN/2)or d.heading
-f.shots[#f.shots+1]={kind="pipebomb",x=d.x,y=d.y,heading=n,life=b.bombLife,bounces=0,owner=h,arm=b.arm}
-i[#i+1]={kind="throw",kart=h}
-elseif j==a.PISTOL then
-local n=q and e.wrapFine(d.heading+e.FINE_TURN/2)or d.heading
-f.shots[#f.shots+1]={kind="bullet",x=d.x,y=d.y,heading=n,life=b.bulletLife,owner=h,arm=b.arm,target=(not q)and w(f,h)or nil}
-i[#i+1]={kind="shot",kart=h}
-elseif j==a.HELICOPTER then
-local n=nil
-for y,u in ipairs(f.karts)do
-if u.rank==1 and not u.finished then
-n=y
+elseif h==a.PIPEBOMB then
+local l=backward and e.wrapFine(d.heading+e.FINE_TURN/2)or d.heading
+world.shots[#world.shots+1]={kind="pipebomb",x=d.x,y=d.y,heading=l,life=b.bombLife,bounces=0,owner=index,arm=b.arm}
+g[#g+1]={kind="throw",kart=index}
+elseif h==a.PISTOL then
+local l=backward and e.wrapFine(d.heading+e.FINE_TURN/2)or d.heading
+world.shots[#world.shots+1]={kind="bullet",x=d.x,y=d.y,heading=l,life=b.bulletLife,owner=index,arm=b.arm,target=(not backward)and t(world,index)or nil}
+g[#g+1]={kind="shot",kart=index}
+elseif h==a.HELICOPTER then
+local l=nil
+for u,r in ipairs(world.karts)do
+if r.rank==1 and not r.finished then
+l=u
 end
 end
-if n then
-f.helicopter={target=n,x=d.x,y=d.y,owner=h,horde=0}
-i[#i+1]={kind="helicopter",kart=h}
+if l then
+world.helicopter={target=l,x=d.x,y=d.y,owner=index,horde=0}
+g[#g+1]={kind="helicopter",kart=index}
 end
-elseif j==a.COFFEE or j==a.COFFEE3 then
-p.boostFor(d,b.coffeeBoost,i,h)
-elseif j==a.RIOT then
+elseif h==a.COFFEE or h==a.COFFEE3 then
+n.boostFor(d,b.coffeeBoost,g,index)
+elseif h==a.RIOT then
 d.invincible=b.riotTicks
 if d.spin>0 then
-p.endSpin(d)
+n.endSpin(d)
 end
-i[#i+1]={kind="riot",kart=h}
-elseif j==a.THUNDER then
-f.storm=b.thunderTicks
-f.stormOwner=h
-for u,n in ipairs(f.karts)do
-if u~=h and n.invincible==0 then
-n.slow=b.thunderTicks-c((#f.karts-n.rank)*10)
-n.item,n.itemCount,n.roulette=nil,0,0
+g[#g+1]={kind="riot",kart=index}
+elseif h==a.THUNDER then
+world.storm=b.thunderTicks
+world.stormOwner=index
+for r,l in ipairs(world.karts)do
+if r~=index and l.invincible==0 then
+l.slow=b.thunderTicks-c((#world.karts-l.rank)*10)
+l.item,l.itemCount,l.roulette=nil,0,0
 end
 end
-i[#i+1]={kind="thunder",kart=h}
+g[#g+1]={kind="thunder",kart=index}
 end
 d.itemCount=d.itemCount-1
 if d.itemCount<=0 then
@@ -213,182 +213,182 @@ d.item,d.itemCount=nil,0
 end
 end
 
-function a.give(f,h)
-local d=f.karts[h]
+function a.give(world,index)
+local d=world.karts[index]
 if d.item or d.roulette>0 then
 return
 end
-d.item=a.roll(f,d.rank)
+d.item=a.roll(world,d.rank)
 d.itemCount=d.item==a.COFFEE3 and 3 or 1
 d.roulette=b.roulette
-f.events[#f.events+1]={kind="crate",kart=h}
+world.events[#world.events+1]={kind="crate",kart=index}
 end
 
-local function h(d,n,q,f)
-if d.respawn>0 or d.out or d.z>8*g then
+local function g(kart,x,y,reach)
+if kart.respawn>0 or kart.out or kart.z>8*f then
 return false
 end
-local i,j=d.x-n,d.y-q
-return i*i+j*j<f*f
+local d,h=kart.x-x,kart.y-y
+return d*d+h*h<reach*reach
 end
 
-local function s(f,d)
-d.life=d.life-1
-if d.arm>0 then
-d.arm=d.arm-1
+local function r(world,shot)
+shot.life=shot.life-1
+if shot.arm>0 then
+shot.arm=shot.arm-1
 end
-local j=c(d.heading/m)
-local i=d.x+c(e.cos(j)*b.bombSpeed/k)
-local n=d.y+c(e.sin(j)*b.bombSpeed/k)
-if l.surfaceAt(f.track,c(i/g),c(n/g))==l.WALL then
-d.bounces=d.bounces+1
-local r=l.surfaceAt(f.track,c(i/g),c(d.y/g))==l.WALL
-local q=d.heading
-if r then
-d.heading=e.wrapFine(e.FINE_TURN/2-q)
+local h=c(shot.heading/k)
+local d=shot.x+c(e.cos(h)*b.bombSpeed/i)
+local l=shot.y+c(e.sin(h)*b.bombSpeed/i)
+if j.surfaceAt(world.track,c(d/f),c(l/f))==j.WALL then
+shot.bounces=shot.bounces+1
+local p=j.surfaceAt(world.track,c(d/f),c(shot.y/f))==j.WALL
+local o=shot.heading
+if p then
+shot.heading=e.wrapFine(e.FINE_TURN/2-o)
 else
-d.heading=e.wrapFine(-q)
+shot.heading=e.wrapFine(-o)
 end
-f.events[#f.events+1]={kind="bounce"}
+world.events[#world.events+1]={kind="bounce"}
 else
-d.x,d.y=i,n
+shot.x,shot.y=d,l
 end
-for q,r in ipairs(f.karts)do
-if(q~=d.owner or d.arm==0)and h(r,d.x,d.y,b.bombHit)then
-a.hit(f,q,b.bombSpinTicks)
-f.events[#f.events+1]={kind="boom",x=d.x,y=d.y}
+for o,p in ipairs(world.karts)do
+if(o~=shot.owner or shot.arm==0)and g(p,shot.x,shot.y,b.bombHit)then
+a.hit(world,o,b.bombSpinTicks)
+world.events[#world.events+1]={kind="boom",x=shot.x,y=shot.y}
 return false
 end
 end
-return d.life>0 and d.bounces<=b.bombBounces
+return shot.life>0 and shot.bounces<=b.bombBounces
 end
 
-local function t(f,d)
-d.life=d.life-1
-if d.arm>0 then
-d.arm=d.arm-1
+local function u(world,shot)
+shot.life=shot.life-1
+if shot.arm>0 then
+shot.arm=shot.arm-1
 end
-local i=d.target and f.karts[d.target]
-if i and not i.out and i.respawn==0 then
-local n=e.atan2(c((i.y-d.y)/g),c((i.x-d.x)/g))
-local j=e.delta(c(d.heading/m),c(n/m))
-j=SpiffBoy.clamp(j,-b.bulletTurn,b.bulletTurn)
-d.heading=e.wrapFine(d.heading+j*m)
+local d=shot.target and world.karts[shot.target]
+if d and not d.out and d.respawn==0 then
+local l=e.atan2(c((d.y-shot.y)/f),c((d.x-shot.x)/f))
+local h=e.delta(c(shot.heading/k),c(l/k))
+h=SpiffBoy.clamp(h,-b.bulletTurn,b.bulletTurn)
+shot.heading=e.wrapFine(shot.heading+h*k)
 end
-local n=c(d.heading/m)
-d.x=d.x+c(e.cos(n)*b.bulletSpeed/k)
-d.y=d.y+c(e.sin(n)*b.bulletSpeed/k)
-if l.surfaceAt(f.track,c(d.x/g),c(d.y/g))==l.WALL then
+local l=c(shot.heading/k)
+shot.x=shot.x+c(e.cos(l)*b.bulletSpeed/i)
+shot.y=shot.y+c(e.sin(l)*b.bulletSpeed/i)
+if j.surfaceAt(world.track,c(shot.x/f),c(shot.y/f))==j.WALL then
 return false
 end
-for j,q in ipairs(f.karts)do
-if(j~=d.owner or d.arm==0)and h(q,d.x,d.y,b.bulletHit)then
-a.hit(f,j,b.spinTicks)
-f.events[#f.events+1]={kind="hit",kart=j}
+for h,o in ipairs(world.karts)do
+if(h~=shot.owner or shot.arm==0)and g(o,shot.x,shot.y,b.bulletHit)then
+a.hit(world,h,b.spinTicks)
+world.events[#world.events+1]={kind="hit",kart=h}
 return false
 end
 end
-return d.life>0
+return shot.life>0
 end
 
-local function u(f)
-local d=f.helicopter
-local i=f.karts[d.target]
+local function v(world)
+local d=world.helicopter
+local h=world.karts[d.target]
 if d.horde>0 then
 d.horde=d.horde-1
 if d.horde==0 then
-f.helicopter=nil
+world.helicopter=nil
 end
 return
 end
-local n,q=i.x-d.x,i.y-d.y
-local j=e.length(c(n/g),c(q/g))*g
-if j<=b.helicopterSpeed then
-d.x,d.y=i.x,i.y
+local o,p=h.x-d.x,h.y-d.y
+local l=e.length(c(o/f),c(p/f))*f
+if l<=b.helicopterSpeed then
+d.x,d.y=h.x,h.y
 d.horde=b.hordeTicks
-for r,x in ipairs(f.karts)do
-if r~=d.owner and h(x,i.x,i.y,b.hordeReach)then
-a.hit(f,r,b.hordeTicks)
+for q,w in ipairs(world.karts)do
+if q~=d.owner and g(w,h.x,h.y,b.hordeReach)then
+a.hit(world,q,b.hordeTicks)
 end
 end
-f.events[#f.events+1]={kind="horde",kart=d.target}
+world.events[#world.events+1]={kind="horde",kart=d.target}
 return
 end
-d.x=d.x+c(n*b.helicopterSpeed/j)
-d.y=d.y+c(q*b.helicopterSpeed/j)
+d.x=d.x+c(o*b.helicopterSpeed/l)
+d.y=d.y+c(p*b.helicopterSpeed/l)
 end
 
-function a.step(d)
-for j=#d.hazards,1,-1 do
-local f=d.hazards[j]
-f.life=f.life-1
-local i=f.life<=0
-if f.air>0 then
-f.x,f.y=f.x+f.vx,f.y+f.vy
-f.air=f.air-1
-elseif not i then
-for n,q in ipairs(d.karts)do
-if h(q,f.x,f.y,b.glassHit)then
-a.hit(d,n,b.spinTicks)
-i=true
+function a.step(world)
+for l=#world.hazards,1,-1 do
+local d=world.hazards[l]
+d.life=d.life-1
+local h=d.life<=0
+if d.air>0 then
+d.x,d.y=d.x+d.vx,d.y+d.vy
+d.air=d.air-1
+elseif not h then
+for o,p in ipairs(world.karts)do
+if g(p,d.x,d.y,b.glassHit)then
+a.hit(world,o,b.spinTicks)
+h=true
 break
 end
 end
 end
-if i then
-table.remove(d.hazards,j)
+if h then
+table.remove(world.hazards,l)
 end
 end
-for j=#d.shots,1,-1 do
-local f=d.shots[j]
-local i
-if f.kind=="pipebomb"then
-i=s(d,f)
+for l=#world.shots,1,-1 do
+local d=world.shots[l]
+local h
+if d.kind=="pipebomb"then
+h=r(world,d)
 else
-i=t(d,f)
+h=u(world,d)
 end
-if not i then
-table.remove(d.shots,j)
+if not h then
+table.remove(world.shots,l)
 end
 end
-if d.helicopter then
-u(d)
+if world.helicopter then
+v(world)
 end
-if d.storm>0 then
-d.storm=d.storm-1
+if world.storm>0 then
+world.storm=world.storm-1
 end
-for n,f in ipairs(d.crates)do
-if f.wait>0 then
-f.wait=f.wait-1
+for o,d in ipairs(world.crates)do
+if d.wait>0 then
+d.wait=d.wait-1
 else
-for i,j in ipairs(d.karts)do
-if h(j,f.x,f.y,b.pickup)then
-f.wait=b.crateRespawn
-a.give(d,i)
-break
-end
-end
-end
-end
-for n,f in ipairs(d.money)do
-if f.wait>0 then
-f.wait=f.wait-1
-else
-for j,i in ipairs(d.karts)do
-if h(i,f.x,f.y,b.pickup)then
-f.wait=b.moneyRespawn
-if i.coins<p.TUNING.coinMax then
-i.coins=i.coins+1
-end
-d.events[#d.events+1]={kind="money",kart=j}
+for h,l in ipairs(world.karts)do
+if g(l,d.x,d.y,b.pickup)then
+d.wait=b.crateRespawn
+a.give(world,h)
 break
 end
 end
 end
 end
-for i,f in ipairs(d.karts)do
-if f.roulette>0 then
-f.roulette=f.roulette-1
+for o,d in ipairs(world.money)do
+if d.wait>0 then
+d.wait=d.wait-1
+else
+for l,h in ipairs(world.karts)do
+if g(h,d.x,d.y,b.pickup)then
+d.wait=b.moneyRespawn
+if h.coins<n.TUNING.coinMax then
+h.coins=h.coins+1
+end
+world.events[#world.events+1]={kind="money",kart=l}
+break
+end
+end
+end
+end
+for h,d in ipairs(world.karts)do
+if d.roulette>0 then
+d.roulette=d.roulette-1
 end
 end
 end

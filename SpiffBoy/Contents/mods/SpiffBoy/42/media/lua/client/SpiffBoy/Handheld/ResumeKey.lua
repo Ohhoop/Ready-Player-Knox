@@ -3,28 +3,28 @@ require"SpiffBoy/Core/Core"
 require"SpiffBoy/Core/KeyBinds"
 require"SpiffBoy/UI/HandheldWindow"
 
-local c=SpiffBoy.KeyBinds
+local b=SpiffBoy.KeyBinds
 
-local function d(a)
-if ISTimedActionQueue.isPlayerDoingAction(a)then
+local function c(playerObj)
+if ISTimedActionQueue.isPlayerDoingAction(playerObj)then
 return false
 end
-local b=a:getVehicle()
-if b then
-return not b:isDriver(a)
+local a=playerObj:getVehicle()
+if a then
+return not a:isDriver(playerObj)
 end
-return not a:isPlayerMoving()
+return not playerObj:isPlayerMoving()
 end
 
-local function b(e)
-if isGamePaused()or not getCore():isKey(c.BINDS.resume.id,e)then
+local function d(key)
+if isGamePaused()or not getCore():isKey(b.BINDS.resume.id,key)then
 return
 end
-for f,a in pairs(SpiffBoyHandheldWindow.instances)do
-if a.hidden and a.switchOn and a.playerObj:getJoypadBind()<0 and d(a.playerObj)then
+for e,a in pairs(SpiffBoyHandheldWindow.instances)do
+if a.hidden and a.switchOn and a.playerObj:getJoypadBind()<0 and c(a.playerObj)then
 a:reveal()
 end
 end
 end
 
-Events.OnKeyStartPressed.Add(b)
+Events.OnKeyStartPressed.Add(d)

@@ -27,14 +27,14 @@ c:close()
 return a
 end
 
-local function i(c,e,f)
+local function i(id,key,altKey)
 if not MainOptions.keys then
 return
 end
-for j,a in ipairs(MainOptions.keys)do
-if a.value==c then
-a.key=e
-a.altCode=f
+for c,a in ipairs(MainOptions.keys)do
+if a.value==id then
+a.key=key
+a.altCode=altKey
 end
 end
 end

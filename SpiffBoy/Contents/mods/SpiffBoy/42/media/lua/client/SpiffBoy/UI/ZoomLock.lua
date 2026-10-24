@@ -15,23 +15,23 @@ c.wantMouseEvents=false
 return c
 end
 
-function SpiffBoyZoomLock:onMouseWheel(c)
+function SpiffBoyZoomLock:onMouseWheel(del)
 return true
 end
 
-function SpiffBoyZoomLock:onMouseDown(c,e)
+function SpiffBoyZoomLock:onMouseDown(x,y)
 return false
 end
 
-function SpiffBoyZoomLock:onMouseUp(c,e)
+function SpiffBoyZoomLock:onMouseUp(x,y)
 return false
 end
 
-function SpiffBoyZoomLock:onRightMouseDown(c,e)
+function SpiffBoyZoomLock:onRightMouseDown(x,y)
 return false
 end
 
-function SpiffBoyZoomLock:onRightMouseUp(c,e)
+function SpiffBoyZoomLock:onRightMouseUp(x,y)
 return false
 end
 

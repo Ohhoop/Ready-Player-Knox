@@ -1,9 +1,9 @@
 require"SpiffBoy/Games/Lanterways/Base"
 
-local f=SpiffBoy.Lanterways
+local d=SpiffBoy.Lanterways
 
 local a={}
-f.Characters=a
+d.Characters=a
 
 a.STATS={"hp","sp","atk","def","mag","res","spd"}
 
@@ -81,36 +81,36 @@ a.BY_ID[b.id]=b
 a.BY_CODE[b.code]=b
 end
 
-function a.toNext(b)
-return math.floor(10*b*b+15*b)
+function a.toNext(level)
+return math.floor(10*level*level+15*level)
 end
 
-function a.statAt(e,b,c)
-local d=e.base[b]+e.growth[b]*(c-1)
-if b=="hp"then
-d=d+(c-1)*(c-1)*0.12
+function a.statAt(character,stat,level)
+local b=character.base[stat]+character.growth[stat]*(level-1)
+if stat=="hp"then
+b=b+(level-1)*(level-1)*0.12
 end
-return math.floor(d)
+return math.floor(b)
 end
 
-function a.skillsAt(c,e,g)
+function a.skillsAt(character,level,flags)
 local b={}
-for h,d in ipairs(c.skills)do
-if d[1]<=e then
-b[#b+1]=d[2]
+for e,c in ipairs(character.skills)do
+if c[1]<=level then
+b[#b+1]=c[2]
 end
 end
-for h,d in ipairs(c.taught)do
-if g[d.flag]then
-b[#b+1]=d.skill
+for e,c in ipairs(character.taught)do
+if flags[c.flag]then
+b[#b+1]=c.skill
 end
 end
 return b
 end
 
-function a.canWear(b,c)
-for e,d in ipairs(b.armor)do
-if d==c then
+function a.canWear(character,kind)
+for c,b in ipairs(character.armor)do
+if b==kind then
 return true
 end
 end

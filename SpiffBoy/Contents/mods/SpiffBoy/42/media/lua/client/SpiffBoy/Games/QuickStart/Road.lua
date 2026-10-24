@@ -3,384 +3,384 @@ require"SpiffBoy/Games/QuickStart/Fixed"
 require"SpiffBoy/Games/QuickStart/Tracks"
 require"SpiffBoy/Games/QuickStart/Art"
 
-local g=SpiffBoy.QuickStart
-local i=g.Fixed
-local T=g.Tracks
+local i=SpiffBoy.QuickStart
+local k=i.Fixed
+local Q=i.Tracks
 
-local a={}
-g.Road=a
+local c={}
+i.Road=c
 
-a.HORIZON=36
-a.FOCAL=100
-a.HEIGHT=20
-a.BEHIND=28
-a.FAR=420
-a.FLOOR_FAR=340
-a.FLOOR_BUDGET=160
-a.STEP=2
-a.MERGE_DEPTH=140
-a.SKY_WIDTH=768
-a.STEP_SCALES={3.57,2.52,1.76,1.18,0.76}
-a.DECOR_LIMIT=0.5
-a.DECOR_MARGIN=64
+c.HORIZON=36
+c.FOCAL=100
+c.HEIGHT=20
+c.BEHIND=28
+c.FAR=420
+c.FLOOR_FAR=340
+c.FLOOR_BUDGET=160
+c.STEP=2
+c.MERGE_DEPTH=140
+c.SKY_WIDTH=768
+c.STEP_SCALES={3.57,2.52,1.76,1.18,0.76}
+c.DECOR_LIMIT=0.5
+c.DECOR_MARGIN=64
 
-local h=a.HORIZON
-local p=a.FOCAL
-local I=a.HEIGHT
-local U=a.FAR
-local V=a.FLOOR_FAR
-local l=a.STEP
-local W=a.MERGE_DEPTH
-local J=a.SKY_WIDTH
-local X=a.STEP_SCALES
-local f=g.WIDTH
-local v=g.HEIGHT
-local Y=g.TILE
-local K=1/Y
-local Z=g.SHADES
-local L=i.ONE
-local D=i.TURN
-local _=T.CHECKER
-local d=math.floor
-local aa=math.log
+local j=c.HORIZON
+local o=c.FOCAL
+local H=c.HEIGHT
+local R=c.FAR
+local S=c.FLOOR_FAR
+local l=c.STEP
+local T=c.MERGE_DEPTH
+local I=c.SKY_WIDTH
+local U=c.STEP_SCALES
+local g=i.WIDTH
+local u=i.HEIGHT
+local V=i.TILE
+local J=1/V
+local W=i.SHADES
+local K=k.ONE
+local C=k.TURN
+local X=Q.CHECKER
+local f=math.floor
+local Y=math.log
 
-local M={g.INK,g.PAPER}
-local N=8
-local ab=2
+local L={i.INK,i.PAPER}
+local M=8
+local Z=2
 
-local ac={{8,1},{8,2},{8,3},{6,4},{2,6}}
-local q={}
+local _={{8,1},{8,2},{8,3},{6,4},{2,6}}
+local p={}
 do
-local b=0
-for k,e in ipairs(ac)do
-for m=1,e[1]do
-local c=e[2]
-local j=b+c/2
-q[#q+1]={top=h+b,height=c,z=I*p/j}
-b=b+c
+local a=0
+for h,d in ipairs(_)do
+for m=1,d[1]do
+local b=d[2]
+local e=a+b/2
+p[#p+1]={top=j+a,height=b,z=H*o/e}
+a=a+b
 end
 end
-if h+b~=v then
-error("QuickStart: the floor bands cover "..b.." rows instead of "..(v-h))
+if j+a~=u then
+error("QuickStart: the floor bands cover "..a.." rows instead of "..(u-j))
 end
 end
 
-local function n(c,e,j,k,m,o)
-local b=Z[e]
-c:rect(j,k,m,o,b.r,b.g,b.b,1)
+local function m(screen,shadeIndex,x,y,w,h)
+local a=W[shadeIndex]
+screen:rect(x,y,w,h,a.r,a.g,a.b,1)
 end
-a.fill=n
+c.fill=m
 
-local function ad(e,b,c)
-if e==_ then
-return M[(d(b/N)+d(c/N))%2+1]
+local function aa(mark,wx,wy)
+if mark==X then
+return L[(f(wx/M)+f(wy/M))%2+1]
 end
-return M[d((b+c)/ab)%2+1]
-end
-
-local O,E,F
-
-local function r(b)
-if b~=O then
-O=b
-E,F=i.cos(b)/L,i.sin(b)/L
-end
-return E,F,-F,E
-end
-a.axes=r
-
-function a.cameraBehind(c,e,b)
-local j,k=r(b)
-return{x=c-j*a.BEHIND,y=e-k*a.BEHIND,angle=b}
+return L[f((wx+wy)/Z)%2+1]
 end
 
-function a.project(c,m,o)
-local s,t,u,w=r(c.angle)
-local j,k=m-c.x,o-c.y
-local b=j*s+k*t
-if b<=4 or b>U then
+local N,D,E
+
+local function q(angle)
+if angle~=N then
+N=angle
+D,E=k.cos(angle)/K,k.sin(angle)/K
+end
+return D,E,-E,D
+end
+c.axes=q
+
+function c.cameraBehind(x,y,angle)
+local a,b=q(angle)
+return{x=x-a*c.BEHIND,y=y-b*c.BEHIND,angle=angle}
+end
+
+function c.project(camera,wx,wy)
+local h,n,r,s=q(camera.angle)
+local d,e=wx-camera.x,wy-camera.y
+local a=d*h+e*n
+if a<=4 or a>R then
 return nil
 end
-local e=p/b
-return f/2+(j*u+k*w)*e,h+I*e,e,b
+local b=o/a
+return g/2+(d*r+e*s)*b,j+H*b,b,a
 end
 
-local c,b={},{}
+local e,d={},{}
 
-local function ae(e,s)
-while e>math.max(1,s)do
-local k,m=1,nil
-for j=1,e do
-local o=b[j+1]-b[j]
-if not m or o<m then
-k,m=j,o
+local function ab(count,allowed)
+while count>math.max(1,allowed)do
+local b,h=1,nil
+for a=1,count do
+local n=d[a+1]-d[a]
+if not h or n<h then
+b,h=a,n
 end
 end
-if k==1 then
-c[1]=c[2]
+if b==1 then
+e[1]=e[2]
 end
-for j=math.max(2,k),e do
-c[j]=c[j+1]
-b[j]=b[j+1]
+for a=math.max(2,b),count do
+e[a]=e[a+1]
+d[a]=d[a+1]
 end
-e=e-1
-b[e+1]=f
-local j=1
-for o=2,e do
-if c[o]~=c[j]then
-j=j+1
-c[j],b[j]=c[o],b[o]
+count=count-1
+d[count+1]=g
+local a=1
+for n=2,count do
+if e[n]~=e[a]then
+a=a+1
+e[a],d[a]=e[n],d[n]
 end
 end
-e=j
-b[e+1]=f
+count=a
+d[count+1]=g
 end
-return e
+return count
 end
 
-local function af(z,H,j,P,A,ag,ah,Q,R,ai)
-local m=A.z
-if m>V then
+local function ac(screen,track,clear,camera,band,fx,fy,rx,ry,allowed)
+local h=band.z
+if h>S then
 return
 end
-local w=m/p
-local S=f/2
-local o=P.x+ag*m+Q*(l/2-S)*w
-local s=P.y+ah*m+R*(l/2-S)*w
-local aj,ak=Q*l*w,R*l*w
-local al,B=H.shadeGrid,H.size
-local e=0
-for x=0,f-l,l do
-local k=j
-if o>=0 and s>=0 then
-local t=o*K
+local v=h/o
+local B=g/2
+local n=camera.x+fx*h+rx*(l/2-B)*v
+local r=camera.y+fy*h+ry*(l/2-B)*v
+local F,G=rx*l*v,ry*l*v
+local O,y=track.shadeGrid,track.size
+local a=0
+for w=0,g-l,l do
+local b=clear
+if n>=0 and r>=0 then
+local s=n*J
+s=s-s%1
+local t=r*J
 t=t-t%1
-local u=s*K
-u=u-u%1
-if t<B and u<B then
-k=al[u*B+t+1]
-if k<0 then
-k=ad(k,o,s)
+if s<y and t<y then
+b=O[t*y+s+1]
+if b<0 then
+b=aa(b,n,r)
 end
 end
 end
-if e==0 or k~=c[e]then
-e=e+1
-c[e],b[e]=k,x
+if a==0 or b~=e[a]then
+a=a+1
+e[a],d[a]=b,w
 end
-o,s=o+aj,s+ak
+n,r=n+F,r+G
 end
-b[e+1]=f
-if m>W then
-local k=1
-for t=2,e do
-local u=b[t+1]-b[t]>l
-if u and c[t]~=c[k]then
-k=k+1
-c[k],b[k]=c[t],b[t]
-end
-end
-e=k
-b[e+1]=f
-end
-e=ae(e,ai)
-local k,u=nil,nil
-for t=1,e do
-if c[t]~=j then
-k=k or t
-u=t
+d[a+1]=g
+if h>T then
+local b=1
+for s=2,a do
+local t=d[s+1]-d[s]>l
+if t and e[s]~=e[b]then
+b=b+1
+e[b],d[b]=e[s],d[s]
 end
 end
-if not k then
+a=b
+d[a+1]=g
+end
+a=ab(a,allowed)
+local b,t=nil,nil
+for s=1,a do
+if e[s]~=clear then
+b=b or s
+t=s
+end
+end
+if not b then
 return
 end
-local x,y=j,0
-for t=1,e do
-if c[t]~=j then
-y=y+1
+local w,x=clear,0
+for s=1,a do
+if e[s]~=clear then
+x=x+1
 end
 end
-for C=1,4 do
-if C~=j then
-local t=1
-for G=k,u do
-if c[G]~=C then
-t=t+1
-end
-end
-if t<y then
-x,y=C,t
-end
-end
-end
-local C,G=A.top,A.height
-if x~=j then
-n(z,x,b[k],C,b[u+1]-b[k],G)
-for t=k,u do
-if c[t]~=x then
-n(z,c[t],b[t],C,b[t+1]-b[t],G)
-end
-end
-return
-end
-for t=1,e do
-if c[t]~=j then
-n(z,c[t],b[t],C,b[t+1]-b[t],G)
-end
-end
-end
-
-local function S(j,s,t,u,w)
-n(j,g.PAPER,0,0,f,h)
-local e=w[s.style.sky]
-local m=u(s.style.sky)
-local o=d(i.wrap(t.angle)*J/D)
-local k=J-o
-if k>=f then
-j:layers(m,o,f,e.h,0,h-e.h,e.shades)
-return
-end
-j:layers(m,o,k,e.h,0,h-e.h,e.shades)
-j:layers(m,0,f-k,e.h,k,h-e.h,e.shades)
-end
-
-function a.draw(e,j,k,t,u)
-local m=j.style
-local o=m.shades[m.clear]
-n(e,o,0,h,f,v-h)
-S(e,j,k,t,u)
-local w,x,y,z=r(k.angle)
-local A=e.calls
-for s=1,#q do
-local B=a.FLOOR_BUDGET-(e.calls-A)
-af(e,j,o,k,q[s],w,x,y,z,d(B/(#q-s+1))+1)
-end
-end
-
-function a.stepOf(s,e)
-e=e or X
-local k,j=1,nil
-for m=1,#e do
-local o=math.abs(aa(s/e[m]))
-if not j or o<j then
-k,j=m,o
-end
-end
-return k
-end
-
-function a.frameOf(e,j,k,m)
-local o=i.atan2(d(k-e.y),d(j-e.x))/i.FINE
-local s=i.wrap(d(m-o+D/16))
-return d(s*8/D)+1
-end
-
-local G,P,m={},{},{}
-local s=0
-
-function a.newScene()
-for e=#G,1,-1 do
-G[e]=nil
-end
-s=0
-return G
-end
-
-local function ag()
+for z=1,4 do
+if z~=clear then
+local s=1
+for A=b,t do
+if e[A]~=z then
 s=s+1
-local e=P[s]
-if not e then
-e={}
-P[s]=e
 end
-return e
 end
-
-local function ah(e,j)
-if e.priority~=j.priority then
-return e.priority>j.priority
+if s<x then
+w,x=z,s
 end
-return e.z<j.z
 end
-
-local function ai(e,j)
-return e.z>j.z
 end
-
-function a.addEntry(w,z,A,j,B,C,H,Q,x)
-local y,R,k,aj=a.project(z,B,C)
-if not y then
+local z,A=band.top,band.height
+if w~=clear then
+m(screen,w,d[b],z,d[t+1]-d[b],A)
+for s=b,t do
+if e[s]~=w then
+m(screen,e[s],d[s],z,d[s+1]-d[s],A)
+end
+end
 return
 end
-if x==0 and k<a.DECOR_LIMIT then
-return
+for s=1,a do
+if e[s]~=clear then
+m(screen,e[s],d[s],z,d[s+1]-d[s],A)
 end
-local o=j.steps[a.stepOf(k,j.scales)]
-local t=d(y-o.ax)
-local u=d(R-H*k-j.h)
-if t+o.w<=0 or t>=f or u+j.h<=0 or u>=v then
-return
 end
-local e=ag()
-e.z,e.name,e.entry,e.step,e.frame,e.priority,e.x,e.y=aj,A,j,o,Q or 1,x,t,u
-w[#w+1]=e
 end
 
-function a.add(j,k,e,o,t,u,w,x)
-a.addEntry(j,k,e,g.Atlas[e],o,t,u,w,x)
+local function ad(screen,track,camera,art,atlas)
+m(screen,i.PAPER,0,0,g,j)
+local a=atlas[track.style.sky]
+local h=art(track.style.sky)
+local n=f(k.wrap(camera.angle)*I/C)
+local b=I-n
+if b>=g then
+screen:layers(h,n,g,a.h,0,j-a.h,a.shades)
+return
+end
+screen:layers(h,n,b,a.h,0,j-a.h,a.shades)
+screen:layers(h,0,g-b,a.h,b,j-a.h,a.shades)
 end
 
-function a.addDecor(aj,e,Q)
-local u,w,x,y=r(e.angle)
-local t=p/a.DECOR_LIMIT
-local o=a.DECOR_MARGIN
-local z=o
-local A=t*(f/2)/p+o
-local j={
-e.x-u*o+x*z,e.x-u*o-x*z,
-e.x+u*t+x*A,e.x+u*t-x*A,
+function c.draw(screen,track,camera,art,atlas)
+local a=track.style
+local b=a.shades[a.clear]
+m(screen,b,0,j,g,u-j)
+ad(screen,track,camera,art,atlas)
+local n,r,s,t=q(camera.angle)
+local v=screen.calls
+for h=1,#p do
+local w=c.FLOOR_BUDGET-(screen.calls-v)
+ac(screen,track,b,camera,p[h],n,r,s,t,f(w/(#p-h+1))+1)
+end
+end
+
+function c.stepOf(scale,scales)
+scales=scales or U
+local b,a=1,nil
+for h=1,#scales do
+local n=math.abs(Y(scale/scales[h]))
+if not a or n<a then
+b,a=h,n
+end
+end
+return b
+end
+
+function c.frameOf(camera,x,y,angle)
+local a=k.atan2(f(y-camera.y),f(x-camera.x))/k.FINE
+local b=k.wrap(f(angle-a+C/16))
+return f(b*8/C)+1
+end
+
+local F,O,h={},{},{}
+local r=0
+
+function c.newScene()
+for a=#F,1,-1 do
+F[a]=nil
+end
+r=0
+return F
+end
+
+local function ae()
+r=r+1
+local a=O[r]
+if not a then
+a={}
+O[r]=a
+end
+return a
+end
+
+local function af(a,b)
+if a.priority~=b.priority then
+return a.priority>b.priority
+end
+return a.z<b.z
+end
+
+local function ag(a,b)
+return a.z>b.z
+end
+
+function c.addEntry(scene,camera,name,entry,x,y,lift,frame,priority)
+local v,w,b,z=c.project(camera,x,y)
+if not v then
+return
+end
+if priority==0 and b<c.DECOR_LIMIT then
+return
+end
+local n=entry.steps[c.stepOf(b,entry.scales)]
+local s=f(v-n.ax)
+local t=f(w-lift*b-entry.h)
+if s+n.w<=0 or s>=g or t+entry.h<=0 or t>=u then
+return
+end
+local a=ae()
+a.z,a.name,a.entry,a.step,a.frame,a.priority,a.x,a.y=z,name,entry,n,frame or 1,priority,s,t
+scene[#scene+1]=a
+end
+
+function c.add(scene,camera,name,x,y,lift,frame,priority)
+c.addEntry(scene,camera,name,i.Atlas[name],x,y,lift,frame,priority)
+end
+
+function c.addDecor(scene,camera,track)
+local t,v,w,x=q(camera.angle)
+local s=o/c.DECOR_LIMIT
+local n=c.DECOR_MARGIN
+local y=n
+local z=s*(g/2)/o+n
+local a={
+camera.x-t*n+w*y,camera.x-t*n-w*y,
+camera.x+t*s+w*z,camera.x+t*s-w*z,
 }
-local k={
-e.y-w*o+y*z,e.y-w*o-y*z,
-e.y+w*t+y*A,e.y+w*t-y*A,
+local b={
+camera.y-v*n+x*y,camera.y-v*n-x*y,
+camera.y+v*s+x*z,camera.y+v*s-x*z,
 }
-local B=g.Tracks.DECOR_CELL
-local H=Q.decorCount
-local ak,al=math.min(j[1],j[2],j[3],j[4]),math.max(j[1],j[2],j[3],j[4])
-local am,an=math.min(k[1],k[2],k[3],k[4]),math.max(k[1],k[2],k[3],k[4])
-local ao,ap=math.max(0,d(ak/B)),math.min(H-1,d(al/B))
-local aq,ar=math.max(0,d(am/B)),math.min(H-1,d(an/B))
-local as=Q.decorCells
-for at=aq,ar do
-for au=ao,ap do
-local R=as[at*H+au+1]
-for av=1,#R do
-local C=R[av]
-a.addEntry(aj,e,C.art,C.entry,C.x,C.y,0,1,0)
+local A=i.Tracks.DECOR_CELL
+local G=track.decorCount
+local ah,ai=math.min(a[1],a[2],a[3],a[4]),math.max(a[1],a[2],a[3],a[4])
+local aj,ak=math.min(b[1],b[2],b[3],b[4]),math.max(b[1],b[2],b[3],b[4])
+local al,am=math.max(0,f(ah/A)),math.min(G-1,f(ai/A))
+local an,ao=math.max(0,f(aj/A)),math.min(G-1,f(ak/A))
+local ap=track.decorCells
+for aq=an,ao do
+for ar=al,am do
+local P=ap[aq*G+ar+1]
+for as=1,#P do
+local B=P[as]
+c.addEntry(scene,camera,B.art,B.entry,B.x,B.y,0,1,0)
 end
 end
 end
 end
 
-function a.drawScene(u,k,w,x)
-table.sort(k,ah)
-for e=#m,1,-1 do
-m[e]=nil
+function c.drawScene(screen,scene,art,budget)
+table.sort(scene,af)
+for a=#h,1,-1 do
+h[a]=nil
 end
-local j=0
-for t=1,#k do
-local e=k[t]
-local o=#e.entry.shades
-if j+o<=x then
-m[#m+1]=e
-j=j+o
+local b=0
+for s=1,#scene do
+local a=scene[s]
+local n=#a.entry.shades
+if b+n<=budget then
+h[#h+1]=a
+b=b+n
 end
 end
-table.sort(m,ai)
-for y=1,#m do
-local e=m[y]
-local o,t=e.step,e.entry
-u:layers(w(e.name),o.x+(e.frame-1)*o.w,o.w,t.h,e.x,e.y,t.shades)
+table.sort(h,ag)
+for t=1,#h do
+local a=h[t]
+local n,s=a.step,a.entry
+screen:layers(art(a.name),n.x+(a.frame-1)*n.w,n.w,s.h,a.x,a.y,s.shades)
 end
-return j
+return b
 end

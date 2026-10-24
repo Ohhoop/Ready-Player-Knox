@@ -2,7 +2,7 @@ require"SpiffBoy/UI/JackGrip"
 
 SpiffBoyLinkGrip=SpiffBoyJackGrip:derive("SpiffBoyLinkGrip")
 
-function SpiffBoyLinkGrip:onRightMouseUp(a,b)
+function SpiffBoyLinkGrip:onRightMouseUp(x,y)
 if not isGamePaused()then
 self.window:openLinkMenu()
 end

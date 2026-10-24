@@ -24,93 +24,93 @@ end
 return g
 end
 
-local function l(b,d)
-C():fromLua2(w,-b,-d)
+local function l(worldX,worldY)
+C():fromLua2(w,-worldX,-worldY)
 end
 
-local function D(h,n,o)
-local b=h:getX()
-local d=h:getY()
-local e=h:getZ()
-local p=IsoUtils.XToScreen(b,d,e,0)
-local q=IsoUtils.YToScreen(b,d,e,0)
-local r=IsoUtils.XToScreen(b+1,d,e,0)-p
-local s=IsoUtils.XToScreen(b,d+1,e,0)-p
-local t=IsoUtils.YToScreen(b+1,d,e,0)-q
-local u=IsoUtils.YToScreen(b,d+1,e,0)-q
-local m=r*u-s*t
-if m==0 then
+local function D(playerObj,pixelsX,pixelsY)
+local b=playerObj:getX()
+local d=playerObj:getY()
+local e=playerObj:getZ()
+local m=IsoUtils.XToScreen(b,d,e,0)
+local n=IsoUtils.YToScreen(b,d,e,0)
+local o=IsoUtils.XToScreen(b+1,d,e,0)-m
+local p=IsoUtils.XToScreen(b,d+1,e,0)-m
+local q=IsoUtils.YToScreen(b+1,d,e,0)-n
+local r=IsoUtils.YToScreen(b,d+1,e,0)-n
+local h=o*r-p*q
+if h==0 then
 return 0,0
 end
-return(n*u-s*o)/m,(r*o-t*n)/m
+return(pixelsX*r-p*pixelsY)/h,(o*pixelsY-q*pixelsX)/h
 end
 
-local function E(b)
+local function E(playerNum)
+local b=getCore()
+while b:getNextZoom(playerNum,k)~=b:getNextZoom(playerNum,c)do
+b:doZoomScroll(playerNum,k)
+end
+local d={b:getNextZoom(playerNum,c)}
+while b:getNextZoom(playerNum,j)~=b:getNextZoom(playerNum,c)do
+b:doZoomScroll(playerNum,j)
+d[#d+1]=b:getNextZoom(playerNum,c)
+end
+return d
+end
+
+local function m(playerNum,value)
 local d=getCore()
-while d:getNextZoom(b,k)~=d:getNextZoom(b,c)do
-d:doZoomScroll(b,k)
-end
-local e={d:getNextZoom(b,c)}
-while d:getNextZoom(b,j)~=d:getNextZoom(b,c)do
-d:doZoomScroll(b,j)
-e[#e+1]=d:getNextZoom(b,c)
-end
-return e
-end
-
-local function m(e,b)
-local h=getCore()
-local d=h:getNextZoom(e,c)
-if d==b then
+local b=d:getNextZoom(playerNum,c)
+if b==value then
 return
 end
-if b<d then
-setZoomLevels(d,b)
-h:doZoomScroll(e,j)
+if value<b then
+setZoomLevels(b,value)
+d:doZoomScroll(playerNum,j)
 else
-setZoomLevels(b,d)
-h:doZoomScroll(e,k)
+setZoomLevels(value,b)
+d:doZoomScroll(playerNum,k)
 end
 end
 
-local function e(b)
-m(b.playerNum,b.zoomTo)
-setZoomLevels(unpack(b.levels))
-b.zooming=false
+local function e(state)
+m(state.playerNum,state.zoomTo)
+setZoomLevels(unpack(state.levels))
+state.zooming=false
 end
 
-function f.begin(o,s,t)
-local b=o:getPlayerNum()
+function f.begin(playerObj,screenTargetX,screenTargetY)
+local b=playerObj:getPlayerNum()
 if b~=x then
 return
 end
 if a and a.zooming then
 e(a)
 end
-local u=getCore()
-local d=u:getNextZoom(b,c)
+local r=getCore()
+local d=r:getNextZoom(b,c)
 local n=E(b)
 local h=n[#n]
 m(b,d)
-local p=math.abs(d-h)>=z
-local q=i
-local r=a and a.progress or 0
-if p then
-local v=B*math.max(d,h)*math.abs(math.log(h/d))
-q=math.min(i,A/v)
-r=0
+local o=math.abs(d-h)>=z
+local p=i
+local q=a and a.progress or 0
+if o then
+local s=B*math.max(d,h)*math.abs(math.log(h/d))
+p=math.min(i,A/s)
+q=0
 end
 a={
-player=o,
+player=playerObj,
 playerNum=b,
-screenTargetX=s,
-screenTargetY=t,
-progress=r,
-step=q,
+screenTargetX=screenTargetX,
+screenTargetY=screenTargetY,
+progress=q,
+step=p,
 levels=n,
 zoomFrom=d,
 zoomTo=h,
-zooming=p,
+zooming=o,
 closing=false,
 ticks=0,
 }

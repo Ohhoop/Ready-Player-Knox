@@ -5,14 +5,14 @@ local a=SpiffBoy.Links
 
 a.registry=nil
 
-function a.install(b)
-a.registry=b
+function a.install(registry)
+a.registry=registry
 end
 
-function a.connect(b,c,d,e)
-a.registry.connect(b,c,d,e)
+function a.connect(character,console,peerId,peerNum)
+a.registry.connect(character,console,peerId,peerNum)
 end
 
-function a.disconnect(b,c)
-a.registry.disconnect(b,c)
+function a.disconnect(character,console)
+a.registry.disconnect(character,console)
 end

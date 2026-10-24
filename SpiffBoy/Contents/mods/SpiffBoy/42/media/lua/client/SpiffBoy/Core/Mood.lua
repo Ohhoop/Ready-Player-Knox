@@ -7,11 +7,11 @@ local a=SpiffBoy.Mood
 a.BOREDOM_PER_SECOND=0.04
 a.UNHAPPINESS_PER_SECOND=0.02
 
-function a.applySecond(c)
+function a.applySecond(playerObj)
 if not SpiffBoy.Sandbox.playingEasesMood()then
 return
 end
-local b=c:getStats()
+local b=playerObj:getStats()
 b:remove(CharacterStat.BOREDOM,a.BOREDOM_PER_SECOND)
 b:remove(CharacterStat.UNHAPPINESS,a.UNHAPPINESS_PER_SECOND)
 end

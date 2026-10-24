@@ -7,17 +7,17 @@ require"SpiffBoy/Link/NetworkLink"
 SpiffBoyLinkChannel={}
 SpiffBoyLinkChannel.__index=SpiffBoyLinkChannel
 local a=SpiffBoyLinkChannel
-local e=SpiffBoy.LinkState
+local d=SpiffBoy.LinkState
 
-local f=100
-local g=1000
-local h=256
-local i=SpiffBoy.LINK_MESSAGES_PER_TICK
-local j=SpiffBoy.LINK_BATCH_MAX
+local e=100
+local f=1000
+local g=256
+local h=SpiffBoy.LINK_MESSAGES_PER_TICK
+local i=SpiffBoy.LINK_BATCH_MAX
 
-function a.new(c)
+function a.new(window)
 local b=setmetatable({},a)
-b.window=c
+b.window=window
 if isClient()then
 b.carrier=SpiffBoy.NetworkLink
 else
@@ -36,7 +36,7 @@ return b
 end
 
 function a:link()
-return e.of(self.window.playerNum)
+return d.of(self.window.playerNum)
 end
 
 function a:isConnected()
@@ -52,16 +52,16 @@ end
 return b.seat
 end
 
-function a:send(b)
-if not SpiffBoy.isLinkMessage(b)then
+function a:send(message)
+if not SpiffBoy.isLinkMessage(message)then
 error("SpiffBoy: a link message is a text of 1 to "..SpiffBoy.LINK_MESSAGE_MAX.." bytes")
 end
 self.lastUsedMs=getTimestampMs()
-if not self:isConnected()or self.pending>=i then
+if not self:isConnected()or self.pending>=h then
 return false
 end
 self.pending=self.pending+1
-self.outgoing[#self.outgoing+1]=b
+self.outgoing[#self.outgoing+1]=message
 return true
 end
 
@@ -74,7 +74,7 @@ return table.remove(self.incoming,1)
 end
 
 function a:inUse()
-return self.lastUsedMs~=nil and getTimestampMs()-self.lastUsedMs<g
+return self.lastUsedMs~=nil and getTimestampMs()-self.lastUsedMs<f
 end
 
 function a:step()
@@ -87,7 +87,7 @@ if b==0 then
 return
 end
 local c=getTimestampMs()
-if b<j and c-self.lastSendMs<f then
+if b<i and c-self.lastSendMs<e then
 return
 end
 self.carrier.sendData(self.window.playerObj,self.sequence,self.outgoing)
@@ -105,25 +105,25 @@ end
 self.carrier.sendState(self.window.playerObj,c,self.window.powered)
 end
 
-function a:onData(c,d)
-if self.lastReceived~=nil and c<=self.lastReceived then
+function a:onData(sequence,messages)
+if self.lastReceived~=nil and sequence<=self.lastReceived then
 return
 end
-self.lastReceived=c
+self.lastReceived=sequence
 local b=self.incoming
-for k=1,#d do
-b[#b+1]=d[k]
+for c=1,#messages do
+b[#b+1]=messages[c]
 end
-while#b>h do
+while#b>g do
 table.remove(b,1)
 end
 end
 
-function a:onState(b,c)
-local d=self:isConnected()
-self.peerCartridge=b
-self.peerOn=c
-if d and not self:isConnected()and self:inUse()then
+function a:onState(cartridge,on)
+local b=self:isConnected()
+self.peerCartridge=cartridge
+self.peerOn=on
+if b and not self:isConnected()and self:inUse()then
 self.window:onLinkLost()
 end
 end
@@ -156,8 +156,8 @@ end,
 seat=function()
 return b:seat()
 end,
-send=function(d,c)
-return b:send(c)
+send=function(_,message)
+return b:send(message)
 end,
 receive=function()
 return b:receive()

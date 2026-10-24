@@ -4,21 +4,21 @@ require"SpiffBoy/Core/Core"
 
 SpiffBoyPlayHandheldAction=ISBaseTimedAction:derive("SpiffBoyPlayHandheldAction")
 
-local c="SBPlayHandheld"
-local d="SpiffBoyHandheldInHand"
+local b="SBPlayHandheld"
+local c="SpiffBoyHandheldInHand"
 
 function SpiffBoyPlayHandheldAction:isValid()
 return self.window~=nil and not self.window.closing
 end
 
 function SpiffBoyPlayHandheldAction:start()
-self:setActionAnim(c)
-self:setOverrideHandModelsString(nil,d)
+self:setActionAnim(b)
+self:setOverrideHandModelsString(nil,c)
 end
 
-function SpiffBoyPlayHandheldAction:new(b,e)
-local a=ISBaseTimedAction.new(self,b)
-a.window=e
+function SpiffBoyPlayHandheldAction:new(character,window)
+local a=ISBaseTimedAction.new(self,character)
+a.window=window
 a.maxTime=-1
 a.useProgressBar=false
 a.stopOnWalk=false
@@ -27,21 +27,21 @@ a.stopOnAim=false
 return a
 end
 
-function SpiffBoyPlayHandheldAction.startFor(a,e)
-ISTimedActionQueue.clear(a)
-local b=SpiffBoyPlayHandheldAction:new(a,e)
-ISTimedActionQueue.add(b)
-return b
+function SpiffBoyPlayHandheldAction.startFor(playerObj,window)
+ISTimedActionQueue.clear(playerObj)
+local a=SpiffBoyPlayHandheldAction:new(playerObj,window)
+ISTimedActionQueue.add(a)
+return a
 end
 
-function SpiffBoyPlayHandheldAction.finishFor(a)
-if a and a.action then
-a:forceComplete()
+function SpiffBoyPlayHandheldAction.finishFor(action)
+if action and action.action then
+action:forceComplete()
 end
 end
 
-function SpiffBoyPlayHandheldAction.stopFor(a)
-if a and a.action then
-a:forceStop()
+function SpiffBoyPlayHandheldAction.stopFor(action)
+if action and action.action then
+action:forceStop()
 end
 end

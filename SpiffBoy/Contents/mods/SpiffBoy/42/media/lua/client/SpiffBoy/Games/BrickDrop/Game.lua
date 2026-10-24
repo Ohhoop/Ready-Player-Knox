@@ -14,296 +14,296 @@ SpiffBoyBrickDropGame=SpiffBoyGameBase:derive("SpiffBoyBrickDropGame")
 local m=SpiffBoy.BrickDrop.Well
 local i=SpiffBoy.BrickDrop.Records
 local b=SpiffBoy.BrickDrop.Music
-local bd=SpiffBoy.BrickDrop.TitleWall
-local ax=SpiffBoy.BrickDrop.Camp
-local E=SpiffBoy.BrickDrop.EscapeScene
+local bb=SpiffBoy.BrickDrop.TitleWall
+local aw=SpiffBoy.BrickDrop.Camp
+local G=SpiffBoy.BrickDrop.EscapeScene
 
 local e=SpiffBoy.Cartridges.SHADES[4]
 local g=SpiffBoy.Cartridges.SHADES[1]
-local F=SpiffBoy.Cartridges.SHADES[3]
+local H=SpiffBoy.Cartridges.SHADES[3]
 local h=SpiffBoy.Cartridges.SCREEN_WIDTH
-local Y=SpiffBoy.Cartridges.SCREEN_HEIGHT
+local X=SpiffBoy.Cartridges.SCREEN_HEIGHT
 local c=SpiffBoy.GameTexts.of("BrickDrop")
 
 local a=6
 local n=10
-local t=18
+local s=18
 local w=60
 local o=6
-local G=w-a
-local H=w+n*a
-local Z=o+t*a
-local _=3
-local aa=-1
-local be=m.GARBAGE
-local bf=9
-local ay=10
-local bg=11
-local ab={
+local I=w-a
+local J=w+n*a
+local Y=o+s*a
+local Z=3
+local _=-1
+local bc=m.GARBAGE
+local bd=9
+local ax=10
+local be=11
+local aa={
 {1,4},{1,2,4},{1,3},{1,3},{1,2,4},{1,3},{1,3},
 {2,3},{2},{2,3,4},{2,3,4},
 }
-local x=10
-local I=x*a
-local y=32
-local az=1024/y*a
-local ac={4,2,1,4,4,1,1,1,1,2}
-local aA={{1,3,9},{2,5,9},{9},{6,9},{2,4,9},{7,9},{8,9},{10}}
-local ad={2,3,4}
-local bh={[aA[be][1]]=2^n-1}
-local aB=ab[ay]
-local aC=(n+2)*a
+local z=10
+local K=z*a
+local A=32
+local ay=1024/A*a
+local ab={4,2,1,4,4,1,1,1,1,2}
+local az={{1,3,9},{2,5,9},{9},{6,9},{2,4,9},{7,9},{8,9},{10}}
+local ac={2,3,4}
+local bf={[az[bc][1]]=2^n-1}
+local aA=aa[ax]
+local aB=(n+2)*a
 
-local bi=math.floor(G/2)
-local bj=H+a+math.floor((h-H-a)/2)
-local bk=4
-local bl=16
-local bm=36
-local aD=56
-local aE=68
-local bn=4
-local aF=17
-local bo=46
-local aG=59
-local ae=32
-local af=20
+local bg=math.floor(I/2)
+local bh=J+a+math.floor((h-J-a)/2)
+local bi=4
+local bj=16
+local bk=36
+local aC=56
+local aD=68
+local bl=4
+local aE=17
+local bm=46
+local aF=59
+local ad=32
+local ae=20
 
-local aH={53,49,45,41,37,33,28,22,17,11,10,9,8,7,6,6,5,5,4,4,3}
-local aI=10
-local aJ=9
-local aK=20
-local bp=2
-local bq=12
-local br=5
-local bs={40,100,300,1200}
-local bt=25
-local bu={[0]=0,3,5,8,10,12}
-local aL=5
-local bv=1000
-local bw=5
-local aM=6
-local bx=3
-local by=16
-local bz=90
-local aN=3
-local bA=90
-local J=60
-local bB=3
-local bC=60
+local aG={53,49,45,41,37,33,28,22,17,11,10,9,8,7,6,6,5,5,4,4,3}
+local aH=10
+local aI=9
+local aJ=20
+local bn=2
+local bo=12
+local bp=5
+local bq={40,100,300,1200}
+local br=25
+local bs={[0]=0,3,5,8,10,12}
+local aK=5
+local bt=1000
+local bu=5
+local aL=6
+local bv=3
+local bw=16
+local bx=90
+local aM=3
+local by=90
+local L=60
+local bz=3
+local bA=60
 
 local p="title"
-local ag="setup"
-local K="options"
-local ah="confirm"
-local ai="scores"
-local aj="run"
-local ak="scene"
-local aO="initials"
+local af="setup"
+local M="options"
+local ag="confirm"
+local ah="scores"
+local ai="run"
+local aj="scene"
+local aN="initials"
 
-local z="fall"
-local al="clear"
-local am="curtain"
-local L="over"
-local an="won"
-local aP="finale"
+local B="fall"
+local ak="clear"
+local al="curtain"
+local N="over"
+local am="won"
+local aO="finale"
 
 local j={{key="a",text="ModeA"},{key="b",text="ModeB"},{key="c",text="ModeC"}}
-local M={"MusicA","MusicB","MusicC","MusicOff"}
-local bD=#M
-local A={{key="mode",text="Mode"},{key="level",text="StartLevel"},{key="height",text="Height"},{key="music",text="Music"}}
-local u={{key="music",text="Music"},{key="effects",text="Effects"},{action="clear",text="ClearScores"}}
-local N={"Play","HighScores","Options"}
-local ao={
-scores={text="EraseScores",back=K},
+local O={"MusicA","MusicB","MusicC","MusicOff"}
+local bB=#O
+local C={{key="mode",text="Mode"},{key="level",text="StartLevel"},{key="height",text="Height"},{key="music",text="Music"}}
+local t={{key="music",text="Music"},{key="effects",text="Effects"},{action="clear",text="ClearScores"}}
+local P={"Play","HighScores","Options"}
+local an={
+scores={text="EraseScores",back=M},
 }
 
-local bE=169
-local ap=22
-local bF=math.floor((h-bE)/2)
-local B=5
-local bG={1,2,3}
+local bC=169
+local ao=22
+local bD=math.floor((h-bC)/2)
+local D=5
+local bE={1,2,3}
 local q={0,18,36,54,72,99,117,135,153}
-local bH=16
-local aQ=-ap-4
-local bI=0.35
-local bJ=9
-local bK=24
-local bL=180
-local aR=44
-local bM={3}
-local bN=30
-local aS=5
-local aq=Y-aS*a
-local bO=aq-B-ap-2
-local bP=34
-local bQ=16
-local ar=5
-local bR=15
-local bS=8
-local bT=13
-local O=22
-local aT=164
-local aU=160
-local bU=171
-local bV=2
-local bW=62
-local aV=67
-local bX=3
-local bY=10
-local bZ=34
-local b_=24
-local b0=98
-local as=6
-local aW=1
-local at=8
-local b1=4
-local b2=30
-local b3=150
-local aX=80
-local aY=32
-local C=8
-local b4=4
-local b5=Z
-local aZ=14
-local b6=-26
-local b7=-22
-local b8=42
-local a_=50
-local a0=-44
-local b9=46
-local a1=15
-local ca=4
-local P=4
-local cb=string.char(0x25B4)
-local cc=string.char(0x25BE)
-local cd="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
-local ce=62
-local Q=i.INITIALS_LENGTH
-local a2=30
-local cf=20
-local a3=12
-local cg=2
-local ch=24
-local ci=8
-local cj=2
-local ck=30
+local bF=16
+local aP=-ao-4
+local bG=0.35
+local bH=9
+local bI=24
+local bJ=180
+local aQ=44
+local bK={3}
+local bL=30
+local aR=5
+local ap=X-aR*a
+local bM=ap-D-ao-2
+local bN=34
+local bO=16
+local aq=5
+local bP=15
+local bQ=8
+local bR=13
+local Q=22
+local aS=164
+local aT=160
+local bS=171
+local bT=2
+local bU=62
+local aU=67
+local bV=3
+local bW=10
+local bX=34
+local bY=24
+local bZ=98
+local ar=6
+local aV=1
+local as=8
+local b_=4
+local b0=30
+local b1=150
+local aW=80
+local aX=32
+local E=8
+local b2=4
+local b3=Y
+local aY=14
+local b4=-26
+local b5=-22
+local b6=42
+local aZ=50
+local a_=-44
+local b7=46
+local a0=15
+local b8=4
+local R=4
+local b9=string.char(0x25B4)
+local ca=string.char(0x25BE)
+local cb="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
+local cc=62
+local S=i.INITIALS_LENGTH
+local a1=30
+local cd=20
+local a2=12
+local ce=2
+local cf=24
+local cg=8
+local ch=2
+local ci=30
 local k=b.MIX_STEPS
 
-local cl=Z-2
-local R=2
-local cm={1,3,5,8}
-local cn=1.6
-local co=60
+local cj=Y-2
+local T=2
+local ck={1,3,5,8}
+local cl=1.6
+local cm=60
 
-local function a4(d)
-return aH[math.min(d,#aH-1)+1]
+local function a3(level)
+return aG[math.min(level,#aG-1)+1]
 end
 
-local function l(f,d)
-return(f-1+d)%d+1
+local function l(value,count)
+return(value-1+count)%count+1
 end
 
-local function a5(f,d)
-return(f+d)%d
+local function a4(value,count)
+return(value+count)%count
 end
 
-local function v(d)
-if d.up then
+local function u(pressed)
+if pressed.up then
 return-1
-elseif d.down then
+elseif pressed.down then
 return 1
 end
 return 0
 end
 
-local function au(d)
-if d.left then
+local function at(pressed)
+if pressed.left then
 return-1
-elseif d.right then
+elseif pressed.right then
 return 1
 end
 return 0
 end
 
-local function a6(d)
-return string.sub(cd,d,d)
+local function a5(index)
+return string.sub(cb,index,index)
 end
 
-local function av(d)
-d:clear(e.r,e.g,e.b)
+local function au(screen)
+screen:clear(e.r,e.g,e.b)
 end
 
-local function D(d,f,r,s)
-d:text(f,r,s,g.r,g.g,g.b,1)
+local function F(screen,label,x,y)
+screen:text(label,x,y,g.r,g.g,g.b,1)
 end
 
-local function d(f,r,s,S)
-f:textCentre(r,s,S,g.r,g.g,g.b,1)
+local function d(screen,label,x,y)
+screen:textCentre(label,x,y,g.r,g.g,g.b,1)
 end
 
-local function S(f,r,s,T)
-f:textRight(r,s,T,g.r,g.g,g.b,1)
+local function U(screen,label,x,y)
+screen:textRight(label,x,y,g.r,g.g,g.b,1)
 end
 
-local function r(f,s,T,U,V)
-f:rect(s,T,U,V,g.r,g.g,g.b,1)
+local function r(screen,x,y,width,height)
+screen:rect(x,y,width,height,g.r,g.g,g.b,1)
 end
 
-local cp={{-1,0},{1,0},{0,-1},{0,1}}
+local cn={{-1,0},{1,0},{0,-1},{0,1}}
 
-local function cq(f,s,T,U)
-for W,V in ipairs(cp)do
-f:textCentre(s,T+V[1],U+V[2],e.r,e.g,e.b,1)
+local function co(screen,label,x,y)
+for v,f in ipairs(cn)do
+screen:textCentre(label,x+f[1],y+f[2],e.r,e.g,e.b,1)
 end
-d(f,s,T,U)
+d(screen,label,x,y)
 end
 
-local function cr(T)
-local s={mode=1,level=0,height=0,music=1}
-local f=T.setup
+local function cp(save)
+local v={mode=1,level=0,height=0,music=1}
+local f=save.setup
 if type(f)~="table"then
-return s
+return v
 end
 if SpiffBoy.isInteger(f.mode)and f.mode>=1 and f.mode<=#j then
-s.mode=f.mode
+v.mode=f.mode
 end
-if SpiffBoy.isInteger(f.level)and f.level>=0 and f.level<=aJ then
-s.level=f.level
+if SpiffBoy.isInteger(f.level)and f.level>=0 and f.level<=aI then
+v.level=f.level
 end
-if SpiffBoy.isInteger(f.height)and f.height>=0 and f.height<=aL then
-s.height=f.height
+if SpiffBoy.isInteger(f.height)and f.height>=0 and f.height<=aK then
+v.height=f.height
 end
-if SpiffBoy.isInteger(f.music)and f.music>=1 and f.music<=#M then
-s.music=f.music
+if SpiffBoy.isInteger(f.music)and f.music>=1 and f.music<=#O then
+v.music=f.music
 end
-return s
+return v
 end
 
-local function cs(V)
-local s={music=k,effects=k}
-local U=V.options
-if type(U)~="table"then
-return s
+local function cq(save)
+local v={music=k,effects=k}
+local y=save.options
+if type(y)~="table"then
+return v
 end
-for W,T in ipairs(u)do
-local f=T.key and U[T.key]
+for V,x in ipairs(t)do
+local f=x.key and y[x.key]
 if SpiffBoy.isInteger(f)and f>=0 and f<=k then
-s[T.key]=f
+v[x.key]=f
 end
 end
-return s
+return v
 end
 
-local function ct(X)
-local f=m.cells(X,1)
-local T,U,V,W=4,-1,4,-1
-for s=1,4 do
-T=math.min(T,f[s][1])
-U=math.max(U,f[s][1])
-V=math.min(V,f[s][2])
-W=math.max(W,f[s][2])
+local function cr(kind)
+local f=m.cells(kind,1)
+local x,y,V,W=4,-1,4,-1
+for v=1,4 do
+x=math.min(x,f[v][1])
+y=math.max(y,f[v][1])
+V=math.min(V,f[v][2])
+W=math.max(W,f[v][2])
 end
-return T,U,V,W
+return x,y,V,W
 end
 
 function SpiffBoyBrickDropGame:init()
@@ -315,21 +315,21 @@ self.wellBricks=self.context.art("wellBricks")
 self.frameBricks=self.context.art("frame")
 self.logo=self.context.art("logo")
 self.skyline=self.context.art("skyline")
-self.camp=ax.new(self.sequencer,self.random,self.context.art,{
-ground=cl,
-groundColour=F,
-cover={x=G,width=aC},
+self.camp=aw.new(self.sequencer,self.random,self.context.art,{
+ground=cj,
+groundColour=H,
+cover={x=I,width=aB},
 windows={
-{x=R,width=G-R*2},
-{x=H+a+R,width=h-H-a-R*2},
+{x=T,width=I-T*2},
+{x=J+a+T,width=h-J-a-T*2},
 },
 })
 self.records=i.read(self.save)
-self.mix=cs(self.save)
+self.mix=cq(self.save)
 self.mixDirty=false
-self.setup=cr(self.save)
+self.setup=cp(self.save)
 self.setupDirty=false
-self.wall=bd.new(self.random,bN,aS,a,bO)
+self.wall=bb.new(self.random,bL,aR,a,bM)
 self.menuIndex=1
 self.setupIndex=1
 self.optionIndex=1
@@ -346,24 +346,24 @@ function SpiffBoyBrickDropGame:applyMix()
 self.sequencer:setMix(self.mix.music/k,self.mix.effects/k)
 end
 
-function SpiffBoyBrickDropGame:keepMusic(f)
+function SpiffBoyBrickDropGame:keepMusic(name)
 if not self.sequencer:isPlaying()then
-self.sequencer:play(f)
+self.sequencer:play(name)
 end
 end
 
-function SpiffBoyBrickDropGame:resetTrack(f)
-self.track=f
+function SpiffBoyBrickDropGame:resetTrack(track)
+self.track=track
 self.trackStep=0
 end
 
-function SpiffBoyBrickDropGame:keepTrack(s)
-if self.track==bD or self.sequencer:isPlaying()then
+function SpiffBoyBrickDropGame:keepTrack(fast)
+if self.track==bB or self.sequencer:isPlaying()then
 return
 end
 local f=b.TRACKS[self.track].order
 self.trackStep=self.trackStep%#f+1
-self.sequencer:play(b.barName(self.track,s,f[self.trackStep]))
+self.sequencer:play(b.barName(self.track,fast,f[self.trackStep]))
 end
 
 function SpiffBoyBrickDropGame:gameMode()
@@ -374,8 +374,8 @@ function SpiffBoyBrickDropGame:currentRecords()
 return i.list(self.records,self:gameMode().key,self.setup.level,self.setup.height)
 end
 
-local function a7(f)
-return i.TABLE_SIZES[f]
+local function a6(modeKey)
+return i.TABLE_SIZES[modeKey]
 end
 
 function SpiffBoyBrickDropGame:persistRecords()
@@ -383,20 +383,20 @@ self.save.records=i.write(self.records)
 self:persist()
 end
 
-function SpiffBoyBrickDropGame:tick(s,T)
+function SpiffBoyBrickDropGame:tick(inputs,tick)
 self.clock=self.clock+1
-local f=s[1]
-if self.mode==aj then
+local f=inputs[1]
+if self.mode==ai then
 self:tickRun(f)
-elseif self.mode==ak then
+elseif self.mode==aj then
 if self.escape:advance(f)then
 self.escape=nil
 self:offerRecord()
 end
-elseif self.mode==aO then
+elseif self.mode==aN then
 self:keepMusic(b.TITLE)
 self:tickInitials(f)
-elseif self.mode==ag then
+elseif self.mode==af then
 self:keepTrack(false)
 self:tickSetup(f)
 else
@@ -406,9 +406,9 @@ self:keepMusic(b.TITLE)
 end
 if self.mode==p then
 self:tickTitle(f)
-elseif self.mode==K then
+elseif self.mode==M then
 self:tickOptions(f)
-elseif self.mode==ah then
+elseif self.mode==ag then
 self:tickConfirm(f)
 else
 self:tickScores(f)
@@ -422,23 +422,23 @@ self.sequencer:effect(b.ROW)
 end
 end
 
-local function aw(s,T)
-local f=T-(s-1)*bJ
+local function av(index,tick)
+local f=tick-(index-1)*bH
 if f<=0 then
-return aQ
+return aP
 end
-return math.min(B,aQ+bI*f*f/2)
+return math.min(D,aP+bG*f*f/2)
 end
 
-function SpiffBoyBrickDropGame:tickIntro(s)
-if s and(s.pressed.a or s.pressed.b or s.pressed.start)then
+function SpiffBoyBrickDropGame:tickIntro(input)
+if input and(input.pressed.a or input.pressed.b or input.pressed.start)then
 self:endIntro()
 return
 end
 self.introTick=self.introTick+1
 local f=0
-for T=1,#q do
-if aw(T,self.introTick)>=B then
+for v=1,#q do
+if av(v,self.introTick)>=D then
 f=f+1
 end
 end
@@ -446,7 +446,7 @@ if f>self.lettersLanded then
 self.lettersLanded=f
 self.sequencer:effect(b.THUD)
 end
-if f==#q and aw(#q,self.introTick-bK)>=B then
+if f==#q and av(#q,self.introTick-bI)>=D then
 self:endIntro()
 end
 end
@@ -457,26 +457,26 @@ self.lettersLanded=#q
 self.sequencer:play(b.TITLE)
 end
 
-function SpiffBoyBrickDropGame:tickTitle(f)
+function SpiffBoyBrickDropGame:tickTitle(input)
 if not self.introDone then
-self:tickIntro(f)
+self:tickIntro(input)
 return
 end
-if not f then
+if not input then
 return
 end
-local s=f.pressed
-local T=v(s)
-if T~=0 then
-self.menuIndex=l(self.menuIndex+T,#N)
+local f=input.pressed
+local v=u(f)
+if v~=0 then
+self.menuIndex=l(self.menuIndex+v,#P)
 self.sequencer:effect(b.TICK)
 end
-if s.a or s.start then
-local U=N[self.menuIndex]
+if f.a or f.start then
+local x=P[self.menuIndex]
 self.sequencer:effect(b.CONFIRM)
-if U=="Play"then
+if x=="Play"then
 self:openSetup()
-elseif U=="Options"then
+elseif x=="Options"then
 self:openOptions()
 else
 self:showScores(self.setup.mode,1)
@@ -486,7 +486,7 @@ end
 
 function SpiffBoyBrickDropGame:openSetup()
 self.setupIndex=1
-self.mode=ag
+self.mode=af
 self.sequencer:stop()
 self:resetTrack(self.setup.music)
 end
@@ -506,29 +506,29 @@ self.sequencer:stop()
 self.mode=p
 end
 
-function SpiffBoyBrickDropGame:setupRowShown(f)
-return A[f].key~="height"or self:gameMode().key=="b"
+function SpiffBoyBrickDropGame:setupRowShown(index)
+return C[index].key~="height"or self:gameMode().key=="b"
 end
 
-function SpiffBoyBrickDropGame:moveSetupCursor(s)
+function SpiffBoyBrickDropGame:moveSetupCursor(step)
 local f=self.setupIndex
 repeat
-f=l(f+s,#A)
+f=l(f+step,#C)
 until self:setupRowShown(f)
 self.setupIndex=f
 end
 
-function SpiffBoyBrickDropGame:turnSetup(s)
+function SpiffBoyBrickDropGame:turnSetup(delta)
 local f=self.setup
-local T=A[self.setupIndex].key
-if T=="mode"then
-f.mode=l(f.mode+s,#j)
-elseif T=="level"then
-f.level=a5(f.level+s,aJ+1)
-elseif T=="height"then
-f.height=a5(f.height+s,aL+1)
+local v=C[self.setupIndex].key
+if v=="mode"then
+f.mode=l(f.mode+delta,#j)
+elseif v=="level"then
+f.level=a4(f.level+delta,aI+1)
+elseif v=="height"then
+f.height=a4(f.height+delta,aK+1)
 else
-f.music=l(f.music+s,#M)
+f.music=l(f.music+delta,#O)
 self.sequencer:stop()
 self:resetTrack(f.music)
 end
@@ -536,19 +536,19 @@ self.setupDirty=true
 self.sequencer:effect(b.TICK)
 end
 
-function SpiffBoyBrickDropGame:tickSetup(s)
-if not s then
+function SpiffBoyBrickDropGame:tickSetup(input)
+if not input then
 return
 end
-local f=s.pressed
-local T=v(f)
-if T~=0 then
-self:moveSetupCursor(T)
+local f=input.pressed
+local v=u(f)
+if v~=0 then
+self:moveSetupCursor(v)
 self.sequencer:effect(b.TICK)
 end
-local U=au(f)
-if U~=0 then
-self:turnSetup(U)
+local x=at(f)
+if x~=0 then
+self:turnSetup(x)
 end
 if f.a or f.start then
 self:saveSetup()
@@ -561,7 +561,7 @@ end
 
 function SpiffBoyBrickDropGame:openOptions()
 self.optionIndex=1
-self.mode=K
+self.mode=M
 end
 
 function SpiffBoyBrickDropGame:closeOptions()
@@ -573,41 +573,41 @@ end
 self.mode=p
 end
 
-function SpiffBoyBrickDropGame:turnOption(T)
-local f=u[self.optionIndex]
+function SpiffBoyBrickDropGame:turnOption(delta)
+local f=t[self.optionIndex]
 if not f.key then
 return
 end
-local s=SpiffBoy.clamp(self.mix[f.key]+T,0,k)
-if s==self.mix[f.key]then
+local v=SpiffBoy.clamp(self.mix[f.key]+delta,0,k)
+if v==self.mix[f.key]then
 return
 end
-self.mix[f.key]=s
+self.mix[f.key]=v
 self.mixDirty=true
 self:applyMix()
-self.sequencer:effect(b.STEP..s)
+self.sequencer:effect(b.STEP..v)
 end
 
-function SpiffBoyBrickDropGame:tickOptions(s)
-if not s then
+function SpiffBoyBrickDropGame:tickOptions(input)
+if not input then
 return
 end
-local f=s.pressed
-local T=v(f)
-if T~=0 then
-self.optionIndex=l(self.optionIndex+T,#u)
+local f=input.pressed
+local v=u(f)
+if v~=0 then
+self.optionIndex=l(self.optionIndex+v,#t)
 self.sequencer:effect(b.TICK)
 end
-local U=au(f)
-if U~=0 then
-self:turnOption(U)
+local x=at(f)
+if x~=0 then
+self:turnOption(x)
 end
 if f.b or f.start then
 self.sequencer:effect(b.CONFIRM)
 self:closeOptions()
 elseif f.a then
 self.sequencer:effect(b.CONFIRM)
-if u[self.optionIndex].action then
+if t[self.optionIndex].action then
 self:openConfirm("scores")
 else
 self:closeOptions()
@@ -615,10 +615,10 @@ end
 end
 end
 
-function SpiffBoyBrickDropGame:openConfirm(f)
-self.confirmKind=f
+function SpiffBoyBrickDropGame:openConfirm(kind)
+self.confirmKind=kind
 self.confirmYes=false
-self.mode=ah
+self.mode=ag
 end
 
 function SpiffBoyBrickDropGame:acceptConfirm()
@@ -627,79 +627,79 @@ self.flashRankIndex=nil
 self:persistRecords()
 end
 
-function SpiffBoyBrickDropGame:tickConfirm(s)
-if not s then
+function SpiffBoyBrickDropGame:tickConfirm(input)
+if not input then
 return
 end
-local f=s.pressed
+local f=input.pressed
 if f.left or f.right or f.up or f.down then
 self.confirmYes=not self.confirmYes
 self.sequencer:effect(b.TICK)
 end
 if f.b then
 self.sequencer:effect(b.CONFIRM)
-self.mode=ao[self.confirmKind].back
+self.mode=an[self.confirmKind].back
 elseif f.a or f.start then
 self.sequencer:effect(b.CONFIRM)
 if self.confirmYes then
 self:acceptConfirm()
 end
-self.mode=ao[self.confirmKind].back
+self.mode=an[self.confirmKind].back
 end
 end
 
-function SpiffBoyBrickDropGame:pageRecords(f)
-return i.list(self.records,j[f].key,self.setup.level,self.setup.height)
+function SpiffBoyBrickDropGame:pageRecords(page)
+return i.list(self.records,j[page].key,self.setup.level,self.setup.height)
 end
 
-function SpiffBoyBrickDropGame:scoresRows(T)
-local s=self.screen:lineHeight()
-local f=C+s+b4
-if j[T].key=="b"then
-f=f+s
+function SpiffBoyBrickDropGame:scoresRows(page)
+local v=self.screen:lineHeight()
+local f=E+v+b2
+if j[page].key=="b"then
+f=f+v
 end
-return f,math.floor((b5-f)/s)
-end
-
-function SpiffBoyBrickDropGame:clampScoresTop(f,s)
-local U,T=self:scoresRows(f)
-return SpiffBoy.clamp(s,1,#self:pageRecords(f)-T+1)
+return f,math.floor((b3-f)/v)
 end
 
-function SpiffBoyBrickDropGame:showScores(f,s)
-self.mode=ai
-self.scoresPage=f
-self.scoresTop=self:clampScoresTop(f,s)
+function SpiffBoyBrickDropGame:clampScoresTop(page,first)
+local v,f=self:scoresRows(page)
+return SpiffBoy.clamp(first,1,#self:pageRecords(page)-f+1)
 end
 
-function SpiffBoyBrickDropGame:flashRank(f)
-self.flashRankIndex=f
-self.flashUntil=self.clock+a1*ca*2
+function SpiffBoyBrickDropGame:showScores(page,rank)
+self.mode=ah
+self.scoresPage=page
+self.scoresTop=self:clampScoresTop(page,rank)
 end
 
-function SpiffBoyBrickDropGame:isRankInverted(f)
-if f~=self.flashRankIndex or not self.flashUntil or self.clock>=self.flashUntil then
+function SpiffBoyBrickDropGame:flashRank(rank)
+self.flashRankIndex=rank
+self.flashUntil=self.clock+a0*b8*2
+end
+
+function SpiffBoyBrickDropGame:isRankInverted(rank)
+if rank~=self.flashRankIndex or not self.flashUntil or self.clock>=self.flashUntil then
 return false
 end
-return math.floor((self.flashUntil-self.clock-1)/a1)%2==1
+return math.floor((self.flashUntil-self.clock-1)/a0)%2==1
 end
 
-function SpiffBoyBrickDropGame:tickScores(s)
-if not s then
+function SpiffBoyBrickDropGame:tickScores(input)
+if not input then
 return
 end
-local f=s.pressed
-local T=v(f)
-local U=au(f)
-if T~=0 then
-local V=self:clampScoresTop(self.scoresPage,self.scoresTop+T)
-if V~=self.scoresTop then
-self.scoresTop=V
+local f=input.pressed
+local v=u(f)
+local x=at(f)
+if v~=0 then
+local y=self:clampScoresTop(self.scoresPage,self.scoresTop+v)
+if y~=self.scoresTop then
+self.scoresTop=y
 self.sequencer:effect(b.TICK)
 end
-elseif U~=0 then
+elseif x~=0 then
 self.flashRankIndex=nil
-self:showScores(l(self.scoresPage+U,#j),1)
+self:showScores(l(self.scoresPage+x,#j),1)
 self.sequencer:effect(b.TICK)
 elseif f.a or f.b or f.start then
 self.sequencer:effect(b.CONFIRM)
@@ -708,18 +708,18 @@ end
 end
 
 function SpiffBoyBrickDropGame:startRun()
-self.well=m.new(n,t)
+self.well=m.new(n,s)
 self.bag=m.newBag(self.random)
 self.modeKey=self:gameMode().key
 self.startLevel=self.setup.level
 self.garbageHeight=self.setup.height
 if self.modeKey=="b"then
-self.well:fillGarbage(bu[self.garbageHeight],self.random)
+self.well:fillGarbage(bs[self.garbageHeight],self.random)
 end
 self.level=self.startLevel
 self.lines=0
 self.score=0
-self.piece={kind=1,rotation=1,x=_,y=aa}
+self.piece={kind=1,rotation=1,x=Z,y=_}
 self.nextKind=self.bag.draw()
 self.holdKind=nil
 self.holdUsed=false
@@ -728,9 +728,9 @@ self.softBlocked=false
 self.paused=false
 self.quake=0
 self.levelBlink=0
-self.phase=z
-self.mode=aj
-self.camp:reset(cn*(aK-self.startLevel)*aI)
+self.phase=B
+self.mode=ai
+self.camp:reset(cl*(aJ-self.startLevel)*aH)
 self.sequencer:stop()
 self.sequencer:play(b.START)
 self:resetTrack(self.setup.music)
@@ -739,18 +739,18 @@ self.nextKind=self.bag.draw()
 end
 
 function SpiffBoyBrickDropGame:linesLeft()
-return math.max(0,bt-self.lines)
+return math.max(0,br-self.lines)
 end
 
-function SpiffBoyBrickDropGame:spawn(s)
+function SpiffBoyBrickDropGame:spawn(kind)
 local f=self.piece
-f.kind=s
+f.kind=kind
 f.rotation=1
-f.x=_
-f.y=aa
-self.dropTimer=a4(self.level)
+f.x=Z
+f.y=_
+self.dropTimer=a3(self.level)
 self.softBlocked=true
-if not self.well:fits(s,1,_,aa)then
+if not self.well:fits(kind,1,Z,_)then
 self:topOut()
 end
 end
@@ -777,23 +777,23 @@ self.holdUsed=true
 self.sequencer:effect(b.HOLD)
 end
 
-function SpiffBoyBrickDropGame:shift(s)
+function SpiffBoyBrickDropGame:shift(direction)
 local f=self.piece
-if self.well:fits(f.kind,f.rotation,f.x+s,f.y)then
-f.x=f.x+s
+if self.well:fits(f.kind,f.rotation,f.x+direction,f.y)then
+f.x=f.x+direction
 self.sequencer:effect(b.MOVE)
 return true
 end
 return false
 end
 
-function SpiffBoyBrickDropGame:rotate(U)
+function SpiffBoyBrickDropGame:rotate(direction)
 local f=self.piece
-local s=l(f.rotation+U,m.rotationCount(f.kind))
-local T=self.well:kick(f.kind,s,f.x,f.y)
-if T then
-f.rotation=s
-f.x=f.x+T
+local v=l(f.rotation+direction,m.rotationCount(f.kind))
+local x=self.well:kick(f.kind,v,f.x,f.y)
+if x then
+f.rotation=v
+f.x=f.x+x
 self.sequencer:effect(b.ROTATE)
 end
 end
@@ -809,27 +809,27 @@ return false
 end
 
 function SpiffBoyBrickDropGame:lock()
-local s=self.piece
-if not self.well:place(s.kind,s.rotation,s.x,s.y)then
+local v=self.piece
+if not self.well:place(v.kind,v.rotation,v.x,v.y)then
 self:topOut()
 return
 end
-local f,T=self.well:fullRows()
+local f,x=self.well:fullRows()
 if#f==0 then
 self.sequencer:effect(b.LOCK)
 self:spawnNext()
 return
 end
-self.clearRows=T
+self.clearRows=x
 self.clearCount=#f
-self.clearTimer=aM*bx*2
-self.phase=al
-self.score=self.score+bs[#f]*(self.level+1)
+self.clearTimer=aL*bv*2
+self.phase=ak
+self.score=self.score+bq[#f]*(self.level+1)
 if self.modeKey=="a"then
-self.camp:deliver(cm[#f])
+self.camp:deliver(ck[#f])
 end
 if#f==4 then
-self.quake=by
+self.quake=bw
 self.sequencer:effect(b.QUAD)
 else
 self.sequencer:effect(b.CLEAR)
@@ -840,21 +840,21 @@ function SpiffBoyBrickDropGame:finishClear()
 self.well:removeRows(self.clearRows)
 self.clearRows=nil
 self.lines=self.lines+self.clearCount
-local f=self.startLevel+math.floor(self.lines/aI)
+local f=self.startLevel+math.floor(self.lines/aH)
 if f>self.level then
 self.level=f
-self.levelBlink=bz
+self.levelBlink=bx
 self.sequencer:effect(b.LEVEL)
 end
 if self.modeKey=="b"and self:linesLeft()==0 then
 self:winCleared()
 return
 end
-if self.modeKey=="a"and self.level>=aK then
+if self.modeKey=="a"and self.level>=aJ then
 self:winEscaped()
 return
 end
-self.phase=z
+self.phase=B
 self:spawnNext()
 end
 
@@ -862,18 +862,18 @@ function SpiffBoyBrickDropGame:topOut()
 if self.modeKey=="a"then
 self.camp:startOverrun()
 end
-self.phase=am
-self.curtainRow=t
-self.curtainTimer=aN
+self.phase=al
+self.curtainRow=s
+self.curtainTimer=aM
 self.sequencer:stop()
 self.sequencer:effect(b.LOSE)
 end
 
 function SpiffBoyBrickDropGame:winCleared()
-self.phase=an
-self.bonus=bv*(self.startLevel+self.garbageHeight+1)
+self.phase=am
+self.bonus=bt*(self.startLevel+self.garbageHeight+1)
 self.tally=0
-self.wonHold=bC
+self.wonHold=bA
 self.sequencer:stop()
 self.sequencer:play(b.CLEARED)
 end
@@ -882,22 +882,22 @@ function SpiffBoyBrickDropGame:winEscaped()
 self.sequencer:stop()
 local f=self.camp:stage()
 if f==0 then
-self.phase=aP
+self.phase=aO
 self.finaleTick=0
 self.camp:startOverrun()
 return
 end
-local s=E.FOOT
-if f>=#ax.PROJECTS then
-s=E.RADIO
+local v=G.FOOT
+if f>=#aw.PROJECTS then
+v=G.RADIO
 elseif f>=2 then
-s=E.TRUCK
+v=G.TRUCK
 end
-self.mode=ak
-self.escape=E.new(s,self.sequencer,self.context.art,self.score)
+self.mode=aj
+self.escape=G.new(v,self.sequencer,self.context.art,self.score)
 end
 
-function SpiffBoyBrickDropGame:tickRun(f)
+function SpiffBoyBrickDropGame:tickRun(input)
 if self.quake>0 then
 self.quake=self.quake-1
 end
@@ -907,87 +907,87 @@ end
 if self.modeKey=="a"and not self.paused then
 self.camp:tick()
 end
-if self.phase==z then
-self:tickFall(f)
-elseif self.phase==al then
+if self.phase==B then
+self:tickFall(input)
+elseif self.phase==ak then
 self:keepTrack(self:inDanger())
 self.clearTimer=self.clearTimer-1
 if self.clearTimer<=0 then
 self:finishClear()
 end
-elseif self.phase==am then
+elseif self.phase==al then
 self:tickCurtain()
-elseif self.phase==L then
+elseif self.phase==N then
 self.overTimer=self.overTimer-1
 if self.overTimer<=0 and not self.sequencer:isPlaying()and(self.modeKey~="a"or self.camp:overrunDone())then
 self:afterGameOver()
 end
-elseif self.phase==aP then
-self:tickFinale(f)
+elseif self.phase==aO then
+self:tickFinale(input)
 else
 self:tickWon()
 end
 end
 
-function SpiffBoyBrickDropGame:tickFinale(f)
+function SpiffBoyBrickDropGame:tickFinale(input)
 self.finaleTick=self.finaleTick+1
-local s=f and self.finaleTick>co and(f.pressed.a or f.pressed.start)
-if s or self.camp:overrunDone()then
+local f=input and self.finaleTick>cm and(input.pressed.a or input.pressed.start)
+if f or self.camp:overrunDone()then
 self:offerRecord()
 end
 end
 
 function SpiffBoyBrickDropGame:inDanger()
-return self.well:top()<bw
+return self.well:top()<bu
 end
 
-function SpiffBoyBrickDropGame:tickFall(f)
+function SpiffBoyBrickDropGame:tickFall(input)
 self:keepTrack(self:inDanger())
-if f and f.pressed.start then
+if input and input.pressed.start then
 self.paused=not self.paused
 self.sequencer:effect(b.CONFIRM)
 end
 if self.paused then
 return
 end
-if f then
-self:control(f)
-if self.phase~=z then
+if input then
+self:control(input)
+if self.phase~=B then
 return
 end
 end
-local s=f and f.held.down and not self.softBlocked
-if s then
-self.dropTimer=math.min(self.dropTimer,bp)
+local f=input and input.held.down and not self.softBlocked
+if f then
+self.dropTimer=math.min(self.dropTimer,bn)
 end
 self.dropTimer=self.dropTimer-1
 if self.dropTimer<=0 then
-self.dropTimer=a4(self.level)
-if self:fall()and s then
+self.dropTimer=a3(self.level)
+if self:fall()and f then
 self.score=self.score+1
 end
 end
 end
 
-function SpiffBoyBrickDropGame:control(U)
-local T,f=U.held,U.pressed
-if not T.down then
+function SpiffBoyBrickDropGame:control(input)
+local x,f=input.held,input.pressed
+if not x.down then
 self.softBlocked=false
 end
-local s=0
-if T.left then
-s=-1
-elseif T.right then
-s=1
+local v=0
+if x.left then
+v=-1
+elseif x.right then
+v=1
 end
 if f.left or f.right then
-self:shift(s)
-self.repeatTimer=bq
-elseif s~=0 then
+self:shift(v)
+self.repeatTimer=bo
+elseif v~=0 then
 self.repeatTimer=self.repeatTimer-1
 if self.repeatTimer<=0 then
-self:shift(s)
-self.repeatTimer=br
+self:shift(v)
+self.repeatTimer=bp
 end
 end
 if f.a then
@@ -1006,12 +1006,12 @@ self.curtainTimer=self.curtainTimer-1
 if self.curtainTimer>0 then
 return
 end
-self.curtainTimer=aN
+self.curtainTimer=aM
 self.curtainRow=self.curtainRow-1
 if self.curtainRow<=0 then
 self.curtainRow=0
-self.phase=L
-self.overTimer=bA
+self.phase=N
+self.overTimer=by
 self.sequencer:play(b.OVER)
 end
 end
@@ -1026,24 +1026,24 @@ end
 
 function SpiffBoyBrickDropGame:offerRecord()
 local f=i.list(self.records,self.modeKey,self.startLevel,self.garbageHeight)
-if i.rankOf(f,a7(self.modeKey),self.score)then
+if i.rankOf(f,a6(self.modeKey),self.score)then
 self.letters={1,1,1}
 self.letterHoldStep=0
 self.cursor=1
 self.sequencer:stop()
-self.mode=aO
+self.mode=aN
 return
 end
 self:openSetup()
 end
 
 function SpiffBoyBrickDropGame:tickWon()
-if self.tally<J then
+if self.tally<L then
 self.tally=self.tally+1
-if self.tally%bB==0 then
+if self.tally%bz==0 then
 self.sequencer:effect(b.COUNT)
 end
-if self.tally==J then
+if self.tally==L then
 self.score=self.score+self.bonus
 end
 return
@@ -1058,53 +1058,53 @@ end
 end
 
 function SpiffBoyBrickDropGame:countedBonus()
-if self.phase~=an or self.tally>=J then
+if self.phase~=am or self.tally>=L then
 return 0
 end
-return math.floor(self.bonus*self.tally/J)
+return math.floor(self.bonus*self.tally/L)
 end
 
-function SpiffBoyBrickDropGame:turnLetter(s)
+function SpiffBoyBrickDropGame:turnLetter(step)
 local f=self.cursor
-self.letters[f]=l(self.letters[f]-s,ce)
+self.letters[f]=l(self.letters[f]-step,cc)
 self.sequencer:effect(b.TICK)
 end
 
-function SpiffBoyBrickDropGame:repeatLetter(f,s)
-if f~=0 then
-self:turnLetter(f)
-self.letterHoldStep=f
+function SpiffBoyBrickDropGame:repeatLetter(pressedStep,heldStep)
+if pressedStep~=0 then
+self:turnLetter(pressedStep)
+self.letterHoldStep=pressedStep
 self.letterHoldTicks=0
-self.letterRepeatTimer=ch
+self.letterRepeatTimer=cf
 return
 end
-if s==0 or s~=self.letterHoldStep then
+if heldStep==0 or heldStep~=self.letterHoldStep then
 self.letterHoldStep=0
 return
 end
 self.letterHoldTicks=self.letterHoldTicks+1
 self.letterRepeatTimer=self.letterRepeatTimer-1
 if self.letterRepeatTimer<=0 then
-self:turnLetter(s)
-self.letterRepeatTimer=math.max(cj,ci-math.floor(self.letterHoldTicks/ck))
+self:turnLetter(heldStep)
+self.letterRepeatTimer=math.max(ch,cg-math.floor(self.letterHoldTicks/ci))
 end
 end
 
-function SpiffBoyBrickDropGame:tickInitials(T)
-if not T then
+function SpiffBoyBrickDropGame:tickInitials(input)
+if not input then
 return
 end
-local f=T.pressed
-local s=self.cursor
-self:repeatLetter(v(f),v(T.held))
-if f.left and s>1 then
-self.cursor=s-1
-elseif f.right and s<Q then
-self.cursor=s+1
+local f=input.pressed
+local v=self.cursor
+self:repeatLetter(u(f),u(input.held))
+if f.left and v>1 then
+self.cursor=v-1
+elseif f.right and v<S then
+self.cursor=v+1
 end
 if f.a or f.start then
 self.sequencer:effect(b.CONFIRM)
-if self.cursor<Q then
+if self.cursor<S then
 self.cursor=self.cursor+1
 else
 self:saveScore()
@@ -1114,461 +1114,461 @@ end
 
 function SpiffBoyBrickDropGame:saveScore()
 local f=""
-for s=1,Q do
-f=f..a6(self.letters[s])
+for v=1,S do
+f=f..a5(self.letters[v])
 end
-local T=i.ensureList(self.records,self.modeKey,self.startLevel,self.garbageHeight)
-local s=i.insert(T,a7(self.modeKey),f,self.score)
+local x=i.ensureList(self.records,self.modeKey,self.startLevel,self.garbageHeight)
+local v=i.insert(x,a6(self.modeKey),f,self.score)
 self:persistRecords()
-self:showScores(self.setup.mode,s)
-self:flashRank(s)
+self:showScores(self.setup.mode,v)
+self:flashRank(v)
 end
 
 function SpiffBoyBrickDropGame:blinkOn()
-return math.floor(self.clock/a2)%2==0
+return math.floor(self.clock/a1)%2==0
 end
 
 function SpiffBoyBrickDropGame:bob()
-return math.floor(self.clock/bR)%2
+return math.floor(self.clock/bP)%2
 end
 
-function SpiffBoyBrickDropGame:draw(f)
+function SpiffBoyBrickDropGame:draw(screen)
 if self.mode==p then
-self:drawTitle(f)
+self:drawTitle(screen)
+elseif self.mode==af then
+self:drawSetup(screen)
+elseif self.mode==M then
+self:drawOptions(screen)
 elseif self.mode==ag then
-self:drawSetup(f)
-elseif self.mode==K then
-self:drawOptions(f)
+self:drawConfirm(screen)
 elseif self.mode==ah then
-self:drawConfirm(f)
+self:drawScores(screen)
 elseif self.mode==ai then
-self:drawScores(f)
+self:drawRun(screen)
 elseif self.mode==aj then
-self:drawRun(f)
-elseif self.mode==ak then
-self.escape:draw(f)
+self.escape:draw(screen)
 else
-self:drawInitials(f)
+self:drawInitials(screen)
 end
 end
 
-function SpiffBoyBrickDropGame:drawBlock(s,f,T,U)
-s:layers(self.blocks,(f-1)*a,a,a,T,U,ab[f])
+function SpiffBoyBrickDropGame:drawBlock(screen,frame,x,y)
+screen:layers(self.blocks,(frame-1)*a,a,a,x,y,aa[frame])
 end
 
-function SpiffBoyBrickDropGame:drawCells(V,U,s,W,f)
-while f>0 do
-local T=math.min(f,x)
-V:layers(self.runs,(U-1)*x*a,T*a,a,s,W,ab[U])
-s=s+T*a
-f=f-T
+function SpiffBoyBrickDropGame:drawCells(screen,frame,x,y,count)
+while count>0 do
+local f=math.min(count,z)
+screen:layers(self.runs,(frame-1)*z*a,f*a,a,x,y,aa[frame])
+x=x+f*a
+count=count-f
 end
 end
 
-function SpiffBoyBrickDropGame:drawBricks(s,T,U,V,W)
-local f=ay
-if V%2==1 then
-f=bg
+function SpiffBoyBrickDropGame:drawBricks(screen,x,y,course,count)
+local f=ax
+if course%2==1 then
+f=be
 end
-self:drawCells(s,f,T,U,W)
+self:drawCells(screen,f,x,y,count)
 end
 
-local function a8(f,T,U)
-for s=1,4 do
-if f[s][1]==T and f[s][2]==U then
+local function a7(cells,x,y)
+for f=1,4 do
+if cells[f][1]==x and cells[f][2]==y then
 return true
 end
 end
 return false
 end
 
-function SpiffBoyBrickDropGame:drawPiece(X,a9,ba,bb,bc,cu,cv)
-local f=m.cells(ba,bb)
-for V=1,4 do
-local T,U=f[V][1],f[V][2]
-local W=cu+U*a
-if W>=cv and not a8(f,T-1,U)then
-local s=1
-while a8(f,T+s,U)do
-s=s+1
+function SpiffBoyBrickDropGame:drawPiece(screen,frame,kind,rotation,x,y,top)
+local f=m.cells(kind,rotation)
+for a8=1,4 do
+local V,W=f[a8][1],f[a8][2]
+local a9=y+W*a
+if a9>=top and not a7(f,V-1,W)then
+local v=1
+while a7(f,V+v,W)do
+v=v+1
 end
-self:drawCells(X,a9,bc+T*a,W,s)
+self:drawCells(screen,frame,x+V*a,a9,v)
 end
 end
-end
-
-function SpiffBoyBrickDropGame:drawPieceInBox(U,f,V,W)
-local s,X,T,a9=ct(f)
-local ba=(X-s+1)*a
-local bb=(a9-T+1)*a
-local bc=V-math.floor(ba/2)-s*a
-local cu=W+math.floor((af-bb)/2)-T*a
-self:drawPiece(U,f,f,1,bc,cu,0)
 end
 
-local function a9(f,U,s)
-local T=U-math.floor(ae/2)
-r(f,T-1,s-1,ae+2,af+2)
-f:rect(T,s,ae,af,e.r,e.g,e.b,1)
+function SpiffBoyBrickDropGame:drawPieceInBox(screen,kind,centreX,boxY)
+local f,x,v,y=cr(kind)
+local V=(x-f+1)*a
+local W=(y-v+1)*a
+local a8=centreX-math.floor(V/2)-f*a
+local a9=boxY+math.floor((ae-W)/2)-v*a
+self:drawPiece(screen,kind,kind,1,a8,a9,0)
 end
 
-function SpiffBoyBrickDropGame:drawBrickFrame(f)
-av(f)
-f:layers(self.frameBricks,0,h,Y,0,0,aB)
+local function a8(screen,centreX,y)
+local f=centreX-math.floor(ad/2)
+r(screen,f-1,y-1,ad+2,ae+2)
+screen:rect(f,y,ad,ae,e.r,e.g,e.b,1)
 end
 
-function SpiffBoyBrickDropGame:drawCursor(f,s,T)
-local U=f:lineHeight()
-self:drawBlock(f,2,s-a-self:bob(),T+math.floor((U-a)/2))
+function SpiffBoyBrickDropGame:drawBrickFrame(screen)
+au(screen)
+screen:layers(self.frameBricks,0,h,X,0,0,aA)
 end
 
-function SpiffBoyBrickDropGame:drawWallRow(W,X,ba,bb,s)
-local bc=bb%2
-for T=0,#s-1,x do
-local f,U=0,1
-for V=T+1,math.min(T+x,#s)do
-if s[V]then
-f=f+U
+function SpiffBoyBrickDropGame:drawCursor(screen,right,y)
+local f=screen:lineHeight()
+self:drawBlock(screen,2,right-a-self:bob(),y+math.floor((f-a)/2))
 end
-U=U*2
+
+function SpiffBoyBrickDropGame:drawWallRow(screen,x,y,course,filled)
+local a9=course%2
+for v=0,#filled-1,z do
+local f,V=0,1
+for W=v+1,math.min(v+z,#filled)do
+if filled[W]then
+f=f+V
+end
+V=V*2
 end
 if f>0 then
-for V=1,#ad do
-local cu=bc*#ad+V-1
-W:sheet(self.wallRows,f%y*I,cu*az+math.floor(f/y)*a,I,a,X+T*a,ba,1,ad[V])
+for W=1,#ac do
+local ba=a9*#ac+W-1
+screen:sheet(self.wallRows,f%A*K,ba*ay+math.floor(f/A)*a,K,a,x+v*a,y,1,ac[W])
 end
 end
 end
 end
 
-function SpiffBoyBrickDropGame:drawTitle(f)
-av(f)
-f:layers(self.skyline,0,bL,aR,0,aq-aR,bM)
-self.wall:draw(0,aq,function(s,T,U,V)
-self:drawWallRow(f,s,T,U,V)
-end,function(s,T,U)
-self:drawBricks(f,s,T,U,1)
+function SpiffBoyBrickDropGame:drawTitle(screen)
+au(screen)
+screen:layers(self.skyline,0,bJ,aQ,0,ap-aQ,bK)
+self.wall:draw(0,ap,function(x,y,course,filled)
+self:drawWallRow(screen,x,y,course,filled)
+end,function(x,y,course)
+self:drawBricks(screen,x,y,course,1)
 end)
-for s=1,#q do
-local T=B
+for f=1,#q do
+local v=D
 if not self.introDone then
-T=math.floor(aw(s,self.introTick))
+v=math.floor(av(f,self.introTick))
 end
-f:layers(self.logo,q[s],bH,ap,bF+q[s],T,bG)
+screen:layers(self.logo,q[f],bF,ao,bD+q[f],v,bE)
 end
 if not self.introDone then
 return
 end
-local T=h/2
-for s=1,#N do
-local U=c(N[s])
-local V=bP+(s-1)*bQ
-local W=f:textWidth(U)
-local X=T-math.floor(W/2)
-cq(f,U,T,V)
-if s==self.menuIndex then
-self:drawCursor(f,X-ar,V)
+local v=h/2
+for f=1,#P do
+local x=c(P[f])
+local y=bN+(f-1)*bO
+local V=screen:textWidth(x)
+local W=v-math.floor(V/2)
+co(screen,x,v,y)
+if f==self.menuIndex then
+self:drawCursor(screen,W-aq,y)
 end
 end
 end
 
-function SpiffBoyBrickDropGame:drawMenuRow(f,V,T,U,W,s,X)
-D(f,V,U,s)
-if T then
-S(f,T,W,s)
+function SpiffBoyBrickDropGame:drawMenuRow(screen,label,value,labelX,right,y,chosen)
+F(screen,label,labelX,y)
+if value then
+U(screen,value,right,y)
 end
-if X then
-self:drawCursor(f,U-ar,s)
+if chosen then
+self:drawCursor(screen,labelX-aq,y)
 end
 end
 
-function SpiffBoyBrickDropGame:setupValue(s)
+function SpiffBoyBrickDropGame:setupValue(key)
 local f=self.setup
-if s=="mode"then
+if key=="mode"then
 return c(j[f.mode].text)
-elseif s=="level"then
+elseif key=="level"then
 return tostring(f.level)
-elseif s=="height"then
+elseif key=="height"then
 return tostring(f.height)
 end
-return c(M[f.music])
+return c(O[f.music])
 end
 
-function SpiffBoyBrickDropGame:drawRecordRows(f,cu,ba,cv,cw)
-local s=h/2
-local bb=f:lineHeight()
-for T=ba,cv do
-local bc=cu[T]
-local U=cw+(T-ba)*bb
-local V,W,X=g.r,g.g,g.b
-if self.mode==ai and self:isRankInverted(T)then
-r(f,s+a0,U,b9-a0,bb)
-V,W,X=e.r,e.g,e.b
+function SpiffBoyBrickDropGame:drawRecordRows(screen,list,first,last,top)
+local f=h/2
+local a9=screen:lineHeight()
+for v=first,last do
+local ba=list[v]
+local x=top+(v-first)*a9
+local y,V,W=g.r,g.g,g.b
+if self.mode==ah and self:isRankInverted(v)then
+r(screen,f+a_,x,b7-a_,a9)
+y,V,W=e.r,e.g,e.b
 end
-f:textRight(tostring(T)..".",s+b6,U,V,W,X,1)
-f:text(bc.initials,s+b7,U,V,W,X,1)
-f:textRight(tostring(bc.score),s+b8,U,V,W,X,1)
+screen:textRight(tostring(v)..".",f+b4,x,y,V,W,1)
+screen:text(ba.initials,f+b5,x,y,V,W,1)
+screen:textRight(tostring(ba.score),f+b6,x,y,V,W,1)
 end
 end
 
-local function bb(f,T,s)
-S(f,"<",aU-f:textWidth(T)-bV,s)
-S(f,">",bU,s)
+local function ba(screen,value,y)
+U(screen,"<",aT-screen:textWidth(value)-bT,y)
+U(screen,">",bS,y)
 end
 
-function SpiffBoyBrickDropGame:drawSetup(f)
-self:drawBrickFrame(f)
-local s=bS
-for T=1,#A do
-if self:setupRowShown(T)then
-local U=A[T]
-local V=self:setupValue(U.key)
-local W=T==self.setupIndex
-self:drawMenuRow(f,c(U.text),V,O,aU,s,W)
-if W then
-bb(f,V,s)
+function SpiffBoyBrickDropGame:drawSetup(screen)
+self:drawBrickFrame(screen)
+local f=bQ
+for v=1,#C do
+if self:setupRowShown(v)then
+local x=C[v]
+local y=self:setupValue(x.key)
+local V=v==self.setupIndex
+self:drawMenuRow(screen,c(x.text),y,Q,aT,f,V)
+if V then
+ba(screen,y,f)
 end
-s=s+bT
+f=f+bR
 end
 end
-r(f,O,bW,aT-O,1)
-local T=self:currentRecords()
-if#T==0 then
-d(f,c("NoScores"),h/2,aV+f:lineHeight())
+r(screen,Q,bU,aS-Q,1)
+local v=self:currentRecords()
+if#v==0 then
+d(screen,c("NoScores"),h/2,aU+screen:lineHeight())
 return
 end
-self:drawRecordRows(f,T,1,math.min(#T,bX),aV)
+self:drawRecordRows(screen,v,1,math.min(#v,bV),aU)
 end
 
-local function bc(f,s,T,V)
-local U=k*as+(k-1)*aW
-r(f,s-1,T-1,U+2,at+2)
-f:rect(s,T,U,at,e.r,e.g,e.b,1)
-for W=1,V do
-r(f,s+(W-1)*(as+aW),T,as,at)
-end
-end
-
-function SpiffBoyBrickDropGame:drawOptions(f)
-self:drawBrickFrame(f)
-d(f,c("Options"),h/2,bY)
-for s=1,#u do
-local T=u[s]
-local U=bZ+(s-1)*b_
-self:drawMenuRow(f,c(T.text),nil,O,aT,U,s==self.optionIndex)
-if T.key then
-bc(f,b0,U+b1,self.mix[T.key])
-end
+local function cs(screen,x,y,value)
+local f=k*ar+(k-1)*aV
+r(screen,x-1,y-1,f+2,as+2)
+screen:rect(x,y,f,as,e.r,e.g,e.b,1)
+for v=1,value do
+r(screen,x+(v-1)*(ar+aV),y,ar,as)
 end
 end
 
-function SpiffBoyBrickDropGame:drawConfirm(f)
-self:drawBrickFrame(f)
-local T=h/2
-local X=f:lineHeight()
-local U=f:wrapText(c(ao[self.confirmKind].text),b3)
-for s=1,#U do
-d(f,U[s],T,b2+(s-1)*X)
-end
-local V={{text="No",x=T-aY,chosen=not self.confirmYes},{text="Yes",x=T+aY,chosen=self.confirmYes}}
-for ba=1,#V do
-local s=V[ba]
-local W=c(s.text)
-d(f,W,s.x,aX)
-if s.chosen then
-self:drawCursor(f,s.x-math.floor(f:textWidth(W)/2)-ar,aX)
+function SpiffBoyBrickDropGame:drawOptions(screen)
+self:drawBrickFrame(screen)
+d(screen,c("Options"),h/2,bW)
+for f=1,#t do
+local v=t[f]
+local x=bX+(f-1)*bY
+self:drawMenuRow(screen,c(v.text),nil,Q,aS,x,f==self.optionIndex)
+if v.key then
+cs(screen,bZ,x+b_,self.mix[v.key])
 end
 end
 end
 
-function SpiffBoyBrickDropGame:drawScores(f)
-self:drawBrickFrame(f)
-local s=h/2
-local W=f:lineHeight()
-local T=self.scoresPage
-d(f,c(j[T].text),s,C)
-D(f,"<",aZ,C)
-S(f,">",h-aZ,C)
-if j[T].key=="b"then
-local U=c("Level",self.setup.level).."  "..c("Height").." "..tostring(self.setup.height)
-d(f,U,s,C+W)
+function SpiffBoyBrickDropGame:drawConfirm(screen)
+self:drawBrickFrame(screen)
+local v=h/2
+local W=screen:lineHeight()
+local x=screen:wrapText(c(an[self.confirmKind].text),b1)
+for f=1,#x do
+d(screen,x[f],v,b0+(f-1)*W)
 end
-local U=self:pageRecords(T)
-local V,X=self:scoresRows(T)
-if#U==0 then
-d(f,c("NoScores"),s,V+W)
+local y={{text="No",x=v-aX,chosen=not self.confirmYes},{text="Yes",x=v+aX,chosen=self.confirmYes}}
+for a9=1,#y do
+local f=y[a9]
+local V=c(f.text)
+d(screen,V,f.x,aW)
+if f.chosen then
+self:drawCursor(screen,f.x-math.floor(screen:textWidth(V)/2)-aq,aW)
+end
+end
+end
+
+function SpiffBoyBrickDropGame:drawScores(screen)
+self:drawBrickFrame(screen)
+local f=h/2
+local V=screen:lineHeight()
+local v=self.scoresPage
+d(screen,c(j[v].text),f,E)
+F(screen,"<",aY,E)
+U(screen,">",h-aY,E)
+if j[v].key=="b"then
+local x=c("Level",self.setup.level).."  "..c("Height").." "..tostring(self.setup.height)
+d(screen,x,f,E+V)
+end
+local x=self:pageRecords(v)
+local y,W=self:scoresRows(v)
+if#x==0 then
+d(screen,c("NoScores"),f,y+V)
 return
 end
-local ba=math.min(#U,self.scoresTop+X-1)
-self:drawRecordRows(f,U,self.scoresTop,ba,V)
+local a9=math.min(#x,self.scoresTop+W-1)
+self:drawRecordRows(screen,x,self.scoresTop,a9,y)
 if self.scoresTop>1 then
-D(f,cb,s+a_,V)
+F(screen,b9,f+aZ,y)
 end
-if ba<#U then
-D(f,cc,s+a_,V+(X-1)*W)
+if a9<#x then
+F(screen,ca,f+aZ,y+(W-1)*V)
 end
 end
 
-function SpiffBoyBrickDropGame:drawInitials(s)
-self:drawBrickFrame(s)
-local T=h/2
-local U=s:lineHeight()
+function SpiffBoyBrickDropGame:drawInitials(screen)
+self:drawBrickFrame(screen)
+local v=h/2
+local x=screen:lineHeight()
 local f=10
-d(s,c("NewHighScore"),T,f)
-f=f+U*1.5
-d(s,tostring(self.score),T,f)
-f=f+U*1.5
-d(s,c("EnterInitials"),T,f)
-f=f+U*1.5
-for V=1,Q do
-local W=T+(V-2)*cf
-d(s,a6(self.letters[V]),W,f)
-if V==self.cursor and self:blinkOn()then
-r(s,W-a3/2,f+U+1,a3,cg)
+d(screen,c("NewHighScore"),v,f)
+f=f+x*1.5
+d(screen,tostring(self.score),v,f)
+f=f+x*1.5
+d(screen,c("EnterInitials"),v,f)
+f=f+x*1.5
+for y=1,S do
+local V=v+(y-2)*cd
+d(screen,a5(self.letters[y]),V,f)
+if y==self.cursor and self:blinkOn()then
+r(screen,V-a2/2,f+x+1,a2,ce)
 end
 end
 end
 
-local function U(f,X,ba,cu)
-local cv=f:lineHeight()
-local s=f:textWidth(X)+P*2
-local T=cv+P*2
-local V=math.floor(ba-s/2)
-local W=math.floor(cu-T/2)
-r(f,V-1,W-1,s+2,T+2)
-f:rect(V,W,s,T,e.r,e.g,e.b,1)
-D(f,X,V+P,W+P)
+local function V(screen,label,centreX,centreY)
+local W=screen:lineHeight()
+local f=screen:textWidth(label)+R*2
+local v=W+R*2
+local x=math.floor(centreX-f/2)
+local y=math.floor(centreY-v/2)
+r(screen,x-1,y-1,f+2,v+2)
+screen:rect(x,y,f,v,e.r,e.g,e.b,1)
+F(screen,label,x+R,y+R)
 end
 
-function SpiffBoyBrickDropGame:drawWellBricks(f)
-f:layers(self.wellBricks,0,aC,Y,G,0,aB)
+function SpiffBoyBrickDropGame:drawWellBricks(screen)
+screen:layers(self.wellBricks,0,aB,X,I,0,aA)
 end
 
-function SpiffBoyBrickDropGame:rowHidden(f)
-if self.phase~=al or not self.clearRows[f]then
+function SpiffBoyBrickDropGame:rowHidden(row)
+if self.phase~=ak or not self.clearRows[row]then
 return false
 end
-return math.floor(self.clearTimer/aM)%2==1
+return math.floor(self.clearTimer/aL)%2==1
 end
 
-function SpiffBoyBrickDropGame:drawRowLayers(T,V,W,X)
-for f=1,#ac do
-local s=V[f]
-if s then
-T:sheet(self.rows,s%y*I,(f-1)*az+math.floor(s/y)*a,I,a,W,X,1,ac[f])
+function SpiffBoyBrickDropGame:drawRowLayers(screen,masks,x,y)
+for f=1,#ab do
+local v=masks[f]
+if v then
+screen:sheet(self.rows,v%A*K,(f-1)*ay+math.floor(v/A)*a,K,a,x,y,1,ab[f])
 end
 end
 end
 
-local V={}
+local y={}
 
-local function cu()
-for f=1,#ac do
-V[f]=nil
+local function ct()
+for f=1,#ab do
+y[f]=nil
 end
-return V
-end
-
-function SpiffBoyBrickDropGame:drawWellRow(cv,W,cw)
-local f=cu()
-local s=1
-for cx=0,n-1 do
-local X=self.well:at(cx,W)
-if X~=m.EMPTY then
-local T=aA[X]
-for ba=1,#T do
-f[T[ba]]=(f[T[ba]]or 0)+s
-end
-end
-s=s*2
-end
-self:drawRowLayers(cv,f,cw,o+W*a)
+return y
 end
 
-function SpiffBoyBrickDropGame:drawWellContent(s,cv)
-local T=w+cv
-local W=self.phase==am or self.phase==L
-local X=t-1
-if W then
-X=self.curtainRow-1
+function SpiffBoyBrickDropGame:drawWellRow(screen,row,left)
+local f=ct()
+local v=1
+for cu=0,n-1 do
+local W=self.well:at(cu,row)
+if W~=m.EMPTY then
+local x=az[W]
+for a9=1,#x do
+f[x[a9]]=(f[x[a9]]or 0)+v
 end
-for f=0,X do
+end
+v=v*2
+end
+self:drawRowLayers(screen,f,left,o+row*a)
+end
+
+function SpiffBoyBrickDropGame:drawWellContent(screen,offset)
+local v=w+offset
+local x=self.phase==al or self.phase==N
+local W=s-1
+if x then
+W=self.curtainRow-1
+end
+for f=0,W do
 if not self:rowHidden(f)then
-self:drawWellRow(s,f,T)
+self:drawWellRow(screen,f,v)
 end
 end
-if self.phase==z then
+if self.phase==B then
 local f=self.piece
-local ba=self.well:landing(f.kind,f.rotation,f.x,f.y)
-if ba>f.y then
-self:drawPiece(s,bf,f.kind,f.rotation,T+f.x*a,o+ba*a,o)
+local a9=self.well:landing(f.kind,f.rotation,f.x,f.y)
+if a9>f.y then
+self:drawPiece(screen,bd,f.kind,f.rotation,v+f.x*a,o+a9*a,o)
 end
-self:drawPiece(s,f.kind,f.kind,f.rotation,T+f.x*a,o+f.y*a,0)
+self:drawPiece(screen,f.kind,f.kind,f.rotation,v+f.x*a,o+f.y*a,0)
 end
-if W then
-for f=self.curtainRow,t-1 do
-self:drawRowLayers(s,bh,T,o+f*a)
+if x then
+for f=self.curtainRow,s-1 do
+self:drawRowLayers(screen,bf,v,o+f*a)
 end
 end
 end
 
-function SpiffBoyBrickDropGame:drawCounters(f)
-local s=bi
-d(f,c("Score"),s,bk)
-d(f,tostring(self.score+self:countedBonus()),s,bl)
+function SpiffBoyBrickDropGame:drawCounters(screen)
+local f=bg
+d(screen,c("Score"),f,bi)
+d(screen,tostring(self.score+self:countedBonus()),f,bj)
 if self.levelBlink==0 or self:blinkFast()then
-d(f,c("Level",self.level),s,bm)
+d(screen,c("Level",self.level),f,bk)
 end
 if self.modeKey=="b"then
-d(f,c("LinesLeft"),s,aD)
-d(f,tostring(self:linesLeft()),s,aE)
+d(screen,c("LinesLeft"),f,aC)
+d(screen,tostring(self:linesLeft()),f,aD)
 else
-d(f,c("Lines"),s,aD)
-d(f,tostring(self.lines),s,aE)
+d(screen,c("Lines"),f,aC)
+d(screen,tostring(self.lines),f,aD)
 end
 end
 
 function SpiffBoyBrickDropGame:blinkFast()
-return math.floor(self.clock/(a2/3))%2==0
+return math.floor(self.clock/(a1/3))%2==0
 end
 
-function SpiffBoyBrickDropGame:drawBoxes(f)
-local s=bj
-d(f,c("Next"),s,bn)
-a9(f,s,aF)
+function SpiffBoyBrickDropGame:drawBoxes(screen)
+local f=bh
+d(screen,c("Next"),f,bl)
+a8(screen,f,aE)
 if not self.paused then
-self:drawPieceInBox(f,self.nextKind,s,aF)
+self:drawPieceInBox(screen,self.nextKind,f,aE)
 end
-d(f,c("Hold"),s,bo)
-a9(f,s,aG)
+d(screen,c("Hold"),f,bm)
+a8(screen,f,aF)
 if self.holdKind and not self.paused then
-self:drawPieceInBox(f,self.holdKind,s,aG)
+self:drawPieceInBox(screen,self.holdKind,f,aF)
 end
 end
 
-function SpiffBoyBrickDropGame:drawRun(f)
-av(f)
+function SpiffBoyBrickDropGame:drawRun(screen)
+au(screen)
 if self.modeKey=="a"then
-self.camp:draw(f,self.clock)
+self.camp:draw(screen,self.clock)
 end
-f:rect(w,0,n*a,Z,F.r,F.g,F.b,1)
-local W=0
+screen:rect(w,0,n*a,Y,H.r,H.g,H.b,1)
+local x=0
 if self.quake>0 then
-W=(math.floor(self.quake/2)%2)*2-1
+x=(math.floor(self.quake/2)%2)*2-1
 end
 if not self.paused then
-self:drawWellContent(f,W)
+self:drawWellContent(screen,x)
 end
-self:drawWellBricks(f)
-self:drawCounters(f)
-self:drawBoxes(f)
-local s=w+n*a/2
-local T=o+t*a/2
+self:drawWellBricks(screen)
+self:drawCounters(screen)
+self:drawBoxes(screen)
+local f=w+n*a/2
+local v=o+s*a/2
 if self.paused then
-U(f,getText("UI_SpiffBoy_Paused"),s,T)
-elseif self.phase==L then
-U(f,c("GameOver"),s,T)
-elseif self.phase==an then
-U(f,c("Cleared"),s,T)
+V(screen,getText("UI_SpiffBoy_Paused"),f,v)
+elseif self.phase==N then
+V(screen,c("GameOver"),f,v)
+elseif self.phase==am then
+V(screen,c("Cleared"),f,v)
 end
 end

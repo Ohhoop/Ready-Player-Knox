@@ -5,17 +5,17 @@ require"SpiffBoy/Games/QuickStart/Road"
 
 local a=SpiffBoyQuickStartGame
 local b=SpiffBoy.QuickStart
-local i=b.Atlas
+local j=b.Atlas
 local z=b.Tracks
-local j=b.Road
+local k=b.Road
 local m=b.Roster
-local r=b.Race
+local q=b.Race
 local g=b.Music
 local A=b.Records
-local k=b.Fixed
+local l=b.Fixed
 
 local f=math.floor
-local s=b.SHADES
+local r=b.SHADES
 local d=b.WIDTH
 local n=b.HEIGHT
 local B=b.gameText
@@ -44,64 +44,64 @@ lightTicks=50,
 
 local c=a.MENU
 
-function a:fill(h,l,o,p,q,t)
-local e=s[l]
-h:rect(o,p,q,t,e.r,e.g,e.b,1)
+function a:fill(screen,shade,x,y,w,h)
+local e=r[shade]
+screen:rect(x,y,w,h,e.r,e.g,e.b,1)
 end
 
-function a:write(h,l,o,p,q)
-local e=s[q]
-h:text(l,o,p,e.r,e.g,e.b,1)
+function a:write(screen,text,x,y,shade)
+local e=r[shade]
+screen:text(text,x,y,e.r,e.g,e.b,1)
 end
 
-function a:centre(h,l,o,p,q)
-local e=s[q]
-h:textCentre(l,o,p,e.r,e.g,e.b,1)
+function a:centre(screen,text,x,y,shade)
+local e=r[shade]
+screen:textCentre(text,x,y,e.r,e.g,e.b,1)
 end
 
-function a:say(e,...)
-return B(e,...)
+function a:say(key,...)
+return B(key,...)
 end
 
-function a:image(l,h,o,p)
-local e=i[h]
-l:layers(self:art(h),0,e.w,e.h,o,p,e.shades)
+function a:image(screen,name,x,y)
+local e=j[name]
+screen:layers(self:art(name),0,e.w,e.h,x,y,e.shades)
 end
 
-local function e(h,l)
-return h~=nil and h.pressed[l]==true
+local function e(input,button)
+return input~=nil and input.pressed[button]==true
 end
 a.pressed=e
 
-function a:moveCursor(q,l,t,u,o,p)
-o,p=o or"up",p or"down"
-local v=e(q,o)and-1 or e(q,p)and 1 or 0
-if v==0 then
-return l
+function a:moveCursor(input,index,count,allowed,back,forth)
+back,forth=back or"up",forth or"down"
+local i=e(input,back)and-1 or e(input,forth)and 1 or 0
+if i==0 then
+return index
 end
-local h=l
-for w=1,t do
-h=b.wrapIndex(h+v,t)
-if not u or u(h)then
+local h=index
+for o=1,count do
+h=b.wrapIndex(h+i,count)
+if not allowed or allowed(h)then
 self:effect(g.TICK)
 return h
 end
 end
-return l
+return index
 end
 
-function a:cruiseOn(h)
+function a:cruiseOn(name)
 if not self.cruiseTrack then
 self.cruiseTrack=z.load(c.cruiseTrack,false)
 end
-self.cruisePath=h
-self.cruiseAt=self.cruiseTrack.paths[h].loopFrom
+self.cruisePath=name
+self.cruiseAt=self.cruiseTrack.paths[name].loopFrom
 self.cruiseSpeed=c.cruiseSpeed
 self.cruiseLeaving=false
 end
 
 function a:cruiseTick()
-local l=self.cruiseTrack.paths[self.cruisePath]
+local i=self.cruiseTrack.paths[self.cruisePath]
 local h=c.cruiseSpeed
 if self.cruiseLeaving then
 local o=self.cruiseTrack.paths.exit.loopFrom-self.cruiseAt
@@ -116,38 +116,38 @@ else
 self.cruiseSpeed=math.max(h,self.cruiseSpeed-c.speedStep)
 end
 self.cruiseAt=self.cruiseAt+self.cruiseSpeed
-local o=l.loopFrom+l.loopLength
+local o=i.loopFrom+i.loopLength
 if self.cruiseAt>=o and self.cruiseAt-self.cruiseSpeed<o then
 if self.cruiseLeaving and self.cruisePath=="highway"then
 self.cruisePath="exit"
 elseif not self.cruiseLeaving then
-self.cruiseAt=self.cruiseAt-l.loopLength
+self.cruiseAt=self.cruiseAt-i.loopLength
 end
 end
 end
 
-local function x(h,p)
-local q=math.sqrt((h[2].x-h[1].x)^2+(h[2].y-h[1].y)^2)
-local o=SpiffBoy.clamp(f(p/q)+1,1,#h-1)
-local t=math.min(1,p/q-(o-1))
-local l,u=h[o],h[o+1]
-return l.x+(u.x-l.x)*t,l.y+(u.y-l.y)*t
+local function w(points,at)
+local o=math.sqrt((points[2].x-points[1].x)^2+(points[2].y-points[1].y)^2)
+local i=SpiffBoy.clamp(f(at/o)+1,1,#points-1)
+local p=math.min(1,at/o-(i-1))
+local h,s=points[i],points[i+1]
+return h.x+(s.x-h.x)*p,h.y+(s.y-h.y)*p
 end
 
 function a:cruiseCamera()
-local l=self.cruiseTrack.paths[self.cruisePath].points
-local o,p=x(l,self.cruiseAt)
-local q,t=x(l,self.cruiseAt+c.lookAhead)
-local h=f(k.atan2(t-p,q-o)/k.FINE)
-return{x=o-j.BEHIND*k.cos(h)/k.ONE,y=p-j.BEHIND*k.sin(h)/k.ONE,angle=h}
+local i=self.cruiseTrack.paths[self.cruisePath].points
+local o,p=w(i,self.cruiseAt)
+local s,t=w(i,self.cruiseAt+c.lookAhead)
+local h=f(l.atan2(t-p,s-o)/l.FINE)
+return{x=o-k.BEHIND*l.cos(h)/l.ONE,y=p-k.BEHIND*l.sin(h)/l.ONE,angle=h}
 end
 
-function a:drawCruise(h,l,q)
-local o=self.context.art
-j.draw(h,self.cruiseTrack,l,o,i)
-local p=j.newScene()
-j.addDecor(p,l,self.cruiseTrack)
-j.drawScene(h,p,o,SpiffBoyScreen.MAX_CALLS-h.calls-q)
+function a:drawCruise(screen,camera,reserve)
+local h=self.context.art
+k.draw(screen,self.cruiseTrack,camera,h,j)
+local i=k.newScene()
+k.addDecor(i,camera,self.cruiseTrack)
+k.drawScene(screen,i,h,SpiffBoyScreen.MAX_CALLS-screen.calls-reserve)
 end
 
 function a:openTitle()
@@ -162,17 +162,17 @@ self.port:reset()
 self:music(g.TITLE)
 end
 
-function a:titleAllowed(h)
-return h~=2 or self.port:isConnected()
+function a:titleAllowed(index)
+return index~=2 or self.port:isConnected()
 end
 
-function a:tick_title(h)
+function a:tick_title(input)
 self.titleClock=self.titleClock+1
 if not self:titleAllowed(self.titleIndex)then
 self.titleIndex=1
 end
-self.titleIndex=self:moveCursor(h,self.titleIndex,3,function(l)return self:titleAllowed(l)end)
-if e(h,"a")or e(h,"start")then
+self.titleIndex=self:moveCursor(input,self.titleIndex,3,function(i)return self:titleAllowed(i)end)
+if e(input,"a")or e(input,"start")then
 self:effect(g.CONFIRM)
 if self.titleIndex==1 then
 self.twoPlayer=false
@@ -185,50 +185,50 @@ end
 end
 end
 
-local function C(h,l)
-local o=l/c.titleAccel
-if h<=o then
-return c.titleAccel*h*h/2
+local function y(ticks,top)
+local h=top/c.titleAccel
+if ticks<=h then
+return c.titleAccel*ticks*ticks/2
 end
-return l*o/2+l*(h-o)
+return top*h/2+top*(ticks-h)
 end
 
-function a:draw_title(h)
-self:fill(h,b.PAPER,0,0,d,n)
-self:fill(h,b.MID,0,74,d,n-74)
-self:fill(h,b.DARK,0,82,d,18)
-for l=0,d,16 do
-self:fill(h,b.PAPER,l+(self.titleClock%16),90,8,2)
+function a:draw_title(screen)
+self:fill(screen,b.PAPER,0,0,d,n)
+self:fill(screen,b.MID,0,74,d,n-74)
+self:fill(screen,b.DARK,0,82,d,18)
+for h=0,d,16 do
+self:fill(screen,b.PAPER,h+(self.titleClock%16),90,8,2)
 end
-local o=i.light
-local u=math.min(4,f(self.titleClock/c.lightTicks)+1)
-self:fill(h,b.INK,0,2,d,1)
-h:layers(self:art("light"),(u-1)*o.frame,o.frame,o.h,6,3,o.shades)
-local y=i.logo
-self:image(h,"logo",f((d-y.w)/2)+8,10)
-if u==4 then
-local D=self.titleClock-3*c.lightTicks
-for p=1,c.titleKarts do
-local v=m.LIST[(p*2-1)%#m.LIST+1]
-local q=i["kart_"..v.id]
-local l=q.steps[2]
-local t=C(D,c.titleTop-(p-1)*c.titleTopStep)-(p-1)*c.titleGap
-local w=t-l.w
-if t>=0 then
-w=b.mod(t,d+2*l.w)-l.w
+local i=j.light
+local t=math.min(4,f(self.titleClock/c.lightTicks)+1)
+self:fill(screen,b.INK,0,2,d,1)
+screen:layers(self:art("light"),(t-1)*i.frame,i.frame,i.h,6,3,i.shades)
+local x=j.logo
+self:image(screen,"logo",f((d-x.w)/2)+8,10)
+if t==4 then
+local C=self.titleClock-3*c.lightTicks
+for o=1,c.titleKarts do
+local u=m.LIST[(o*2-1)%#m.LIST+1]
+local p=j["kart_"..u.id]
+local h=p.steps[2]
+local s=y(C,c.titleTop-(o-1)*c.titleTopStep)-(o-1)*c.titleGap
+local v=s-h.w
+if s>=0 then
+v=b.mod(s,d+2*h.w)-h.w
 end
-h:layers(self:art("kart_"..v.id),l.x+2*l.w,l.w,q.h,f(w),86-q.h+(p%2)*8,q.shades)
+screen:layers(self:art("kart_"..u.id),h.x+2*h.w,h.w,p.h,f(v),86-p.h+(o%2)*8,p.shades)
 end
 end
-local t={"Title_1P","Title_2P","Title_Options"}
-for l,v in ipairs(t)do
-local p=38+(l-1)*12
-local q=self:titleAllowed(l)and b.INK or b.MID
-if l==self.titleIndex then
-self:fill(h,b.INK,40,p,100,12)
-q=b.PAPER
+local s={"Title_1P","Title_2P","Title_Options"}
+for h,u in ipairs(s)do
+local o=38+(h-1)*12
+local p=self:titleAllowed(h)and b.INK or b.MID
+if h==self.titleIndex then
+self:fill(screen,b.INK,40,o,100,12)
+p=b.PAPER
 end
-self:centre(h,self:say(v),d/2,p-2,q)
+self:centre(screen,self:say(u),d/2,o-2,p)
 end
 end
 
@@ -236,26 +236,26 @@ function a:openOptions()
 self.screen=a.SCREEN_OPTIONS
 end
 
-function a:tick_options(h)
-if e(h,"left")or e(h,"right")or e(h,"a")then
+function a:tick_options(input)
+if e(input,"left")or e(input,"right")or e(input,"a")then
 self.data.options.music=not self.data.options.music
 self:applyMusic()
 self:effect(g.TICK)
 self:store()
 end
-if e(h,"b")or e(h,"start")then
+if e(input,"b")or e(input,"start")then
 self:effect(g.BACK)
 self:openTitle()
 end
 end
 
-function a:draw_options(h)
-self:fill(h,b.PAPER,0,0,d,n)
-self:centre(h,self:say("Title_Options"),d/2,12,b.INK)
-local l=self:say(self.data.options.music and"On"or"Off")
-self:centre(h,self:say("Options_Music"),d/2,46,b.INK)
-self:fill(h,b.INK,50,64,80,16)
-self:centre(h,"< "..l.." >",d/2,64,b.PAPER)
+function a:draw_options(screen)
+self:fill(screen,b.PAPER,0,0,d,n)
+self:centre(screen,self:say("Title_Options"),d/2,12,b.INK)
+local h=self:say(self.data.options.music and"On"or"Off")
+self:centre(screen,self:say("Options_Music"),d/2,46,b.INK)
+self:fill(screen,b.INK,50,64,80,16)
+self:centre(screen,"< "..h.." >",d/2,64,b.PAPER)
 end
 
 function a:openWaiting()
@@ -267,20 +267,20 @@ self.port:hello()
 self.waitClock=0
 end
 
-function a:tick_waiting(h)
+function a:tick_waiting(input)
 self.waitClock=self.waitClock+1
 if self.waitClock%60==0 then
 self.port:hello()
 end
-if e(h,"b")then
+if e(input,"b")then
 self:effect(g.BACK)
 self:openTitle()
 end
 end
 
-function a:draw_waiting(h)
-self:fill(h,b.PAPER,0,0,d,n)
-self:centre(h,self:say("WaitingP2"),d/2,52,b.INK)
+function a:draw_waiting(screen)
+self:fill(screen,b.PAPER,0,0,d,n)
+self:centre(screen,self:say("WaitingP2"),d/2,52,b.INK)
 end
 
 function a:openGuest()
@@ -288,21 +288,21 @@ self.screen=a.SCREEN_GUEST
 self:cruiseOn("highway")
 end
 
-function a:tick_guest(h)
+function a:tick_guest(input)
 self:cruiseTick()
 if self.port:needsPing()then
 self.port:ping(self.clock)
 end
 end
 
-function a:draw_guest(h)
-self:drawCruise(h,self:cruiseCamera(),40)
-self:fill(h,b.INK,0,52,d,18)
-self:centre(h,self:say("P1Choosing"),d/2,53,b.PAPER)
+function a:draw_guest(screen)
+self:drawCruise(screen,self:cruiseCamera(),40)
+self:fill(screen,b.INK,0,52,d,18)
+self:centre(screen,self:say("P1Choosing"),d/2,53,b.PAPER)
 end
 
-function a:modeAllowed(h)
-return not(self.twoPlayer and a.MODES[h]==r.MODE_TT)
+function a:modeAllowed(index)
+return not(self.twoPlayer and a.MODES[index]==q.MODE_TT)
 end
 
 function a:openHighway()
@@ -316,7 +316,7 @@ end
 self:music(g.MENU)
 end
 
-function a:tick_highway(h)
+function a:tick_highway(input)
 if self.port:needsPing()and self.twoPlayer then
 self.port:ping(self.clock)
 end
@@ -324,8 +324,8 @@ self:cruiseTick()
 if self.cruiseLeaving then
 self.signTimer=self.signTimer+1
 if self.cruisePath=="exit"and self.cruiseAt>=self.cruiseTrack.paths.exit.loopFrom then
-local l=self:modeOf()
-if l==r.MODE_GP or l==r.MODE_VS then
+local h=self:modeOf()
+if h==q.MODE_GP or h==q.MODE_VS then
 self:openCc()
 else
 self:openMap()
@@ -333,51 +333,51 @@ end
 end
 return
 end
-self.setup.mode=self:moveCursor(h,self.setup.mode,#a.MODES,function(l)return self:modeAllowed(l)end,"left","right")
-if e(h,"a")then
+self.setup.mode=self:moveCursor(input,self.setup.mode,#a.MODES,function(i)return self:modeAllowed(i)end,"left","right")
+if e(input,"a")then
 self:effect(g.CONFIRM)
 self.cruiseLeaving=true
 self.signTimer=0
-elseif e(h,"b")then
+elseif e(input,"b")then
 self:effect(g.BACK)
 self:openTitle()
 end
 end
 
-function a:drawExitSign(h,o)
-local p=i.exit_sign
-self:image(h,"exit_sign",f((d-p.w)/2),o)
-local q=h:wrapText(self:say(a.MODE_KEYS[self.setup.mode]),c.nameWidth)
-local l=o+c.nameTop
-for t,u in ipairs(q)do
-if t<=2 then
-self:centre(h,u,d/2,l,b.PAPER)
-l=l+h:lineHeight()
+function a:drawExitSign(screen,top)
+local i=j.exit_sign
+self:image(screen,"exit_sign",f((d-i.w)/2),top)
+local o=screen:wrapText(self:say(a.MODE_KEYS[self.setup.mode]),c.nameWidth)
+local h=top+c.nameTop
+for p,s in ipairs(o)do
+if p<=2 then
+self:centre(screen,s,d/2,h,b.PAPER)
+h=h+screen:lineHeight()
 end
 end
-self:centre(h,self:say("Exit").." "..tostring(self.setup.mode),d/2,l+c.exitGap,b.MID)
+self:centre(screen,self:say("Exit").." "..tostring(self.setup.mode),d/2,h+c.exitGap,b.MID)
 end
 
-function a:draw_highway(h)
-self:drawCruise(h,self:cruiseCamera(),120)
-local l=i.exit_sign
-local o=c.signY
+function a:draw_highway(screen)
+self:drawCruise(screen,self:cruiseCamera(),120)
+local h=j.exit_sign
+local i=c.signY
 if self.signTimer then
 if self.signTimer>=c.signTicks then
 return
 end
-o=c.signY-f((l.h+c.signY)*self.signTimer/c.signTicks)
+i=c.signY-f((h.h+c.signY)*self.signTimer/c.signTicks)
 else
-local p=f((d-l.w)/2)
-local q=o+f(l.h/2)-f(h:lineHeight()/2)
-self:centre(h,"<",p-c.arrowGap,q,b.INK)
-self:centre(h,">",p+l.w+c.arrowGap,q,b.INK)
+local o=f((d-h.w)/2)
+local p=i+f(h.h/2)-f(screen:lineHeight()/2)
+self:centre(screen,"<",o-c.arrowGap,p,b.INK)
+self:centre(screen,">",o+h.w+c.arrowGap,p,b.INK)
 end
-self:drawExitSign(h,o)
+self:drawExitSign(screen,i)
 end
 
-function a:ccAllowed(h)
-return not m.CC[h].mirrored or A.unlocked(self.data,"mirror")
+function a:ccAllowed(index)
+return not m.CC[index].mirrored or A.unlocked(self.data,"mirror")
 end
 
 function a:openCc()
@@ -391,42 +391,42 @@ self.setup.cc=1
 end
 end
 
-function a:tick_cc(h)
+function a:tick_cc(input)
 self:cruiseTick()
-self.setup.cc=self:moveCursor(h,self.setup.cc,#m.CC,function(l)return self:ccAllowed(l)end,"left","right")
-if e(h,"a")then
+self.setup.cc=self:moveCursor(input,self.setup.cc,#m.CC,function(i)return self:ccAllowed(i)end,"left","right")
+if e(input,"a")then
 self:effect(g.CONFIRM)
 self:openMap()
-elseif e(h,"b")then
+elseif e(input,"b")then
 self:effect(g.BACK)
 self:openHighway()
 end
 end
 
-function a:draw_cc(h)
-self:drawCruise(h,self:cruiseCamera(),60)
-local p=i.speed_sign
-local q,o=f((d-p.w)/2),c.signY
-self:image(h,"speed_sign",q,o)
-local l=m.CC[self.setup.cc]
-if l.mirrored then
-self:centre(h,self:say("Mirror"),d/2,o+c.limitDigitsTop,b.INK)
+function a:draw_cc(screen)
+self:drawCruise(screen,self:cruiseCamera(),60)
+local o=j.speed_sign
+local p,i=f((d-o.w)/2),c.signY
+self:image(screen,"speed_sign",p,i)
+local h=m.CC[self.setup.cc]
+if h.mirrored then
+self:centre(screen,self:say("Mirror"),d/2,i+c.limitDigitsTop,b.INK)
 else
-local t=i.limitdigits
-local u=-c.limitDigitGap
-for v=1,#l.id do
-u=u+t.glyphs[string.sub(l.id,v,v)][2]+c.limitDigitGap
+local s=j.limitdigits
+local t=-c.limitDigitGap
+for u=1,#h.id do
+t=t+s.glyphs[string.sub(h.id,u,u)][2]+c.limitDigitGap
 end
-local v=f((d-u)/2)
-for y=1,#l.id do
-local w=t.glyphs[string.sub(l.id,y,y)]
-h:sheet(self:art("limitdigits"),w[1],0,w[2],t.h,v,o+c.limitDigitsTop,1,b.INK)
-v=v+w[2]+c.limitDigitGap
+local u=f((d-t)/2)
+for x=1,#h.id do
+local v=s.glyphs[string.sub(h.id,x,x)]
+screen:sheet(self:art("limitdigits"),v[1],0,v[2],s.h,u,i+c.limitDigitsTop,1,b.INK)
+u=u+v[2]+c.limitDigitGap
 end
 end
-local t=o+f(p.h/2)-f(h:lineHeight()/2)
-self:centre(h,"<",q-c.arrowGap,t,b.INK)
-self:centre(h,">",q+p.w+c.arrowGap,t,b.INK)
+local s=i+f(o.h/2)-f(screen:lineHeight()/2)
+self:centre(screen,"<",p-c.arrowGap,s,b.INK)
+self:centre(screen,">",p+o.w+c.arrowGap,s,b.INK)
 end
 
 function a:openPause()
@@ -435,13 +435,13 @@ self.pauseIndex=1
 self:effect(g.CONFIRM)
 end
 
-function a:tickPause(h)
-self.pauseIndex=self:moveCursor(h,self.pauseIndex,3)
-if e(h,"start")then
+function a:tickPause(input)
+self.pauseIndex=self:moveCursor(input,self.pauseIndex,3)
+if e(input,"start")then
 self.paused=false
 return
 end
-if e(h,"a")then
+if e(input,"a")then
 self:effect(g.CONFIRM)
 self.paused=false
 if self.pauseIndex==2 then
@@ -453,17 +453,17 @@ end
 end
 end
 
-function a:drawPause(h)
-self:fill(h,b.INK,40,30,100,56)
-self:fill(h,b.PAPER,42,32,96,52)
-local q={"Pause_Continue","Pause_Restart","Pause_Quit"}
-for l,t in ipairs(q)do
-local o=34+(l-1)*16
-local p=b.INK
-if l==self.pauseIndex then
-self:fill(h,b.INK,44,o+1,92,15)
-p=b.PAPER
+function a:drawPause(screen)
+self:fill(screen,b.INK,40,30,100,56)
+self:fill(screen,b.PAPER,42,32,96,52)
+local p={"Pause_Continue","Pause_Restart","Pause_Quit"}
+for h,s in ipairs(p)do
+local i=34+(h-1)*16
+local o=b.INK
+if h==self.pauseIndex then
+self:fill(screen,b.INK,44,i+1,92,15)
+o=b.PAPER
 end
-self:centre(h,self:say(t),d/2,o,p)
+self:centre(screen,self:say(s),d/2,i,o)
 end
 end

@@ -15,125 +15,125 @@ a.FOOT="foot"
 a.TRUCK="truck"
 a.RADIO="radio"
 
-local d=SpiffBoy.Cartridges.SHADES[4]
-local e=SpiffBoy.Cartridges.SHADES[1]
+local c=SpiffBoy.Cartridges.SHADES[4]
+local d=SpiffBoy.Cartridges.SHADES[1]
 local k=SpiffBoy.Cartridges.SHADES[3]
-local f=SpiffBoy.Cartridges.SCREEN_WIDTH
-local A=SpiffBoy.Cartridges.SCREEN_HEIGHT
+local e=SpiffBoy.Cartridges.SCREEN_WIDTH
+local z=SpiffBoy.Cartridges.SCREEN_HEIGHT
 local l={1,2,3,4}
 local h=180
 local m=44
 local n=44
-local u={3}
-local B=0.3
+local s={3}
+local A=0.3
 local i=n+m
-local v=i+12
-local C=i+18
+local t=i+12
+local B=i+18
 local o=8
 local p=24
 local j=22
-local D=16
+local C=16
 local q=18
-local w=22
-local E=3
-local F=2
-local G=3
+local u=22
+local D=3
+local E=2
+local F=3
+local G=2
 local H=2
-local I=2
-local J=6
-local K=10
-local L=1.2
-local M=640
-local N=150
-local O=0.35
-local P=120
-local Q=0.4
-local R=14
-local S=36
-local x=24
-local T=70
-local U=2.5
-local V=420
-local W=8
-local X=360
-local Y=0.06
-local Z=0.03
+local I=6
+local J=10
+local K=1.2
+local L=640
+local M=150
+local N=0.35
+local O=120
+local P=0.4
+local Q=14
+local R=36
+local v=24
+local S=70
+local T=2.5
+local U=420
+local V=8
+local W=360
+local X=0.06
+local Y=0.03
 local r=34
-local _=15
-local aa=10
-local ab=1.1
-local ac=3
-local y=30
-local ad=45
-local ae=SpiffBoy.GameTexts.of("BrickDrop")
+local Z=15
+local _=10
+local aa=1.1
+local ab=3
+local w=30
+local ac=45
+local ad=SpiffBoy.GameTexts.of("BrickDrop")
 
-function a.new(s,t,c,z)
+function a.new(kind,sequencer,art,score)
 local b=setmetatable({},a)
-b.kind=s
-b.sequencer=t
-b.score=z
-b.skyline=c("skyline")
+b.kind=kind
+b.sequencer=sequencer
+b.score=score
+b.skyline=art("skyline")
 b.tick=0
 b.scroll=0
-b.speed=U
-if s==a.FOOT then
-b.mechanic=c("mechanic")
-b.spear=c("spear")
-b.courier=c("courier")
-b.zombie=c("zombie")
-b.speed=L
+b.speed=T
+if kind==a.FOOT then
+b.mechanic=art("mechanic")
+b.spear=art("spear")
+b.courier=art("courier")
+b.zombie=art("zombie")
+b.speed=K
 b.runners={fighter=84,mechanic=108,courier=132}
 b.horde={{x=20},{x=40},{x=58}}
 b.caught=nil
-t:play(g.FLIGHT)
+sequencer:play(g.FLIGHT)
 else
-b.truck=c("truck")
-b.helicopter=c("helicopter")
-b.truckX=T
+b.truck=art("truck")
+b.helicopter=art("helicopter")
+b.truckX=S
 b.truckSpeed=0
 b.helicopterX=nil
-t:play(s==a.RADIO and g.ESCAPED or g.TRUCK)
+sequencer:play(kind==a.RADIO and g.ESCAPED or g.TRUCK)
 end
 return b
 end
 
 function a:tickFoot()
 local b=self.runners
-if not self.caught and self.tick>=N then
-b.fighter=b.fighter-O
-local c=self.horde[#self.horde]
-if b.fighter<=c.x+q/2 then
+if not self.caught and self.tick>=M then
+b.fighter=b.fighter-N
+local f=self.horde[#self.horde]
+if b.fighter<=f.x+q/2 then
 self.caught={x=b.fighter,tick=self.tick}
-c.eating=true
-c.x=b.fighter+2
+f.eating=true
+f.x=b.fighter+2
 self.sequencer:effect(g.CHOMP)
 end
 end
 if self.caught then
 self.caught.x=self.caught.x-self.speed
-for s=1,#self.horde do
-local c=self.horde[s]
-if c.eating then
-c.x=c.x-self.speed
-elseif self.tick-self.caught.tick>=P then
-c.x=c.x-Q
+for x=1,#self.horde do
+local f=self.horde[x]
+if f.eating then
+f.x=f.x-self.speed
+elseif self.tick-self.caught.tick>=O then
+f.x=f.x-P
 end
 end
 end
 end
 
 function a:tickTruck()
-if self.kind~=a.RADIO or self.tick<X then
+if self.kind~=a.RADIO or self.tick<W then
 return
 end
-self.truckSpeed=self.truckSpeed+Y
+self.truckSpeed=self.truckSpeed+X
 self.truckX=self.truckX+self.truckSpeed
-self.speed=math.max(0,self.speed-Z)
-if self.truckX>f and not self.helicopterX then
+self.speed=math.max(0,self.speed-Y)
+if self.truckX>e and not self.helicopterX then
 self.helicopterX=-r
 end
 if self.helicopterX then
-self.helicopterX=self.helicopterX+ab
+self.helicopterX=self.helicopterX+aa
 end
 end
 
@@ -142,15 +142,15 @@ if self.sequencer:isPlaying()then
 return false
 end
 if self.kind==a.FOOT then
-return self.tick>=M
+return self.tick>=L
 end
 if self.kind==a.TRUCK then
-return self.tick>=V
+return self.tick>=U
 end
-return self.helicopterX~=nil and self.helicopterX>f
+return self.helicopterX~=nil and self.helicopterX>e
 end
 
-function a:advance(b)
+function a:advance(input)
 self.tick=self.tick+1
 self.scroll=self.scroll+self.speed
 if self.kind==a.FOOT then
@@ -158,72 +158,72 @@ self:tickFoot()
 else
 self:tickTruck()
 end
-if b and self.tick>ad and(b.pressed.a or b.pressed.start)then
+if input and self.tick>ac and(input.pressed.a or input.pressed.start)then
 self.sequencer:stop()
 return true
 end
 return self:finished()
 end
 
-function a:drawBackground(b)
-b:clear(d.r,d.g,d.b)
-local c=math.floor(self.scroll*B)%h
-b:layers(self.skyline,0,h,m,-c,n,u)
-b:layers(self.skyline,0,h,m,h-c,n,u)
-b:rect(0,i,f,A-i,k.r,k.g,k.b,1)
-local s=math.floor(self.scroll)%(o*2)
-for t=-s,f,o*2 do
-b:rect(t,C,o,1,d.r,d.g,d.b,1)
+function a:drawBackground(screen)
+screen:clear(c.r,c.g,c.b)
+local b=math.floor(self.scroll*A)%h
+screen:layers(self.skyline,0,h,m,-b,n,s)
+screen:layers(self.skyline,0,h,m,h-b,n,s)
+screen:rect(0,i,e,z-i,k.r,k.g,k.b,1)
+local f=math.floor(self.scroll)%(o*2)
+for x=-f,e,o*2 do
+screen:rect(x,B,o,1,c.r,c.g,c.b,1)
 end
 end
 
-local function b(t,z,af,c,s,ag)
-t:layers(z,af*c,c,s,math.floor(ag),v-s,l)
+local function b(screen,texture,frame,width,height,x)
+screen:layers(texture,frame*width,width,height,math.floor(x),t-height,l)
 end
 
-function a:drawFoot(c)
-local s=math.floor(self.tick/J)%2
-for z=1,#self.horde do
-local t=self.horde[z]
-if t.eating then
-b(c,self.zombie,I+math.floor(self.tick/R)%2,q,w,t.x)
+function a:drawFoot(screen)
+local f=math.floor(self.tick/I)%2
+for y=1,#self.horde do
+local x=self.horde[y]
+if x.eating then
+b(screen,self.zombie,H+math.floor(self.tick/Q)%2,q,u,x.x)
 end
 end
 if self.caught then
-b(c,self.spear,F,p,j,self.caught.x)
+b(screen,self.spear,E,p,j,self.caught.x)
 else
-b(c,self.spear,G+s,p,j,self.runners.fighter)
+b(screen,self.spear,F+f,p,j,self.runners.fighter)
 end
-for t=1,#self.horde do
-local z=self.horde[t]
-if not z.eating then
-b(c,self.zombie,math.floor(self.tick/K+t)%2,q,w,z.x)
+for x=1,#self.horde do
+local y=self.horde[x]
+if not y.eating then
+b(screen,self.zombie,math.floor(self.tick/J+x)%2,q,u,y.x)
 end
 end
-b(c,self.mechanic,E+s,p,j,self.runners.mechanic)
-b(c,self.courier,H+1-s,D,j,self.runners.courier)
+b(screen,self.mechanic,D+f,p,j,self.runners.mechanic)
+b(screen,self.courier,G+1-f,C,j,self.runners.courier)
 end
 
-function a:drawTruck(c)
-local s=math.floor(self.tick/W)%2
+function a:drawTruck(screen)
+local f=math.floor(self.tick/V)%2
 if self.speed==0 then
-s=0
+f=0
 end
-c:layers(self.truck,0,S,x,math.floor(self.truckX),v-x-s,l)
+screen:layers(self.truck,0,R,v,math.floor(self.truckX),t-v-f,l)
 if self.helicopterX then
-local z=math.floor(self.tick/ac)%2
-c:layers(self.helicopter,z*r,r,_,math.floor(self.helicopterX),aa,l)
-local t=f/2
-c:textCentre(ae("Escaped"),t,y,e.r,e.g,e.b,1)
-c:textCentre(tostring(self.score),t,y+c:lineHeight(),e.r,e.g,e.b,1)
+local y=math.floor(self.tick/ab)%2
+screen:layers(self.helicopter,y*r,r,Z,math.floor(self.helicopterX),_,l)
+local x=e/2
+screen:textCentre(ad("Escaped"),x,w,d.r,d.g,d.b,1)
+screen:textCentre(tostring(self.score),x,w+screen:lineHeight(),d.r,d.g,d.b,1)
 end
 end
 
-function a:draw(c)
-self:drawBackground(c)
+function a:draw(screen)
+self:drawBackground(screen)
 if self.kind==a.FOOT then
-self:drawFoot(c)
+self:drawFoot(screen)
 else
-self:drawTruck(c)
+self:drawTruck(screen)
 end
 end

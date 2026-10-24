@@ -1,9 +1,9 @@
 require"SpiffBoy/Games/QuickStart/Base"
 
-local n=SpiffBoy.QuickStart
+local l=SpiffBoy.QuickStart
 
 local a={}
-n.Fixed=a
+l.Fixed=a
 
 a.ONE=4096
 a.TURN=1024
@@ -13,11 +13,11 @@ a.FINE_TURN=16384
 a.UNIT=256
 
 local d=a.TURN
-local c=a.QUARTER
-local i=a.FINE
+local b=a.QUARTER
+local g=a.FINE
 local e=math.floor
 
-local h={
+local f={
 0,25,50,75,101,126,151,176,201,226,251,276,301,326,351,376,
 401,426,451,476,501,526,551,576,601,626,651,675,700,725,750,774,
 799,824,848,873,897,922,946,971,995,1020,1044,1068,1092,1117,1141,1165,
@@ -37,7 +37,7 @@ local h={
 4096,
 }
 
-local l={
+local j={
 0,10,20,31,41,51,61,71,81,92,102,112,122,132,142,153,
 163,173,183,193,203,213,224,234,244,254,264,274,284,294,304,314,
 324,334,344,354,364,374,384,394,404,414,424,434,444,454,464,473,
@@ -57,83 +57,83 @@ local l={
 2048,
 }
 
-function a.wrap(b)
-b=b%d
-if b<0 then
-b=b+d
+function a.wrap(angle)
+angle=angle%d
+if angle<0 then
+angle=angle+d
 end
-return b
-end
-
-local m=a.wrap
-
-function a.wrapFine(b)
-b=b%a.FINE_TURN
-if b<0 then
-b=b+a.FINE_TURN
-end
-return b
+return angle
 end
 
-function a.sin(b)
-b=m(b)
-if b<=c then
-return h[b+1]
-elseif b<=2*c then
-return h[2*c-b+1]
-elseif b<=3*c then
-return-h[b-2*c+1]
+local k=a.wrap
+
+function a.wrapFine(angle)
+angle=angle%a.FINE_TURN
+if angle<0 then
+angle=angle+a.FINE_TURN
 end
-return-h[d-b+1]
+return angle
 end
 
-function a.cos(b)
-return a.sin(b+c)
+function a.sin(angle)
+angle=k(angle)
+if angle<=b then
+return f[angle+1]
+elseif angle<=2*b then
+return f[2*b-angle+1]
+elseif angle<=3*b then
+return-f[angle-2*b+1]
+end
+return-f[d-angle+1]
 end
 
-function a.divide(b,f)
-if b>=0 then
-return e(b/f)
-end
-return-e(-b/f)
+function a.cos(angle)
+return a.sin(angle+b)
 end
 
-function a.delta(f,g)
-local b=m(g-f)
-if b>=d/2 then
-b=b-d
+function a.divide(value,by)
+if value>=0 then
+return e(value/by)
 end
-return b
-end
-
-function a.deltaFine(f,g)
-local b=a.wrapFine(g-f)
-if b>=a.FINE_TURN/2 then
-b=b-a.FINE_TURN
-end
-return b
+return-e(-value/by)
 end
 
-function a.atan2(f,g)
-if g==0 and f==0 then
+function a.delta(from,to)
+local c=k(to-from)
+if c>=d/2 then
+c=c-d
+end
+return c
+end
+
+function a.deltaFine(from,to)
+local c=a.wrapFine(to-from)
+if c>=a.FINE_TURN/2 then
+c=c-a.FINE_TURN
+end
+return c
+end
+
+function a.atan2(dy,dx)
+if dx==0 and dy==0 then
 return 0
 end
-local j,k=g<0 and-g or g,f<0 and-f or f
-local b
-if j>=k then
-b=l[e(k*256/j)+1]
+local h,i=dx<0 and-dx or dx,dy<0 and-dy or dy
+local c
+if h>=i then
+c=j[e(i*256/h)+1]
 else
-b=c*i-l[e(j*256/k)+1]
+c=b*g-j[e(h*256/i)+1]
 end
-if g<0 then
-b=2*c*i-b
+if dx<0 then
+c=2*b*g-c
 end
-if f<0 then
-b=d*i-b
+if dy<0 then
+c=d*g-c
 end
-return a.wrapFine(b)
+return a.wrapFine(c)
 end
 
-function a.length(b,f)
-return e(math.sqrt(b*b+f*f))
+function a.length(dx,dy)
+return e(math.sqrt(dx*dx+dy*dy))
 end

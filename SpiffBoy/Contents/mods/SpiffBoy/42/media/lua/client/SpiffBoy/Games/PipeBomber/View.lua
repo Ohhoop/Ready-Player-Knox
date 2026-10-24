@@ -6,288 +6,288 @@ require"SpiffBoy/Games/PipeBomber/Bombs"
 require"SpiffBoy/Games/PipeBomber/Actors"
 require"SpiffBoy/Games/PipeBomber/Bosses"
 
-local b=SpiffBoyPipeBomberGame
+local d=SpiffBoyPipeBomberGame
 local m=SpiffBoy.PipeBomber
-local K=m.Zones
+local J=m.Zones
 local j=m.Grid
 local z=m.Bombs
 local A=m.Actors
-local L=m.Bosses
+local K=m.Bosses
 
-local r=SpiffBoy.Cartridges.SHADES
-local c=r[4]
-local i=r[1]
-local u=SpiffBoy.Cartridges.SCREEN_WIDTH
-local a=K.TILE
-local f=b.gameText
+local q=SpiffBoy.Cartridges.SHADES
+local e=q[4]
+local i=q[1]
+local s=SpiffBoy.Cartridges.SCREEN_WIDTH
+local c=J.TILE
+local g=d.gameText
 
-local g={top=12,width=180,height=108}
+local h={top=12,width=180,height=108}
 local n={1,2,3,4}
-local M={1,2,3}
+local L={1,2,3}
 local B={1,2,3}
-local N=25
-local O={1,2,3}
-local P={2,4}
-local Q={2,3,4}
+local M=25
+local N={1,2,3}
+local O={2,4}
+local P={2,3,4}
 local o={size=16,left=2,up=4}
 local C={normal=24,big=32}
-local R={breaking=4}
-local S={pipe=0,aerosol=2,molotov=4,grenade=0}
-local T=12
+local Q={breaking=4}
+local R={pipe=0,aerosol=2,molotov=4,grenade=0}
+local S=12
 local D={closed=0,open=1}
-local U=15
-local V=10
+local T=15
+local U=10
 local E={range=0,count=1,speed=2,detonator=3,kick=4,pass=5,vest=6,aerosol=7,molotov=8}
-local W={5,4,2}
+local V={5,4,2}
 local F=5.5
-local X=1
-local Y={ball={size=3,shade=4},bile={size=4,shade=2}}
-local e={height=12,headX=2,headY=2,livesX=12,iconX=22,timeX=40,scoreRight=178,textY=-2,warn=180,warnBlink=8,scoreDigits=6}
-local Z="%0"..e.scoreDigits.."d"
+local W=1
+local X={ball={size=3,shade=4},bile={size=4,shade=2}}
+local f={height=12,headX=2,headY=2,livesX=12,iconX=22,timeX=40,scoreRight=178,textY=-2,warn=180,warnBlink=8,scoreDigits=6}
+local Y="%0"..f.scoreDigits.."d"
 local p={y=34,height=52,first=38,second=54,third=70}
-local _=15
-local aa={"detonator","kick","pass","vest"}
+local Z=15
+local _={"detonator","kick","pass","vest"}
 
-function b:camera()
-local d=self.grid
-local h=self.survivor
-local k=d.columns*a-g.width
-local l=d.rows*a-g.height
-local q=math.floor(h.x+a/2-g.width/2)
-local s=math.floor(h.y+a/2-g.height/2)
-return SpiffBoy.clamp(q,0,k),SpiffBoy.clamp(s,0,l)
+function d:camera()
+local a=self.grid
+local b=self.survivor
+local k=a.columns*c-h.width
+local l=a.rows*c-h.height
+local r=math.floor(b.x+c/2-h.width/2)
+local t=math.floor(b.y+c/2-h.height/2)
+return SpiffBoy.clamp(r,0,k),SpiffBoy.clamp(t,0,l)
 end
 
-function b:drawArena(h)
-local k=self.art.arenas[self.zone.key]
-local l=self.grid.rows*a
-for q,d in ipairs(M)do
-h:sheet(k,self.camX,(d-1)*l+self.camY,g.width,g.height,0,g.top,1,d)
+function d:drawArena(screen)
+local b=self.art.arenas[self.zone.key]
+local k=self.grid.rows*c
+for l,a in ipairs(L)do
+screen:sheet(b,self.camX,(a-1)*k+self.camY,h.width,h.height,0,h.top,1,a)
 end
 end
 
-function b:toScreen(d,h)
-return math.floor(d-self.camX),math.floor(h-self.camY)+g.top
+function d:toScreen(x,y)
+return math.floor(x-self.camX),math.floor(y-self.camY)+h.top
 end
 
-function b:visibleCells()
-local d=self.grid
-local h=math.floor(self.camX/a)+1
-local k=math.min(d.columns,math.floor((self.camX+g.width-1)/a)+1)
-local l=math.floor(self.camY/a)+1
-local q=math.min(d.rows,math.floor((self.camY+g.height-1)/a)+1)
-return h,k,l,q
+function d:visibleCells()
+local a=self.grid
+local b=math.floor(self.camX/c)+1
+local k=math.min(a.columns,math.floor((self.camX+h.width-1)/c)+1)
+local l=math.floor(self.camY/c)+1
+local r=math.min(a.rows,math.floor((self.camY+h.height-1)/c)+1)
+return b,k,l,r
 end
 
-function b:drawCrateRun(h,t,v,k,w)
-local l,q=self:toScreen((t-1)*a,(v-1)*a)
-local s=self.zone.key
-for x,d in ipairs(B)do
-if w then
-h:sheet(self.art.crateColumns[s],0,(d-1)*N*a,a,k*a,l,q,1,d)
+function d:drawCrateRun(screen,column,row,count,down)
+local b,k=self:toScreen((column-1)*c,(row-1)*c)
+local l=self.zone.key
+for r,a in ipairs(B)do
+if down then
+screen:sheet(self.art.crateColumns[l],0,(a-1)*M*c,c,count*c,b,k,1,a)
 else
-h:sheet(self.art.crates[s],0,(d-1)*a,k*a,a,l,q,1,d)
+screen:sheet(self.art.crates[l],0,(a-1)*c,count*c,c,b,k,1,a)
 end
 end
 end
 
-function b:drawCrates(v,w,q,x,s)
-local h=self.grid
+function d:drawCrates(screen,first,last,top,bottom)
+local b=self.grid
 local l={}
-for k=x,s do
-local d=w
-while d<=q do
-if h:kind(d,k)==j.CRATE then
-local t=d
-while d+1<=q and h:kind(d+1,k)==j.CRATE do
-d=d+1
+for k=top,bottom do
+local a=first
+while a<=last do
+if b:kind(a,k)==j.CRATE then
+local r=a
+while a+1<=last and b:kind(a+1,k)==j.CRATE do
+a=a+1
 end
-if d>t then
-self:drawCrateRun(v,t,k,d-t+1,false)
-for y=t,d do
-l[h:index(y,k)]=true
-end
-end
-end
-d=d+1
-end
-end
-for k=w,q do
-local d=x
-while d<=s do
-if h:kind(k,d)==j.CRATE then
-local t=d
-local y=l[h:index(k,d)]and 0 or 1
-while d+1<=s and h:kind(k,d+1)==j.CRATE do
-d=d+1
-if not l[h:index(k,d)]then
-y=y+1
-end
-end
-if y>=2 then
-self:drawCrateRun(v,k,t,d-t+1,true)
-for G=t,d do
-l[h:index(k,G)]=true
+if a>r then
+self:drawCrateRun(screen,r,k,a-r+1,false)
+for t=r,a do
+l[b:index(t,k)]=true
 end
 end
 end
-d=d+1
+a=a+1
 end
 end
-for d=x,s do
-for k=w,q do
-if h:kind(k,d)==j.CRATE and not l[h:index(k,d)]then
-self:drawCrateRun(v,k,d,1,false)
+for k=first,last do
+local a=top
+while a<=bottom do
+if b:kind(k,a)==j.CRATE then
+local r=a
+local t=l[b:index(k,a)]and 0 or 1
+while a+1<=bottom and b:kind(k,a+1)==j.CRATE do
+a=a+1
+if not l[b:index(k,a)]then
+t=t+1
+end
+end
+if t>=2 then
+self:drawCrateRun(screen,k,r,a-r+1,true)
+for u=r,a do
+l[b:index(k,u)]=true
 end
 end
 end
+a=a+1
 end
-
-function b:drawCell(d,h,k,l,q,s)
-local t,v=self:toScreen(l,q)
-d:layers(h,k*a,a,a,t,v,s)
 end
-
-function b:drawFloorThings(h,s,t,v,w)
-local d=self.grid
-local x=self.art.tiles[self.zone.key]
-for G,k in ipairs(d.breaking)do
-local l,q=d:cellOf(k.index)
-local y=math.min(2,math.floor((j.BREAK_TICKS-k.timer)*3/j.BREAK_TICKS))
-self:drawCell(h,x,R.breaking+y,(l-1)*a,(q-1)*a,B)
-end
-if d.exitShown then
-local l,q=d:cellOf(d.exitIndex)
-local k=D.closed
-if d.exitOpen then
-k=D.open+math.floor(self.clock/U)%2
-end
-self:drawCell(h,self.art.hatch,k,(l-1)*a,(q-1)*a,n)
-end
-for k=v,w do
-for l=s,t do
-local q=d:itemAt(l,k)
-if q then
-self:drawCell(h,self.art.bonuses,E[q],(l-1)*a,(k-1)*a,n)
+for a=top,bottom do
+for k=first,last do
+if b:kind(k,a)==j.CRATE and not l[b:index(k,a)]then
+self:drawCrateRun(screen,k,a,1,false)
 end
 end
 end
 end
 
-function b:drawBombs(h)
-local k=math.floor(self.clock/T)%2
-for l,d in ipairs(self.bombs.list)do
-self:drawCell(h,self.art.bombs,S[d.kind]+k,d.x,d.y,n)
+function d:drawCell(screen,texture,frame,x,y,shades)
+local a,b=self:toScreen(x,y)
+screen:layers(texture,frame*c,c,c,a,b,shades)
 end
-local l=math.floor(self.clock/V)%2
-for v,d in ipairs(self.bombs.fires)do
-if d.timer<=z.FIRE_TICKS then
-for w,q in ipairs(d.cells)do
-local s,t=self.grid:cellOf(q)
-self:drawCell(h,self.art.fire,l,(s-1)*a,(t-1)*a,O)
+
+function d:drawFloorThings(screen,first,last,top,bottom)
+local a=self.grid
+local r=self.art.tiles[self.zone.key]
+for u,b in ipairs(a.breaking)do
+local k,l=a:cellOf(b.index)
+local t=math.min(2,math.floor((j.BREAK_TICKS-b.timer)*3/j.BREAK_TICKS))
+self:drawCell(screen,r,Q.breaking+t,(k-1)*c,(l-1)*c,B)
+end
+if a.exitShown then
+local k,l=a:cellOf(a.exitIndex)
+local b=D.closed
+if a.exitOpen then
+b=D.open+math.floor(self.clock/T)%2
+end
+self:drawCell(screen,self.art.hatch,b,(k-1)*c,(l-1)*c,n)
+end
+for b=top,bottom do
+for k=first,last do
+local l=a:itemAt(k,b)
+if l then
+self:drawCell(screen,self.art.bonuses,E[l],(k-1)*c,(b-1)*c,n)
 end
 end
 end
 end
 
-function b:drawBlasts(G)
-for ae,h in ipairs(self.bombs.blasts)do
-local ab=W[z.strength(h)]
-local s,t=(h.column-1)*a,(h.row-1)*a
-local k=h.arms
-local H,ac=s-k.left*a,s+(k.right+1)*a
-local I,ad=t-k.up*a,t+(k.down+1)*a
+function d:drawBombs(screen)
+local b=math.floor(self.clock/S)%2
+for k,a in ipairs(self.bombs.list)do
+self:drawCell(screen,self.art.bombs,R[a.kind]+b,a.x,a.y,n)
+end
+local k=math.floor(self.clock/U)%2
+for u,a in ipairs(self.bombs.fires)do
+if a.timer<=z.FIRE_TICKS then
+for v,l in ipairs(a.cells)do
+local r,t=self.grid:cellOf(l)
+self:drawCell(screen,self.art.fire,k,(r-1)*c,(t-1)*c,N)
+end
+end
+end
+end
+
+function d:drawBlasts(screen)
+for ad,b in ipairs(self.bombs.blasts)do
+local aa=V[z.strength(b)]
+local t,u=(b.column-1)*c,(b.row-1)*c
+local k=b.arms
+local G,ab=t-k.left*c,t+(k.right+1)*c
+local H,ac=u-k.up*c,u+(k.down+1)*c
 for v=0,3 do
-local w=ab+0.5-v
+local w=aa+0.5-v
 if w>=0.5 then
 local l=math.ceil(F-w)
-local J=math.floor(F+w)
-local q=X+v
-local d=r[v+1]
-local x,y=self:toScreen(H+q,t+l)
-G:rect(x,y,ac-H-q*2,J-l+1,d.r,d.g,d.b,1)
-x,y=self:toScreen(s+l,I+q)
-G:rect(x,y,J-l+1,ad-I-q*2,d.r,d.g,d.b,1)
+local I=math.floor(F+w)
+local r=W+v
+local a=q[v+1]
+local x,y=self:toScreen(G+r,u+l)
+screen:rect(x,y,ab-G-r*2,I-l+1,a.r,a.g,a.b,1)
+x,y=self:toScreen(t+l,H+r)
+screen:rect(x,y,I-l+1,ac-H-r*2,a.r,a.g,a.b,1)
 end
 end
 end
 end
 
-function b:drawActor(h,k,l,d)
-local q,s=self:toScreen(d.x-o.left,d.y-o.up)
-h:layers(k,l*o.size,o.size,o.size,q,s,n)
+function d:drawActor(screen,texture,frame,actor)
+local a,b=self:toScreen(actor.x-o.left,actor.y-o.up)
+screen:layers(texture,frame*o.size,o.size,o.size,a,b,n)
 end
 
-function b:drawBoss(k)
-local d=self.boss
-local h=d.stats.big and C.big or C.normal
-local l,q=self:toScreen(d.x+a/2-h/2,d.y+a-h)
-k:layers(self.art.bosses[d.kind],L.frame(d,self.clock)*h,h,h,l,q,n)
+function d:drawBoss(screen)
+local a=self.boss
+local b=a.stats.big and C.big or C.normal
+local k,l=self:toScreen(a.x+c/2-b/2,a.y+c-b)
+screen:layers(self.art.bosses[a.kind],K.frame(a,self.clock)*b,b,b,k,l,n)
 end
 
-local function v(d)
-return d>0 and math.floor(d/4)%2==1
+local function u(timer)
+return timer>0 and math.floor(timer/4)%2==1
 end
 
-local G={}
-local w=nil
+local y={}
+local v=nil
 
-local function H(d,h)
-if d.y~=h.y then
-return d.y<h.y
+local function G(a,b)
+if a.y~=b.y then
+return a.y<b.y
 end
-return d==w
+return a==v
 end
 
-function b:drawActors(q)
+function d:drawActors(screen)
 local l=self.survivor
-local d=G
-local I=#d
-d[1]=l
-local h=1
-for s,k in ipairs(self.zombies)do
-h=h+1
-d[h]=k
+local a=y
+local H=#a
+a[1]=l
+local b=1
+for r,k in ipairs(self.zombies)do
+b=b+1
+a[b]=k
 end
 if self.boss then
-h=h+1
-d[h]=self.boss
+b=b+1
+a[b]=self.boss
 end
-for k=h+1,I do
-d[k]=nil
+for k=b+1,H do
+a[k]=nil
 end
-w=l
-table.sort(d,H)
-for s,k in ipairs(d)do
+v=l
+table.sort(a,G)
+for r,k in ipairs(a)do
 if k==l then
-if not v(l.safe)then
-self:drawActor(q,self.art.survivor,A.survivorFrame(l),l)
+if not u(l.safe)then
+self:drawActor(screen,self.art.survivor,A.survivorFrame(l),l)
 end
 elseif k==self.boss then
-self:drawBoss(q)
-elseif not(k.state~="dying"and v(k.flash))then
-self:drawActor(q,self.art.zombies[k.kind],A.zombieFrame(k),k)
+self:drawBoss(screen)
+elseif not(k.state~="dying"and u(k.flash))then
+self:drawActor(screen,self.art.zombies[k.kind],A.zombieFrame(k),k)
 end
 end
-for J,s in ipairs(self.shots)do
-local k=Y[s.kind]
-local x,y=self:toScreen(s.x-k.size/2,s.y-k.size/2)
-q:rect(x-1,y-1,k.size+2,k.size+2,i.r,i.g,i.b,1)
-local t=r[k.shade]
-q:rect(x,y,k.size,k.size,t.r,t.g,t.b,1)
+for I,r in ipairs(self.shots)do
+local k=X[r.kind]
+local w,x=self:toScreen(r.x-k.size/2,r.y-k.size/2)
+screen:rect(w-1,x-1,k.size+2,k.size+2,i.r,i.g,i.b,1)
+local t=q[k.shade]
+screen:rect(w,x,k.size,k.size,t.r,t.g,t.b,1)
 end
 end
 
-function b:shownPower()
-local h,d=nil,nil
-for q,l in ipairs(aa)do
+function d:shownPower()
+local b,a=nil,nil
+for r,l in ipairs(_)do
 local k=self.timed[l]
-if k>0 and(not d or k<d)then
-h,d=l,k
+if k>0 and(not a or k<a)then
+b,a=l,k
 end
 end
-if h then
-return h,d
+if b then
+return b,a
 end
 if self.special then
 return self.special.kind,nil
@@ -295,81 +295,81 @@ end
 return nil,nil
 end
 
-function b:clockText()
-local d=math.ceil(self.timeLeft/SpiffBoy.TICK_RATE)
-return string.format("%d:%02d",math.floor(d/60),d%60)
+function d:clockText()
+local a=math.ceil(self.timeLeft/SpiffBoy.TICK_RATE)
+return string.format("%d:%02d",math.floor(a/60),a%60)
 end
 
-function b:drawHud(d)
-d:rect(0,0,u,e.height,i.r,i.g,i.b,1)
-d:layers(self.art.hud,0,8,8,e.headX,e.headY,P)
-d:text(tostring(self.lives),e.livesX,e.textY,c.r,c.g,c.b,1)
-local k,h=self:shownPower()
-if k and not(h and h<e.warn and math.floor(h/e.warnBlink)%2==1)then
-d:layers(self.art.bonuses,E[k]*a,a,a,e.iconX,0,Q)
+function d:drawHud(screen)
+screen:rect(0,0,s,f.height,i.r,i.g,i.b,1)
+screen:layers(self.art.hud,0,8,8,f.headX,f.headY,O)
+screen:text(tostring(self.lives),f.livesX,f.textY,e.r,e.g,e.b,1)
+local b,a=self:shownPower()
+if b and not(a and a<f.warn and math.floor(a/f.warnBlink)%2==1)then
+screen:layers(self.art.bonuses,E[b]*c,c,c,f.iconX,0,P)
 end
-local l=f("Time").." "..self:clockText()
-d:text(l,e.timeX,e.textY,c.r,c.g,c.b,1)
-d:textRight(string.format(Z,self.score),e.scoreRight,e.textY,c.r,c.g,c.b,1)
-end
-
-local function h(k,l,q,s)
-k:rect(0,p.y,u,p.height,i.r,i.g,i.b,1)
-local t=u/2
-local x={{l,p.first},{q,p.second},{s,p.third}}
-for y,d in ipairs(x)do
-if d[1]then
-k:textCentre(d[1],t,d[2],c.r,c.g,c.b,1)
-end
-end
+local k=g("Time").." "..self:clockText()
+screen:text(k,f.timeX,f.textY,e.r,e.g,e.b,1)
+screen:textRight(string.format(Y,self.score),f.scoreRight,f.textY,e.r,e.g,e.b,1)
 end
 
-function b:drawIntro(d)
-local k=f(self.zone.name)
+local function a(screen,first,second,third)
+screen:rect(0,p.y,s,p.height,i.r,i.g,i.b,1)
+local k=s/2
+local l={{first,p.first},{second,p.second},{third,p.third}}
+for r,b in ipairs(l)do
+if b[1]then
+screen:textCentre(b[1],k,b[2],e.r,e.g,e.b,1)
+end
+end
+end
+
+function d:drawIntro(screen)
+local b=g(self.zone.name)
 if self.level==1 then
-local l=nil
+local k=nil
 if self.zone.password then
-l=f("Password").." "..self.zone.password
+k=g("Password").." "..self.zone.password
 end
-h(d,f("Zone",self.zoneIndex),k,l)
+a(screen,g("Zone",self.zoneIndex),b,k)
 elseif self.bossLevel then
-h(d,f("Boss"),k,nil)
+a(screen,g("Boss"),b,nil)
 else
-h(d,f("Level",self.zoneIndex,self.level),k,nil)
+a(screen,g("Level",self.zoneIndex,self.level),b,nil)
 end
 end
 
-function b:drawRun(d)
-d:clear(c.r,c.g,c.b)
+function d:drawRun(screen)
+screen:clear(e.r,e.g,e.b)
 self.camX,self.camY=self:camera()
-local l,q,s,t=self:visibleCells()
-self:drawArena(d)
-self:drawCrates(d,l,q,s,t)
-self:drawFloorThings(d,l,q,s,t)
-self:drawBombs(d)
-self:drawBlasts(d)
-self:drawActors(d)
-self:drawHud(d)
-local k=self.phase
-if k==b.PHASE_INTRO then
-self:drawIntro(d)
+local k,l,r,t=self:visibleCells()
+self:drawArena(screen)
+self:drawCrates(screen,k,l,r,t)
+self:drawFloorThings(screen,k,l,r,t)
+self:drawBombs(screen)
+self:drawBlasts(screen)
+self:drawActors(screen)
+self:drawHud(screen)
+local b=self.phase
+if b==d.PHASE_INTRO then
+self:drawIntro(screen)
 elseif self.paused then
-h(d,nil,getText("UI_SpiffBoy_Paused"),nil)
-elseif k==b.PHASE_CLEAR then
-h(d,nil,f("LevelClear"),nil)
-elseif k==b.PHASE_OVER then
-h(d,nil,f("GameOver"),nil)
-elseif k==b.PHASE_ENDING then
-h(d,f("Ending"),nil,f("Score").." "..tostring(self.score))
-elseif self.bannerTimer>0 and math.floor((b.BANNER_TICKS-self.bannerTimer)/_)%2==0 then
-h(d,nil,f("Horde"),nil)
+a(screen,nil,getText("UI_SpiffBoy_Paused"),nil)
+elseif b==d.PHASE_CLEAR then
+a(screen,nil,g("LevelClear"),nil)
+elseif b==d.PHASE_OVER then
+a(screen,nil,g("GameOver"),nil)
+elseif b==d.PHASE_ENDING then
+a(screen,g("Ending"),nil,g("Score").." "..tostring(self.score))
+elseif self.bannerTimer>0 and math.floor((d.BANNER_TICKS-self.bannerTimer)/Z)%2==0 then
+a(screen,nil,g("Horde"),nil)
 end
 end
 
-function b:draw(d)
-if self.mode==b.MODE_RUN then
-self:drawRun(d)
+function d:draw(screen)
+if self.mode==d.MODE_RUN then
+self:drawRun(screen)
 else
-self:drawMenu(d)
+self:drawMenu(screen)
 end
 end

@@ -26,10 +26,10 @@ ISBaseTimedAction.perform(self)
 SpiffBoy.LinkMenu.offer(self.character,self.peer)
 end
 
-function SpiffBoyOfferCableAction:new(c,d,e)
-local a=ISBaseTimedAction.new(self,c)
-a.consoleId=d:getID()
-a.peer=e
+function SpiffBoyOfferCableAction:new(character,console,peer)
+local a=ISBaseTimedAction.new(self,character)
+a.consoleId=console:getID()
+a.peer=peer
 a.maxTime=-1
 a.useProgressBar=false
 a.stopOnWalk=false

@@ -35,16 +35,16 @@ function SpiffBoyHandheldAction:update()
 self.character:setMetabolicTarget(Metabolics.LightDomestic)
 end
 
-function SpiffBoyHandheldAction:takeItem(b)
-local c=self.character:getInventory()
-c:Remove(b)
-sendRemoveItemFromContainer(c,b)
+function SpiffBoyHandheldAction:takeItem(item)
+local b=self.character:getInventory()
+b:Remove(item)
+sendRemoveItemFromContainer(b,item)
 end
 
-function SpiffBoyHandheldAction:giveItem(b)
-local c=self.character:getInventory()
-c:AddItem(b)
-sendAddItemToContainer(c,b)
+function SpiffBoyHandheldAction:giveItem(item)
+local b=self.character:getInventory()
+b:AddItem(item)
+sendAddItemToContainer(b,item)
 end
 
 function SpiffBoyHandheldAction:syncConsole()
@@ -58,10 +58,10 @@ end
 return a.ACTION_TIME
 end
 
-function SpiffBoyHandheldAction:new(c,d,e)
-local b=ISBaseTimedAction.new(self,c)
-b.console=d
-b.item=e
+function SpiffBoyHandheldAction:new(character,console,item)
+local b=ISBaseTimedAction.new(self,character)
+b.console=console
+b.item=item
 b.maxTime=b:getDuration()
 return b
 end
@@ -188,10 +188,10 @@ end
 
 SpiffBoyConnectCableAction=SpiffBoyHandheldAction:derive("SpiffBoyConnectCableAction")
 
-function SpiffBoyConnectCableAction:new(c,d,e,f)
-local b=SpiffBoyHandheldAction.new(self,c,d,nil)
-b.peerId=e
-b.peerNum=f
+function SpiffBoyConnectCableAction:new(character,console,peerId,peerNum)
+local b=SpiffBoyHandheldAction.new(self,character,console,nil)
+b.peerId=peerId
+b.peerNum=peerNum
 return b
 end
 

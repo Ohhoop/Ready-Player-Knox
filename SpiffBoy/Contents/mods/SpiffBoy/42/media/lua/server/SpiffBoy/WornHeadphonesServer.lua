@@ -4,17 +4,17 @@ require"SpiffBoy/Handheld/WornHeadphones"
 
 local a=SpiffBoy.WornHeadphones
 
-local function e(c,d)
-if type(d)~="table"then
+local function c(player,args)
+if type(args)~="table"then
 return
 end
-local b=d.type
-if b~=nil and not(a.isWornType(b)and a.isCarried(c,b))then
+local b=args.type
+if b~=nil and not(a.isWornType(b)and a.isCarried(player,b))then
 return
 end
-if a.apply(c,b)then
-sendHumanVisual(c)
+if a.apply(player,b)then
+sendHumanVisual(player)
 end
 end
 
-SpiffBoy.Commands.fromClient(a.COMMAND,e)
+SpiffBoy.Commands.fromClient(a.COMMAND,c)

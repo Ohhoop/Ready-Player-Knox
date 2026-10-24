@@ -12,31 +12,31 @@ a.GROUND_Y=104
 a.FAR_Y=16
 a.MID_Y=50
 
-local e=360
-local f={height=40,speed=0.5}
-local g={height=54,speed=1}
-local h={width=180,height=16}
-local i={1,2,3,4}
+local d=360
+local e={height=40,speed=0.5}
+local f={height=54,speed=1}
+local g={width=180,height=16}
+local h={1,2,3,4}
 
-function a.new(c,d)
+function a.new(art,name)
 local b=setmetatable({},a)
-b.far=c(d.."_far")
-b.mid=c(d.."_mid")
-b.ground=c(d.."_ground")
+b.far=art(name.."_far")
+b.mid=art(name.."_mid")
+b.ground=art(name.."_ground")
 return b
 end
 
-local function c(d,j,k,l,o,m)
-local n=o%k
-local b=math.min(a.VIEW,k-n)
-d:layers(j,n,b,l,0,m,i)
+local function c(screen,texture,width,height,offset,y)
+local i=offset%width
+local b=math.min(a.VIEW,width-i)
+screen:layers(texture,i,b,height,0,y,h)
 if b<a.VIEW then
-d:layers(j,0,a.VIEW-b,l,b,m,i)
+screen:layers(texture,0,a.VIEW-b,height,b,y,h)
 end
 end
 
-function a:draw(b,d)
-c(b,self.far,e,f.height,math.floor(d*f.speed),a.FAR_Y)
-c(b,self.mid,e,g.height,math.floor(d*g.speed),a.MID_Y)
-c(b,self.ground,h.width,h.height,math.floor(d),a.GROUND_Y)
+function a:draw(screen,camera)
+c(screen,self.far,d,e.height,math.floor(camera*e.speed),a.FAR_Y)
+c(screen,self.mid,d,f.height,math.floor(camera*f.speed),a.MID_Y)
+c(screen,self.ground,g.width,g.height,math.floor(camera),a.GROUND_Y)
 end
